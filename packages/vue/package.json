@@ -12,6 +12,7 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
+	"typings": "types/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
@@ -20,10 +21,8 @@
 		},
 		"./*": "./*"
 	},
-	"typings": "types/index.d.ts",
 	"files": [
 		"dist",
-		"src",
 		"types",
 		"README.md"
 	],
