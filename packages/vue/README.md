@@ -1,11 +1,6 @@
-# `lib`
+# @yiitap/vue
 
-> TODO: description
+> Yiitap vue component.
 
 ## Usage
 
-```js
-import VueMonoRepo from 'vue-monorepo-lib'
-
-// TODO: DEMONSTRATE API
-```
