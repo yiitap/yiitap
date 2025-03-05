@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-CD9fYGVh.js"(exports, module) {
+  "assets/index-DRWBdEV_.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -18961,7 +18961,7 @@ ${style2}
       Upload: uploadDark,
       Watermark: watermarkDark
     };
-    const _imports_0 = "/logo.png";
+    const _imports_0 = "/yiitap/logo.png";
     var Wb = Object.defineProperty;
     var qb = (n3, e, t) => e in n3 ? Wb(n3, e, { enumerable: true, configurable: true, writable: true, value: t }) : n3[e] = t;
     var Ge = (n3, e, t) => qb(n3, typeof e != "symbol" ? e + "" : e, t);
