@@ -1,0 +1,39 @@
+name: Deploy Vue App
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.4.0
+          run_install: true
+
+      - name: Build Vue App
+        run: |
+          pnpm install
+          pnpm build-app-vue
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: apps/vue/dist
