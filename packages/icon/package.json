@@ -1,0 +1,23 @@
+{
+	"name": "@yiitap/icon",
+	"description": "yiitab icon font",
+	"version": "1.0.0",
+	"private": false,
+	"author": {
+		"name": "Yiitap",
+		"email": "yiinote@gmail.com"
+	},
+	"homepage": "",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"src",
+		"README.md"
+	],
+	"scripts": {
+		"build": "./build.sh"
+	},
+	"devDependencies": {
+		"fantasticon": "^2.0.0"
+	}
+}

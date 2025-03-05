@@ -1,0 +1,22 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["src/env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+	// only uncomment if you encounter problems w. 3rd party libs
+	// See: https://github.com/vuejs/tsconfig?tab=readme-ov-file#migrating-from-typescript--50
+	  "resolvePackageJsonExports": false,
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "Node",
+    "composite": true,
+    "outDir": "dist",
+    "declarationDir": "types",
+    "allowJs": true,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "app-vue",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint 'src/**/*.{ts,vue}'"
+  },
+  "dependencies": {
+    "@yiitap/vue": "workspace:*",
+    "naive-ui": "^2.35.0",
+    "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.3.8",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "sass": "^1.69.5",
+	"vite": "^6.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+*.log
+.DS_Store
+node_modules
+dist
+*.iml
+
+packages/docs/.vitepress/cache
+packages/*/dist
+packages/*/types
+
+*.tsbuildinfo
+
+TODO.md

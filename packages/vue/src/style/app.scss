@@ -1,0 +1,197 @@
+
+// Global Styles
+// ====================================================
+.o-menu, .o-dropdown-popover {
+	min-width: 180px;
+	padding: 8px 0!important;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+	0 2px 2px rgba(0, 0, 0, 0.14),
+	0 3px 1px -2px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	background: #ffffff;
+
+	.group, .panel {
+		padding: 0 8px;
+	}
+
+	.o-list-item {
+		margin: 1px 8px;
+		padding: 8px 8px !important;
+		border-radius: 4px;
+
+		&.is-active, &.is-select {
+			background: rgba(0, 0, 0, 0.05);
+			.check {
+				visibility: visible;
+			}
+		}
+
+		.check {
+			visibility: hidden;
+		}
+
+		.n-list-item__prefix {
+			margin-right: 10px;
+		}
+		.n-list-item__suffix {
+			white-space: nowrap;
+		}
+		.n-list-item__divider {
+			background: transparent!important;
+		}
+	}
+
+	.n-divider {
+		margin: 8px 0;
+	}
+
+	.o-command-btn {
+		&:hover {
+			background: rgba(0,0,0,0.08)!important;
+		}
+	}
+}
+
+.o-button-group {
+	background: rgba(0,0,0,0.03);
+
+	.o-command-btn:first-child {
+		border-radius: 3px 0 0 3px;
+	}
+	.o-command-btn:last-child {
+		width: 20px;
+		border-radius: 0 3px 3px 0;
+	}
+}
+
+.o-command-btn {
+	padding: 0;
+	font-weight: 400;
+	width: 30px;
+	height: 30px;
+	min-height: unset;
+	cursor: pointer;
+	border-radius: 3px;
+	box-sizing: border-box;
+	color: var(--yii-color);
+
+	&:hover {
+		background: var(--yii-hover-bg-color)!important;
+	}
+
+	&.dropdown {
+		width: 40px;
+		background: var(--yii-tips-bg-color);
+
+		.arrow {
+			margin-left: -4px;
+			font-size: 16px;
+		}
+	}
+
+	&.is-active {
+		background: rgba(0,0,0,0.1);
+	}
+
+	.iconfont {
+		font-size: 20px;
+	}
+}
+
+.o-shadow {
+	&-1 {
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+		0 2px 2px rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12);
+	}
+	&-3 {
+		box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2),
+		0 3px 4px rgba(0, 0, 0, 0.14),
+		0 3px 3px -2px rgba(0, 0, 0, 0.12);
+	}
+}
+
+.o-tips {
+	opacity: 0.5;
+}
+
+.v-binder-follower-container {
+	z-index: 10000!important;
+}
+
+// UI
+// ====================================================
+.o-btn {
+	outline: none;
+	border-style: none;
+	background-color: unset;
+}
+.o-scroll {
+	max-height: 480px;
+	overflow: auto;
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: 0 4px 4px 0;
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 0;
+		background: rgba(0, 0, 0, 0.08);
+	}
+}
+
+// YiiTap
+// ====================================================
+.yiitap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-family: Helvetica, Arial, sans-serif;
+	color: var(--yii-color);
+
+	.tippy-box {
+		max-width: 480px!important;
+	}
+
+	.bubble-menu, .floating-menu {
+		background: var(--yii-tippy-popover-bg-color);
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+		0 2px 2px rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12);
+		border-radius: 4px;
+
+		.container {
+			display: flex;
+			align-items: center;
+			padding: 4px;
+		}
+	}
+
+	.editor-content {
+		overflow-wrap: break-word;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word;
+		font-size: 16px;
+		padding: 16px 100px;
+
+		&.page {
+			width: 1000px;
+		}
+
+		:focus {
+			outline: none;
+		}
+	}
+
+	button {
+		color: var(--yii-color);
+	}
+
+	&[data-theme="dark"] {
+	}
+}

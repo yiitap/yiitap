@@ -1,0 +1,19 @@
+{
+	"files": [],
+	"references": [
+		{
+			"path": "./tsconfig.config.json"
+		},
+		// Lib: Vue
+		{
+			"path": "./packages/vue/tsconfig.app.json"
+		},
+		{
+			"path": "./packages/vue/tsconfig.vitest.json"
+		},
+		// Apps
+		{
+			"path": "./apps/vue/tsconfig.app.json"
+		}
+	]
+}

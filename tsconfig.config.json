@@ -1,0 +1,13 @@
+{
+    "extends": "@tsconfig/node20/tsconfig.json",
+    "include": [
+        "packages/*/vite.config.*",
+        "package/*/vitest.config.*",
+        "cypress.config.*",
+        "playwright.config.*"],
+    "compilerOptions": {
+      "composite": true,
+      "types": ["node"]
+    }
+  }
+  

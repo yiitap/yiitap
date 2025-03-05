@@ -1,0 +1,122 @@
+// Common
+// ====================================================
+.tippy-box[data-placement^=top]>.tippy-arrow {
+	bottom: 0
+}
+
+.tippy-box[data-placement^=top]>.tippy-arrow:before {
+	bottom: -7px;
+	left: 0;
+	border-width: 8px 8px 0;
+	border-top-color: initial;
+	transform-origin: center top
+}
+
+.tippy-box[data-placement^=bottom]>.tippy-arrow {
+	top: 0
+}
+
+.tippy-box[data-placement^=bottom]>.tippy-arrow:before {
+	top: -7px;
+	left: 0;
+	border-width: 0 8px 8px;
+	border-bottom-color: initial;
+	transform-origin: center bottom
+}
+
+.tippy-box[data-placement^=left]>.tippy-arrow {
+	right: 0
+}
+
+.tippy-box[data-placement^=left]>.tippy-arrow:before {
+	border-width: 8px 0 8px 8px;
+	border-left-color: initial;
+	right: -7px;
+	transform-origin: center left
+}
+
+.tippy-box[data-placement^=right]>.tippy-arrow {
+	left: 0
+}
+
+.tippy-box[data-placement^=right]>.tippy-arrow:before {
+	left: -7px;
+	border-width: 8px 8px 8px 0;
+	border-right-color: initial;
+	transform-origin: center right
+}
+
+.tippy-box[data-inertia][data-state=visible] {
+	transition-timing-function: cubic-bezier(.54, 1.5, .38, 1.11)
+}
+
+.tippy-arrow {
+	width: 16px;
+	height: 16px;
+	color: transparent;
+}
+
+.tippy-arrow:before {
+	content: "";
+	position: absolute;
+	border-color: transparent;
+	border-style: solid
+}
+
+.tippy-content {
+	position: relative;
+	z-index: 1
+}
+
+// Tootip
+// ====================================================
+.tippy-box[role="tooltip"] {
+	.tippy-arrow {
+		color: var(--yii-tippy-tooltip-bg-color);
+	}
+
+	.tooltip-content {
+		position: relative;
+		background-color: var(--yii-tippy-tooltip-bg-color);
+		color: var(--yii-tippy-tooltip-color);
+		border-radius: 4px;
+		font-size: 14px;
+		line-height: 1.4;
+		white-space: normal;
+		outline: 0;
+		transition-property: transform, visibility, opacity;
+		padding: 5px 9px;
+	}
+}
+
+// Popover
+// ====================================================
+.tippy-box[role="popover"] {
+	max-width: unset!important;
+	.tippy-arrow {
+		color: var(--yii-tippy-popover-bg-color);
+	}
+
+	.popover-content {
+		min-width: 180px;
+		padding: 8px;
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+		0 2px 2px rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12);
+		border-radius: 4px;
+		color: var(--yii-color);
+		background: var(--yii-tippy-popover-bg-color);
+
+		&.dropdown {
+			padding: 0;
+			.o-list {
+				padding: 8px 0;
+
+				.o-list-item {
+					margin: 1px 8px
+				}
+			}
+		}
+	}
+
+}

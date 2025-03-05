@@ -1,0 +1,48 @@
+{
+	"name": "@yiitap/extension-color-highlighter",
+	"description": "Color highlighter extension",
+	"version": "1.0.0",
+	"private": false,
+	"author": {
+		"name": "Yiitap",
+		"email": "yiinote@gmail.com"
+	},
+	"homepage": "",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		},
+		"./*": "./*"
+	},
+	"typings": "types/index.d.ts",
+	"files": [
+		"dist",
+		"src",
+		"types",
+		"README.md"
+	],
+	"scripts": {
+		"build": "pnpm build-lib && pnpm build-types",
+		"build-lib": "vite build",
+		"build-types": "vue-tsc --emitDeclarationOnly --declaration -p tsconfig.json",
+		"lint": "eslint 'src/**/*.{ts,vue}'",
+		"test": "vitest",
+		"test-ci": "vitest --run"
+	},
+	"dependencies": {
+	},
+	"peerDependencies": {
+		"@tiptap/core": "^2.11.5",
+		"@tiptap/pm": "^2.11.5"
+	},
+	"devDependencies": {
+		"vite": "^6.2.0",
+		"vitest": "^0.34.6"
+	}
+}
