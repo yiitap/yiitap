@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-MxXQ5y2Y.js"(exports, module) {
+  "assets/index-BTtinxEj.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -62914,6 +62914,7 @@ func main() {
         });
         onMounted(() => {
           console.log("ref", yiiEditor.value);
+          console.log("ref", true);
         });
         return (_ctx, _cache) => {
           var _a2;
