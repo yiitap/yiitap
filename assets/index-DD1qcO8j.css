@@ -1,0 +1,66 @@
+.page-demo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  color: var(--yii-color-accent);
+  background: var(--yii-bg-color);
+}
+.page-demo .layout-toolbar {
+  height: 108px;
+}
+.page-demo .layout-toolbar header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+.page-demo .layout-toolbar header .info {
+  display: inline-flex;
+  align-items: center;
+}
+.page-demo .layout-toolbar header .info img {
+  width: 32px;
+  height: 32px;
+}
+.page-demo .layout-toolbar header .info .title {
+  padding: 0 4px;
+  font-size: 20px;
+}
+.page-demo .layout-toolbar header .actions {
+  display: flex;
+  align-items: center;
+}
+.page-demo .layout-toolbar header .actions .n-button {
+  padding: 0 8px;
+  margin-left: 4px;
+}
+.page-demo .layout-toolbar .toolbar {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: solid 1px rgba(0, 0, 0, 0.05);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+.page-demo .layout-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 108px;
+  bottom: 0;
+  overflow: auto;
+}
+.n-drawer .action {
+  margin-bottom: 14px;
+}
+*:has(.is-dragging) {
+  background: transparent !important;
+}#app {
+  padding: 0;
+}
