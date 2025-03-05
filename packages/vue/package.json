@@ -1,13 +1,13 @@
 {
 	"name": "@yiitap/vue",
-	"description": "A modern collaborative editor built on top of Tiptap.",
+	"description": "A WYSIWYG rich-text block-based editor built on top of tiptap.",
 	"version": "1.0.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
-		"email": "yiinote@gmail.com"
+		"email": "pileaxai@gmail.com"
 	},
-	"homepage": "",
+	"homepage": "https://github.com/yiitap/yiitap",
 	"license": "MIT",
 	"type": "module",
 	"main": "dist/index.cjs",
@@ -80,5 +80,19 @@
 	"devDependencies": {
 		"vite": "^6.2.0",
 		"vitest": "^0.34.6"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yiitap/yiitap"
+	},
+	"bugs": {
+		"url": "https://github.com/yiitap/yiitap/issues"
+	},
+	"keywords": [
+		"editor",
+		"wysiwyg",
+		"block",
+		"tiptap",
+		"vue"
+	]
 }
