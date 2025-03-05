@@ -17,6 +17,15 @@ export default defineConfig({
 		},
 		dedupe: ['vue'],
 	},
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: process.env.NODE_ENV === 'production'
+          ? `@import '@yiitap/vue/dist/vue.css';`
+          : '',
+      },
+    },
+  },
 	build: {
 		// we don't minify so we can look at the bundle ouput. Change if you wanna deploy the playground
 		minify: false,

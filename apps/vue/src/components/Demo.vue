@@ -74,11 +74,9 @@ import {
 	NSpace,
 	NSwitch,
 } from 'naive-ui'
-
 import { YiiEditor, OMainMenu, OIcon } from '@yiitap/vue'
-import '@yiitap/vue/dist/vue.css'
-
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
+
 const emit = defineEmits(['mode'])
 
 const yiiEditor = ref<InstanceType<typeof YiiEditor>>()
@@ -171,6 +169,7 @@ watch(locale, (newValue) => {
 
 onMounted(() => {
 	console.log('ref', yiiEditor.value)
+	console.log('ref', import.meta.env.PROD)
 })
 </script>
 
