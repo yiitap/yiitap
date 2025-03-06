@@ -37,7 +37,6 @@ import useTiptap from '../../hooks/useTiptap'
 const props = defineProps({
 	editor: {
 		type: Editor,
-		required: true,
 	},
 })
 const { tr } = useI18n()

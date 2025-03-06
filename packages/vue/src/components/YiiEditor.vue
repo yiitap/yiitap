@@ -37,6 +37,7 @@
 import { ref, computed, onBeforeMount, provide, watch } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import Document from '@tiptap/extension-document';
 import TextStyle from '@tiptap/extension-text-style'
 
 import OMainMenu from './menus/OMainMenu.vue'
@@ -207,7 +208,12 @@ const sideMenuOptions = computed(() => {
 function buildExtensions() {
 	const extensions = []
 
-	// default
+	// Default
+  if (!props.extensions.includes('OColumn')) {
+    extensions.push(Document.extend({
+      content: 'heading block*',
+    }));
+  }
 	extensions.push(
 		OPlaceholder.configure({
 			placeholder: ({ editor, node, pos }) => {
@@ -225,6 +231,7 @@ function buildExtensions() {
 	extensions.push(TextStyle)
 	extensions.push(
 		StarterKit.configure({
+      document: false,
 			blockquote: props.extensions.includes('OBlockquote') ? false : {},
 			codeBlock: false,
 			heading: props.extensions.includes('OHeading')
@@ -243,7 +250,7 @@ function buildExtensions() {
 	)
 
 	// user custom extension
-	console.log('default', DefaultExtensions)
+	console.debug('default', DefaultExtensions)
 	const list = DefaultExtensions.concat(props.extensions)
 	for (const item of list) {
 		if (typeof item === 'string') {
@@ -260,7 +267,7 @@ function buildExtensions() {
 					try {
 						const extension = new DynamicClass(item)
 						extensions.push(extension)
-						console.log('dynamic extension', item, extension)
+						console.debug('dynamic extension', item, extension)
 					} catch (e) {
 						console.error(e.message)
 					}

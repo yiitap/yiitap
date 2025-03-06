@@ -143,7 +143,8 @@ const options = computed(() => {
 })
 
 const content = computed(() => {
-	return locale.value === 'zh' ? BasicFeaturesArticleZh : BasicFeaturesArticle
+	// return locale.value === 'zh' ? BasicFeaturesArticleZh : BasicFeaturesArticle
+	return ''
 })
 
 function onToggleDrawer() {
@@ -168,8 +169,8 @@ watch(locale, (newValue) => {
 })
 
 onMounted(() => {
-	console.log('ref', yiiEditor.value)
-	console.log('ref', import.meta.env.PROD)
+	console.debug('ref', yiiEditor.value)
+	console.debug('ref', import.meta.env.PROD)
 })
 </script>
 
