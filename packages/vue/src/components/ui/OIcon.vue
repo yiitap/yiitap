@@ -25,9 +25,7 @@ const props = defineProps({
 .o-icon {
 	display: flex;
 	align-items: center;
-	width: unset !important;
-	height: unset !important;
-	font-size: 20px !important;
+	font-size: 20px;
 
 	&.small {
 		font-size: 16px !important;
