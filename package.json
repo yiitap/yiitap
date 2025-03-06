@@ -1,6 +1,5 @@
 {
 	"name": "@yiitap/root",
-	"version": "1.0.0",
 	"description": "YiitapEditor is a WYSIWYG rich-text block-based editor built on top of tiptap.",
 	"author": {
 		"name": "Yiitap",
@@ -10,7 +9,9 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
-		"packages/*"
+		"apps/*",
+		"packages/*",
+		"packages/extensions/*"
 	],
 	"scripts": {
 		"dev": "pnpm -F 'app-vue' dev",

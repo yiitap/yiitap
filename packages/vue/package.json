@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/vue",
 	"description": "A WYSIWYG rich-text block-based editor built on top of tiptap.",
-	"version": "workspace:*",
+	"version": "1.0.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
