@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-placeholder",
 	"description": "Placeholder extension",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -35,8 +35,7 @@
 		"test": "vitest",
 		"test-ci": "vitest --run"
 	},
-	"dependencies": {
-	},
+	"dependencies": {},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"
