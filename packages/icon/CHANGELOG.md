@@ -1,5 +1,11 @@
 # @yiitap/icon
 
+## 1.0.3
+
+### Patch Changes
+
+- use extension-callout
+
 ## 1.0.2
 
 ### Patch Changes

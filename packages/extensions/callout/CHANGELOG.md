@@ -1,5 +1,13 @@
 # @yiitap/extension-callout
 
+## 1.0.3
+
+### Patch Changes
+
+- use extension-callout
+- Updated dependencies
+  - @yiitap/extension-callout@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
