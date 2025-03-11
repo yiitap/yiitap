@@ -15,9 +15,9 @@ jobs:
         id: check
         run: |
           if git log -1 --pretty=%B | grep -q "release(global)"; then
-            echo "should_release=true" >> $GITHUB_ENV
+            echo "should_release=true" >> $GITHUB_OUTPUT
           else
-            echo "should_release=false" >> $GITHUB_ENV
+            echo "should_release=false" >> $GITHUB_OUTPUT
           fi
   release:
     name: Release and Publish
