@@ -169,8 +169,8 @@ watch(locale, (newValue) => {
 })
 
 onMounted(() => {
-	console.debug('ref', yiiEditor.value)
-	console.debug('ref', import.meta.env.PROD)
+	// console.debug('ref', yiiEditor.value)
+	// console.debug('ref', import.meta.env.PROD)
 })
 </script>
 

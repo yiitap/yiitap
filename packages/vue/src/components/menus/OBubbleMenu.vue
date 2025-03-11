@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { getMarkRange, isTextSelection } from '@tiptap/core'
+import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
 import { BubbleMenu } from '@tiptap/vue-3'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
@@ -50,7 +50,7 @@ import { ODivider, OMenubarBtn } from '../index'
 
 const props = defineProps({
 	editor: {
-		type: Object,
+		type: Editor,
 	},
 	menu: {
 		type: Array,
@@ -74,7 +74,7 @@ const { theme } = useTheme()
 const backToMain = ref(false)
 const options = ref({
 	duration: 100,
-	placement: 'top',
+	placement: 'top' as 'top' | 'bottom',
 	role: 'popover',
 	arrow: false,
 	// offset: [0, 0]
@@ -100,7 +100,7 @@ function isLinkSelection(selection) {
 	// return range.to === $to.pos
 }
 
-function shouldShow({ editor, view, state, oldState, from, to }) {
+function shouldShow({ editor, element, view, state, oldState, from, to }) {
 	const { doc, selection } = state
 	const { empty } = selection
 	const isEmptyTextBlock =

@@ -29,14 +29,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { getMarkRange, isTextSelection } from '@tiptap/core'
-import { FloatingMenu } from '@tiptap/vue-3'
+import { Editor, FloatingMenu } from '@tiptap/vue-3'
 import { getComponent } from '../menu'
 import { DefaultFloating } from '../../constants/menu'
 import { ODivider, OMenubarBtn } from '../index'
 
 const props = defineProps({
 	editor: {
-		type: Object,
+		type: Editor,
 	},
 	menu: {
 		type: Array,
@@ -57,12 +57,14 @@ const props = defineProps({
 })
 
 const backToMain = ref(false)
+
+// @ts-ignore
 const options = ref({
 	arrow: false,
 	duration: 100,
 	role: 'popover',
-	placement: 'right',
-	offset: [0, 168],
+	placement: 'right' as 'left' | 'right',
+	offset: [0, 168] as [number, number],
 }) // mobile
 
 function onBackToMain() {

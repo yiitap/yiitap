@@ -250,7 +250,7 @@ function buildExtensions() {
 	)
 
 	// user custom extension
-	console.debug('default', DefaultExtensions)
+	// console.debug('default', DefaultExtensions)
 	const list = DefaultExtensions.concat(props.extensions)
 	for (const item of list) {
 		if (typeof item === 'string') {
@@ -267,7 +267,7 @@ function buildExtensions() {
 					try {
 						const extension = new DynamicClass(item)
 						extensions.push(extension)
-						console.debug('dynamic extension', item, extension)
+						// console.debug('dynamic extension', item, extension)
 					} catch (e) {
 						console.error(e.message)
 					}
