@@ -11,6 +11,11 @@ jobs:
     outputs:
       should_release: ${{ steps.check.outputs.should_release }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
       - name: Check commit message
         id: check
         run: |
