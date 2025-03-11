@@ -15,6 +15,7 @@
 	],
 	"scripts": {
 		"dev": "pnpm -F 'app-vue' dev",
+		"dev-react": "pnpm -F 'app-react' dev",
 		"test": "pnpm --if-present -r run test",
 		"test-ci": "pnpm --if-present -r run test-ci",
 		"test-libs": "pnpm -F '@yiitap/*' run test",

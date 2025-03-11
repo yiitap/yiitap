@@ -14,6 +14,9 @@
 		// Apps
 		{
 			"path": "./apps/vue/tsconfig.app.json"
-		}
-	]
+		},
+    {
+      "path": "./apps/react/tsconfig.app.json"
+    }
+  ]
 }
