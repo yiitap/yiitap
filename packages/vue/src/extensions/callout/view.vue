@@ -68,6 +68,7 @@ const borderColor = computed({
 		return props.node.attrs.borderColor
 	},
 	set(value) {
+    console.log('action', value)
 		props.updateAttributes({ borderColor: value })
 	},
 })
@@ -123,6 +124,7 @@ function onSelect(command: string, value: string) {
 }
 
 watch(isFocused, (newValue) => {
+  console.log('isFocused', props.node.attrs)
 	onShowPopover(newValue)
 })
 </script>

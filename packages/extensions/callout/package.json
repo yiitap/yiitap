@@ -35,7 +35,9 @@
 		"test": "vitest",
 		"test-ci": "vitest --run"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@yiitap/extension-callout": "workspace:*"
+	},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"

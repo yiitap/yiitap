@@ -143,8 +143,8 @@ const options = computed(() => {
 })
 
 const content = computed(() => {
-	// return locale.value === 'zh' ? BasicFeaturesArticleZh : BasicFeaturesArticle
-	return ''
+	return locale.value === 'zh' ? BasicFeaturesArticleZh : BasicFeaturesArticle
+	// return ''
 })
 
 function onToggleDrawer() {
@@ -161,7 +161,7 @@ function onMode() {
 
 function onUpdate({ json, html }: { json: any; html: string }) {
 	// console.log('update', json)
-	console.log('update', html)
+	// console.log('update', html)
 }
 
 watch(locale, (newValue) => {

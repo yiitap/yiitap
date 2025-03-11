@@ -1,8 +1,6 @@
 import { Node, mergeAttributes } from '@tiptap/core'
-
-export interface CalloutOptions {
-  HTMLAttributes: Record<string, any>
-}
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import View from './view.vue'
 
 declare module '@tiptap/core' {
 	interface Commands<ReturnType> {
@@ -23,35 +21,29 @@ declare module '@tiptap/core' {
 	}
 }
 
-export const Callout = Node.create<CalloutOptions>({
+export default Node.create({
 	name: 'callout',
 	group: 'block',
 	content: 'block+',
 	draggable: true,
-
-	addOptions() {
-		return {
-			HTMLAttributes: {},
-		}
-	},
 
 	addAttributes() {
 		return {
 			icon: {
 				default: '🌾',
 			},
-      borderColor: {
-        default: '#dddddd',
-      },
-      borderColorDark: {
-        default: '#333333',
-      },
-      backColor: {
-        default: '#eeeeee',
-      },
-      backColorDark: {
-        default: 'rgba(101, 117, 133, 0.16)',
-      },
+			borderColor: {
+				default: '#dddddd',
+			},
+			borderColorDark: {
+				default: '#333333',
+			},
+			backColor: {
+				default: '#eeeeee',
+			},
+			backColorDark: {
+				default: 'rgba(101, 117, 133, 0.16)',
+			},
 		}
 	},
 
@@ -89,5 +81,9 @@ export const Callout = Node.create<CalloutOptions>({
 					return commands.lift(this.name)
 				},
 		}
+	},
+
+	addNodeView() {
+		return VueNodeViewRenderer(View)
 	},
 })
