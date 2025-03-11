@@ -5,32 +5,25 @@
 	"private": false,
 	"author": {
 		"name": "Yiitap",
-		"email": "yiinote@gmail.com"
+		"email": "pileaxai@gmail.com"
 	},
 	"homepage": "",
 	"license": "MIT",
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
 	"exports": {
-		".": {
-			"types": "./types/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
-		},
-		"./*": "./*"
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.cjs"
 	},
-	"typings": "types/index.d.ts",
 	"files": [
-		"dist",
-		"src",
-		"types",
-		"README.md"
+		"dist"
 	],
 	"scripts": {
 		"build": "pnpm build-lib && pnpm build-types",
 		"build-lib": "vite build",
-		"build-types": "vue-tsc --emitDeclarationOnly --declaration -p tsconfig.json",
+		"build-types": "tsc --emitDeclarationOnly",
 		"lint": "eslint 'src/**/*.{ts,vue}'",
 		"test": "vitest",
 		"test-ci": "vitest --run"
@@ -39,11 +32,11 @@
 		"@yiitap/extension-callout": "workspace:*"
 	},
 	"peerDependencies": {
-		"@tiptap/core": "^2.11.5",
-		"@tiptap/pm": "^2.11.5"
+		"@tiptap/core": "^2.11.5"
 	},
 	"devDependencies": {
 		"vite": "^6.2.0",
+		"vite-plugin-dts": "^4.5.3",
 		"vitest": "^0.34.6"
 	}
 }
