@@ -29,6 +29,7 @@
     "core",
     "vue",
     "react",
+    "icon",
     "extension-callout",
     "extension-code-block",
     "extension-color-highlighter",

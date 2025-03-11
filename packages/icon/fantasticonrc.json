@@ -1,5 +1,5 @@
 {
-	"name": "yiitip-icon",
+	"name": "yiitap-icon",
 	"prefix": "icon",
 	"inputDir": "./src/svg",
 	"outputDir": "./dist",

@@ -316,9 +316,9 @@ defineExpose({
 </script>
 
 <style lang="scss">
-@import '../style/app.scss';
-@import '../style/tippy.scss';
-@import '../style/tiptap.scss';
-@import '../style/variables';
-@import '../../../icon/dist/yiitip-icon.css';
+@use '../style/app.scss';
+@use '../style/tippy.scss';
+@use '../style/tiptap.scss';
+@use '../style/variables';
+@import '../../../icon/dist/yiitap-icon.css';
 </style>
