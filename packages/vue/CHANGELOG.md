@@ -1,5 +1,12 @@
 # @yiitap/vue
 
+## 1.0.4
+
+### Patch Changes
+
+- @yiitap/extension-callout@1.0.4
+- @yiitap/vue@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

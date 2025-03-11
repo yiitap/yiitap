@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-slash",
 	"description": "Slash extension",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
