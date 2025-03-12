@@ -30,12 +30,7 @@
     "vue",
     "react",
     "icon",
-    "extension-callout",
-    "extension-code-block",
-    "extension-color-highlighter",
-    "extension-link",
-    "extension-placeholder",
-    "extension-slash"
+    "extension"
   ],
   "types": {
     "chore": {
