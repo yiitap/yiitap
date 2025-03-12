@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-trailing-node",
 	"description": "Trailing node extension",
-	"version": "1.0.14",
+	"version": "1.1.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",

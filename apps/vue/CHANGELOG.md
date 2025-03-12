@@ -1,5 +1,19 @@
 # app-vue
 
+## 1.1.0
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @yiitap/vue@1.1.0
+
 ## 1.0.14
 
 ### Patch Changes

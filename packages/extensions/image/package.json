@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-image",
 	"description": "Image extension",
-	"version": "1.0.14",
+	"version": "1.1.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -30,8 +30,8 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-    "@tiptap/extension-image": "^2.11.5"
-  },
+		"@tiptap/extension-image": "^2.11.5"
+	},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"

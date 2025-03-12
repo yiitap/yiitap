@@ -1,11 +1,7 @@
-# @yiitap/extension-code-block
+# @yiitap/extension-placeholder
 
 ## 1.1.0
 
 ### Minor Changes
 
 - Refactor placeholder extension
-
-## 1.0.14
-
-## 1.0.13

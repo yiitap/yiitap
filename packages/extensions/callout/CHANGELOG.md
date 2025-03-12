@@ -1,5 +1,7 @@
 # @yiitap/extension-callout
 
+## 1.1.0
+
 ## 1.0.14
 
 ### Patch Changes

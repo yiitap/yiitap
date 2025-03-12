@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-video",
 	"description": "Video extension",
-	"version": "1.0.14",
+	"version": "1.1.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -29,8 +29,7 @@
 		"test": "vitest",
 		"test-ci": "vitest --run"
 	},
-	"dependencies": {
-  },
+	"dependencies": {},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"
