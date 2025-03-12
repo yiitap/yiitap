@@ -73,6 +73,7 @@
 		"@yiitap/extension-table": "workspace:*",
 		"@yiitap/extension-table-wrapper": "workspace:*",
 		"@yiitap/extension-trailing-node": "workspace:*",
+		"@yiitap/extension-video": "workspace:*",
 		"@yiitap/vue": "workspace:*",
 		"lowlight": "^3.3.0",
 		"tippy.js": "^6.3.7",
