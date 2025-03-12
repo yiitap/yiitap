@@ -68,6 +68,7 @@
 		"@yiitap/extension-callout": "workspace:*",
 		"@yiitap/extension-color-highlighter": "workspace:*",
 		"@yiitap/extension-focus": "workspace:*",
+		"@yiitap/extension-placeholder": "workspace:*",
 		"@yiitap/vue": "workspace:*",
 		"lowlight": "^3.3.0",
 		"tippy.js": "^6.3.7",
