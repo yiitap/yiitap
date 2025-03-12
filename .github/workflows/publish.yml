@@ -65,7 +65,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm run publish
-          commit: "chore(global): publish a new release version"
+          commit: >-
+            "chore(global): publish a new release version"
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.PUBLISH_NPM_TOKEN }}
