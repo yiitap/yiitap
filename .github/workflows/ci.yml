@@ -24,7 +24,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2 #version is inferred from package.json's packageManager field
         with:
-            version: 9.4.0
+            version: 10.6.2
             run_install: false
 
       - name: Set node version to 20
