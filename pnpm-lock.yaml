@@ -384,6 +384,9 @@ importers:
       '@yiitap/extension-callout':
         specifier: workspace:*
         version: link:../extensions/callout
+      '@yiitap/extension-color-highlighter':
+        specifier: workspace:*
+        version: link:../extensions/color-highlighter
       '@yiitap/vue':
         specifier: workspace:*
         version: 'link:'
