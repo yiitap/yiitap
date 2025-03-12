@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-Bwmy8TIE.js"(exports, module) {
+  "assets/index-rQwz67C4.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -64672,9 +64672,11 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         }));
         function m() {
           const g = [];
-          r.extensions.includes("OColumn") || g.push(Em.extend({
-            content: "heading block*"
-          })), g.push(
+          r.extensions.includes("OColumn") || g.push(
+            Em.extend({
+              content: "heading block*"
+            })
+          ), g.push(
             rN.configure({
               placeholder: ({ editor: E, node: _, pos: v }) => {
                 if (_.type.name === "heading") {
