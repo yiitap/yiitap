@@ -1,5 +1,11 @@
 # app-vue
 
+## 1.0.13
+
+### Patch Changes
+
+- @yiitap/vue@1.0.13
+
 ## 1.0.12
 
 ### Patch Changes
