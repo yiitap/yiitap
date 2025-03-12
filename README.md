@@ -24,5 +24,7 @@ pnpm build
 tree -d -L 3 -I "node_modules|dist|src|public|types" yiitap
 ```
 
+## Thanks
+
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
