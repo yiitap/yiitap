@@ -24,7 +24,7 @@
 		"build": "pnpm build-packages && pnpm build-app-vue",
 		"build-packages": "pnpm -r -F '@yiitap/*' run build",
 		"build-app-vue": "pnpm -F 'app-vue' run build",
-		"publish": "pnpm build && pnpm changeset publish --no-git-tag"
+		"publish": "pnpm build && pnpm changeset publish"
 	},
 	"packageManager": "pnpm@10.6.2",
 	"devDependencies": {

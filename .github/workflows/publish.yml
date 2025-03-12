@@ -64,7 +64,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          createGithubReleases: false
           publish: pnpm run publish
+          title: "Publish a new release version"
           commit: >-
             "chore(global): publish a new release version"
         env:
