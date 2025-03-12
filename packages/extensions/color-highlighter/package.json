@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-color-highlighter",
 	"description": "Color highlighter extension",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
