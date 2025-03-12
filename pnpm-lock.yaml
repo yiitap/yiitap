@@ -519,6 +519,9 @@ importers:
       '@yiitap/extension-placeholder':
         specifier: workspace:*
         version: link:../extensions/placeholder
+      '@yiitap/extension-slash':
+        specifier: workspace:*
+        version: link:../extensions/slash
       '@yiitap/extension-table':
         specifier: workspace:*
         version: link:../extensions/table

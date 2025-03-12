@@ -70,6 +70,7 @@
 		"@yiitap/extension-focus": "workspace:*",
 		"@yiitap/extension-image": "workspace:*",
 		"@yiitap/extension-placeholder": "workspace:*",
+		"@yiitap/extension-slash": "workspace:*",
 		"@yiitap/extension-table": "workspace:*",
 		"@yiitap/extension-table-wrapper": "workspace:*",
 		"@yiitap/extension-trailing-node": "workspace:*",

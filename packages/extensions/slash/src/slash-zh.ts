@@ -2,7 +2,7 @@ import { Editor, Extension } from '@tiptap/core'
 import Suggestion from '@tiptap/suggestion'
 import { PluginKey } from '@tiptap/pm/state'
 
-export default Extension.create({
+export const SlashZh = Extension.create({
 	name: 'slash-zh',
 
 	addOptions() {

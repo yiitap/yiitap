@@ -24,7 +24,7 @@ import TableRow from '@tiptap/extension-table-row'
 // --------------------------------------------------------------------------------
 // YiiEditor extension imports
 // --------------------------------------------------------------------------------
-import Slash, { SlashZh } from './slash'
+import Slash, { SlashZh } from '@yiitap/extension-slash'
 import suggestion from './slash/suggestion'
 import {
 	OBlockquote,
