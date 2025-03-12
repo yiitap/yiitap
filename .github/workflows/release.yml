@@ -71,3 +71,5 @@ jobs:
 
       - name: Release Drafter
         uses: release-drafter/release-drafter@v6.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
