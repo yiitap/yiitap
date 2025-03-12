@@ -1,0 +1,44 @@
+{
+	"name": "@yiitap/extension-image",
+	"description": "Image extension",
+	"version": "1.0.14",
+	"private": false,
+	"author": {
+		"name": "Yiitap",
+		"email": "pileaxai@gmail.com"
+	},
+	"homepage": "",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.cjs"
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"build": "pnpm build-lib && pnpm build-types",
+		"build-lib": "vite build",
+		"build-types": "tsc --emitDeclarationOnly",
+		"lint": "eslint 'src/**/*.{ts,vue}'",
+		"test": "vitest",
+		"test-ci": "vitest --run"
+	},
+	"dependencies": {
+    "@tiptap/extension-image": "^2.11.5"
+  },
+	"peerDependencies": {
+		"@tiptap/core": "^2.11.5",
+		"@tiptap/pm": "^2.11.5"
+	},
+	"devDependencies": {
+		"vite": "^6.2.0",
+		"vite-plugin-dts": "^4.5.3",
+		"vitest": "^0.34.6"
+	}
+}
