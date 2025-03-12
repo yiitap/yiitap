@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-focus",
 	"description": "Focus extension",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -12,10 +12,10 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-  "types": "types/index.d.ts",
+	"types": "types/index.d.ts",
 	"exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs"
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.cjs"
 	},
 	"files": [
 		"dist",
@@ -36,7 +36,7 @@
 	},
 	"devDependencies": {
 		"vite": "^6.2.0",
-    "vite-plugin-dts": "^4.5.3",
+		"vite-plugin-dts": "^4.5.3",
 		"vitest": "^0.34.6"
 	}
 }

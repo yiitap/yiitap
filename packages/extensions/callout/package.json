@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-callout",
 	"description": "Link extension",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -28,8 +28,7 @@
 		"test": "vitest",
 		"test-ci": "vitest --run"
 	},
-	"dependencies": {
-	},
+	"dependencies": {},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5"
 	},
