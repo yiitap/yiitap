@@ -76,7 +76,7 @@ const filterOptions = computed(() => {
 	return term.value
 		? Languages.filter(
 				(e) => e.value.toLowerCase().indexOf(term.value.toLowerCase()) >= 0
-		  )
+			)
 		: Languages
 })
 

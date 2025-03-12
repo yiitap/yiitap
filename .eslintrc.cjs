@@ -10,6 +10,7 @@ module.exports = {
 		'no-undef': 'off',
 		// add your own rules config here
 		'no-autofix/unused-imports/no-unused-vars': 'off',
+		'no-autofix/unused-imports/no-unused-imports': 'off',
 		'vue/multi-word-component-names': 'off'
 	},
 	env: {

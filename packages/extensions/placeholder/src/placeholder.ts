@@ -67,7 +67,7 @@ export const Placeholder = Extension.create<PlaceholderOptions>({
 													node,
 													pos,
 													hasAnchor,
-											  })
+												})
 											: this.options.placeholder,
 								})
 

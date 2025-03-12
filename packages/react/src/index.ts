@@ -1,3 +1,3 @@
-import YiiEditor from './components/YiiEditor';
+import YiiEditor from './components/YiiEditor'
 
-export { YiiEditor };
+export { YiiEditor }

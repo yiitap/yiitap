@@ -37,7 +37,7 @@
 import { ref, computed, onBeforeMount, provide, watch } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import Document from '@tiptap/extension-document';
+import Document from '@tiptap/extension-document'
 import TextStyle from '@tiptap/extension-text-style'
 
 import OMainMenu from './menus/OMainMenu.vue'
@@ -209,11 +209,13 @@ function buildExtensions() {
 	const extensions = []
 
 	// Default
-  if (!props.extensions.includes('OColumn')) {
-    extensions.push(Document.extend({
-      content: 'heading block*',
-    }));
-  }
+	if (!props.extensions.includes('OColumn')) {
+		extensions.push(
+			Document.extend({
+				content: 'heading block*',
+			})
+		)
+	}
 	extensions.push(
 		OPlaceholder.configure({
 			placeholder: ({ editor, node, pos }) => {
@@ -231,14 +233,14 @@ function buildExtensions() {
 	extensions.push(TextStyle)
 	extensions.push(
 		StarterKit.configure({
-      document: false,
+			document: false,
 			blockquote: props.extensions.includes('OBlockquote') ? false : {},
 			codeBlock: false,
 			heading: props.extensions.includes('OHeading')
 				? false
 				: {
 						levels: [1, 2, 3, 4, 5],
-				  },
+					},
 			paragraph: props.extensions.includes('OParagraph') ? false : {},
 			dropcursor: {
 				width: 5,

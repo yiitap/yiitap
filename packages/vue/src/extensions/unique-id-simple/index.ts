@@ -31,7 +31,7 @@ const OUniqueID = Extension.create({
 								? {
 										[this.options.attributeName]:
 											attributes[this.options.attributeName],
-								  }
+									}
 								: {}
 						},
 					},

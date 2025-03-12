@@ -157,7 +157,7 @@ function onDuplicate() {
 }
 
 function onSelect(item: Indexable, value: Indexable) {
-  console.log('select', item, value)
+	console.log('select', item, value)
 	switch (value.name) {
 		case 'backColor':
 			props.updateAttributes({ backColor: value.value })

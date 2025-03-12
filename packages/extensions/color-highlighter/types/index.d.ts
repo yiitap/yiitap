@@ -1,2 +1,2 @@
-import { ColorHighlighter } from './color-highlighter';
-export default ColorHighlighter;
+import { ColorHighlighter } from './color-highlighter'
+export default ColorHighlighter

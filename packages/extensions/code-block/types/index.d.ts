@@ -1,2 +1,2 @@
-import { CodeBlock } from './code-block';
-export default CodeBlock;
+import { CodeBlock } from './code-block'
+export default CodeBlock

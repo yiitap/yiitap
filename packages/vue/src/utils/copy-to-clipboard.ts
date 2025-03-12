@@ -31,5 +31,5 @@ export default function (text: string) {
 				} else {
 					reject(res)
 				}
-		  })
+			})
 }

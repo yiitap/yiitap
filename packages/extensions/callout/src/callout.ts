@@ -1,7 +1,7 @@
 import { Node, mergeAttributes } from '@tiptap/core'
 
 export interface CalloutOptions {
-  HTMLAttributes: Record<string, any>
+	HTMLAttributes: Record<string, any>
 }
 
 declare module '@tiptap/core' {
@@ -40,18 +40,18 @@ export const Callout = Node.create<CalloutOptions>({
 			icon: {
 				default: '🌾',
 			},
-      borderColor: {
-        default: '#dddddd',
-      },
-      borderColorDark: {
-        default: '#333333',
-      },
-      backColor: {
-        default: '#eeeeee',
-      },
-      backColorDark: {
-        default: 'rgba(101, 117, 133, 0.16)',
-      },
+			borderColor: {
+				default: '#dddddd',
+			},
+			borderColorDark: {
+				default: '#333333',
+			},
+			backColor: {
+				default: '#eeeeee',
+			},
+			backColorDark: {
+				default: 'rgba(101, 117, 133, 0.16)',
+			},
 		}
 	},
 
