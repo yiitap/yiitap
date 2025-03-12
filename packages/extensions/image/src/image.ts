@@ -31,6 +31,4 @@ export const Image = TiptapImage.extend<ImageOptions>({
 	},
 })
 
-export {
-  ImageOptions
-}
+export { ImageOptions }
