@@ -6,7 +6,7 @@ template: |
 
   $CHANGES
 
-  **Full Changelog**: [{PREV_VERSION}...{NEW_VERSION}](https://github.com/{OWNER}/{REPO}/compare/{PREV_VERSION}...{NEW_VERSION})
+  **Full Changelog**: [$PREVIOUS_TAG...$TAG](https://github.com/${{ github.repository }}/compare/$PREVIOUS_TAG...$TAG)
 
 categories:
   - title: '🚀 Features'
