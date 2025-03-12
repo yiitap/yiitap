@@ -1,13 +1,11 @@
-name: Build and Deploy
+name: Build only
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - develop
       - next
-    tags:
-      - '*'
 
 permissions:
   contents: write
@@ -35,17 +33,3 @@ jobs:
         run: |
           pnpm install
           pnpm build
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: apps/vue/dist
-
-  release-draft:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Release Drafter
-        uses: release-drafter/release-drafter@v6.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
