@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-CkgI4LbX.js"(exports, module) {
+  "assets/index-Cu4AHjQ4.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -63228,7 +63228,23 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           stopEvent: () => false
         });
       }
-    }), mA = /* @__PURE__ */ defineComponent({
+    });
+    /**
+     *  Copyright 2025 Yiitap 
+     *  @license MIT
+    **/
+    const mA = it.create({
+      name: "table-wrapper",
+      group: "block",
+      content: "table",
+      draggable: true,
+      parseHTML() {
+        return [{ tag: "table-wrapper" }];
+      },
+      renderHTML({ HTMLAttributes: t2 }) {
+        return ["table-wrapper", Be(t2), 0];
+      }
+    }), gA = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -63250,30 +63266,20 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           _: 1
         }, 16, ["class"]));
       }
-    }), gA = it.create({
-      name: "table-wrapper",
-      group: "block",
-      content: "table",
-      draggable: true,
-      parseHTML() {
-        return [{ tag: "table-wrapper" }];
-      },
-      renderHTML({ HTMLAttributes: t2 }) {
-        return ["table-wrapper", Be(t2), 0];
-      },
+    }), bA = mA.extend({
       addNodeView() {
-        return Ln(mA, {
+        return Ln(gA, {
           stopEvent: () => false
         });
       }
     });
-    function bA({ node: t2, types: e }) {
+    function yA({ node: t2, types: e }) {
       return Array.isArray(e) && e.includes(t2 == null ? void 0 : t2.type) || (t2 == null ? void 0 : t2.type) === e;
     }
     function Es({ node: t2, types: e }) {
-      return t2 ? !bA({ node: t2, types: e }) : false;
+      return t2 ? !yA({ node: t2, types: e }) : false;
     }
-    const yA = Ke.create({
+    const vA = Ke.create({
       name: "trailingNode",
       addOptions() {
         return {
@@ -63310,34 +63316,34 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
     var Rt = [];
     for (var Pl = 0; Pl < 256; ++Pl)
       Rt.push((Pl + 256).toString(16).slice(1));
-    function vA(t2, e = 0) {
+    function EA(t2, e = 0) {
       return (Rt[t2[e + 0]] + Rt[t2[e + 1]] + Rt[t2[e + 2]] + Rt[t2[e + 3]] + "-" + Rt[t2[e + 4]] + Rt[t2[e + 5]] + "-" + Rt[t2[e + 6]] + Rt[t2[e + 7]] + "-" + Rt[t2[e + 8]] + Rt[t2[e + 9]] + "-" + Rt[t2[e + 10]] + Rt[t2[e + 11]] + Rt[t2[e + 12]] + Rt[t2[e + 13]] + Rt[t2[e + 14]] + Rt[t2[e + 15]]).toLowerCase();
     }
-    var ks, EA = new Uint8Array(16);
-    function kA() {
+    var ks, kA = new Uint8Array(16);
+    function wA() {
       if (!ks && (ks = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto), !ks))
         throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-      return ks(EA);
+      return ks(kA);
     }
-    var wA = typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+    var _A = typeof crypto < "u" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
     const nf = {
-      randomUUID: wA
+      randomUUID: _A
     };
-    function _A(t2, e, n) {
+    function SA(t2, e, n) {
       if (nf.randomUUID && !t2)
         return nf.randomUUID();
       t2 = t2 || {};
-      var r = t2.random || (t2.rng || kA)();
-      return r[6] = r[6] & 15 | 64, r[8] = r[8] & 63 | 128, vA(r);
+      var r = t2.random || (t2.rng || wA)();
+      return r[6] = r[6] & 15 | 64, r[8] = r[8] & 63 | 128, EA(r);
     }
-    const SA = () => _A(), CA = Ke.create({
+    const CA = () => SA(), xA = Ke.create({
       name: "uniqueID",
       priority: 1e4,
       addOptions: () => ({
         attributeName: "data-id",
         types: ["heading"],
         enableRender: false,
-        generateId: () => SA()
+        generateId: () => CA()
       }),
       addGlobalAttributes() {
         return [
@@ -63355,10 +63361,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           }
         ];
       }
-    }), xA = {
+    }), TA = {
       key: 1,
       class: "video-container"
-    }, TA = { key: 1 }, OA = /* @__PURE__ */ defineComponent({
+    }, OA = { key: 1 }, NA = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -63438,7 +63444,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
                       key: 0,
                       icon: "videocam",
                       placeholder: "Add a video"
-                    })) : (openBlock(), createElementBlock("div", xA, [
+                    })) : (openBlock(), createElementBlock("div", TA, [
                       b[3] || (b[3] = createBaseVNode("div", { class: "video-cover" }, null, -1)),
                       createVNode(unref(Am), mergeProps(e, { onAction: c2 }), {
                         default: withCtx(() => [
@@ -63472,7 +63478,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
                           placeholder: "Input caption",
                           autosize: "",
                           onBlur: d
-                        }, null, 8, ["modelValue"])) : (openBlock(), createElementBlock("span", TA, toDisplayString(a.value), 1))
+                        }, null, 8, ["modelValue"])) : (openBlock(), createElementBlock("span", OA, toDisplayString(a.value), 1))
                       ])
                     ]))
                   ];
@@ -63494,7 +63500,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           }, 16, ["class"]);
         };
       }
-    }), NA = /(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/, AA = it.create({
+    }), AA = /(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/, MA = it.create({
       name: "video",
       draggable: true,
       addOptions() {
@@ -63552,7 +63558,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       addInputRules() {
         return [
           Ha({
-            find: NA,
+            find: AA,
             type: this.type,
             getAttributes: (t2) => {
               const [e] = t2;
@@ -63562,9 +63568,9 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         ];
       },
       addNodeView() {
-        return Ln(OA);
+        return Ln(NA);
       }
-    }), MA = [
+    }), RA = [
       "BackColor",
       "Focus",
       "FontFamily",
@@ -63577,7 +63583,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       "Underline",
       "OHorizontalRule",
       "OUniqueID"
-    ], RA = [
+    ], IA = [
       "BackColor",
       "Blockquote",
       "Bold",
@@ -63600,7 +63606,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       "TextAlign",
       "Typography",
       "Underline"
-    ], IA = [
+    ], DA = [
       "OBlockquote",
       "OCallout",
       "OCodeBlock",
@@ -63636,7 +63642,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       "OTrailingNode",
       "OUniqueID",
       "OVideo"
-    ], DA = [...RA, ...IA], LA = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))$/, PA = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))/g, BA = _n.create({
+    ], LA = [...IA, ...DA], PA = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))$/, BA = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))/g, $A = _n.create({
       name: "highlight",
       addOptions() {
         return {
@@ -63681,7 +63687,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       addInputRules() {
         return [
           lo({
-            find: LA,
+            find: PA,
             type: this.type
           })
         ];
@@ -63689,12 +63695,12 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       addPasteRules() {
         return [
           $r({
-            find: PA,
+            find: BA,
             type: this.type
           })
         ];
       }
-    }), $A = Ke.create({
+    }), FA = Ke.create({
       name: "focus",
       addOptions() {
         return {
@@ -63734,7 +63740,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           })
         ];
       }
-    }), FA = Ke.create({
+    }), zA = Ke.create({
       name: "fontFamily",
       addOptions() {
         return {
@@ -63763,7 +63769,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           unsetFontFamily: () => ({ chain: t2 }) => t2().setMark("textStyle", { fontFamily: null }).removeEmptyTextStyle().run()
         };
       }
-    }), zA = Ke.create({
+    }), HA = Ke.create({
       name: "color",
       addOptions() {
         return {
@@ -63795,7 +63801,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           unsetColor: () => ({ chain: t2 }) => t2().setMark("textStyle", { color: null }).removeEmptyTextStyle().run()
         };
       }
-    }), HA = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/, UA = it.create({
+    }), UA = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/, VA = it.create({
       name: "image",
       addOptions() {
         return {
@@ -63845,7 +63851,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       addInputRules() {
         return [
           Ha({
-            find: HA,
+            find: UA,
             type: this.type,
             getAttributes: (t2) => {
               const [, , e, n, r] = t2;
@@ -63854,7 +63860,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           })
         ];
       }
-    }), VA = /^\s*(\[([( |x])?\])\s$/, WA = it.create({
+    }), WA = /^\s*(\[([( |x])?\])\s$/, KA = it.create({
       name: "taskItem",
       addOptions() {
         return {
@@ -63953,7 +63959,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       addInputRules() {
         return [
           Lo({
-            find: VA,
+            find: WA,
             type: this.type,
             getAttributes: (t2) => ({
               checked: t2[t2.length - 1] === "x"
@@ -63961,7 +63967,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           })
         ];
       }
-    }), KA = it.create({
+    }), qA = it.create({
       name: "taskList",
       addOptions() {
         return {
@@ -63994,7 +64000,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           "Mod-Shift-9": () => this.editor.commands.toggleTaskList()
         };
       }
-    }), qA = Ke.create({
+    }), GA = Ke.create({
       name: "textAlign",
       addOptions() {
         return {
@@ -64034,73 +64040,73 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           "Mod-Shift-j": () => this.editor.commands.setTextAlign("justify")
         };
       }
-    }), GA = (t2) => dt({
+    }), jA = (t2) => dt({
       find: /--$/,
       replace: t2 ?? "—"
-    }), jA = (t2) => dt({
+    }), YA = (t2) => dt({
       find: /\.\.\.$/,
       replace: t2 ?? "…"
-    }), YA = (t2) => dt({
+    }), JA = (t2) => dt({
       find: /(?:^|[\s{[(<'"\u2018\u201C])(")$/,
       replace: t2 ?? "“"
-    }), JA = (t2) => dt({
+    }), XA = (t2) => dt({
       find: /"$/,
       replace: t2 ?? "”"
-    }), XA = (t2) => dt({
+    }), ZA = (t2) => dt({
       find: /(?:^|[\s{[(<'"\u2018\u201C])(')$/,
       replace: t2 ?? "‘"
-    }), ZA = (t2) => dt({
+    }), QA = (t2) => dt({
       find: /'$/,
       replace: t2 ?? "’"
-    }), QA = (t2) => dt({
+    }), eM = (t2) => dt({
       find: /<-$/,
       replace: t2 ?? "←"
-    }), eM = (t2) => dt({
+    }), tM = (t2) => dt({
       find: /->$/,
       replace: t2 ?? "→"
-    }), tM = (t2) => dt({
+    }), nM = (t2) => dt({
       find: /\(c\)$/,
       replace: t2 ?? "©"
-    }), nM = (t2) => dt({
+    }), rM = (t2) => dt({
       find: /\(tm\)$/,
       replace: t2 ?? "™"
-    }), rM = (t2) => dt({
+    }), oM = (t2) => dt({
       find: /\(sm\)$/,
       replace: t2 ?? "℠"
-    }), oM = (t2) => dt({
+    }), iM = (t2) => dt({
       find: /\(r\)$/,
       replace: t2 ?? "®"
-    }), iM = (t2) => dt({
+    }), sM = (t2) => dt({
       find: /(?:^|\s)(1\/2)\s$/,
       replace: t2 ?? "½"
-    }), sM = (t2) => dt({
+    }), aM = (t2) => dt({
       find: /\+\/-$/,
       replace: t2 ?? "±"
-    }), aM = (t2) => dt({
+    }), lM = (t2) => dt({
       find: /!=$/,
       replace: t2 ?? "≠"
-    }), lM = (t2) => dt({
+    }), cM = (t2) => dt({
       find: /<<$/,
       replace: t2 ?? "«"
-    }), cM = (t2) => dt({
+    }), uM = (t2) => dt({
       find: />>$/,
       replace: t2 ?? "»"
-    }), uM = (t2) => dt({
+    }), dM = (t2) => dt({
       find: /\d+\s?([*x])\s?\d+$/,
       replace: t2 ?? "×"
-    }), dM = (t2) => dt({
+    }), pM = (t2) => dt({
       find: /\^2$/,
       replace: t2 ?? "²"
-    }), pM = (t2) => dt({
+    }), fM = (t2) => dt({
       find: /\^3$/,
       replace: t2 ?? "³"
-    }), fM = (t2) => dt({
+    }), hM = (t2) => dt({
       find: /(?:^|\s)(1\/4)\s$/,
       replace: t2 ?? "¼"
-    }), hM = (t2) => dt({
+    }), mM = (t2) => dt({
       find: /(?:^|\s)(3\/4)\s$/,
       replace: t2 ?? "¾"
-    }), mM = Ke.create({
+    }), gM = Ke.create({
       name: "typography",
       addOptions() {
         return {
@@ -64130,9 +64136,9 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       },
       addInputRules() {
         const t2 = [];
-        return this.options.emDash !== false && t2.push(GA(this.options.emDash)), this.options.ellipsis !== false && t2.push(jA(this.options.ellipsis)), this.options.openDoubleQuote !== false && t2.push(YA(this.options.openDoubleQuote)), this.options.closeDoubleQuote !== false && t2.push(JA(this.options.closeDoubleQuote)), this.options.openSingleQuote !== false && t2.push(XA(this.options.openSingleQuote)), this.options.closeSingleQuote !== false && t2.push(ZA(this.options.closeSingleQuote)), this.options.leftArrow !== false && t2.push(QA(this.options.leftArrow)), this.options.rightArrow !== false && t2.push(eM(this.options.rightArrow)), this.options.copyright !== false && t2.push(tM(this.options.copyright)), this.options.trademark !== false && t2.push(nM(this.options.trademark)), this.options.servicemark !== false && t2.push(rM(this.options.servicemark)), this.options.registeredTrademark !== false && t2.push(oM(this.options.registeredTrademark)), this.options.oneHalf !== false && t2.push(iM(this.options.oneHalf)), this.options.plusMinus !== false && t2.push(sM(this.options.plusMinus)), this.options.notEqual !== false && t2.push(aM(this.options.notEqual)), this.options.laquo !== false && t2.push(lM(this.options.laquo)), this.options.raquo !== false && t2.push(cM(this.options.raquo)), this.options.multiplication !== false && t2.push(uM(this.options.multiplication)), this.options.superscriptTwo !== false && t2.push(dM(this.options.superscriptTwo)), this.options.superscriptThree !== false && t2.push(pM(this.options.superscriptThree)), this.options.oneQuarter !== false && t2.push(fM(this.options.oneQuarter)), this.options.threeQuarters !== false && t2.push(hM(this.options.threeQuarters)), t2;
+        return this.options.emDash !== false && t2.push(jA(this.options.emDash)), this.options.ellipsis !== false && t2.push(YA(this.options.ellipsis)), this.options.openDoubleQuote !== false && t2.push(JA(this.options.openDoubleQuote)), this.options.closeDoubleQuote !== false && t2.push(XA(this.options.closeDoubleQuote)), this.options.openSingleQuote !== false && t2.push(ZA(this.options.openSingleQuote)), this.options.closeSingleQuote !== false && t2.push(QA(this.options.closeSingleQuote)), this.options.leftArrow !== false && t2.push(eM(this.options.leftArrow)), this.options.rightArrow !== false && t2.push(tM(this.options.rightArrow)), this.options.copyright !== false && t2.push(nM(this.options.copyright)), this.options.trademark !== false && t2.push(rM(this.options.trademark)), this.options.servicemark !== false && t2.push(oM(this.options.servicemark)), this.options.registeredTrademark !== false && t2.push(iM(this.options.registeredTrademark)), this.options.oneHalf !== false && t2.push(sM(this.options.oneHalf)), this.options.plusMinus !== false && t2.push(aM(this.options.plusMinus)), this.options.notEqual !== false && t2.push(lM(this.options.notEqual)), this.options.laquo !== false && t2.push(cM(this.options.laquo)), this.options.raquo !== false && t2.push(uM(this.options.raquo)), this.options.multiplication !== false && t2.push(dM(this.options.multiplication)), this.options.superscriptTwo !== false && t2.push(pM(this.options.superscriptTwo)), this.options.superscriptThree !== false && t2.push(fM(this.options.superscriptThree)), this.options.oneQuarter !== false && t2.push(hM(this.options.oneQuarter)), this.options.threeQuarters !== false && t2.push(mM(this.options.threeQuarters)), t2;
       }
-    }), gM = _n.create({
+    }), bM = _n.create({
       name: "underline",
       addOptions() {
         return {
@@ -64185,7 +64191,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         return ["tr", Be(this.options.HTMLAttributes, t2), 0];
       }
     });
-    function bM(t2) {
+    function yM(t2) {
       var e;
       const { char: n, allowSpaces: r, allowToIncludeChar: o, allowedPrefixes: i, startOfLine: s, $position: a } = t2, l = r && !o, c2 = ok(n), u = new RegExp(`\\s${c2}$`), d = s ? "^" : "", p2 = o ? "" : c2, f = l ? new RegExp(`${d}${c2}.*?(?=\\s${p2}|$)`, "gm") : new RegExp(`${d}(?:^)?${c2}[^\\s${p2}]*`, "gm"), h2 = ((e = a.nodeBefore) === null || e === void 0 ? void 0 : e.isText) && a.nodeBefore.text;
       if (!h2)
@@ -64207,8 +64213,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         text: g[0]
       } : null;
     }
-    const yM = new Je("suggestion");
-    function $g({ pluginKey: t2 = yM, editor: e, char: n = "@", allowSpaces: r = false, allowToIncludeChar: o = false, allowedPrefixes: i = [" "], startOfLine: s = false, decorationTag: a = "span", decorationClass: l = "suggestion", command: c2 = () => null, items: u = () => [], render: d = () => ({}), allow: p2 = () => true, findSuggestionMatch: f = bM }) {
+    const vM = new Je("suggestion");
+    function $g({ pluginKey: t2 = vM, editor: e, char: n = "@", allowSpaces: r = false, allowToIncludeChar: o = false, allowedPrefixes: i = [" "], startOfLine: s = false, decorationTag: a = "span", decorationClass: l = "suggestion", command: c2 = () => null, items: u = () => [], render: d = () => ({}), allow: p2 = () => true, findSuggestionMatch: f = yM }) {
       let h2;
       const m = d == null ? void 0 : d(), g = new Ue({
         key: t2,
@@ -64310,7 +64316,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       });
       return g;
     }
-    const vM = Ke.create({
+    const EM = Ke.create({
       name: "slash",
       addOptions() {
         return {
@@ -64334,7 +64340,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           })
         ];
       }
-    }), EM = Ke.create({
+    }), kM = Ke.create({
       name: "slash-zh",
       addOptions() {
         return {
@@ -64359,7 +64365,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           })
         ];
       }
-    }), kM = {
+    }), wM = {
       props: {
         items: {
           type: Array,
@@ -64455,30 +64461,30 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
       mounted() {
         this.selectedIndex = 0;
       }
-    }, wM = (t2, e) => {
+    }, _M = (t2, e) => {
       const n = t2.__vccOpts || t2;
       for (const [r, o] of e)
         n[r] = o;
       return n;
-    }, _M = {
+    }, SM = {
       key: 0,
       class: "view-main"
-    }, SM = { class: "group o-tips" }, CM = { class: "o-tips" }, xM = {
+    }, CM = { class: "group o-tips" }, xM = { class: "o-tips" }, TM = {
       key: 1,
       class: "item"
-    }, TM = {
+    }, OM = {
       key: 1,
       class: "view-emoji"
-    }, OM = {
+    }, NM = {
       key: 2,
       class: "view-emoji"
     };
-    function NM(t2, e, n, r, o, i) {
+    function AM(t2, e, n, r, o, i) {
       const s = resolveComponent("o-divider"), a = resolveComponent("o-icon"), l = resolveComponent("o-list-item"), c2 = resolveComponent("o-list");
       return openBlock(), createElementBlock("section", {
         class: normalizeClass(["o-slash-view o-shadow-3 o-menu o-scroll", `view-${o.view}`])
       }, [
-        o.view === "main" ? (openBlock(), createElementBlock("section", _M, [
+        o.view === "main" ? (openBlock(), createElementBlock("section", SM, [
           createVNode(c2, {
             hoverable: "",
             clickable: ""
@@ -64487,7 +64493,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
               n.items.length ? (openBlock(true), createElementBlock(Fragment, { key: 0 }, renderList(n.items, (u, d) => (openBlock(), createElementBlock(Fragment, { key: d }, [
                 u.group ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
                   d > 0 ? (openBlock(), createBlock(s, { key: 0 })) : createCommentVNode("", true),
-                  createBaseVNode("div", SM, toDisplayString(r.tr(u.group)), 1)
+                  createBaseVNode("div", CM, toDisplayString(r.tr(u.group)), 1)
                 ], 64)) : createCommentVNode("", true),
                 createVNode(l, {
                   class: normalizeClass(["item", { "is-active": d === o.selectedIndex }]),
@@ -64501,21 +64507,21 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
                     }, null, 8, ["name", "color"])
                   ]),
                   suffix: withCtx(() => [
-                    createBaseVNode("span", CM, toDisplayString(u.tips), 1)
+                    createBaseVNode("span", xM, toDisplayString(u.tips), 1)
                   ]),
                   default: withCtx(() => [
                     createTextVNode(" " + toDisplayString(r.tr(u.label)), 1)
                   ]),
                   _: 2
                 }, 1032, ["class", "onClick"])
-              ], 64))), 128)) : (openBlock(), createElementBlock("div", xM, "No result"))
+              ], 64))), 128)) : (openBlock(), createElementBlock("div", TM, "No result"))
             ]),
             _: 1
           })
-        ])) : o.view === "emoji" ? (openBlock(), createElementBlock("section", TM)) : o.view === "ai" ? (openBlock(), createElementBlock("section", OM)) : createCommentVNode("", true)
+        ])) : o.view === "emoji" ? (openBlock(), createElementBlock("section", OM)) : o.view === "ai" ? (openBlock(), createElementBlock("section", NM)) : createCommentVNode("", true)
       ], 2);
     }
-    const AM = /* @__PURE__ */ wM(kM, [["render", NM]]), rf = {
+    const MM = /* @__PURE__ */ _M(wM, [["render", AM]]), rf = {
       items: ({ query: t2 }) => su.filter(
         (e) => e.value.toLowerCase().startsWith(t2.toLowerCase())
       ),
@@ -64523,7 +64529,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         let t2, e;
         return {
           onStart: (n) => {
-            t2 = new bm(AM, {
+            t2 = new bm(MM, {
               props: n,
               editor: n.editor
             }), e = Zn("body", {
@@ -64551,31 +64557,31 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
           }
         };
       }
-    }, MM = {
+    }, RM = {
       // default
-      BackColor: BA.configure({
+      BackColor: $A.configure({
         multicolor: true
       }),
-      Focus: $A,
-      ForeColor: zA,
-      FontFamily: FA,
-      Image: UA,
+      Focus: FA,
+      ForeColor: HA,
+      FontFamily: zA,
+      Image: VA,
       Link: Dg,
-      TextAlign: qA.configure({
+      TextAlign: GA.configure({
         types: ["heading", "paragraph"]
       }),
       // task
-      TaskItem: WA,
-      TaskList: KA.configure({
+      TaskItem: KA,
+      TaskList: qA.configure({
         itemTypeName: "taskItem"
       }),
-      Underline: gM,
-      Typography: mM,
+      Underline: bM,
+      Typography: gM,
       // Custom extensions
-      OSlash: vM.configure({
+      OSlash: EM.configure({
         suggestion: rf
       }),
-      OSlashZh: EM.configure({
+      OSlashZh: kM.configure({
         suggestion: rf
       }),
       // // custom
@@ -64592,25 +64598,25 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         openOnClick: false
       }),
       OParagraph: aA,
-      OTrailingNode: yA,
+      OTrailingNode: vA,
       // OColumnExtension: ColumnExtension,
       // OColon: Colon.configure({
       //   suggestion: colonSuggestion
       // }),
-      OUniqueID: CA.configure({
+      OUniqueID: xA.configure({
         attributeName: "data-id",
         enableRender: false,
         types: ["heading", "paragraph"]
       }),
-      OVideo: AA
+      OVideo: MA
     };
-    class RM {
+    class IM {
       constructor(e) {
-        return MM[e];
+        return RM[e];
       }
     }
-    const IM = [
-      gA,
+    const DM = [
+      bA,
       IT.configure({
         resizable: true
       }),
@@ -64621,7 +64627,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
     jm.configure({
       resizable: true
     });
-    const DM = ["data-theme"], LM = /* @__PURE__ */ defineComponent({
+    const LM = ["data-theme"], PM = /* @__PURE__ */ defineComponent({
       __name: "YiiEditor",
       props: {
         content: {
@@ -64780,18 +64786,18 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
               horizontalRule: false
             })
           );
-          const b = MA.concat(r.extensions);
+          const b = RA.concat(r.extensions);
           for (const E of b)
             if (typeof E == "string") {
-              if (!DA.includes(E))
+              if (!LA.includes(E))
                 continue;
               switch (E) {
                 case "Table":
-                  g.push(...IM);
+                  g.push(...DM);
                   break;
                 default:
                   try {
-                    const _ = new RM(E);
+                    const _ = new IM(E);
                     g.push(_);
                   } catch (_) {
                     console.error(_.message);
@@ -64846,7 +64852,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
               class: normalizeClass(["editor-content", t2.pageView]),
               editor: unref(u)
             }, null, 8, ["class", "editor"])
-          ], 8, DM);
+          ], 8, LM);
         };
       }
     });
@@ -65003,7 +65009,7 @@ func main() {
               ])
             ]),
             createBaseVNode("section", _hoisted_4, [
-              createVNode(unref(LM), mergeProps({
+              createVNode(unref(PM), mergeProps({
                 ref_key: "yiiEditor",
                 ref: yiiEditor
               }, options.value, { onUpdate }), null, 16)
