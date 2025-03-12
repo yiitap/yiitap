@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-nYBfQzIF.js"(exports, module) {
+  "assets/index-Baq_VeTu.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -44272,7 +44272,55 @@ img.ProseMirror-separator {
           })
         ];
       }
-    }), Mx = /* @__PURE__ */ defineComponent({
+    });
+    /**
+     *  Copyright 2025 Yiitap 
+     *  @license MIT
+    **/
+    Ke.create({
+      name: "focus",
+      addOptions() {
+        return {
+          className: "has-focus",
+          mode: "all"
+        };
+      },
+      addProseMirrorPlugins() {
+        return [
+          new Ue({
+            key: new Xe("focus"),
+            props: {
+              decorations: ({ doc: t2, selection: e }) => {
+                const { isEditable: n, isFocused: r } = this.editor, { anchor: o } = e, i = [];
+                if (!n || !r)
+                  return He.create(t2, []);
+                let s = 0;
+                this.options.mode === "deepest" && t2.descendants((l, c2) => {
+                  if (!l.isText) {
+                    if (!(o >= c2 && o <= c2 + l.nodeSize - 1))
+                      return false;
+                    s += 1;
+                  }
+                });
+                let a = 0;
+                return t2.descendants((l, c2) => {
+                  if (l.isText || !(o >= c2 && o <= c2 + l.nodeSize - 1))
+                    return false;
+                  if (a += 1, this.options.mode === "deepest" && s - a > 0 || this.options.mode === "shallowest" && a > 1)
+                    return this.options.mode === "deepest";
+                  i.push(
+                    ht.node(c2, c2 + l.nodeSize, {
+                      class: this.options.className
+                    })
+                  );
+                }), He.create(t2, i);
+              }
+            }
+          })
+        ];
+      }
+    });
+    const Mx = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -59534,51 +59582,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       languageClassPrefix: "language-",
       defaultLanguage: "bash",
       lowlight: vO
-    });
-    Ke.create({
-      name: "focus",
-      addOptions() {
-        return {
-          className: "has-focus",
-          mode: "all"
-        };
-      },
-      addProseMirrorPlugins() {
-        return [
-          new Ue({
-            key: new Xe("focus"),
-            props: {
-              decorations: ({ doc: t2, selection: e }) => {
-                const { isEditable: n, isFocused: r } = this.editor, { anchor: o } = e, i = [];
-                if (!n || !r)
-                  return He.create(t2, []);
-                let s = 0;
-                this.options.mode === "deepest" && t2.descendants((l, c2) => {
-                  if (l.isText)
-                    return;
-                  if (!(o >= c2 && o <= c2 + l.nodeSize - 1))
-                    return false;
-                  s += 1;
-                });
-                let a = 0;
-                return t2.descendants((l, c2) => {
-                  if (l.isText || !(o >= c2 && o <= c2 + l.nodeSize - 1))
-                    return false;
-                  if (a += 1, this.options.mode === "deepest" && s - a > 0 || this.options.mode === "shallowest" && a > 1)
-                    return this.options.mode === "deepest";
-                  i.push(
-                    ht.node(c2, c2 + l.nodeSize, {
-                      class: this.options.className
-                    })
-                  );
-                }), He.create(t2, i);
-              }
-            }
-          })
-        ];
-      }
-    });
-    const kO = /* @__PURE__ */ defineComponent({
+    }), kO = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
