@@ -71,6 +71,7 @@
 		"@yiitap/extension-image": "workspace:*",
 		"@yiitap/extension-placeholder": "workspace:*",
 		"@yiitap/extension-table": "workspace:*",
+		"@yiitap/extension-table-wrapper": "workspace:*",
 		"@yiitap/vue": "workspace:*",
 		"lowlight": "^3.3.0",
 		"tippy.js": "^6.3.7",
