@@ -1,0 +1,84 @@
+name: Bug Report
+title: "[Bug]: "
+description: Found a bug in the editor core or one of the extensions? Report it here to help us improve.
+labels:
+  - "Type: Bug"
+  - "Category: Open Source"
+  - "Status: New"
+body:
+  - type: markdown
+    attributes:
+      value: "### Please provide details to help us diagnose the bug."
+  - type: input
+    id: packages
+    attributes:
+      label: Affected Packages
+      description: List the packages you were using when the bug occurred.
+      placeholder: core, extension-mention, react
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version(s)
+      description: Specify the version(s) of the affected packages.
+      placeholder: 2.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Bug Description
+      description: Provide a clear and concise description of what the bug is.
+      placeholder: "The issue occurs when..."
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser Used
+      description: Select the browser where the bug was observed.
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ### CodeSandbox templates
+        Please use the appropriate template below to provide a code example:
+        * Vue 3: [Vue 3 Template](https://codesandbox.io/p/sandbox/tiptap-vue-3-ci7q9h)
+  - type: input
+    id: sandbox
+    attributes:
+      label: Code Example URL
+      description: "Link a CodeSandbox, Stackblitz, GitHub repository, or similar to help us reproduce the issue faster."
+      placeholder: https://codesandbox.io/s/example
+    validations:
+      required: false
+  - type: textarea
+    id: expectation
+    attributes:
+      label: Expected Behavior
+      description: Describe what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context (Optional)
+      description: "Add any other context about the problem here, such as screenshots or videos."
+  - type: checkboxes
+    attributes:
+      label: Dependency Updates
+      description: "Have you updated your dependencies? This can often resolve issues."
+      options:
+        - label: Yes, I've updated all my dependencies.
+          required: true
+  - type: markdown
+    attributes:
+      value: "Thank you for helping us improve our open-source projects by reporting this issue!"
