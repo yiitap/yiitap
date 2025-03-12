@@ -140,9 +140,6 @@ importers:
       '@tiptap/core':
         specifier: ^2.11.5
         version: 2.11.5(@tiptap/pm@2.11.5)
-      '@yiitap/extension-callout':
-        specifier: workspace:*
-        version: 'link:'
     devDependencies:
       vite:
         specifier: ^6.2.0

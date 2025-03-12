@@ -29,7 +29,6 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-		"@yiitap/extension-callout": "workspace:*"
 	},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5"
