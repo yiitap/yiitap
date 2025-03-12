@@ -3,7 +3,16 @@ name: Deploy Vue App
 on:
   push:
     branches:
-      - main  # 监听 main 分支的推送
+      - main
+      - develop
+      - next
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
+      - develop
+      - next
 
 permissions:
   contents: write
@@ -37,3 +46,11 @@ jobs:
         with:
           branch: gh-pages
           folder: apps/vue/dist
+
+  release-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Drafter
+        uses: release-drafter/release-drafter@v6.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
