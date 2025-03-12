@@ -1,0 +1,48 @@
+name-template: 'v$RESOLVED_VERSION 📦'
+tag-template: 'v$RESOLVED_VERSION'
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+template: |
+  # What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feat'
+      - 'feature'
+  - title: '⚡ Enhancements'
+    labels:
+      - 'enhancement'
+      - 'perf'
+      - 'style'
+      - 'test'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bug'
+      - 'bugfix'
+  - title: '🤖 Maintenance'
+    labels:
+      - 'ci'
+      - 'chore'
+      - 'docs'
+      - 'refactor'
+      - 'release'
+    collapse-after: 5
+
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+
+exclude-labels:
+  - 'skip-changelog'
