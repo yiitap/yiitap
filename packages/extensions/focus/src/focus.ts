@@ -11,7 +11,7 @@ export interface FocusOptions {
 	mode: 'all' | 'deepest' | 'shallowest'
 }
 
-const Focus = Extension.create<FocusOptions>({
+export const Focus = Extension.create<FocusOptions>({
 	name: 'focus',
 
 	addOptions() {
@@ -95,5 +95,3 @@ const Focus = Extension.create<FocusOptions>({
 		]
 	},
 })
-
-export default Focus

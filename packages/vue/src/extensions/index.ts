@@ -1,9 +1,9 @@
 export { default as OColorHighlighter } from '@yiitap/extension-color-highlighter'
+export { default as OFocus } from '@yiitap/extension-focus'
 
 export { default as OBlockquote } from './blockquote'
 export { default as OCallout } from './callout'
 export { default as OCodeBlock } from './code-block'
-export { default as OFocus } from './focus'
 export { default as OHeading } from './heading'
 export { default as OHorizontalRule } from './horizontal-rule'
 export { default as OImage } from './image'
