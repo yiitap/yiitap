@@ -5,27 +5,21 @@
 	"private": false,
 	"author": {
 		"name": "Yiitap",
-		"email": "yiinote@gmail.com"
+		"email": "pileaxai@gmail.com"
 	},
 	"homepage": "",
 	"license": "MIT",
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
 	"exports": {
-		".": {
-			"types": "./types/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
-		},
-		"./*": "./*"
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
 	},
-	"typings": "types/index.d.ts",
 	"files": [
 		"dist",
-		"src",
-		"types",
-		"README.md"
+		"src"
 	],
 	"scripts": {
 		"build": "pnpm build-lib && pnpm build-types",
