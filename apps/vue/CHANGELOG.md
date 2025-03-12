@@ -1,5 +1,13 @@
 # app-vue
 
+## 1.0.5
+
+### Patch Changes
+
+- workflow
+- Updated dependencies
+  - @yiitap/vue@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
