@@ -2,6 +2,7 @@ export { default as OColorHighlighter } from '@yiitap/extension-color-highlighte
 export { default as OFocus } from '@yiitap/extension-focus'
 export { default as OPlaceholder } from '@yiitap/extension-placeholder'
 export { default as OTable } from '@yiitap/extension-table'
+export { default as OTrailingNode } from '@yiitap/extension-trailing-node'
 
 export { default as OBlockquote } from './blockquote'
 export { default as OCallout } from './callout'
@@ -14,7 +15,6 @@ export { default as OParagraph } from './paragraph'
 export { default as OTableCell } from './table-cell'
 export { default as OTableHeader } from './table-header'
 export { default as OTableWrapper } from './table-wrapper'
-export { default as OTrailingNode } from './trailing-node'
 export { default as OUniqueID } from './unique-id-simple'
 export { default as OVideo } from './video'
 
