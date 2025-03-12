@@ -239,6 +239,9 @@ importers:
       vite:
         specifier: ^6.2.0
         version: 6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@20.8.10)(rollup@4.35.0)(typescript@5.8.2)(vite@6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0))
       vitest:
         specifier: ^0.34.6
         version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
@@ -409,6 +412,9 @@ importers:
       '@yiitap/extension-focus':
         specifier: workspace:*
         version: link:../extensions/focus
+      '@yiitap/extension-placeholder':
+        specifier: workspace:*
+        version: link:../extensions/placeholder
       '@yiitap/vue':
         specifier: workspace:*
         version: 'link:'
