@@ -3,7 +3,6 @@
 		v-bind="props"
 		class="o-heading-view"
 		:class="`h${level}`"
-		:data-id="node.attrs['data-id']"
 		:style="`text-align: ${node.attrs.textAlign}`"
 	>
 		<node-view-content />
