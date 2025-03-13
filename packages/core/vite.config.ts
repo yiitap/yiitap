@@ -1,12 +1,18 @@
 import { defineConfig, mergeConfig } from 'vite'
 import { defineConfig as defineVitestConfig } from 'vitest/config'
+import path from 'path'
 
 export default mergeConfig(
 	defineConfig({
+		resolve: {
+			alias: {
+				'@': path.resolve(__dirname, 'src'),
+			},
+		},
 		build: {
 			target: 'esnext',
 			lib: {
-				name: 'Table',
+				name: 'YiitapCore',
 				entry: 'src/index.ts',
 				formats: ['es', 'cjs', 'iife'],
 				fileName: (format) => {
@@ -24,14 +30,7 @@ export default mergeConfig(
 			},
 			minify: true,
 			rollupOptions: {
-				external: [
-					'@tiptap/extension-table',
-					'@tiptap/pm/core',
-					'@tiptap/pm/model',
-					'@tiptap/pm/state',
-					'@tiptap/pm/tables',
-					'@tiptap/pm/view',
-				],
+				external: ['@tiptap/core'],
 				output: {
 					banner: `
 /**
@@ -41,12 +40,7 @@ export default mergeConfig(
 `,
 					exports: 'named',
 					globals: {
-						'@tiptap/extension-table': 'TiptapTable',
-						'@tiptap/pm/core': 'TiptapPmCore',
-						'@tiptap/pm/model': 'TiptapPmModel',
-						'@tiptap/pm/state': 'TiptapPmState',
-						'@tiptap/pm/tables': 'TiptapPmTables',
-						'@tiptap/pm/view': 'TiptapPmView',
+						'@tiptap/core': 'TiptapCore',
 					},
 				},
 			},

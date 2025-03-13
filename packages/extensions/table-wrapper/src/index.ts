@@ -1,5 +1,5 @@
-import { TableWrapper } from './table_wrapper'
+import { TableWrapper } from './table-wrapper'
 
-export * from './table_wrapper'
+export * from './table-wrapper'
 
 export default TableWrapper
