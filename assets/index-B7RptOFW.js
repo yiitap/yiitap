@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-BW7Hh0Zz.js"(exports, module) {
+  "assets/index-B7RptOFW.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -61649,6 +61649,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, tt2 = se), Me
         return "";
       }
     }
+    /**
+     *  Copyright 2025 Yiitap 
+     *  @license MIT
+    **/
     function SN(t2) {
       const e = document.createElement("textarea");
       e.value = t2, e.contentEditable = "true", e.style.position = "fixed", document.body.appendChild(e), e.focus(), e.select();
