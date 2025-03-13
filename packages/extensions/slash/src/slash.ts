@@ -4,12 +4,14 @@
 import type { Editor, Range } from '@tiptap/core'
 import { Extension } from '@tiptap/core'
 import Suggestion from '@tiptap/suggestion'
+import { PluginKey } from '@tiptap/pm/state'
 
 export default Extension.create({
 	name: 'slash',
 
 	addOptions() {
 		return {
+			key: 'slash',
 			suggestion: {
 				char: '/',
 				command: ({
@@ -30,6 +32,7 @@ export default Extension.create({
 	addProseMirrorPlugins() {
 		return [
 			Suggestion({
+				pluginKey: new PluginKey(this.options.key),
 				editor: this.editor,
 				...this.options.suggestion,
 			}),
