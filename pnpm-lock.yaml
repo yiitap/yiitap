@@ -347,6 +347,31 @@ importers:
         specifier: ^0.34.6
         version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
 
+  packages/extensions/unique-id:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/pm@2.11.5)
+      '@tiptap/pm':
+        specifier: ^2.11.5
+        version: 2.11.5
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
+      uuid:
+        specifier: ^10.0.0
+        version: 10.0.0
+    devDependencies:
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@20.8.10)(rollup@4.35.0)(typescript@5.8.2)(vite@6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0))
+      vitest:
+        specifier: ^0.34.6
+        version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
+
   packages/extensions/video:
     dependencies:
       '@tiptap/core':
@@ -531,6 +556,9 @@ importers:
       '@yiitap/extension-trailing-node':
         specifier: workspace:*
         version: link:../extensions/trailing-node
+      '@yiitap/extension-unique-id':
+        specifier: workspace:*
+        version: link:../extensions/unique-id
       '@yiitap/extension-video':
         specifier: workspace:*
         version: link:../extensions/video

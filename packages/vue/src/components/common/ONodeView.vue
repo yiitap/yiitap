@@ -1,5 +1,5 @@
 <template>
-	<node-view-wrapper class="o-node-view">
+	<node-view-wrapper class="o-node-view" :data-id="node.attrs['data-id']">
 		<o-side-node
 			v-bind="props"
 			@action="emit('action')"

@@ -99,7 +99,16 @@ const classes: Indexable = {
 	OUniqueID: OUniqueID.configure({
 		attributeName: 'data-id',
 		enableRender: false,
-		types: ['heading', 'paragraph'],
+		types: [
+      'blockquote',
+      'codeBlock',
+      'callout',
+      'heading',
+      'image',
+      'paragraph',
+      'table-wrapper',
+      'video',
+    ],
 	}),
 	OVideo,
 }
