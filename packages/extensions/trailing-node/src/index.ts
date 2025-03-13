@@ -1,5 +1,5 @@
-import { TrailingNode } from './trailing_node'
+import { TrailingNode } from './trailing-node'
 
-export * from './trailing_node'
+export * from './trailing-node'
 
 export default TrailingNode

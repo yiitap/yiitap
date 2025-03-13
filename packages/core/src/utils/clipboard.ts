@@ -21,7 +21,7 @@ function fallback(text: string) {
 	return res
 }
 
-export default function (text: string) {
+export function copyToClipboard(text: string) {
 	return navigator.clipboard !== void 0
 		? navigator.clipboard.writeText(text)
 		: new Promise((resolve, reject) => {

@@ -217,7 +217,7 @@ function buildExtensions() {
 		)
 	}
 	extensions.push(
-    OPlaceholder.configure({
+		OPlaceholder.configure({
 			placeholder: ({ editor, node, pos }) => {
 				if (node.type.name === 'heading') {
 					const level = node.attrs.level

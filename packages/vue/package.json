@@ -65,6 +65,7 @@
 		"@tiptap/starter-kit": "^2.11.5",
 		"@tiptap/suggestion": "^2.11.5",
 		"@tiptap/vue-3": "^2.11.5",
+		"@yiitap/core": "workspace:*",
 		"@yiitap/extension-callout": "workspace:*",
 		"@yiitap/extension-color-highlighter": "workspace:*",
 		"@yiitap/extension-focus": "workspace:*",

@@ -29,7 +29,7 @@ import {
 	OMenubarBtn,
 	ONodeView,
 } from '../../components/index'
-import copyToClipboard from '../../utils/copy-to-clipboard'
+import { copyToClipboard } from '@yiitap/core'
 
 const props = defineProps(nodeViewProps)
 const copyIcon = ref('content_copy')

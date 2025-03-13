@@ -1,31 +1,5 @@
-declare global {
-	type Indexable<T = any> = {
-		[key: string]: T
-	}
+// Use types declares in @yiitap/core
+/// <reference types="@yiitap/core/dist/types/types" />
 
-	interface KeyValue {
-		key: string
-		value: any
-	}
-
-	interface OptionValue {
-		label: string
-		value: string | number
-		name?: string
-		icon?: string
-	}
-
-	interface BlockOption {
-		label: string
-		value: string
-		icon?: string
-		color?: string
-		tips?: string
-		group?: string
-		filter?: string
-		style?: boolean
-		options?: Indexable
-		component?: string
-	}
-}
+declare global {}
 export {}
