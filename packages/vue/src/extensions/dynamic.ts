@@ -1,10 +1,9 @@
 /**
  * Extensions Dynamic
  */
-
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
 // Tiptap extensions imports
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
 import BackColor from '@tiptap/extension-highlight'
 import Focus from '@tiptap/extension-focus'
 import FontFamily from '@tiptap/extension-font-family'
@@ -21,11 +20,9 @@ import TableHeader from '@tiptap/extension-table-header'
 import TableCell from '@tiptap/extension-table-cell'
 import TableRow from '@tiptap/extension-table-row'
 
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
 // YiiEditor extension imports
-// --------------------------------------------------------------------------------
-import Slash, { SlashZh } from '@yiitap/extension-slash'
-import suggestion from './slash/suggestion'
+// ---------------------------------------------------------
 import {
 	OBlockquote,
 	OCallout,
@@ -37,6 +34,7 @@ import {
 	OImage,
 	OLink,
 	OParagraph,
+	OSlash,
 	OTable,
 	OTableCell,
 	OTableHeader,
@@ -46,9 +44,10 @@ import {
 	OVideo,
 } from './index'
 
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
 // Classes and configuration
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
+import suggestion from './slash/suggestion'
 const classes: Indexable = {
 	// default
 	BackColor: BackColor.configure({
@@ -71,13 +70,20 @@ const classes: Indexable = {
 	Typography,
 
 	// Custom extensions
-	OSlash: Slash.configure({
-		suggestion,
+	OSlash: OSlash.configure({
+		key: 'slash',
+		suggestion: {
+			...suggestion,
+			char: '/',
+		},
 	}),
-	OSlashZh: SlashZh.configure({
-		suggestion,
+	OSlashZh: OSlash.configure({
+		key: 'slash-zh',
+		suggestion: {
+			...suggestion,
+			char: '、',
+		},
 	}),
-	// // custom
 	// OTOC: TOC,
 	// OModelViewer: ModelViewer,
 	OBlockquote,
@@ -125,6 +131,7 @@ export const getDynamicExtension = (name: string) => {
 	return new DynamicClass(name)
 }
 
+// Custom table
 export const TableExtensions = [
 	OTableWrapper,
 	OTable.configure({
@@ -135,16 +142,7 @@ export const TableExtensions = [
 	OTableCell,
 ]
 
-export const TableExtensions1 = [
-	// OTableWrapper,
-	// OTable.configure({
-	// 	resizable: true
-	// }),
-	// OTableHeader,
-	// OTableCell,
-	// TableRow
-]
-
+// Default table
 export const TableExtensions0 = [
 	Table.configure({
 		resizable: true,
