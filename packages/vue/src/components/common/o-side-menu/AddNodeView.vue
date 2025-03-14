@@ -33,9 +33,6 @@
 				<div class="item" v-else>No result</div>
 			</o-list>
 		</section>
-		<section class="view-emoji" v-else-if="view === 'emoji'">
-			<!--      <o-emoji-select @set="setEmoji" />-->
-		</section>
 	</section>
 </template>
 
@@ -147,6 +144,7 @@ function onClick(item) {
 					.focus()
 					.run()
 			}, 1)
+      emit('action', item)
 			return
 		case 'image':
 			content = {
@@ -163,13 +161,15 @@ function onClick(item) {
 
 	// add new node
 	if (content) {
-		console.log('add', props.getPos(), newPos.value)
+    const insertPos = newPos.value;
+    // console.log('add', props.getPos(), newPos.value, insertPos)
 		content.type = content.type || item.value
 		setTimeout(() => {
+      // console.log('add2', props.getPos(), newPos.value, insertPos)
 			if (isEmpty.value) {
 				chain.insertContent(content).focus().run()
 			} else {
-				chain.insertContentAt(newPos.value, content).focus().run()
+				chain.insertContentAt(insertPos, content).focus().run()
 			}
 		}, 1)
 	}
@@ -181,6 +181,7 @@ const isEmpty = computed(() => {
 })
 
 const newPos = computed(() => {
+  // console.log('node', props.getPos(), props.node)
 	return isEmpty.value ? props.getPos() : props.getPos() + props.node.nodeSize
 })
 </script>
@@ -216,7 +217,6 @@ const newPos = computed(() => {
 		margin: 0;
 	}
 	.item {
-		//display: block;
 		min-height: 40px !important;
 		text-align: left;
 		background: transparent;
@@ -229,11 +229,5 @@ const newPos = computed(() => {
 		}
 	}
 
-	.view-emoji {
-		header {
-			padding: 4px 12px;
-			height: unset;
-		}
-	}
 }
 </style>

@@ -104,7 +104,6 @@ function onAction(item) {
 
 function onShow(value: boolean) {
 	selected.value = value
-	console.log('show', value)
 
 	if (value) {
 		selectNode()

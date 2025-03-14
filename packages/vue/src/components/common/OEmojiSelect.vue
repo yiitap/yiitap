@@ -114,7 +114,7 @@ onMounted(() => {
 	width: 384px;
 
 	.groups {
-		max-height: 400px !important;
+		max-height: 344px !important;
 		scrollbar-width: none;
 	}
 

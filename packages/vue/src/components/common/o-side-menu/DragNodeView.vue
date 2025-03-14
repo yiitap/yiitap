@@ -110,29 +110,9 @@ function runCommand(item: Indexable) {
 	const focus = props.editor?.chain().focus(pos + 1)
 	console.log('runCommand', item)
 	onCommand(commands, focus, item.value, item.options)
-	// props.editor?.commands.focus(pos)
-	props.editor?.commands.setNodeSelection(pos)
+	props.editor?.commands.focus()
+	// props.editor?.commands.setNodeSelection(pos)
 }
-
-const items = computed(() => {
-	return [
-		{
-			label: 'editor.duplicate',
-			value: 'duplicate',
-			icon: 'content_copy',
-			color: Color.blue,
-			tips: 'Ctrl+D',
-			group: 'label.common',
-		},
-		{
-			label: 'editor.delete',
-			value: 'delete',
-			icon: 'delete',
-			tips: 'Ctrl+D',
-			color: Color.deepOrange,
-		},
-	]
-})
 </script>
 
 <style lang="scss">
@@ -179,11 +159,5 @@ const items = computed(() => {
 		}
 	}
 
-	.view-emoji {
-		header {
-			padding: 4px 12px;
-			height: unset;
-		}
-	}
 }
 </style>
