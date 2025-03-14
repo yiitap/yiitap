@@ -2,6 +2,7 @@
 .DS_Store
 node_modules
 dist
+.analysis
 *.iml
 
 packages/docs/.vitepress/cache
