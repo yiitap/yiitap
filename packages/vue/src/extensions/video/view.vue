@@ -29,7 +29,7 @@
       />
       <div class="video-container" v-else>
         <div class="video-cover"></div>
-        <o-block-toolbar v-bind="props" @action="onAction">
+        <o-block-toolbar v-bind="props" @action="onAction" v-if="isEditable">
           <o-menubar-btn
             icon="subtitles"
             tooltip="image.caption"
@@ -64,6 +64,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { nodeViewProps } from '@tiptap/vue-3'
+import { useTiptap } from '../../hooks'
 import {
   OBlockMenu,
   OBlockPlaceholder,
@@ -77,6 +78,8 @@ import {
 } from '../../components/index'
 
 const props = defineProps(nodeViewProps)
+
+const { isEditable } = useTiptap()
 const showContextMenu = ref(false)
 const mouseEvent = ref({})
 const captionInput = ref(null)

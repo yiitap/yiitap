@@ -1,8 +1,12 @@
+import { computed, ref, inject } from 'vue'
 import type { ChainedCommands, Editor, SingleCommands } from '@tiptap/core'
 import type { Level } from '@/extensions/heading'
 
 export default function () {
+  const isEditable = inject('isEditable', { value: true })
+
   function run(editor: Editor, command: string, options: Indexable = {}) {
+    if (!editor.isEditable) return
     const focus = editor?.chain().focus()
     const commands = editor?.commands
 
@@ -192,6 +196,8 @@ export default function () {
   }
 
   return {
+    isEditable,
+
     run,
     onCommand,
   }

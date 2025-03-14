@@ -1,7 +1,7 @@
 <template>
   <div ref="triggerRef" data-tippy-role="popover" class="o-popover">
     <slot name="trigger"></slot>
-    <div ref="contentRef" class="popover-content" :class="tippyClass">
+    <div ref="contentRef" class="popover-content" v-if="!disable">
       <slot></slot>
     </div>
   </div>
@@ -18,7 +18,7 @@ import 'tippy.js/animations/perspective.css'
 import { useTheme } from '../../hooks'
 
 const props = defineProps({
-  show: {
+  disable: {
     type: Boolean,
     default: false,
   },
@@ -105,7 +105,7 @@ function initTippy() {
     trigger: props.trigger,
     theme: theme.value,
     onShow: (instance) => {
-      instance.popper.classList.add(props.tippyClass)
+      instance.popper.classList.add(props.tippyClass || 'tippy')
       emit('update:show', true)
     },
     onHide: (instance) => {

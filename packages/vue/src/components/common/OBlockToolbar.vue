@@ -1,5 +1,5 @@
 <template>
-  <div class="o-block-toolbar">
+  <div class="o-block-toolbar editable-only">
     <section class="button-group">
       <slot></slot>
       <o-popover

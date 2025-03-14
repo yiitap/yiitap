@@ -153,9 +153,11 @@ const emit = defineEmits(['transaction', 'update'])
 
 const { tr } = useI18n()
 const darkModeAlt = ref(false)
+const isEditable = ref(true)
 const localeAlt = ref('en')
 const sideNodeAlt = ref(false)
 provide('darkMode', darkModeAlt)
+provide('isEditable', isEditable)
 provide('locale', localeAlt)
 provide('sideNode', sideNodeAlt)
 
@@ -301,6 +303,7 @@ watch(
   () => props.editable,
   (newValue) => {
     editor.value?.setEditable(newValue)
+    isEditable.value = newValue
   }
 )
 

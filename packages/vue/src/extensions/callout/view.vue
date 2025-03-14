@@ -6,14 +6,36 @@
     @contextmenu.prevent="onContextMenu"
   >
     <div class="callout-container">
-      <div class="callout-icon">
-        {{ node.attrs.icon }}
-      </div>
+      <o-popover
+        ref="iconPopover"
+        placement="bottom-start"
+        trigger="click"
+        :offset="[0, 0]"
+        :disable="!isEditable"
+      >
+        <template #trigger>
+          <div class="callout-icon">
+            {{ node.attrs.icon }}
+          </div>
+          {{ isEditable }}
+        </template>
+
+        <o-emoji-select
+          :items="emojiGroups"
+          @select="onSelect('icon', $event)"
+          enable-search
+        />
+      </o-popover>
+
       <div class="callout-content">
         <node-view-content />
       </div>
 
-      <o-context-menu v-model="showContextMenu" :event="mouseEvent">
+      <o-context-menu
+        v-model="showContextMenu"
+        :event="mouseEvent"
+        v-if="isEditable"
+      >
         <o-block-menu v-bind="props" @action="onAction" />
       </o-context-menu>
     </div>
@@ -23,26 +45,31 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { NodeViewContent, nodeViewProps } from '@tiptap/vue-3'
-import { OBlockMenu, OContextMenu, ONodeView } from '../../components/index'
-import { useTheme } from '../../hooks'
+import {
+  OBlockMenu,
+  OContextMenu,
+  OEmojiSelect,
+  ONodeView,
+  OPopover,
+} from '../../components'
+import { useTheme, useTiptap } from '../../hooks'
+import { emojiGroups } from '../../constants/emoji'
 
 const props = defineProps(nodeViewProps)
+
 const { theme } = useTheme()
+const { isEditable } = useTiptap()
 const showContextMenu = ref(false)
 const showPopover = ref(false)
 const mouseEvent = ref({})
+const iconPopover = ref(null)
 
 const isFocused = computed(() => {
-  const active = props.editor.isActive('callout')
   const { selection } = props.editor.view.state
   const pos = selection.from
   const nodeFrom = props.getPos()
   const nodeTo = nodeFrom + props.node.nodeSize
   return pos >= nodeFrom && pos <= nodeTo
-})
-
-const attrs = computed(() => {
-  return props.node.attrs
 })
 
 const backColor = computed({
@@ -68,7 +95,6 @@ const borderColor = computed({
     return props.node.attrs.borderColor
   },
   set(value) {
-    console.log('action', value)
     props.updateAttributes({ borderColor: value })
   },
 })
@@ -112,19 +138,23 @@ function onShowPopover(value: boolean) {
   showPopover.value = value
 }
 
-function onSelect(command: string, value: string) {
+function onSelect(command: string, value: any) {
   switch (command) {
+    case 'backColor':
+      backColor.value = value
+      break
     case 'foreColor':
       borderColor.value = value
       break
-    case 'backColor':
-      backColor.value = value
+    case 'icon':
+      setIcon(value.emoji)
+      iconPopover.value?.setShow(false)
       break
   }
 }
 
 watch(isFocused, (newValue) => {
-  console.log('isFocused', props.node.attrs)
+  // console.log('isFocused', props.node.attrs)
   onShowPopover(newValue)
 })
 </script>
@@ -140,6 +170,10 @@ watch(isFocused, (newValue) => {
 
   .callout-container {
     display: flex;
+
+    .o-popover {
+      height: 36px;
+    }
   }
 
   .callout-icon {
