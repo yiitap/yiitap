@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, type PropType } from 'vue'
 import tippy, { type Instance, type Placement, type Props } from 'tippy.js'
 import 'tippy.js/animations/perspective.css'
 
@@ -32,6 +32,12 @@ const props = defineProps({
     type: Number,
     default: 100,
   },
+  offset: {
+    type: Object as PropType<[number, number]>,
+    default: function () {
+      return [0, 10] as [number, number]
+    },
+  },
 })
 const { theme } = useTheme()
 const triggerRef = ref<HTMLElement>()
@@ -46,6 +52,7 @@ function initTippy() {
     duration: props.duration,
     delay: props.delay,
     interactive: true,
+    offset: props.offset,
     placement: props.placement as Placement,
     trigger: props.trigger,
   })

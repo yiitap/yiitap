@@ -58,6 +58,8 @@
         </n-form>
       </n-drawer-content>
     </n-drawer>
+
+    <o-doc-toc :editor="yiiEditor?.editor" :max-level="3" />
   </section>
 </template>
 
@@ -74,7 +76,7 @@ import {
   NSpace,
   NSwitch,
 } from 'naive-ui'
-import { YiiEditor, OMainMenu, OIcon } from '@yiitap/vue'
+import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
 
 const emit = defineEmits(['mode'])
@@ -239,6 +241,12 @@ onMounted(() => {
     top: 108px;
     bottom: 0;
     overflow: auto;
+  }
+
+  .o-doc-toc {
+    position: absolute;
+
+    right: 20px;
   }
 }
 

@@ -17,7 +17,6 @@
           <div class="callout-icon">
             {{ node.attrs.icon }}
           </div>
-          {{ isEditable }}
         </template>
 
         <o-emoji-select
