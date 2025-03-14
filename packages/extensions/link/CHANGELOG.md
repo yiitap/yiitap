@@ -1,5 +1,11 @@
 # @yiitap/extension-link
 
+## 1.2.0
+
+### Patch Changes
+
+- use space indent
+
 ## 1.1.0
 
 ## 1.0.14

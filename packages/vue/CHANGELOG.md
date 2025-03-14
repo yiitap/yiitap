@@ -1,5 +1,38 @@
 # @yiitap/vue
 
+## 1.2.0
+
+### Minor Changes
+
+- Add TOC component
+- refactor
+- Add core package
+- Add unique ID extension
+
+### Patch Changes
+
+- Remove unused extensions
+- use space indent
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @yiitap/vue@1.2.0
+  - @yiitap/extension-unique-id@1.2.0
+  - @yiitap/extension-table-wrapper@1.2.0
+  - @yiitap/extension-trailing-node@1.2.0
+  - @yiitap/core@1.2.0
+  - @yiitap/extension-color-highlighter@1.2.0
+  - @yiitap/extension-char-command@1.2.0
+  - @yiitap/extension-placeholder@1.2.0
+  - @yiitap/extension-callout@1.2.0
+  - @yiitap/extension-focus@1.2.0
+  - @yiitap/extension-image@1.2.0
+  - @yiitap/extension-table@1.2.0
+  - @yiitap/extension-video@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

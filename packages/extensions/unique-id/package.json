@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-unique-id",
 	"description": "Unique ID extension",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -30,13 +30,13 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-    "uuid": "^10.0.0"
-  },
+		"uuid": "^10.0.0"
+	},
 	"peerDependencies": {
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5",
-    "@types/uuid": "^10.0.0"
-  },
+		"@types/uuid": "^10.0.0"
+	},
 	"devDependencies": {
 		"vite": "^6.2.0",
 		"vite-plugin-dts": "^4.5.3",

@@ -1,5 +1,22 @@
 # app-vue
 
+## 1.2.0
+
+### Minor Changes
+
+- Add TOC component
+
+### Patch Changes
+
+- use space indent
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @yiitap/vue@1.2.0
+
 ## 1.1.0
 
 ### Patch Changes

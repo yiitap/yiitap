@@ -1,5 +1,13 @@
 # app-react
 
+## 1.2.0
+
+### Patch Changes
+
+- use space indent
+- Updated dependencies
+  - @yiitap/react@1.2.0
+
 ## 1.1.0
 
 ### Patch Changes
