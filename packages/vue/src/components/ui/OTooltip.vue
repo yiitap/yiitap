@@ -24,6 +24,14 @@ const props = defineProps({
 		default: 'mouseenter focus',
 		// default: 'click'
 	},
+	delay: {
+		type: Number,
+		default: 100,
+	},
+	duration: {
+		type: Number,
+		default: 100,
+	},
 })
 const { theme } = useTheme()
 const triggerRef = ref<HTMLElement>()
@@ -35,7 +43,8 @@ function initTippy() {
 		appendTo: () => document.body,
 		animation: 'perspective', // scale, shift-away
 		content: contentRef.value,
-		duration: 100,
+		duration: props.duration,
+		delay: props.delay,
 		interactive: true,
 		placement: props.placement as Placement,
 		trigger: props.trigger,

@@ -1,8 +1,8 @@
 import tippy, { type Instance, type Props } from 'tippy.js'
 import { VueRenderer } from '@tiptap/vue-3'
 import View from './view.vue'
-import { Blocks } from '../../constants/block'
 import type { Editor } from '@tiptap/core'
+import { filterEmojiGroups } from '../../../constants/emoji'
 
 export interface SuggestionOptions {
 	editor: Editor
@@ -12,9 +12,7 @@ export interface SuggestionOptions {
 
 export default {
 	items: ({ query }: { query: string }) => {
-		return Blocks.filter((item) =>
-			item.value.toLowerCase().startsWith(query.toLowerCase())
-		)
+		return filterEmojiGroups(query)
 	},
 	render: () => {
 		let component: VueRenderer
@@ -36,6 +34,9 @@ export default {
 					trigger: 'manual',
 					placement: 'bottom-start',
 					arrow: false,
+					onShow(instance) {
+						instance.popper.classList.add('emoji-tippy')
+					},
 				})
 			},
 

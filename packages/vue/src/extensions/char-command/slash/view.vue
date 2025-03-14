@@ -43,10 +43,10 @@
 </template>
 
 <script lang="ts">
-import useI18n from '../../hooks/useI18n'
-import useTiptap from '../../hooks/useTiptap'
-import { ODivider, OIcon, OList, OListItem } from '../../components/index'
-import { BasicBlocks } from '../../constants/block'
+import useI18n from '../../../hooks/useI18n'
+import useTiptap from '../../../hooks/useTiptap'
+import { ODivider, OIcon, OList, OListItem } from '../../../components/index'
+import { BasicBlocks } from '../../../constants/block'
 
 export default {
 	props: {
@@ -112,6 +112,10 @@ export default {
 				case 'content':
 					commands.deleteRange(this.range)
 					this.editor.commands.insertContent(item.options.content)
+					break
+				case 'emoji':
+					commands.deleteRange(this.range)
+					this.editor.commands.insertContent(':')
 					break
 				case 'taskList':
 					commands.deleteRange(this.range)

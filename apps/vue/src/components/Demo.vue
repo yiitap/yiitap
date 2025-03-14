@@ -129,6 +129,7 @@ const options = computed(() => {
 			'OBlockquote',
 			'OCallout',
 			'OCodeBlock',
+			'OColon',
 			'OColorHighlighter',
 			'OHeading',
 			'OImage',

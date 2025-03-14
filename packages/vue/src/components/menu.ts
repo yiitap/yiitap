@@ -2,6 +2,7 @@ import OSimpleCommandBtn from './buttons/OSimpleCommandBtn.vue'
 import OAlignDropdown from './buttons/OAlignDropdown.vue'
 import OAlignGroup from './buttons/OAlignGroup.vue'
 import OBackColorDropdown from './buttons/OBackColorDropdown.vue'
+import OEmojiBtn from './buttons/OEmojiBtn.vue'
 import OFontFamilyDropdown from './buttons/OFontFamilyDropdown.vue'
 import OForeColorDropdown from './buttons/OForeColorDropdown.vue'
 import OHeadingDropdown from './buttons/OHeadingDropdown.vue'
@@ -36,7 +37,7 @@ const CommandComponents: Indexable = {
 	'link-edit': OLinkEditBtn,
 	'link-open': OLinkOpenBtn,
 	// 'image-settings': 'o-image-settings-btn',
-	// 'emoji': 'o-emoji-btn',
+	emoji: OEmojiBtn,
 	more: OMoreBubble,
 	// 'node': 'o-node-btn',
 	// 'node-dropdown': 'o-node-dropdown',

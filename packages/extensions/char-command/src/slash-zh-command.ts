@@ -6,14 +6,13 @@ import { Extension } from '@tiptap/core'
 import Suggestion from '@tiptap/suggestion'
 import { PluginKey } from '@tiptap/pm/state'
 
-export default Extension.create({
-	name: 'slash',
+export const SlashZhCommand = Extension.create({
+	name: 'slash-zh-command',
 
 	addOptions() {
 		return {
-			key: 'slash',
 			suggestion: {
-				char: '/',
+				char: '、',
 				command: ({
 					editor,
 					range,
@@ -32,7 +31,7 @@ export default Extension.create({
 	addProseMirrorPlugins() {
 		return [
 			Suggestion({
-				pluginKey: new PluginKey(this.options.key),
+				pluginKey: new PluginKey('slash-zh-command'),
 				editor: this.editor,
 				...this.options.suggestion,
 			}),

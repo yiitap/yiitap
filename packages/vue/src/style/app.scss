@@ -129,6 +129,7 @@
 .o-scroll {
 	max-height: 480px;
 	overflow: auto;
+  box-sizing: border-box;
 	&::-webkit-scrollbar {
 		width: 4px;
 	}

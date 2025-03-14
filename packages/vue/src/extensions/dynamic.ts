@@ -28,13 +28,15 @@ import {
 	OCallout,
 	OCodeBlock,
 	OColorHighlighter,
+	OColonCommand,
 	// OFocus,
 	OHeading,
 	OHorizontalRule,
 	OImage,
 	OLink,
 	OParagraph,
-	OSlash,
+	OSlashCommand,
+	OSlashZhCommand,
 	OTable,
 	OTableCell,
 	OTableHeader,
@@ -47,7 +49,8 @@ import {
 // ---------------------------------------------------------
 // Classes and configuration
 // ---------------------------------------------------------
-import suggestion from './slash/suggestion'
+import SlashSuggestion from './char-command/slash/suggestion'
+import EmojiSuggestion from './char-command/emoji/suggestion'
 const classes: Indexable = {
 	// default
 	BackColor: BackColor.configure({
@@ -70,19 +73,14 @@ const classes: Indexable = {
 	Typography,
 
 	// Custom extensions
-	OSlash: OSlash.configure({
-		key: 'slash',
-		suggestion: {
-			...suggestion,
-			char: '/',
-		},
+	OColon: OColonCommand.configure({
+		suggestion: EmojiSuggestion,
 	}),
-	OSlashZh: OSlash.configure({
-		key: 'slash-zh',
-		suggestion: {
-			...suggestion,
-			char: '、',
-		},
+	OSlash: OSlashCommand.configure({
+		suggestion: SlashSuggestion,
+	}),
+	OSlashZh: OSlashZhCommand.configure({
+		suggestion: SlashSuggestion,
 	}),
 	// OTOC: TOC,
 	// OModelViewer: ModelViewer,

@@ -26,7 +26,7 @@ export const DefaultMenu = [
 	'modelViewer',
 	'table',
 	'callout',
-	// 'emoji',
+	'emoji',
 	'columns',
 	'aiViewer',
 ]

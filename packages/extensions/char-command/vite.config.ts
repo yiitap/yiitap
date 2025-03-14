@@ -6,7 +6,7 @@ export default mergeConfig(
 		build: {
 			target: 'esnext',
 			lib: {
-				name: 'Slash',
+				name: 'CharCommand',
 				entry: 'src/index.ts',
 				formats: ['es', 'cjs', 'iife'],
 				fileName: (format) => {

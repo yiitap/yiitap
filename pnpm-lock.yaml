@@ -170,6 +170,25 @@ importers:
         specifier: ^0.34.6
         version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
 
+  packages/extensions/char-command:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/pm@2.11.5)
+      '@tiptap/pm':
+        specifier: ^2.11.5
+        version: 2.11.5
+      '@tiptap/suggestion':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)
+    devDependencies:
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
+      vitest:
+        specifier: ^0.34.6
+        version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
+
   packages/extensions/code-block:
     dependencies:
       '@tiptap/core':
@@ -283,25 +302,6 @@ importers:
       vite-plugin-dts:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@20.8.10)(rollup@4.35.0)(typescript@5.8.2)(vite@6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0))
-      vitest:
-        specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
-
-  packages/extensions/slash:
-    dependencies:
-      '@tiptap/core':
-        specifier: ^2.11.5
-        version: 2.11.5(@tiptap/pm@2.11.5)
-      '@tiptap/pm':
-        specifier: ^2.11.5
-        version: 2.11.5
-      '@tiptap/suggestion':
-        specifier: ^2.11.5
-        version: 2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)
-    devDependencies:
-      vite:
-        specifier: ^6.2.0
-        version: 6.2.1(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
       vitest:
         specifier: ^0.34.6
         version: 0.34.6(jsdom@22.1.0)(sass@1.85.1)
@@ -554,6 +554,9 @@ importers:
       '@yiitap/extension-callout':
         specifier: workspace:*
         version: link:../extensions/callout
+      '@yiitap/extension-char-command':
+        specifier: workspace:*
+        version: link:../extensions/char-command
       '@yiitap/extension-color-highlighter':
         specifier: workspace:*
         version: link:../extensions/color-highlighter
@@ -566,9 +569,6 @@ importers:
       '@yiitap/extension-placeholder':
         specifier: workspace:*
         version: link:../extensions/placeholder
-      '@yiitap/extension-slash':
-        specifier: workspace:*
-        version: link:../extensions/slash
       '@yiitap/extension-table':
         specifier: workspace:*
         version: link:../extensions/table

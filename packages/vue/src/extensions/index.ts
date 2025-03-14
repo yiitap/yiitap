@@ -1,10 +1,14 @@
 export { default as OColorHighlighter } from '@yiitap/extension-color-highlighter'
 export { default as OFocus } from '@yiitap/extension-focus'
 export { default as OPlaceholder } from '@yiitap/extension-placeholder'
-export { default as OSlash } from '@yiitap/extension-slash'
 export { default as OTable } from '@yiitap/extension-table'
 export { default as OTrailingNode } from '@yiitap/extension-trailing-node'
 export { default as OUniqueID } from '@yiitap/extension-unique-id'
+export {
+	ColonCommand as OColonCommand,
+	SlashCommand as OSlashCommand,
+	SlashZhCommand as OSlashZhCommand,
+} from '@yiitap/extension-char-command'
 
 export { default as OBlockquote } from './blockquote'
 export { default as OCallout } from './callout'

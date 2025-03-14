@@ -42,7 +42,7 @@ const props = defineProps({
 	},
 	tippyClass: {
 		type: String,
-		default: '',
+		default: 'tippy',
 	},
 	event: {
 		type: Object,
@@ -105,6 +105,7 @@ function initTippy() {
 		trigger: props.trigger,
 		theme: theme.value,
 		onShow: (instance) => {
+			instance.popper.classList.add(props.tippyClass)
 			emit('update:show', true)
 		},
 		onHide: (instance) => {
