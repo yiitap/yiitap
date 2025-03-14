@@ -3,16 +3,16 @@ import type { LinkOptions } from '@tiptap/extension-link'
 import { clickSelectHandler } from './helpers/clickSelectHandler'
 
 const OLink = Link.extend<LinkOptions>({
-	addProseMirrorPlugins() {
-		return [
-			...(this.parent?.() || []),
-			clickSelectHandler({
-				type: this.type,
-			}),
-		]
-	},
+  addProseMirrorPlugins() {
+    return [
+      ...(this.parent?.() || []),
+      clickSelectHandler({
+        type: this.type,
+      }),
+    ]
+  },
 }).configure({
-	openOnClick: false,
+  openOnClick: false,
 })
 
 export default OLink
