@@ -5,11 +5,11 @@ import type { ImageOptions } from '@yiitap/extension-image'
 import View from './view.vue'
 
 const OImage = Image.extend<ImageOptions>({
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 }).configure({
-	inline: true,
+  inline: true,
 })
 
 export default OImage

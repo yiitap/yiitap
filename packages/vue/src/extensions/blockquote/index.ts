@@ -5,11 +5,11 @@ import type { BlockquoteOptions } from '@tiptap/extension-blockquote'
 import View from './view.vue'
 
 const OBlockquote = Blockquote.extend<BlockquoteOptions>({
-	draggable: true,
+  draggable: true,
 
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 })
 
 export default OBlockquote

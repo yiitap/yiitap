@@ -3,9 +3,9 @@ import { Video } from '@yiitap/extension-video'
 import View from './view.vue'
 
 export const OVideo = Video.extend({
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 })
 
 export default OVideo

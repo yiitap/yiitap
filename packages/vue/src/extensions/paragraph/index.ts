@@ -4,12 +4,12 @@ import Paragraph from '@tiptap/extension-paragraph'
 import View from './view.vue'
 
 const OParagraph = Paragraph.extend({
-	draggable: false,
+  draggable: false,
 
-	addNodeView() {
-		return VueNodeViewRenderer(View, {
-			stopEvent: () => false,
-		})
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View, {
+      stopEvent: () => false,
+    })
+  },
 })
 export default OParagraph

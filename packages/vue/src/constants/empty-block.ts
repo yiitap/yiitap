@@ -3,32 +3,32 @@
  */
 
 export const EmptyParagraph = [
-	{
-		type: 'paragraph',
-		content: [],
-	},
+  {
+    type: 'paragraph',
+    content: [],
+  },
 ]
 
 export const EmptyListItem = [
-	{
-		type: 'listItem',
-		content: [
-			{
-				type: 'paragraph',
-				content: [],
-			},
-		],
-	},
+  {
+    type: 'listItem',
+    content: [
+      {
+        type: 'paragraph',
+        content: [],
+      },
+    ],
+  },
 ]
 
 export const EmptyTaskItem = [
-	{
-		type: 'taskItem',
-		content: [
-			{
-				type: 'paragraph',
-				content: [],
-			},
-		],
-	},
+  {
+    type: 'taskItem',
+    content: [
+      {
+        type: 'paragraph',
+        content: [],
+      },
+    ],
+  },
 ]

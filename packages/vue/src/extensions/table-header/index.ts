@@ -5,20 +5,20 @@ import type { TableHeaderOptions } from '@tiptap/extension-table-header'
 import View from './view.vue'
 
 const OTableHeader = TableHeader.extend<TableHeaderOptions>({
-	addAttributes() {
-		return {
-			...this.parent?.(),
-			background: {
-				default: '',
-			},
-		}
-	},
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      background: {
+        default: '',
+      },
+    }
+  },
 
-	addNodeView() {
-		return VueNodeViewRenderer(View, {
-			stopEvent: () => false,
-		})
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View, {
+      stopEvent: () => false,
+    })
+  },
 })
 
 export default OTableHeader

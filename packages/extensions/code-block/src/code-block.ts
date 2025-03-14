@@ -10,15 +10,15 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import type { CodeBlockLowlightOptions } from '@tiptap/extension-code-block-lowlight'
 
 export const CodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
-	draggable: true,
+  draggable: true,
 
-	addAttributes() {
-		return {
-			...this.parent?.(),
-			wrap: {
-				default: true,
-				rendered: false,
-			},
-		}
-	},
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      wrap: {
+        default: true,
+        rendered: false,
+      },
+    }
+  },
 })

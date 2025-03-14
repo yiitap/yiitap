@@ -4,9 +4,9 @@ import type { CalloutOptions } from '@yiitap/extension-callout'
 import View from './view.vue'
 
 const OCallout = Callout.extend<CalloutOptions>({
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 })
 
 export default OCallout

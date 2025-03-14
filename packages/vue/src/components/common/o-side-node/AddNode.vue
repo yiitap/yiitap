@@ -1,21 +1,21 @@
 <template>
-	<o-popover
-		ref="popover"
-		placement="left"
-		trigger="mouseenter"
-		arrow
-		@update:show="onShow"
-	>
-		<template #trigger>
-			<div class="o-add-node" :class="{ 'is-selected': selected }">
-				<o-btn type="tertiary" class="o-node-btn">
-					<o-icon name="add" small />
-				</o-btn>
-			</div>
-		</template>
+  <o-popover
+    ref="popover"
+    placement="left"
+    trigger="mouseenter"
+    arrow
+    @update:show="onShow"
+  >
+    <template #trigger>
+      <div class="o-add-node" :class="{ 'is-selected': selected }">
+        <o-btn type="tertiary" class="o-node-btn">
+          <o-icon name="add" small />
+        </o-btn>
+      </div>
+    </template>
 
-		<add-node-view v-bind="props" @action="onAction" />
-	</o-popover>
+    <add-node-view v-bind="props" @action="onAction" />
+  </o-popover>
 </template>
 
 <script setup lang="ts">
@@ -29,17 +29,17 @@ const popover = ref(null)
 const selected = ref(false)
 
 function onShow(value: boolean) {
-	selected.value = value
+  selected.value = value
 }
 
 function onAction() {
-	popover.value?.setShow(false)
-	selected.value = false
+  popover.value?.setShow(false)
+  selected.value = false
 }
 </script>
 
 <style lang="scss">
 .o-add-node {
-	display: flex;
+  display: flex;
 }
 </style>

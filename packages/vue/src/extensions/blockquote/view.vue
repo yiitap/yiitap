@@ -1,9 +1,9 @@
 <template>
-	<o-node-view v-bind="props" class="o-blockquote-view">
-		<blockquote>
-			<node-view-content />
-		</blockquote>
-	</o-node-view>
+  <o-node-view v-bind="props" class="o-blockquote-view">
+    <blockquote>
+      <node-view-content />
+    </blockquote>
+  </o-node-view>
 </template>
 
 <script setup lang="ts">

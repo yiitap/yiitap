@@ -2,6 +2,7 @@ import OSimpleCommandBtn from './buttons/OSimpleCommandBtn.vue'
 import OAlignDropdown from './buttons/OAlignDropdown.vue'
 import OAlignGroup from './buttons/OAlignGroup.vue'
 import OBackColorDropdown from './buttons/OBackColorDropdown.vue'
+import OEmojiBtn from './buttons/OEmojiBtn.vue'
 import OFontFamilyDropdown from './buttons/OFontFamilyDropdown.vue'
 import OForeColorDropdown from './buttons/OForeColorDropdown.vue'
 import OHeadingDropdown from './buttons/OHeadingDropdown.vue'
@@ -21,32 +22,32 @@ import OTextFormatDropdown from './buttons/OTextFormatDropdown.vue'
  * Command component except for simple commands
  */
 const CommandComponents: Indexable = {
-	// 'add-more': 'o-add-more-btn',
-	'align-dropdown': OAlignDropdown,
-	'align-group': OAlignGroup,
-	'back-color': OBackColorDropdown,
-	'font-family': OFontFamilyDropdown,
-	'fore-color': OForeColorDropdown,
-	heading: OHeadingDropdown,
-	// 'indent-dropdown': 'o-indent-dropdown',
-	// 'line-height': 'o-line-height-dropdown',
-	'list-dropdown': OListDropdown,
-	'list-group': OListGroup,
-	link: OLinkBtn,
-	'link-edit': OLinkEditBtn,
-	'link-open': OLinkOpenBtn,
-	// 'image-settings': 'o-image-settings-btn',
-	// 'emoji': 'o-emoji-btn',
-	more: OMoreBubble,
-	// 'node': 'o-node-btn',
-	// 'node-dropdown': 'o-node-dropdown',
-	'style-dropdown': OStyleDropdown,
-	table: OTableBtn,
-	'table-group': OTableGroup,
-	'text-color-dropdown': OTextColorDropdown,
-	'text-format-dropdown': OTextFormatDropdown,
+  // 'add-more': 'o-add-more-btn',
+  'align-dropdown': OAlignDropdown,
+  'align-group': OAlignGroup,
+  'back-color': OBackColorDropdown,
+  'font-family': OFontFamilyDropdown,
+  'fore-color': OForeColorDropdown,
+  heading: OHeadingDropdown,
+  // 'indent-dropdown': 'o-indent-dropdown',
+  // 'line-height': 'o-line-height-dropdown',
+  'list-dropdown': OListDropdown,
+  'list-group': OListGroup,
+  link: OLinkBtn,
+  'link-edit': OLinkEditBtn,
+  'link-open': OLinkOpenBtn,
+  // 'image-settings': 'o-image-settings-btn',
+  emoji: OEmojiBtn,
+  more: OMoreBubble,
+  // 'node': 'o-node-btn',
+  // 'node-dropdown': 'o-node-dropdown',
+  'style-dropdown': OStyleDropdown,
+  table: OTableBtn,
+  'table-group': OTableGroup,
+  'text-color-dropdown': OTextColorDropdown,
+  'text-format-dropdown': OTextFormatDropdown,
 }
 
 export const getComponent = (name: string) => {
-	return CommandComponents[name] || OSimpleCommandBtn
+  return CommandComponents[name] || OSimpleCommandBtn
 }

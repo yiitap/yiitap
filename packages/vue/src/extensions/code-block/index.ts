@@ -16,25 +16,25 @@ const lowlight = createLowlight(common)
 import View from './view.vue'
 
 const CustomCodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
-	draggable: true,
+  draggable: true,
 
-	addAttributes() {
-		return {
-			...this.parent?.(),
-			wrap: {
-				default: true,
-				rendered: false,
-			},
-		}
-	},
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      wrap: {
+        default: true,
+        rendered: false,
+      },
+    }
+  },
 
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 }).configure({
-	languageClassPrefix: 'language-',
-	defaultLanguage: 'bash',
-	lowlight,
+  languageClassPrefix: 'language-',
+  defaultLanguage: 'bash',
+  lowlight,
 })
 
 export default CustomCodeBlock

@@ -5,16 +5,16 @@ import View from './view.vue'
 export type Level = 1 | 2 | 3 | 4 | 5 | 6
 
 export interface HeadingOptions {
-	levels: Level[]
-	HTMLAttributes: Record<string, any>
+  levels: Level[]
+  HTMLAttributes: Record<string, any>
 }
 
 const OHeading = Heading.extend<HeadingOptions>({
-	draggable: true,
+  draggable: true,
 
-	addNodeView() {
-		return VueNodeViewRenderer(View)
-	},
+  addNodeView() {
+    return VueNodeViewRenderer(View)
+  },
 })
 
 export default OHeading

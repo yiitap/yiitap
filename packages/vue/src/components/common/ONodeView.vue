@@ -1,12 +1,12 @@
 <template>
-	<node-view-wrapper class="o-node-view" :data-id="node.attrs['data-id']">
-		<o-side-node
-			v-bind="props"
-			@action="emit('action')"
-			v-if="enableSideNode && editor?.isEditable"
-		/>
-		<slot></slot>
-	</node-view-wrapper>
+  <node-view-wrapper class="o-node-view" :data-id="node.attrs['data-id']">
+    <o-side-node
+      v-bind="props"
+      @action="emit('action')"
+      v-if="enableSideNode && editor?.isEditable"
+    />
+    <slot></slot>
+  </node-view-wrapper>
 </template>
 
 <script setup lang="ts">
@@ -19,115 +19,115 @@ const emit = defineEmits(['action'])
 const enableSideNode = inject('sideNode', { value: false })
 
 const renderAttrs = computed(() => {
-	const attrs: Indexable = {}
-	if (props.node.attrs['data-id']) {
-		attrs['data-id'] = props.node.attrs['data-id']
-	}
-	return attrs
+  const attrs: Indexable = {}
+  if (props.node.attrs['data-id']) {
+    attrs['data-id'] = props.node.attrs['data-id']
+  }
+  return attrs
 })
 </script>
 
 <style lang="scss">
 .o-node-view {
-	position: relative;
+  position: relative;
 
-	//  hover
-	// --------------------------------------------------
-	&:hover {
-		.action-container {
-			visibility: visible;
-		}
+  //  hover
+  // --------------------------------------------------
+  &:hover {
+    .action-container {
+      visibility: visible;
+    }
 
-		.o-block-toolbar {
-			visibility: visible;
-		}
-	}
+    .o-block-toolbar {
+      visibility: visible;
+    }
+  }
 
-	//  side node
-	// --------------------------------------------------
-	&:first-child,
-	.o-node-view {
-		.o-side-node {
-			display: none;
-		}
-	}
+  //  side node
+  // --------------------------------------------------
+  &:first-child,
+  .o-node-view {
+    .o-side-node {
+      display: none;
+    }
+  }
 
-	// Hide first child
-	.o-node-view {
-		&:not(:first-child):hover {
-			//background: yellowgreen;
-			.o-side-node {
-				display: block;
-			}
-		}
+  // Hide first child
+  .o-node-view {
+    &:not(:first-child):hover {
+      //background: yellowgreen;
+      .o-side-node {
+        display: block;
+      }
+    }
 
-		&:first-child {
-			//background: aliceblue;
-			.o-side-node {
-				display: none !important;
-			}
-		}
+    &:first-child {
+      //background: aliceblue;
+      .o-side-node {
+        display: none !important;
+      }
+    }
 
-		// Hide add node
-		.o-add-node {
-			display: none;
-		}
+    // Hide add node
+    .o-add-node {
+      display: none;
+    }
 
-		.o-side-node {
-			top: 0 !important;
-			left: -80px !important;
-		}
-	}
+    .o-side-node {
+      top: 0 !important;
+      left: -80px !important;
+    }
+  }
 
-	&:has(.is-dragging) {
-		.o-side-node {
-			color: transparent;
-			background: transparent;
+  &:has(.is-dragging) {
+    .o-side-node {
+      color: transparent;
+      background: transparent;
 
-			.action-container {
-				.o-add-node {
-					display: none;
-				}
-			}
+      .action-container {
+        .o-add-node {
+          display: none;
+        }
+      }
 
-			.n-button {
-				color: transparent !important;
-				border-color: transparent !important;
+      .n-button {
+        color: transparent !important;
+        border-color: transparent !important;
 
-				.o-icon,
-				.n-button__border,
-				.n-button__state-border {
-					color: transparent !important;
-					border: none !important;
-				}
-			}
-		}
+        .o-icon,
+        .n-button__border,
+        .n-button__state-border {
+          color: transparent !important;
+          border: none !important;
+        }
+      }
+    }
 
-		.o-block-toolbar,
-		.caption,
-		.col-handler,
-		.row-handler {
-			display: none !important;
-		}
+    .o-block-toolbar,
+    .caption,
+    .col-handler,
+    .row-handler {
+      display: none !important;
+    }
 
-		.tableWrapper {
-			padding: 10px;
-			margin: 0;
-		}
-	}
+    .tableWrapper {
+      padding: 10px;
+      margin: 0;
+    }
+  }
 
-	&.o-table-wrapper-view {
-		.o-side-node {
-			top: 40px !important;
-			left: -64px;
-		}
+  &.o-table-wrapper-view {
+    .o-side-node {
+      top: 40px !important;
+      left: -64px;
+    }
 
-		.o-node-view {
-			.o-side-node {
-				top: 0 !important;
-				display: none !important;
-			}
-		}
-	}
+    .o-node-view {
+      .o-side-node {
+        top: 0 !important;
+        display: none !important;
+      }
+    }
+  }
 }
 </style>
