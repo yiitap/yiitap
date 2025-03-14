@@ -4,7 +4,10 @@
       <header>
         <section class="info">
           <img src="/logo.png" alt="Logo" />
-          <div class="title">Yiitap Editor</div>
+          <div class="title">Yiitap</div>
+          <div class="version">
+            <version-badge package="@yiitap/vue" />
+          </div>
         </section>
         <section class="actions">
           <n-button quaternary @click="onGithub">
@@ -78,6 +81,7 @@ import {
 } from 'naive-ui'
 import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
+import VersionBadge from './VersionBadge.vue'
 
 const emit = defineEmits(['mode'])
 
@@ -198,7 +202,7 @@ onMounted(() => {
       padding: 0 1rem;
 
       .info {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         img {
           width: 32px;
@@ -208,6 +212,14 @@ onMounted(() => {
         .title {
           padding: 0 4px;
           font-size: 20px;
+        }
+
+        .version {
+          height: 20px;
+          img {
+            width: unset;
+            height: 100%;
+          }
         }
       }
 

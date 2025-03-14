@@ -34,7 +34,10 @@ export default defineConfig({
     },
     minify: true,
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'vue',
+        '@tiptap/core',
+      ],
       output: {
         banner: `
 /**
@@ -45,6 +48,7 @@ export default defineConfig({
         exports: 'named',
         globals: {
           vue: 'Vue',
+          '@tiptap/core': 'TiptapCore',
         },
       },
     },
