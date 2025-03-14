@@ -1,5 +1,25 @@
 # @yiitap/vue
 
+## 1.2.1
+
+### Patch Changes
+
+- fixed: Adding different instances of a keyed plugin
+- Updated dependencies
+  - @yiitap/vue@1.2.1
+  - @yiitap/core@1.2.1
+  - @yiitap/extension-callout@1.2.1
+  - @yiitap/extension-char-command@1.2.1
+  - @yiitap/extension-color-highlighter@1.2.1
+  - @yiitap/extension-focus@1.2.1
+  - @yiitap/extension-image@1.2.1
+  - @yiitap/extension-placeholder@1.2.1
+  - @yiitap/extension-table@1.2.1
+  - @yiitap/extension-table-wrapper@1.2.1
+  - @yiitap/extension-trailing-node@1.2.1
+  - @yiitap/extension-unique-id@1.2.1
+  - @yiitap/extension-video@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

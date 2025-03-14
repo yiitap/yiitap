@@ -1,5 +1,13 @@
 # app-vue
 
+## 1.2.1
+
+### Patch Changes
+
+- fixed: Adding different instances of a keyed plugin
+- Updated dependencies
+  - @yiitap/vue@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
