@@ -30,7 +30,9 @@
     "vue",
     "react",
     "icon",
-    "extension"
+    "extension",
+    "app-vue",
+    "app-react"
   ],
   "types": {
     "chore": {

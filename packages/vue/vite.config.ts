@@ -44,6 +44,7 @@ export default defineConfig({
       },
     },
     minify: true,
+    sourcemap: true,
     rollupOptions: {
       external: ['vue', '@tiptap/core'],
       output: {
