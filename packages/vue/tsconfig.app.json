@@ -6,7 +6,10 @@
     "src/**/*.vue",
     "src/**/*.json",
   ],
-  "exclude": ["src/**/__tests__/*"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
 	  "strict": false,
 	  "noImplicitAny": false,
