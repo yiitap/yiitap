@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint 'src/**/*.{ts,vue}'"
+    "lint": "eslint 'src/**/*.{ts,vue}'",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@yiitap/vue": "workspace:*",

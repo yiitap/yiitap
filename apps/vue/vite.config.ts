@@ -30,6 +30,7 @@ export default defineConfig({
   build: {
     // we don't minify so we can look at the bundle ouput. Change if you wanna deploy the playground
     minify: false,
+    sourcemap: true,
     rollupOptions: {
       // Comment in to move vue out of the bundle - easier to look at the app's bundle content that way.
       // external: ['vue'],
