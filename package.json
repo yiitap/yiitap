@@ -25,7 +25,8 @@
 		"build": "pnpm build-packages && pnpm build-app-vue",
 		"build-packages": "pnpm -r -F '@yiitap/*' run build",
 		"build-app-vue": "pnpm -F 'app-vue' run build",
-		"publish": "pnpm build && pnpm changeset publish"
+		"publish": "pnpm build && pnpm changeset publish",
+		"pre-push": "pnpm lint && pnpm test-ci && pnpm build"
 	},
 	"packageManager": "pnpm@10.6.2",
 	"devDependencies": {
@@ -44,7 +45,7 @@
 		"run-p": "^0.0.0",
 		"typescript": "^5.2.2",
 		"vite": "^6.2.0",
-		"vitest": "^0.34.6",
+		"vitest": "^3.0.8",
 		"vue": "^3.3.8",
 		"vue-tsc": "^2.2.8"
 	},

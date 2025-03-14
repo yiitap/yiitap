@@ -1,10 +1,21 @@
 /// <reference types="vitest"/>
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import Inspect from 'vite-plugin-inspect'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    Inspect({
+      build: true,
+      outputDir: '.analysis/inspect',
+    }),
+    visualizer({
+      filename: '.analysis/visualizer/stats.html',
+    }),
+  ],
   resolve: {
     alias: {
       /*
@@ -34,7 +45,7 @@ export default defineConfig({
     },
     minify: true,
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@tiptap/core'],
       output: {
         banner: `
 /**
@@ -45,6 +56,7 @@ export default defineConfig({
         exports: 'named',
         globals: {
           vue: 'Vue',
+          '@tiptap/core': 'TiptapCore',
         },
       },
     },

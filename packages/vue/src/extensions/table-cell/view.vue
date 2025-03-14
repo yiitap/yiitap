@@ -5,7 +5,7 @@
     v-bind="node.attrs"
     :style="{ background: node.attrs.background }"
   >
-    <template v-if="editor?.isEditable">
+    <template v-if="isEditable">
       <o-block-popover
         v-model="showRowPopover"
         placement="left"
@@ -65,7 +65,7 @@ import { Color } from '../../constants/color'
 const props = defineProps(nodeViewProps)
 
 const { tr } = useI18n()
-const { run } = useTiptap()
+const { isEditable, run } = useTiptap()
 
 const showRowPopover = ref(false)
 

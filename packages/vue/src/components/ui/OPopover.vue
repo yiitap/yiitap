@@ -1,14 +1,14 @@
 <template>
   <div ref="triggerRef" data-tippy-role="popover" class="o-popover">
     <slot name="trigger"></slot>
-    <div ref="contentRef" class="popover-content" :class="tippyClass">
+    <div ref="contentRef" class="popover-content" v-if="!disable">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, type PropType } from 'vue'
 import tippy from 'tippy.js'
 import type { Instance, Props, Placement } from 'tippy.js'
 import 'tippy.js/animations/scale.css'
@@ -18,7 +18,7 @@ import 'tippy.js/animations/perspective.css'
 import { useTheme } from '../../hooks'
 
 const props = defineProps({
-  show: {
+  disable: {
     type: Boolean,
     default: false,
   },
@@ -27,9 +27,9 @@ const props = defineProps({
     default: false,
   },
   offset: {
-    type: Array as () => number[],
+    type: Object as PropType<[number, number]>,
     default: function () {
-      return [0, 10]
+      return [0, 10] as [number, number]
     },
   },
   placement: {
@@ -49,6 +49,14 @@ const props = defineProps({
     default: function () {
       return {}
     },
+  },
+  delay: {
+    type: Number,
+    default: 100,
+  },
+  duration: {
+    type: Number,
+    default: 200,
   },
 })
 const emit = defineEmits(['update:show'])
@@ -97,15 +105,15 @@ function initTippy() {
     animation: 'shift-away', // perspective, scale, shift-away
     arrow: props.arrow,
     content: contentRef.value,
-    delay: 100,
-    duration: 200,
+    duration: props.duration,
+    delay: props.delay,
     interactive: true,
-    // offset: props.offset, // todo
+    offset: props.offset,
     placement: props.placement as Placement,
     trigger: props.trigger,
     theme: theme.value,
     onShow: (instance) => {
-      instance.popper.classList.add(props.tippyClass)
+      instance.popper.classList.add(props.tippyClass || 'tippy')
       emit('update:show', true)
     },
     onHide: (instance) => {

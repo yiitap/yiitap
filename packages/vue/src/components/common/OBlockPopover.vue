@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, type PropType } from 'vue'
 import { OPopover } from '../index'
 
 const props = defineProps({
@@ -44,9 +44,9 @@ const props = defineProps({
     default: '',
   },
   offset: {
-    type: Array as () => number[],
+    type: Object as PropType<[number, number]>,
     default: function () {
-      return [0, 10]
+      return [0, 10] as [number, number]
     },
   },
 })

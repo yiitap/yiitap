@@ -4,7 +4,10 @@
       <header>
         <section class="info">
           <img src="/logo.png" alt="Logo" />
-          <div class="title">Yiitap Editor</div>
+          <div class="title">Yiitap</div>
+          <div class="version">
+            <version-badge package="@yiitap/vue" />
+          </div>
         </section>
         <section class="actions">
           <n-button quaternary @click="onGithub">
@@ -58,6 +61,8 @@
         </n-form>
       </n-drawer-content>
     </n-drawer>
+
+    <o-doc-toc :editor="yiiEditor?.editor" :max-level="3" />
   </section>
 </template>
 
@@ -74,8 +79,9 @@ import {
   NSpace,
   NSwitch,
 } from 'naive-ui'
-import { YiiEditor, OMainMenu, OIcon } from '@yiitap/vue'
+import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
+import VersionBadge from './VersionBadge.vue'
 
 const emit = defineEmits(['mode'])
 
@@ -196,7 +202,7 @@ onMounted(() => {
       padding: 0 1rem;
 
       .info {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         img {
           width: 32px;
@@ -206,6 +212,14 @@ onMounted(() => {
         .title {
           padding: 0 4px;
           font-size: 20px;
+        }
+
+        .version {
+          height: 20px;
+          img {
+            width: unset;
+            height: 100%;
+          }
         }
       }
 
@@ -239,6 +253,12 @@ onMounted(() => {
     top: 108px;
     bottom: 0;
     overflow: auto;
+  }
+
+  .o-doc-toc {
+    position: absolute;
+
+    right: 20px;
   }
 }
 
