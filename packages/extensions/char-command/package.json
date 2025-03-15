@@ -14,8 +14,11 @@
 	"module": "dist/index.mjs",
 	"types": "dist/types/index.d.ts",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.cjs"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
 	},
 	"files": [
 		"dist",
@@ -24,7 +27,7 @@
 	"scripts": {
 		"build": "pnpm build-lib && pnpm build-types",
 		"build-lib": "vite build",
-		"build-types": "vue-tsc --emitDeclarationOnly --declaration -p tsconfig.json",
+		"build-types": "tsc --emitDeclarationOnly",
 		"lint": "eslint 'src/**/*.{ts,vue}'",
 		"test": "vitest",
 		"test-ci": "vitest --run"
@@ -37,7 +40,5 @@
 		"@tiptap/pm": "^2.11.5"
 	},
 	"devDependencies": {
-		"vite": "^6.2.0",
-		"vitest": "^3.0.8"
 	}
 }

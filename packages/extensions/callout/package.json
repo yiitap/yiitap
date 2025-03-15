@@ -12,13 +12,17 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.cjs"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
 	},
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"scripts": {
 		"build": "pnpm build-lib && pnpm build-types",
@@ -33,8 +37,5 @@
 		"@tiptap/core": "^2.11.5"
 	},
 	"devDependencies": {
-		"vite": "^6.2.0",
-		"vite-plugin-dts": "^4.5.3",
-		"vitest": "^3.0.8"
 	}
 }

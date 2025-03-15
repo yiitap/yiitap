@@ -46,7 +46,12 @@ export default defineConfig({
     minify: true,
     sourcemap: true,
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'vue',
+        // '@tiptap/core',
+        // '@tiptap/pm',
+        // '@tiptap/vue-3',
+      ],
       output: {
         banner: `
 /**
@@ -57,6 +62,9 @@ export default defineConfig({
         exports: 'named',
         globals: {
           vue: 'Vue',
+          // '@tiptap/core': 'TiptapCore',
+          // '@tiptap/pm': 'TiptapPm',
+          // '@tiptap/vue-3': 'TiptapVue3',
         },
       },
     },

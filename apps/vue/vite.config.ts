@@ -28,15 +28,35 @@ export default defineConfig({
     },
   },
   build: {
-    // we don't minify so we can look at the bundle ouput. Change if you wanna deploy the playground
-    minify: false,
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
-      // Comment in to move vue out of the bundle - easier to look at the app's bundle content that way.
-      // external: ['vue'],
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('vue')) {
+              return 'vendor-framework' // Split React/Vue
+            }
+            if (id.includes('@yiitap') || id.includes('@tiptap')) {
+              return 'vendor-core' // Split tiptap
+            }
+            if (id.includes('lodash') || id.includes('moment')) {
+              return 'vendor-utils' // Split utils
+            }
+            return 'vendor' // Others
+          }
+          // if (id.includes("node_modules")) {
+          //   return id
+          //     .toString()
+          //     .split("node_modules/")[1]
+          //     .split("/")[0]
+          //     .toString();
+          // }
+        },
+      },
     },
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
-    exclude: ['@yiitap/vue'],
+    exclude: [],
   },
 })

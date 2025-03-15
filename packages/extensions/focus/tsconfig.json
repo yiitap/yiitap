@@ -9,6 +9,7 @@
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
+    "declarationDir": "dist/types",
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {

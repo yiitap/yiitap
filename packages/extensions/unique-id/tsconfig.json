@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
+    "declarationDir": "dist/types",
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "baseUrl": "src",

@@ -35,8 +35,5 @@
 		"@tiptap/pm": "^2.11.5"
 	},
 	"devDependencies": {
-		"vite": "^6.2.0",
-		"vite-plugin-dts": "^4.5.3",
-		"vitest": "^3.0.8"
 	}
 }
