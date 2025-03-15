@@ -24,7 +24,8 @@
 import { ref } from 'vue'
 import { Editor } from '@tiptap/core'
 import { OCommandBtn, OPopover, OEmojiSelect } from '../index'
-import { emojiGroups } from '../../constants/emoji'
+// import { emojiGroups } from '../../constants/emoji'
+import { emojiGroups } from '@yiitap/util-emoji'
 
 import useI18n from '../../hooks/useI18n'
 import useTiptap from '../../hooks/useTiptap'

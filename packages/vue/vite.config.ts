@@ -53,6 +53,7 @@ export default defineConfig({
         // '@tiptap/core',
         // '@tiptap/pm',
         // '@tiptap/vue-3',
+        '@yiitap/util-emoji',
       ],
       output: {
         banner: `
@@ -67,6 +68,7 @@ export default defineConfig({
           // '@tiptap/core': 'TiptapCore',
           // '@tiptap/pm': 'TiptapPm',
           // '@tiptap/vue-3': 'TiptapVue3',
+          '@yiitap/util-emoji': 'EmojiUtil',
         },
       },
     },

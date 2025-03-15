@@ -103,6 +103,9 @@ importers:
 
   apps/vue:
     dependencies:
+      '@yiitap/util-emoji':
+        specifier: workspace:*
+        version: link:../../packages/utils/emoji
       '@yiitap/vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -313,6 +316,8 @@ importers:
         specifier: ^15.15.0
         version: 15.15.0
 
+  packages/utils/emoji: {}
+
   packages/vue:
     dependencies:
       '@tiptap/core':
@@ -444,6 +449,9 @@ importers:
       '@yiitap/extension-video':
         specifier: workspace:*
         version: link:../extensions/video
+      '@yiitap/util-emoji':
+        specifier: workspace:*
+        version: link:../utils/emoji
       '@yiitap/vue':
         specifier: workspace:*
         version: 'link:'

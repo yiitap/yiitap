@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
-import { filterEmojiGroups, emojiGroupIcons } from '../../constants/emoji'
+import { filterEmojiGroups, emojiGroupIcons } from '@yiitap/util-emoji'
 import { OIcon, OInput, OTooltip } from '../../components'
 
 const props = defineProps({

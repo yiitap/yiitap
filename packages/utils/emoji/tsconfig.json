@@ -1,0 +1,29 @@
+{
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": false,
+    "module": "ESNext",
+    "target": "es2019",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": false,
+    "declarationDir": "dist/types",
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "typeRoots": ["node_modules/@types", "src/types"]
+  }
+}
