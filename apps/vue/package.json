@@ -1,6 +1,6 @@
 {
   "name": "app-vue",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,8 +14,7 @@
     "naive-ui": "^2.35.0",
     "vue": "^3.3.8"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@vue/compiler-sfc": "^3.3.8",
     "autoprefixer": "^10.4.16",

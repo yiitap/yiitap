@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-char-command",
 	"description": "Slash extension",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -14,11 +14,11 @@
 	"module": "dist/index.mjs",
 	"types": "dist/types/index.d.ts",
 	"exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
 	},
 	"files": [
 		"dist",
@@ -39,6 +39,5 @@
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"
 	},
-	"devDependencies": {
-	}
+	"devDependencies": {}
 }

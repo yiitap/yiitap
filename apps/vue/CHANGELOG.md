@@ -1,5 +1,13 @@
 # app-vue
 
+## 1.2.2
+
+### Patch Changes
+
+- Fix: ODocToc scroll, dependencies
+- Updated dependencies
+  - @yiitap/vue@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes

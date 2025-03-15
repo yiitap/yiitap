@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-trailing-node",
 	"description": "Trailing node extension",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -12,14 +12,14 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
+	"types": "dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"files": [
 		"dist",
 		"src"
@@ -37,6 +37,5 @@
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"
 	},
-	"devDependencies": {
-	}
+	"devDependencies": {}
 }

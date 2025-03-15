@@ -1,5 +1,25 @@
 # @yiitap/vue
 
+## 1.2.2
+
+### Patch Changes
+
+- Fix: ODocToc scroll, dependencies
+- Updated dependencies
+  - @yiitap/extension-color-highlighter@1.2.2
+  - @yiitap/extension-table-wrapper@1.2.2
+  - @yiitap/extension-trailing-node@1.2.2
+  - @yiitap/extension-char-command@1.2.2
+  - @yiitap/extension-placeholder@1.2.2
+  - @yiitap/extension-unique-id@1.2.2
+  - @yiitap/extension-callout@1.2.2
+  - @yiitap/extension-focus@1.2.2
+  - @yiitap/extension-image@1.2.2
+  - @yiitap/extension-table@1.2.2
+  - @yiitap/extension-video@1.2.2
+  - @yiitap/core@1.2.2
+  - @yiitap/vue@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes

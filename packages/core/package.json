@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/core",
 	"description": "Yiitap core functions",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -36,6 +36,5 @@
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/pm": "^2.11.5"
 	},
-	"devDependencies": {
-	}
+	"devDependencies": {}
 }

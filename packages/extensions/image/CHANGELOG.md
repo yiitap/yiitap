@@ -1,5 +1,11 @@
 # @yiitap/extension-image
 
+## 1.2.2
+
+### Patch Changes
+
+- Fix: ODocToc scroll, dependencies
+
 ## 1.2.1
 
 ## 1.2.0
