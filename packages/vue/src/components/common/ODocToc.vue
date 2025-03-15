@@ -116,7 +116,7 @@ function onUpdate() {
  *
  * @param event
  */
-function onScroll (event: any) {
+function onScroll(event: any) {
   for (const heading of headings.value) {
     const element = document.querySelector(`[data-id="${heading.id}"]`)
     if (!element) continue
@@ -151,7 +151,7 @@ watch(
 
 defineExpose({
   onScroll,
-  headings
+  headings,
 })
 </script>
 
