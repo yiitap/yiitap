@@ -1,9 +1,20 @@
-import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import Inspect from 'vite-plugin-inspect'
+import { visualizer } from 'rollup-plugin-visualizer'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    Inspect({
+      build: true,
+      outputDir: '.analysis/inspect',
+    }),
+    visualizer({
+      filename: '.analysis/visualizer/stats.html',
+    }),
+  ],
   base: '/yiitap/',
   resolve: {
     alias: {
@@ -54,7 +65,7 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1200,
   },
   optimizeDeps: {
     exclude: [],

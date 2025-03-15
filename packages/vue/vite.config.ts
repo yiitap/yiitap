@@ -48,6 +48,8 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
+        // TODO: Trying to make @tiptap/core external, but encounter:
+        //   RangeError: Adding different instances of a keyed plugin
         // '@tiptap/core',
         // '@tiptap/pm',
         // '@tiptap/vue-3',
