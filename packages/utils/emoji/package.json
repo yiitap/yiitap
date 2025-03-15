@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/util-emoji",
 	"description": "Yiitap emoji functions",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -12,14 +12,14 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
+	"types": "dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"files": [
 		"dist",
 		"src",
@@ -33,7 +33,6 @@
 		"test": "vitest",
 		"test-ci": "vitest --run"
 	},
-	"peerDependencies": {
-	},
+	"peerDependencies": {},
 	"devDependencies": {}
 }

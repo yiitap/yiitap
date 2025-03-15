@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/vue",
 	"description": "A WYSIWYG rich-text block-based editor built on top of tiptap.",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -37,9 +37,9 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-    "@tiptap/core": "^2.11.5",
-    "@tiptap/pm": "^2.11.5",
-    "@tiptap/vue-3": "^2.11.5",
+		"@tiptap/core": "^2.11.5",
+		"@tiptap/pm": "^2.11.5",
+		"@tiptap/vue-3": "^2.11.5",
 		"@tiptap/extension-blockquote": "^2.11.5",
 		"@tiptap/extension-bubble-menu": "^2.11.5",
 		"@tiptap/extension-code-block-lowlight": "^2.11.5",
@@ -86,7 +86,7 @@
 	},
 	"peerDependencies": {
 		"@types/uuid": "^10.0.0",
-    "@yiitap/util-emoji": "workspace:*",
+		"@yiitap/util-emoji": "workspace:*",
 		"vue": "^3.3.8"
 	},
 	"devDependencies": {

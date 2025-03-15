@@ -1,5 +1,28 @@
 # @yiitap/vue
 
+## 1.2.3
+
+### Patch Changes
+
+- emoji util
+- Feature: emoji util
+- Updated dependencies
+- Updated dependencies
+  - @yiitap/util-emoji@1.2.3
+  - @yiitap/vue@1.2.3
+  - @yiitap/core@1.2.3
+  - @yiitap/extension-callout@1.2.3
+  - @yiitap/extension-char-command@1.2.3
+  - @yiitap/extension-color-highlighter@1.2.3
+  - @yiitap/extension-focus@1.2.3
+  - @yiitap/extension-image@1.2.3
+  - @yiitap/extension-placeholder@1.2.3
+  - @yiitap/extension-table@1.2.3
+  - @yiitap/extension-table-wrapper@1.2.3
+  - @yiitap/extension-trailing-node@1.2.3
+  - @yiitap/extension-unique-id@1.2.3
+  - @yiitap/extension-video@1.2.3
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # app-vue
 
+## 1.2.3
+
+### Patch Changes
+
+- emoji util
+- Updated dependencies
+- Updated dependencies
+  - @yiitap/util-emoji@1.2.3
+  - @yiitap/vue@1.2.3
+
 ## 1.2.2
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @yiitap/extension-color-highlighter
 
+## 1.2.3
+
 ## 1.2.2
 
 ### Patch Changes
