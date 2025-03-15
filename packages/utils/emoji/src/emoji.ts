@@ -1,11 +1,13 @@
 /**
- * Emoji
+ * Emoji utility
  */
-import emojiGroups from '../data/emoji/data-by-group.json'
+// @ts-ignore
+import emojiGroups from './data/data-by-group.json'
 
 const emojiList = () => {
   let list = []
   emojiGroups.map((group) => {
+    // @ts-ignore
     list = list.concat(group.emojis)
   })
   return list
@@ -17,6 +19,7 @@ const filterEmojiGroups = (query: string) => {
     const emojis = group.emojis.filter(
       (item) => item.name.indexOf(query.toLowerCase()) >= 0
     )
+    // @ts-ignore
     list.push({
       name: group.name,
       slug: group.slug,
@@ -26,7 +29,7 @@ const filterEmojiGroups = (query: string) => {
   return list
 }
 
-const emojiGroupIcons: Indexable = {
+const emojiGroupIcons = {
   smileys_emotion: 'emotion',
   people_body: 'face',
   animals_nature: 'psychiatry',

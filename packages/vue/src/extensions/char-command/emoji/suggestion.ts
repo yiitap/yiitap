@@ -2,7 +2,7 @@ import tippy, { type Instance, type Props } from 'tippy.js'
 import { VueRenderer } from '@tiptap/vue-3'
 import View from './view.vue'
 import type { Editor } from '@tiptap/core'
-import { filterEmojiGroups } from '../../../constants/emoji'
+import { filterEmojiGroups } from '@yiitap/util-emoji'
 
 export interface SuggestionOptions {
   editor: Editor
