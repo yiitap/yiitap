@@ -26,7 +26,7 @@
         />
       </div>
     </section>
-    <section class="layout-content">
+    <section class="layout-content" @scroll="onScroll">
       <YiiEditor ref="yiiEditor" v-bind="options" @update="onUpdate" />
     </section>
 
@@ -62,12 +62,17 @@
       </n-drawer-content>
     </n-drawer>
 
-    <o-doc-toc :editor="yiiEditor?.editor" :max-level="3" />
+    <o-doc-toc
+      ref="tocRef"
+      :editor="yiiEditor?.editor"
+      :max-level="3"
+      @doc-scroll="onDocScroll"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, provide, watch } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import {
   NButton,
   NDrawer,
@@ -86,13 +91,11 @@ import VersionBadge from './VersionBadge.vue'
 const emit = defineEmits(['mode'])
 
 const yiiEditor = ref<InstanceType<typeof YiiEditor>>()
+const tocRef = ref<InstanceType<typeof ODocToc>>()
 const locale = ref('en')
 const darkMode = ref(false)
 const editable = ref(true)
 const showDrawer = ref(false)
-
-provide('locale', locale)
-provide('darkMode', darkMode)
 
 const options = computed(() => {
   return {
@@ -167,17 +170,29 @@ function onMode() {
 }
 
 function onUpdate({ json, html }: { json: any; html: string }) {
+  // Get content of editor
   // console.log('update', json)
   // console.log('update', html)
 }
 
+function onScroll(event: Event) {
+  // tocRef.value?.onScroll(event)
+}
+
+function onDocScroll(event: Event) {
+  // If docScroll event not emitted, use tocRef.value?.onScroll(event) to update toc progress when scrolling.
+  // console.debug('docScroll', event)
+}
+
 watch(locale, (newValue) => {
-  yiiEditor.value?.editor.commands.setContent(content.value)
+  yiiEditor.value?.editor.commands.setContent(content.value, true)
 })
 
 onMounted(() => {
-  // console.debug('ref', yiiEditor.value)
-  // console.debug('ref', import.meta.env.PROD)
+  // Access properties exposed by YiiEditor
+  // console.debug('editor', yiiEditor.value?.editor)
+  // console.debug('darkMode', yiiEditor.value?.darkMode)
+  // console.debug('local', yiiEditor.value?.local)
 })
 </script>
 

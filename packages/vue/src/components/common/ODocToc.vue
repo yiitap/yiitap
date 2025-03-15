@@ -63,6 +63,7 @@ const props = defineProps({
     default: 3,
   },
 })
+const emit = defineEmits(['docScroll'])
 
 const { tr } = useI18n()
 const headings = ref([])
@@ -80,6 +81,9 @@ function init() {
 
 /**
  * Listen to the scroll event of editor's container
+ *
+ * If scroll on editorContainer doesn't work, use exposed onScroll directly.
+ * e.g: tocRef.value?.onScroll(event)
  */
 function initEditorContainerScroll() {
   const editorElement = document.querySelector('.yiitap')
@@ -109,18 +113,21 @@ function onUpdate() {
 
 /**
  * Find the closest heading when scrolls.
+ *
  * @param event
  */
-function onScroll(event: any) {
+function onScroll (event: any) {
   for (const heading of headings.value) {
     const element = document.querySelector(`[data-id="${heading.id}"]`)
-    const rect = element.getBoundingClientRect()
+    if (!element) continue
 
+    const rect = element.getBoundingClientRect()
     if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
       selectedHeading.value = heading.id
       break
     }
   }
+  emit('docScroll', event)
 }
 
 /**
@@ -141,6 +148,11 @@ watch(
     init()
   }
 )
+
+defineExpose({
+  onScroll,
+  headings
+})
 </script>
 
 <style scoped lang="scss">

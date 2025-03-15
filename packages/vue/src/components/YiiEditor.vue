@@ -253,7 +253,7 @@ function buildExtensions() {
     })
   )
 
-  // user custom extension
+  // User custom extension
   // console.debug('default', DefaultExtensions)
   const list = DefaultExtensions.concat(props.extensions)
   for (const item of list) {
@@ -315,8 +315,8 @@ onBeforeMount(() => {
 
 defineExpose({
   editor,
-  darkModeAlt,
-  localeAlt,
+  darkMode: darkModeAlt,
+  local: localeAlt,
 })
 </script>
 
