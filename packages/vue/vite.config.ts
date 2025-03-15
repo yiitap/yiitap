@@ -46,7 +46,14 @@ export default defineConfig({
     minify: true,
     sourcemap: true,
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'vue',
+        // TODO: Trying to make @tiptap/core external, but encounter:
+        //   RangeError: Adding different instances of a keyed plugin
+        // '@tiptap/core',
+        // '@tiptap/pm',
+        // '@tiptap/vue-3',
+      ],
       output: {
         banner: `
 /**
@@ -57,6 +64,9 @@ export default defineConfig({
         exports: 'named',
         globals: {
           vue: 'Vue',
+          // '@tiptap/core': 'TiptapCore',
+          // '@tiptap/pm': 'TiptapPm',
+          // '@tiptap/vue-3': 'TiptapVue3',
         },
       },
     },

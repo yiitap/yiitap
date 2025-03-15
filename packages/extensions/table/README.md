@@ -6,6 +6,12 @@
 ## Introduction
 Yiitap is a WYSIWYG rich-text block-based editor built on top of [tiptap](https://tiptap.dev).
 
+## Installation
+
+```shell
+yarn add @yiitab/extension-table @tiptap/extension-table
+```
+
 ## Official Documentation
 Documentation can be found on the [Yiitap website](https://yiitap.pileax.ai).
 

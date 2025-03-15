@@ -12,11 +12,14 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
-	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.cjs"
-	},
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
 	"files": [
 		"dist",
 		"src"
@@ -38,8 +41,5 @@
 		"@types/uuid": "^10.0.0"
 	},
 	"devDependencies": {
-		"vite": "^6.2.0",
-		"vite-plugin-dts": "^4.5.3",
-		"vitest": "^3.0.8"
 	}
 }
