@@ -68,7 +68,7 @@ export default defineConfig({
           // '@tiptap/core': 'TiptapCore',
           // '@tiptap/pm': 'TiptapPm',
           // '@tiptap/vue-3': 'TiptapVue3',
-          '@yiitap/util-emoji': 'EmojiUtil'
+          '@yiitap/util-emoji': 'EmojiUtil',
         },
       },
     },

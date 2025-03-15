@@ -11,7 +11,8 @@
 	"workspaces": [
 		"apps/*",
 		"packages/*",
-		"packages/extensions/*"
+		"packages/extensions/*",
+		"packages/utils/*"
 	],
 	"scripts": {
 		"dev": "pnpm -F 'app-vue' dev",

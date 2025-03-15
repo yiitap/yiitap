@@ -103,6 +103,9 @@ importers:
 
   apps/vue:
     dependencies:
+      '@yiitap/util-emoji':
+        specifier: workspace:*
+        version: link:../../packages/utils/emoji
       '@yiitap/vue':
         specifier: workspace:*
         version: link:../../packages/vue

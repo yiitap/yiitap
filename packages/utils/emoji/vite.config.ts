@@ -3,8 +3,7 @@ import { defineConfig as defineVitestConfig } from 'vitest/config'
 
 export default mergeConfig(
   defineConfig({
-    resolve: {
-    },
+    resolve: {},
     build: {
       target: 'esnext',
       lib: {
@@ -35,8 +34,7 @@ export default mergeConfig(
 **/
 `,
           exports: 'named',
-          globals: {
-          },
+          globals: {},
         },
       },
     },
