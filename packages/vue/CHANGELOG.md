@@ -1,5 +1,26 @@
 # @yiitap/vue
 
+## 1.2.4
+
+### Patch Changes
+
+- api docs, styles, fix bugs
+- Updated dependencies
+  - @yiitap/vue@1.2.4
+  - @yiitap/core@1.2.4
+  - @yiitap/extension-callout@1.2.4
+  - @yiitap/extension-char-command@1.2.4
+  - @yiitap/extension-color-highlighter@1.2.4
+  - @yiitap/extension-focus@1.2.4
+  - @yiitap/extension-image@1.2.4
+  - @yiitap/extension-placeholder@1.2.4
+  - @yiitap/extension-table@1.2.4
+  - @yiitap/extension-table-wrapper@1.2.4
+  - @yiitap/extension-trailing-node@1.2.4
+  - @yiitap/extension-unique-id@1.2.4
+  - @yiitap/extension-video@1.2.4
+  - @yiitap/util-emoji@1.2.4
+
 ## 1.2.3
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # app-vue
 
+## 1.2.4
+
+### Patch Changes
+
+- api docs, styles, fix bugs
+- Updated dependencies
+  - @yiitap/vue@1.2.4
+  - @yiitap/util-emoji@1.2.4
+
 ## 1.2.3
 
 ### Patch Changes
