@@ -3,7 +3,11 @@
     <section class="layout-toolbar">
       <header>
         <section class="info">
-          <img src="/logo.png" alt="Logo" />
+          <div class="logo">
+            <a href="https://yiitap.pileax.ai" target="_blank">
+              <img src="/logo.png" alt="Logo" />
+            </a>
+          </div>
           <div class="title">Yiitap</div>
           <div class="version">
             <version-badge package="@yiitap/vue" />
@@ -72,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, watch } from 'vue'
+import { computed, provide, ref, onMounted, watch } from 'vue'
 import {
   NButton,
   NDrawer,
@@ -96,6 +100,7 @@ const locale = ref('en')
 const darkMode = ref(false)
 const editable = ref(true)
 const showDrawer = ref(false)
+provide('locale', locale)
 
 const options = computed(() => {
   return {
@@ -219,9 +224,13 @@ onMounted(() => {
       .info {
         display: flex;
         align-items: center;
-        img {
+        .logo {
           width: 32px;
           height: 32px;
+        }
+        img {
+          width: 100%;
+          height: 100%;
         }
 
         .title {
@@ -285,5 +294,16 @@ onMounted(() => {
 
 *:has(.is-dragging) {
   background: transparent !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: var(--yii-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--yii-caption-color);
+  width: 4px;
+  border-radius: 3px;
 }
 </style>

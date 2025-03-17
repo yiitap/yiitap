@@ -2,7 +2,7 @@
   <o-popover
     ref="popover"
     placement="left"
-    tippy-class="dropdown"
+    content-class="dropdown"
     trigger="click"
     :offset="[0, 2]"
     @update:show="onShow"

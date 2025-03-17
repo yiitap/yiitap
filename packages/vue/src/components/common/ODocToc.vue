@@ -2,7 +2,7 @@
   <section class="o-doc-toc toc" v-if="headings.length">
     <o-popover
       ref="popover"
-      tippy-class="o-toc-popover"
+      content-class="o-toc-popover"
       placement="left-start"
       :offset="[0, -50]"
       :delay="0"
@@ -49,24 +49,47 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * TOC of Yiitap document
+ */
+defineOptions({ name: 'ODocToc' })
+
 import { ref, watch, type PropType } from 'vue'
 import { Editor } from '@tiptap/core'
 import { OPopover } from '../../components'
 import useI18n from '../../hooks/useI18n'
 
+interface Heading {
+  id: string
+  text: string
+  level: number
+}
+
 const props = defineProps({
+  /**
+   * Editor instance
+   */
   editor: {
     type: Editor,
   },
+  /**
+   * The max level of heading should be shown
+   */
   maxLevel: {
     type: Number as PropType<2 | 3>,
     default: 3,
   },
 })
-const emit = defineEmits(['docScroll'])
+
+const emit = defineEmits<{
+  /**
+   * Emit when content scrolling
+   */
+  (e: 'docScroll', event: Event): void
+}>()
 
 const { tr } = useI18n()
-const headings = ref([])
+const headings = ref<Heading[]>([])
 const selectedHeading = ref('')
 
 function init() {
@@ -116,7 +139,7 @@ function onUpdate() {
  *
  * @param event
  */
-function onScroll(event: any) {
+function onScroll(event: Event) {
   for (const heading of headings.value) {
     const element = document.querySelector(`[data-id="${heading.id}"]`)
     if (!element) continue
@@ -150,7 +173,15 @@ watch(
 )
 
 defineExpose({
+  /**
+   * Find the closest heading when scrolls.
+   *
+   * @param event
+   */
   onScroll,
+  /**
+   * Heading list
+   */
   headings,
 })
 </script>
@@ -199,17 +230,20 @@ defineExpose({
         color: #1976d2 !important;
       }
     }
-    &--3 {
+    &--2 {
       padding-left: 1rem;
     }
-    &--4 {
+    &--3 {
       padding-left: 2rem;
     }
-    &--5 {
+    &--4 {
       padding-left: 3rem;
     }
-    &--6 {
+    &--5 {
       padding-left: 4rem;
+    }
+    &--6 {
+      padding-left: 5rem;
     }
   }
 
@@ -237,5 +271,10 @@ defineExpose({
       }
     }
   }
+}
+
+.o-toc-popover .main-view {
+  min-width: 180px;
+  padding: 6px;
 }
 </style>

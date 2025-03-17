@@ -3,7 +3,8 @@
     ref="popover"
     placement="bottom-start"
     trigger="click"
-    tippy-class="o-language-popover dropdown"
+    tippy-class="o-language-popover"
+    conten-class="dropdown"
     @update:show="onShow"
   >
     <template #trigger>

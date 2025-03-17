@@ -5,15 +5,29 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Use yiitap-icon iconfont.
+ */
+defineOptions({ name: 'ICon' })
+
 const props = defineProps({
+  /**
+   * Icon name
+   */
   name: {
     type: String,
     default: '',
   },
+  /**
+   * Icon color,  color name, or hex value
+   */
   color: {
     type: String,
     default: '',
   },
+  /**
+   * Small
+   */
   small: {
     type: Boolean,
     default: false,

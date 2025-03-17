@@ -2,10 +2,18 @@
 
 Yiitap Editor is a WYSIWYG rich-text block-based editor built on top of [tiptap](https://tiptap.dev).🔥
 
-[![Build Status](https://github.com/yiitap/yiitap/actions/workflows/build.yml/badge.svg)](https://github.com/yiitap/yiitap/actions/workflows/build.yml)
-[![Version](https://img.shields.io/npm/v/@yiitap/vue.svg?label=version)](https://www.npmjs.com/package/@yiitap/vue)
-[![Downloads](https://img.shields.io/npm/dm/@yiitap/vue.svg)](https://npmcharts.com/compare/@yiitap/vue?minimal=true)
-[![License](https://img.shields.io/npm/l/@yiitap/vue.svg)](https://github.com/yiitap/yiitap/blob/main/LICENSE)
+<p align="center">
+    <a href="https://github.com/yiitap/yiitap/actions/workflows/build.yml" alt="Build Status">
+        <img src="https://github.com/yiitap/yiitap/actions/workflows/build.yml/badge.svg" /></a>
+    <a href="https://www.npmjs.com/package/@yiitap/vue" alt="Version">
+        <img src="https://img.shields.io/npm/v/@yiitap/vue.svg?label=version" /></a>
+    <a href="https://npmcharts.com/compare/@yiitap/vue?minimal=true" alt="Downloads">
+        <img src="https://img.shields.io/npm/dm/@yiitap/vue.svg" /></a>
+    <a href="https://github.com/badges/shields/pulse" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/m/yiitap/yiitap" /></a>
+    <a href="https://github.com/yiitap/yiitap/blob/main/LICENSE" alt="License">
+        <img src="https://img.shields.io/npm/l/@yiitap/vue.svg" /></a>
+</p>
 
 ## Development
 ### Install dependencies

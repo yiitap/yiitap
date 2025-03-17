@@ -172,7 +172,7 @@ const colorSet = computed(() => {
 
     &:hover {
       border-radius: 3px;
-      background: #f5f5f5;
+      background: var(--yii-hover-bg-color);
     }
 
     .label {
@@ -220,7 +220,7 @@ const colorSet = computed(() => {
 
     &:hover {
       box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
-      border: solid 1px rgba(0, 0, 0, 0.2);
+      border: solid 1px var(--yii-border-color);
     }
   }
 }

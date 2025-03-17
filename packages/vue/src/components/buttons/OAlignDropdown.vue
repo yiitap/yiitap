@@ -2,7 +2,7 @@
   <o-popover
     ref="popover"
     class="o-simple-command-btn"
-    tippy-class="dropdown"
+    content-class="dropdown"
     size="medium"
     trigger="click"
     :show-arrow="false"

@@ -1,4 +1,3 @@
-
 // Global Styles
 // ====================================================
 .o-menu, .o-dropdown-popover {
@@ -7,8 +6,8 @@
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
 	0 2px 2px rgba(0, 0, 0, 0.14),
 	0 3px 1px -2px rgba(0, 0, 0, 0.12);
-	border-radius: 4px;
-	background: #ffffff;
+	border-radius: 6px;
+	background: var(--yii-tippy-popover-bg-color);
 
 	.group, .panel {
 		padding: 0 8px;
@@ -130,69 +129,21 @@
 	max-height: 480px;
 	overflow: auto;
   box-sizing: border-box;
+
 	&::-webkit-scrollbar {
-		width: 4px;
+		width: 6px;
+    border-radius: 0 6px 6px 0;
+    background: var(--yii-tippy-popover-bg-color);
 	}
 
 	&::-webkit-scrollbar-track {
-		border-radius: 0 4px 4px 0;
-		background: transparent;
+		border-radius: 0 6px 6px 0;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		border-radius: 0;
-		background: rgba(0, 0, 0, 0.08);
+		border-radius: 8px;
+    width: 2px;
+		background: var(--yii-divider-bg-color);
 	}
 }
 
-// YiiTap
-// ====================================================
-.yiitap {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	font-family: Helvetica, Arial, sans-serif;
-	color: var(--yii-color);
-
-	.tippy-box {
-		max-width: 480px!important;
-	}
-
-	.bubble-menu, .floating-menu {
-		background: var(--yii-tippy-popover-bg-color);
-		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
-		0 2px 2px rgba(0, 0, 0, 0.14),
-		0 3px 1px -2px rgba(0, 0, 0, 0.12);
-		border-radius: 4px;
-
-		.container {
-			display: flex;
-			align-items: center;
-			padding: 4px;
-		}
-	}
-
-	.editor-content {
-		overflow-wrap: break-word;
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		word-break: break-word;
-		font-size: 16px;
-		padding: 16px 100px;
-
-		&.page {
-			width: 1000px;
-		}
-
-		:focus {
-			outline: none;
-		}
-	}
-
-	button {
-		color: var(--yii-color);
-	}
-
-	&[data-theme="dark"] {
-	}
-}
