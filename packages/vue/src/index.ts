@@ -12,5 +12,7 @@ const YiiEditorPlugin = {
 
 export { YiiEditor, YiiEditorPlugin }
 
-export * from './components/index'
-export * from './hooks/index'
+export * from './components'
+export * from './constants'
+export * from './extensions'
+export * from './hooks'

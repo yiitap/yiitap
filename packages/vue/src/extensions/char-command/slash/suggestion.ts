@@ -36,6 +36,9 @@ export default {
           trigger: 'manual',
           placement: 'bottom-start',
           arrow: false,
+          onShow: (instance) => {
+            instance.popper.classList.add('slash-tippy')
+          },
         })
       },
 

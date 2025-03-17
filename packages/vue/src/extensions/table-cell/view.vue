@@ -8,9 +8,9 @@
     <template v-if="isEditable">
       <o-block-popover
         v-model="showRowPopover"
-        placement="left"
+        placement="left-start"
         tippy-class="o-row-popover"
-        :offset="[16, 40]"
+        :offset="[-6, 26]"
         hide-click-outside
       >
         <section
@@ -36,11 +36,13 @@
         <template #popover-content>
           <o-command-btn
             icon="select_all"
-            :tooltip="tr('table.removeColumn')"
+            placement="left"
+            :tooltip="tr('table.selectRow')"
             @click="selectRow"
           />
           <o-command-btn
             icon="delete"
+            placement="left"
             :tooltip="tr('table.removeRow')"
             @click="runCommand('tableDeleteRow')"
           />
@@ -95,9 +97,8 @@ function runCommand(command: string, options: Indexable = {}) {
 }
 
 .o-row-popover {
-  min-width: unset !important;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  .popover-content {
+    min-width: unset !important;
+  }
 }
 </style>

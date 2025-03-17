@@ -312,29 +312,13 @@
 			font-family: inherit;
 			color: #000;
 			margin: 0.1rem;
-			border: 1px solid black;
+			border: 1px solid var(--yii-border-color);
 			border-radius: 1px;
 			padding: 0.1rem 0.3rem;
-			background: white;
+			background: var(--yii-bg-color);
 			accent-color: #1976d2;
 			cursor: pointer;
 		}
-	}
-
-	//  selected
-	// --------------------------------------------------
-	.draggable {
-		//padding: 0!important;
-
-		&:has(.o-drag-node.is-selected, .ProseMirror-selectednode) {
-			//background: #ACCEF7;
-			//border-radius: 4px;
-		}
-	}
-
-	.ProseMirror-selectednode {
-		//background: #ACCEF7;
-		//border-radius: 4px;
 	}
 
 	//  table
@@ -666,3 +650,7 @@
     //display: none;
   }
 }
+
+// ----------------------------------------------------
+//  Page view
+// ----------------------------------------------------

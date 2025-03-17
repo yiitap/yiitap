@@ -1,7 +1,12 @@
 <template>
   <div ref="triggerRef" data-tippy-role="popover" class="o-popover">
     <slot name="trigger"></slot>
-    <div ref="contentRef" class="popover-content" v-if="!disable">
+    <div
+      ref="contentRef"
+      class="popover-content"
+      :class="contentClass"
+      v-if="!disable"
+    >
       <slot></slot>
     </div>
   </div>
@@ -32,6 +37,11 @@ const props = defineProps({
       return [0, 10] as [number, number]
     },
   },
+  /**
+   * Placement
+   *
+   * @see https://atomiks.github.io/tippyjs/#placements
+   */
   placement: {
     type: String,
     default: 'bottom-start',
@@ -43,6 +53,10 @@ const props = defineProps({
   tippyClass: {
     type: String,
     default: 'tippy',
+  },
+  contentClass: {
+    type: String,
+    default: '',
   },
   event: {
     type: Object,

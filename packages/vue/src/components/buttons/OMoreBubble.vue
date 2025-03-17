@@ -3,7 +3,7 @@
     ref="popover"
     :offset="[4, 10]"
     class="o-simple-command-btn"
-    tippy-class="o-more-bubble-popover"
+    content-class="o-more-bubble-popover"
     placement="top-end"
     size="medium"
     trigger="mouseenter"

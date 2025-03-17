@@ -174,10 +174,10 @@ export default {
 
 <style lang="scss">
 .o-slash-view {
-  border-radius: 4px;
+  border-radius: 8px;
   width: 256px;
-  background: #fff;
-  color: rgba(0, 0, 0, 0.8);
+  background: var(--yii-bg-color);
+  color: var(--yii-color);
   font-size: 0.9rem;
 
   .panel {
@@ -217,6 +217,13 @@ export default {
       padding: 4px 12px;
       height: unset;
     }
+  }
+}
+
+.slash-tippy {
+  .tippy-content {
+    border-radius: 8px;
+    background: red;
   }
 }
 </style>

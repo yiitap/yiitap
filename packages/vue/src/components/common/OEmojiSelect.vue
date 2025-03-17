@@ -144,13 +144,13 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     font-size: 26px;
     line-height: 1;
-    padding: 2px;
     border-radius: 4px;
     cursor: pointer;
+    box-sizing: border-box;
 
     &:hover,
     &.active {

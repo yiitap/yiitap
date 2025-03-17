@@ -7,9 +7,11 @@
       v-if="showMainMenu"
     >
       <template #left>
+        <!-- @slot Main toolbar left area -->
         <slot name="toolbar-left" />
       </template>
       <template #right>
+        <!-- @slot Main toolbar right area -->
         <slot name="toolbar-right" />
       </template>
     </o-main-menu>
@@ -29,11 +31,20 @@
     />
 
     <!-- Editor Content -->
-    <editor-content class="editor-content" :class="pageView" :editor="editor" />
+    <editor-content
+      class="editor-content"
+      :class="`${pageView}-view`"
+      :editor="editor"
+    />
   </main>
 </template>
 
 <script setup lang="ts">
+/**
+ * YiiEditor is a full-featured block-based editor for Vue.
+ */
+defineOptions({ name: 'YiiEditor' })
+
 import { ref, computed, onBeforeMount, provide, watch } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
@@ -52,104 +63,144 @@ import {
   BuiltinExtensions,
 } from '../extensions'
 import DynamicClass, { TableExtensions } from '../extensions/dynamic'
+import type { Editor } from '@tiptap/core'
 
 const props = defineProps({
+  /**
+   * Initial content. This can be HTML or JSON.
+   */
   content: {
     type: [String, Object],
     default: '',
   },
+  /**
+   * Determines if users can write into the editor.
+   */
   editable: {
     type: Boolean,
     default: true,
   },
+  /**
+   * Set the locale of the editor
+   */
   locale: {
     type: String,
     default: 'en',
   },
+  /**
+   * By default, Yiitap is in light mode, you can set it to dark mode.
+   */
   darkMode: {
     type: Boolean,
     default: false,
   },
+  /**
+   * Show main menu or not.
+   */
   showMainMenu: {
     type: Boolean,
     default: false,
   },
+  /**
+   * Show bubble menu or not.
+   */
   showBubbleMenu: {
     type: Boolean,
     default: false,
   },
+  /**
+   * Show floating menu or not.
+   */
   showFloatingMenu: {
     type: Boolean,
     default: false,
   },
+  /**
+   * Show side menu or not.
+   */
   showSideMenu: {
     type: Boolean,
     default: false,
   },
+  /**
+   * Show side node or not.
+   */
   showSideNode: {
     type: Boolean,
     default: false,
   },
-  showContent: {
-    type: Boolean,
-    default: true,
-  },
-  showGuide: {
-    type: Boolean,
-    default: false,
-  },
-  scrollable: {
-    type: Boolean,
-    default: false,
-  },
-  editorProps: {
-    type: Object,
-    default: function () {
-      return {}
-    },
-  },
+  /**
+   * Configure the list of extensions you want to enable.
+   *
+   * By default, Yiitap enables
+   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/extensions/index.ts" target="_blank">BuiltinExtensions</a>.
+   */
   extensions: {
     type: Array as () => string[],
-    default: function () {
-      return []
-    },
+    default: () => [],
   },
+  /**
+   * Configure the list of menu items you want to enable in main menu.
+   *
+   * By default, Yiitap uses
+   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultMenu</a>.
+   */
   mainMenu: {
-    type: Array,
-    default: function () {
-      return []
-    },
+    type: Array as () => string[],
+    default: () => [],
   },
+  /**
+   * Configure the list of menu items you want to enable in table menu.
+   *
+   * By default, Yiitap uses
+   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">TableMenu</a>.
+   */
   tableMenu: {
-    type: Array,
-    default: function () {
-      return []
-    },
+    type: Array as () => string[],
+    default: () => [],
   },
+  /**
+   * Configure the list of menu items you want to enable in bubble menu.
+   *
+   * By default, Yiitap uses
+   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultBubble</a>.
+   */
   bubbleMenu: {
-    type: Array,
-    default: function () {
-      return []
-    },
+    type: Array as () => string[],
+    default: () => [],
   },
+  /**
+   * Configure the list of menu items you want to enable in floating menu.
+   *
+   * By default, Yiitap uses
+   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultFloating</a>.
+   */
   floatingMenu: {
-    type: Array,
-    default: function () {
-      return []
-    },
+    type: Array as () => string[],
+    default: () => [],
   },
+  /**
+   * Set the page view of the editor.
+   */
   pageView: {
     type: String,
     default: 'page',
-  },
-  options: {
-    type: Object,
-    default: function () {
-      return {}
-    },
+    validator: (value: string) => ['page', 'full'].includes(value),
   },
 })
-const emit = defineEmits(['transaction', 'update'])
+
+// const emit = defineEmits(['transaction', 'update'])
+const emit = defineEmits<{
+  /**
+   * Emit when content transaction
+   */
+  (e: 'transaction', payload: { editor: Editor; transaction: Object }): void
+
+  /**
+   * Emit when content updates
+   */
+  (e: 'update', payload: { json: Object; html: string }): void
+}>()
 
 const { tr } = useI18n()
 const darkModeAlt = ref(false)
@@ -314,16 +365,26 @@ onBeforeMount(() => {
 })
 
 defineExpose({
+  /**
+   * Editor instance. More about <a href="https://tiptap.dev/docs/editor/api/editor" target="_blank">editor api</a>.
+   */
   editor,
+  /**
+   * Whether in dark mode
+   */
   darkMode: darkModeAlt,
-  local: localeAlt,
+  /**
+   * Current locale
+   */
+  locale: localeAlt,
 })
 </script>
 
 <style lang="scss">
-@use '../style/app.scss';
-@use '../style/tippy.scss';
-@use '../style/tiptap.scss';
 @use '../style/variables';
+@use '../style/app';
+@use '../style/tippy';
+@use '../style/tiptap';
+@use '../style/yiitap';
 @import '../../../icon/dist/yiitap-icon.css';
 </style>

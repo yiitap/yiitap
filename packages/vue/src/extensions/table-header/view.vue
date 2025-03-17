@@ -35,7 +35,7 @@
         <template #popover-content>
           <o-command-btn
             icon="select_all"
-            :tooltip="tr('table.removeColumn')"
+            :tooltip="tr('table.selectColumn')"
             @click="selectColumn"
           />
           <o-command-btn
@@ -48,9 +48,9 @@
 
       <o-block-popover
         v-model="showRowPopover"
-        placement="left"
+        placement="left-start"
         tippy-class="o-row-popover"
-        :offset="[15, 40]"
+        :offset="[-6, 26]"
         hide-click-outside
       >
         <section
@@ -76,11 +76,13 @@
         <template #popover-content>
           <o-command-btn
             icon="select_all"
-            :tooltip="tr('table.removeColumn')"
+            placement="left"
+            :tooltip="tr('table.selectRow')"
             @click="selectRow"
           />
           <o-command-btn
             icon="delete"
+            placement="left"
             :tooltip="tr('table.removeRow')"
             @click="runCommand('tableDeleteRow')"
           />
@@ -153,9 +155,11 @@ function runCommand(command: string, options: Indexable = {}) {
 }
 
 .o-column-popover {
-  min-width: unset !important;
-  display: flex;
-  justify-content: center;
+  .popover-content {
+    min-width: unset !important;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .o-row-popover {

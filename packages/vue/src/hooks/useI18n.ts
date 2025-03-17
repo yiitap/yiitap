@@ -5,7 +5,6 @@ export default function () {
   const locale = inject('locale', { value: 'en' })
 
   const message = computed(() => {
-    // console.log('locale', locale.value)
     return getMessage(locale.value)
   })
 
