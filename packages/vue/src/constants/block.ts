@@ -91,6 +91,7 @@ export const BasicBlocks: BlockOption[] = [
     color: Color.blue,
   },
 ]
+
 export const StyleBlocks: BlockOption[] = BasicBlocks.filter((e) => e.style)
 
 export const CommonBlocks: BlockOption[] = [
@@ -190,5 +191,102 @@ export const BlockMenus: BlockOption[] = [
     color: Color.purple,
     filter: 'callout',
     component: 'OCalloutColorBoard',
+  },
+]
+
+export const AiBlocks: BlockOption[] = [
+  {
+    label: 'ai.improve_writing',
+    value: 'improve_writing',
+    icon: 'title', // title, format_paragraph, local_parking
+    color: Color.purple,
+    style: true,
+    group: 'label.suggested',
+  },
+  {
+    label: 'ai.fix_spelling_grammar',
+    value: 'fix_spelling_grammar',
+    icon: 'format_h1',
+    color: Color.purple,
+    style: true,
+    options: { level: 1 },
+  },
+  {
+    label: 'ai.translate',
+    value: 'translate',
+    icon: 'format_h2',
+    color: Color.purple,
+    style: true,
+    children: [
+      {
+        label: 'language.chinese_simplified',
+        value: 'chinese_simplified',
+        icon: 'language',
+      },
+      {
+        label: 'language.chinese_traditional',
+        value: 'chinese_traditional',
+        icon: 'language',
+      },
+      {
+        label: 'language.german',
+        value: 'german',
+        icon: 'language',
+      },
+      {
+        label: 'language.french',
+        value: 'french',
+        icon: 'language',
+      },
+      {
+        label: 'language.japanese',
+        value: 'japanese',
+        icon: 'language',
+      },
+      {
+        label: 'language.korean',
+        value: 'korean',
+        icon: 'language',
+      },
+    ] as BlockOption[],
+  },
+  {
+    label: 'ai.make_longer',
+    value: 'make_longer',
+    icon: 'format_h3',
+    color: Color.purple,
+    style: true,
+    options: { level: 3 },
+    group: 'label.edit',
+  },
+  {
+    label: 'ai.make_shorter',
+    value: 'make_shorter',
+    icon: 'check_box',
+    color: Color.purple,
+    style: true,
+  },
+  {
+    label: 'ai.change_tone',
+    value: 'change_tone',
+    icon: 'format_list_bulleted',
+    color: Color.purple,
+    style: true,
+  },
+  {
+    label: 'ai.write',
+    value: 'write',
+    icon: 'format_list_numbered',
+    color: Color.purple,
+    style: true,
+    group: 'label.write',
+  },
+  {
+    label: 'ai.explain',
+    value: 'explain',
+    icon: 'format_quote_open',
+    color: Color.purple,
+    style: true,
+    group: 'label.think',
   },
 ]

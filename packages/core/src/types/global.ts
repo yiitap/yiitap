@@ -26,6 +26,7 @@ declare global {
     style?: boolean
     options?: Indexable
     component?: string
+    children?: BlockOption[]
   }
 }
 export {}

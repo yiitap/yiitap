@@ -61,7 +61,7 @@ const emit = defineEmits(['click'])
 
 <style lang="scss">
 .o-common-btn {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 30px;

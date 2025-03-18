@@ -1,4 +1,6 @@
 export { default as OBlockPlaceholder } from './common/OBlockPlaceholder.vue'
+export { default as OBlockList } from './common/OBlockList.vue'
+export { default as OBlockListItem } from './common/OBlockListItem.vue'
 export { default as OBlockMenu } from './common/OBlockMenu.vue'
 export { default as OBlockPopover } from './common/OBlockPopover.vue'
 export { default as OBlockToolbar } from './common/OBlockToolbar.vue'
@@ -36,3 +38,4 @@ export { default as OTooltip } from './ui/OTooltip.vue'
 
 // Menu
 export { default as OMainMenu } from './menus/OMainMenu.vue'
+export { default as OAiMenu } from './menus/OAiMenu.vue'

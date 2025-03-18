@@ -184,4 +184,7 @@ export default {
     open: '打开链接',
     open_in_new_tab: '在新标签页打开',
   },
+  ai: {
+    askAi: '探索AI',
+  },
 }

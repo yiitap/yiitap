@@ -4,7 +4,12 @@
       <slot name="prefix"></slot>
     </div>
     <div class="o-input__main">
-      <input ref="input" v-model="value" @blur="emit('blur')" />
+      <input
+        ref="input"
+        v-model="value"
+        @focus="emit('focus')"
+        @blur="emit('blur')"
+      />
     </div>
     <div class="o-input__suffix">
       <slot name="suffix"></slot>
@@ -36,7 +41,7 @@ const props = defineProps({
     default: '',
   },
 })
-const emit = defineEmits(['blur', 'update:modelValue'])
+const emit = defineEmits(['blur', 'focus', 'update:modelValue'])
 const input = ref<HTMLInputElement | null>(null)
 
 const value = computed({

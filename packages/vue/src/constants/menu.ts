@@ -64,6 +64,8 @@ export const DefaultBubble = [
   'text-color-dropdown',
   'clearFormat',
   'separator',
+  'ai',
+  'separator',
   'list-group',
   'link',
   'callout',

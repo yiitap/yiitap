@@ -3,6 +3,7 @@
     ref="popover"
     :placement="placement"
     :tippy-class="tippyClass"
+    :content-class="contentClass"
     trigger="manual"
     :arrow="showArrow"
     :offset="offset"
@@ -43,6 +44,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  contentClass: {
+    type: String,
+    default: '',
+  },
   offset: {
     type: Object as PropType<[number, number]>,
     default: function () {
@@ -59,6 +64,7 @@ function onShow(value: boolean) {
 }
 
 function onClickOutside() {
+  console.log('click outside')
   if (props.hideClickOutside) {
     emit('update:modelValue', false)
   }
@@ -67,7 +73,6 @@ function onClickOutside() {
 watch(
   () => props.modelValue,
   (newValue) => {
-    console.log('modelValue', newValue)
     if (newValue) {
       popover.value?.setShow(true)
     } else {

@@ -13,7 +13,7 @@ const props = defineProps({
 
 <style lang="scss">
 .o-divider {
-  display: flex;
+  //display: flex;
   height: 1px;
   width: 100%;
   margin: 8px 0;
