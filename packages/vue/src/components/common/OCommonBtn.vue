@@ -75,7 +75,6 @@ const emit = defineEmits(['click'])
   align-items: center;
   width: 30px;
   height: 30px;
-
 }
 
 .spinner {
@@ -88,7 +87,11 @@ const emit = defineEmits(['click'])
   box-sizing: border-box;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

@@ -20,21 +20,30 @@ export default function () {
 
   const nodeRange = computed(() => {
     const pos = nodeViewProps.value?.getPos()
+    if (typeof pos !== 'number') return null
+    const node = nodeViewProps.value.editor.state.doc.nodeAt(pos)
+    if (!node) return null
+
     return {
-      start: pos,
-      end: pos + nodeViewProps.value?.node.nodeSize,
+      start: pos + 1,
+      end: pos + node.nodeSize - 1,
     }
   })
 
   const checkFocus = () => {
-    const selection = nodeViewProps.value?.editor.state.selection
+    if (!nodeViewProps.value) return;
+
+    const { editor } = nodeViewProps.value
+    if (!editor.isFocused) {
+      isFocused.value = false
+      return
+    }
+
+    const { selection } = editor.state
     if (!selection) return
 
-    const inNode =
-      selection?.$from.pos >= nodeRange.value.start &&
+    isFocused.value = selection?.$from.pos >= nodeRange.value.start &&
       selection?.$to.pos <= nodeRange.value.end
-
-    isFocused.value = inNode && nodeViewProps.value?.editor.isFocused
   }
 
   return {

@@ -24,6 +24,7 @@
         </section>
       </template>
 
+      <!-- Visible Content -->
       <div class="block-container">
         <div class="block-content">
           <o-input
@@ -43,6 +44,7 @@
                 icon="arrow_back"
                 icon-class="rotate-90"
                 tooltip="Generate"
+                :loading="generating"
                 @click="onGenerate"
               />
             </template>
@@ -57,7 +59,7 @@
       placement="top-end"
       tippy-class="ai-block-update-popover"
       content-class=""
-      v-else
+      v-show="!isEmpty"
     >
       <template #popover-content>
         <section class="edit-prompt" v-if="updateView === 'edit'">
@@ -101,6 +103,7 @@
         </section>
       </template>
 
+      <!-- Visible Content -->
       <div class="block-container">
         <div class="block-content">
           <node-view-content />
@@ -121,13 +124,10 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { NodeViewContent, nodeViewProps } from '@tiptap/vue-3'
-import { Node as ProseMirrorNode } from '@tiptap/pm/model'
-import { toJSON } from '../../utils/convert'
 import {
   OBlockList,
   OBlockMenu,
   OBlockPopover,
-  OCommandBtn,
   OCommonBtn,
   OContextMenu,
   OIcon,
@@ -138,6 +138,7 @@ import {
 } from '../../components'
 import { useI18n, useNodeView, useTheme, useTiptap } from '../../hooks'
 import { AiBlocks } from '../../constants'
+import { toJSON } from '../../utils/convert'
 
 const props = defineProps(nodeViewProps)
 const { tr } = useI18n()
@@ -221,9 +222,9 @@ function onGenerate() {
 
   generating.value = true
   const json = toJSON(aiGeneratedHtml)
-  setContentLocal(pos, json)
+  setContent(pos, json)
   setTimeout(() => {
-    setContentLocal(pos, toJSON(aiGeneratedAppendHtml))
+    setContent(pos, toJSON(aiGeneratedAppendHtml))
     generating.value = false
   }, 1000)
   if (updateView.value) {
@@ -231,66 +232,31 @@ function onGenerate() {
   }
 }
 
-function setContentLocal(pos: number, json: Record<string, any>) {
-  const nodeJson = JSON.parse(JSON.stringify(props.node))
-  nodeJson.content = json.content
-
-  if (isEmpty.value) {
-    // Todo: I don't know why rigth now
-    props.deleteNode()
-  }
-
-  // Replace with new content
-  props.editor
-    .chain()
-    .setNodeSelection(pos)
-    .command(({ tr }) => {
-      const newNode = ProseMirrorNode.fromJSON(props.editor.schema, nodeJson)
-      tr.replaceSelectionWith(newNode)
-      return true
-    })
-    .run()
-  props.editor.commands.setNodeSelection(pos)
-  props.editor.view.focus()
-  console.log('node', JSON.parse(JSON.stringify(props.node)))
-}
-
 /**
  * Update the content of current node
  *
- * Todo: Not work currently, use setAiBlockContent in the future
- * @param pos
- * @param json
+ * Fixed: Not work currently, use setAiBlockContent in the future
+ * Tips: <node-view-content /> requires always visible, use v-show instead of v-if.
  */
 function setContent(pos: number, json: Record<string, any>) {
-  const nodeJson = JSON.parse(JSON.stringify(props.node))
+  const nodeJson = props.node.toJSON()
   nodeJson.content = json.content
 
-  if (isEmpty.value) {
-    // Todo: I don't know why
-    props.deleteNode()
-  }
-  props.editor?.commands.setAiBlockContent(pos, nodeJson)
-}
-
-function onReplace() {
-  const pos = getPos()
-  const nodeJson = JSON.parse(JSON.stringify(props.node))
-  nodeJson.content[0].content[0].text = 'Test'
-  setContent(pos, nodeJson)
+  props.editor?.commands.updateAiBlock(pos, nodeJson)
+  props.editor.commands.setNodeSelection(pos)
+  props.editor.view.focus()
+  // console.log('node', props.node.toJSON())
 }
 
 function onAction(action: BlockOption) {
   showContextMenu.value = false
   switch (action.value) {
     case 'replace':
-      onReplace()
       break
   }
 }
 
 function onSelect(item: Indexable, child?: Indexable) {
-  console.log('select', item, child)
   if (child) {
     promptInput.value = tr(child.label)
   } else {
@@ -312,9 +278,11 @@ watch(
 )
 
 watch(isFocused, (newValue) => {
-  if (newValue) {
-    updateView.value = ''
-    updatePopover.value = newValue
+  if (newValue && !isEmpty.value) {
+    setTimeout(() => {
+      updateView.value = ''
+      updatePopover.value = newValue
+    }, 100)
   }
 })
 

@@ -20,10 +20,13 @@ declare module '@tiptap/core' {
        * Unset a aiBlock node
        */
       unsetAiBlock: () => ReturnType
-      setAiBlockContent: (
-        pos: number,
-        contentJSON: Record<string, any>
-      ) => ReturnType
+      /**
+       * Update a aiBlock node
+       *
+       * @param pos Node position
+       * @param nodeJSON Node JSON
+       */
+      updateAiBlock: (pos: number, nodeJSON: Record<string, any>) => ReturnType
     }
   }
 }
@@ -84,23 +87,18 @@ export const AiBlock = Node.create<AiBlockOptions>({
         ({ commands }) => {
           return commands.lift(this.name)
         },
-      /**
-       * Todo: update node's content
-       * @param pos
-       * @param contentJSON
-       */
-      setAiBlockContent:
-        (pos: number, contentJSON: Record<string, any>) =>
+      updateAiBlock:
+        (pos: number, nodeJSON: Record<string, any>) =>
         ({ editor, tr, dispatch }) => {
           const oldNode = tr.doc.nodeAt(pos)
-          console.log('oldNode', oldNode)
-
-          if (!oldNode || oldNode.type.name !== this.name) return false
+          if (!oldNode || oldNode.type.name !== this.name) {
+            console.error('Invalid node type.')
+            return false
+          }
 
           try {
-            const node = ProseMirrorNode.fromJSON(editor.schema, contentJSON)
+            const node = ProseMirrorNode.fromJSON(editor.schema, nodeJSON)
             const newNode = oldNode.copy(node.content)
-            console.log('newNode', newNode)
 
             tr.replaceWith(pos, pos + oldNode.nodeSize, newNode)
             return dispatch?.(tr)

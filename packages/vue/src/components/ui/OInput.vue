@@ -117,6 +117,7 @@ defineExpose({
     .o-icon.clear {
       cursor: pointer;
       width: 30px;
+      margin-left: 4px;
       text-align: center;
       justify-content: center;
 
