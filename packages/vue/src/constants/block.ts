@@ -96,8 +96,8 @@ export const StyleBlocks: BlockOption[] = BasicBlocks.filter((e) => e.style)
 
 export const CommonBlocks: BlockOption[] = [
   {
-    label: 'label.ai',
-    value: 'aiViewer',
+    label: 'editor.aiBlock',
+    value: 'aiBlock',
     icon: 'auto_awesome',
     color: Color.purple,
     tips: 'ai',
@@ -182,7 +182,7 @@ export const BlockMenus: BlockOption[] = [
     icon: 'cached',
     tips: 'Ctrl+R',
     color: Color.blue,
-    filter: 'image,video,model',
+    filter: 'image,video,model,aiBlock',
   },
   {
     label: 'label.color',

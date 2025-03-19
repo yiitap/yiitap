@@ -21,11 +21,9 @@ export default function () {
   ) {
     console.log('command', command, options)
     switch (command) {
-      // case 'aiViewer':
-      // 	focus.setAiViewer({
-      // 		content: 'init',
-      // 	}).run()
-      // 	break
+      case 'aiBlock':
+        focus.toggleAiBlock().run()
+        break
       case 'backColor':
         if (options.color) {
           commands.setHighlight({ color: options.color })

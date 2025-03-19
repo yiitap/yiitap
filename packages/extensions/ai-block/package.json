@@ -1,6 +1,6 @@
 {
-	"name": "@yiitap/extension-color-highlighter",
-	"description": "Color highlighter extension",
+	"name": "@yiitap/extension-ai-block",
+	"description": "AI block extension",
 	"version": "1.2.4",
 	"private": false,
 	"author": {
@@ -12,14 +12,14 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
+	"types": "dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"files": [
 		"dist",
 		"src"

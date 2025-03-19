@@ -28,7 +28,7 @@ export const DefaultMenu = [
   'callout',
   'emoji',
   'columns',
-  'aiViewer',
+  'aiBlock',
 ]
 
 /**

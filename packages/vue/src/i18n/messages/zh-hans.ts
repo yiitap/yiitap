@@ -82,6 +82,7 @@ export default {
     noColor: '无色',
     delete: '删除',
     duplicate: '创建副本',
+    aiBlock: 'AI块',
   },
   label: {
     ai: 'AI',

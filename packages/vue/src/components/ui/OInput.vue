@@ -7,6 +7,7 @@
       <input
         ref="input"
         v-model="value"
+        :placeholder="placeholder"
         @focus="emit('focus')"
         @blur="emit('blur')"
       />
@@ -29,6 +30,10 @@ import OIcon from './OIcon.vue'
 
 const props = defineProps({
   modelValue: {
+    type: String,
+    default: '',
+  },
+  placeholder: {
     type: String,
     default: '',
   },
@@ -77,11 +82,11 @@ defineExpose({
   width: 100%;
   border-radius: 3px;
   box-sizing: border-box;
-  border: solid 1px rgba(0, 0, 0, 0.05);
+  outline: solid 1px rgba(0, 0, 0, 0.05);
 
   &:has(input:focus) {
     background: var(--yii-active-bg-color);
-    border: solid 1px #2080f0;
+    outline: solid 1px #2080f0;
   }
 
   &__prefix {
@@ -107,9 +112,13 @@ defineExpose({
 
   &__suffix {
     flex: 0;
+    display: flex;
 
     .o-icon.clear {
       cursor: pointer;
+      width: 30px;
+      text-align: center;
+      justify-content: center;
 
       &:hover {
         border-radius: 50%;

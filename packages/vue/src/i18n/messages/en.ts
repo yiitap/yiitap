@@ -82,6 +82,7 @@ export default {
     noColor: 'No Color',
     delete: 'Delete',
     duplicate: 'Duplicate',
+    aiBlock: 'AI Block',
   },
   label: {
     ai: 'AI',

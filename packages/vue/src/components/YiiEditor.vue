@@ -58,9 +58,9 @@ import OSideMenu from './menus/OSideMenu.vue'
 
 import useI18n from '../hooks/useI18n'
 import {
-  DefaultExtensions,
+  DefaultExtensionNames,
+  BuiltinExtensionNames,
   OPlaceholder,
-  BuiltinExtensions,
 } from '../extensions'
 import DynamicClass, { TableExtensions } from '../extensions/dynamic'
 import type { Editor } from '@tiptap/core'
@@ -306,11 +306,11 @@ function buildExtensions() {
 
   // User custom extension
   // console.debug('default', DefaultExtensions)
-  const list = DefaultExtensions.concat(props.extensions)
+  const list = DefaultExtensionNames.concat(props.extensions)
   for (const item of list) {
     if (typeof item === 'string') {
       // builtin extension
-      if (!BuiltinExtensions.includes(item)) {
+      if (!BuiltinExtensionNames.includes(item)) {
         continue
       }
 

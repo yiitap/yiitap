@@ -14,6 +14,7 @@
           />
         </section>
       </section>
+      <o-divider />
       <o-list hoverable clickable>
         <template v-if="CommonBlocks.length">
           <template v-for="(item, index) in CommonBlocks" :key="index">
@@ -86,6 +87,12 @@ function onClick(item) {
   const chain = props.editor.chain()
   let content = null
   switch (item.value) {
+    case 'aiBlock':
+      content = {
+        content: EmptyParagraph,
+        attrs: { icon: '💡' },
+      }
+      break
     case 'blockquote':
       content = {
         content: EmptyParagraph,

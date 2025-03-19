@@ -147,6 +147,15 @@ importers:
         specifier: ^2.11.5
         version: 2.11.5
 
+  packages/extensions/ai-block:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/pm@2.11.5)
+      '@tiptap/pm':
+        specifier: ^2.11.5
+        version: 2.11.5
+
   packages/extensions/callout:
     dependencies:
       '@tiptap/core':
@@ -386,6 +395,9 @@ importers:
       '@tiptap/extension-task-list':
         specifier: ^2.11.5
         version: 2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))
+      '@tiptap/extension-text':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))
       '@tiptap/extension-text-align':
         specifier: ^2.11.5
         version: 2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))
@@ -416,6 +428,9 @@ importers:
       '@yiitap/core':
         specifier: workspace:*
         version: link:../core
+      '@yiitap/extension-ai-block':
+        specifier: workspace:*
+        version: link:../extensions/ai-block
       '@yiitap/extension-callout':
         specifier: workspace:*
         version: link:../extensions/callout
