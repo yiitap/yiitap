@@ -2,26 +2,28 @@
   <o-node-view
     v-bind="props"
     class="o-ai-block-view"
-    :class="{ 'is-empty': isEmpty }"
+    :class="{ 'is-empty': isEmpty, 'has-focus': updatePopover }"
     @contextmenu.prevent="onContextMenu"
   >
-    <div class="block-container" v-if="isEmpty">
-      <o-block-popover
-        v-model="showPopover"
-        placement="bottom-start"
-        tippy-class="ai-block-popover"
-        content-class=""
-      >
-        <template #popover-content>
-          <section class="o-scroll">
-            <section class="view-main">
-              <o-block-list :items="items" />
-            </section>
+    <!-- Empty -->
+    <o-block-popover
+      v-model="showPopover"
+      placement="bottom-start"
+      tippy-class="ai-block-popover"
+      v-if="isEmpty"
+    >
+      <template #popover-content>
+        <section class="o-scroll">
+          <section class="view-main">
+            <o-block-list :items="items" @select="onSelect" />
           </section>
-        </template>
+        </section>
+      </template>
+
+      <div class="block-container">
         <div class="block-content">
           <o-input
-            ref="input"
+            ref="inputRef"
             v-model="promptInput"
             placeholder="Tell the AI what to write"
             type="text"
@@ -42,21 +44,72 @@
             </template>
           </o-input>
         </div>
-      </o-block-popover>
-    </div>
-    <div class="block-container" v-else>
-      <div class="block-content">
-        <node-view-content />
       </div>
+    </o-block-popover>
 
-      <o-context-menu
-        v-model="showContextMenu"
-        :event="mouseEvent"
-        v-if="isEditable"
-      >
-        <o-block-menu v-bind="props" @action="onAction" />
-      </o-context-menu>
-    </div>
+    <!-- Not Empty -->
+    <o-block-popover
+      v-model="updatePopover"
+      placement="top-end"
+      tippy-class="ai-block-update-popover"
+      content-class=""
+      v-else
+    >
+      <template #popover-content>
+        <section class="edit-prompt" v-if="updateView === 'edit'">
+          <o-input
+            ref="updateInputRef"
+            v-model="promptInput"
+            placeholder="Tell the AI what to write"
+            type="text"
+            autofocus
+            clearable
+          >
+            <template #prefix>
+              <o-icon name="auto_awesome" />
+            </template>
+            <template #suffix>
+              <o-common-btn
+                icon="arrow_back"
+                icon-class="rotate-90"
+                tooltip="Generate"
+                @click="onGenerate"
+              />
+            </template>
+          </o-input>
+        </section>
+        <section v-else>
+          <o-btn-group>
+            <div data-tippy-role="tooltip">
+              <o-btn
+                icon="auto_awesome"
+                label="Generate by AI"
+                @click="onUpdate"
+              />
+            </div>
+            <o-common-btn
+              icon="autorenew"
+              tooltip="Update"
+              @click="onGenerate"
+            />
+          </o-btn-group>
+        </section>
+      </template>
+
+      <div class="block-container">
+        <div class="block-content">
+          <node-view-content />
+        </div>
+
+        <o-context-menu
+          v-model="showContextMenu"
+          :event="mouseEvent"
+          v-if="isEditable"
+        >
+          <o-block-menu v-bind="props" @action="onAction" />
+        </o-context-menu>
+      </div>
+    </o-block-popover>
   </o-node-view>
 </template>
 
@@ -69,28 +122,33 @@ import {
   OBlockList,
   OBlockMenu,
   OBlockPopover,
+  OCommandBtn,
   OCommonBtn,
   OContextMenu,
   OIcon,
   OInput,
   ONodeView,
-  OPopover,
+  OBtn,
+  OBtnGroup,
 } from '../../components'
-import { useNodeView, useTheme, useTiptap } from '../../hooks'
-import { AiBlocks } from '../../constants/block'
+import { useI18n, useNodeView, useTheme, useTiptap } from '../../hooks'
+import { AiBlocks } from '../../constants'
 
 const props = defineProps(nodeViewProps)
-
-const promptInput = ref('')
-
-const { isFocused, bind, unbind } = useNodeView()
+const { tr } = useI18n()
+const { isFocused, bind, unbind, checkFocus } = useNodeView()
 const { theme } = useTheme()
 const { isEditable } = useTiptap()
+
+const inputRef = ref(null)
+const promptInput = ref('')
 const { getPos } = props
 const showContextMenu = ref(false)
 const mouseEvent = ref({})
 const showPopover = ref(false)
 const updatePopover = ref(false)
+const updateView = ref('')
+const updateInputRef = ref(null)
 
 const aiGeneratedHtml = `
 <h2>AI generated</h2>
@@ -128,9 +186,25 @@ const time = computed({
   },
 })
 
+function init() {
+  promptInput.value = prompt.value
+  if (isEmpty.value && !prompt.value) {
+    setTimeout(() => {
+      inputRef.value?.focus()
+    }, 0)
+  }
+}
+
 function onInputFocus() {
   setTimeout(() => {
     showPopover.value = true
+  }, 0)
+}
+
+function onUpdate() {
+  updateView.value = 'edit'
+  setTimeout(() => {
+    updateInputRef.value?.focus()
   }, 0)
 }
 
@@ -143,6 +217,9 @@ function onGenerate() {
   setTimeout(() => {
     setContentLocal(pos, toJSON(aiGeneratedAppendHtml))
   }, 500)
+  if (updateView.value) {
+    updateView.value = ''
+  }
 }
 
 function setContentLocal(pos: number, json: Record<string, any>) {
@@ -164,6 +241,9 @@ function setContentLocal(pos: number, json: Record<string, any>) {
       return true
     })
     .run()
+  props.editor.commands.setNodeSelection(pos)
+  props.editor.view.focus()
+  console.log('node', JSON.parse(JSON.stringify(props.node)))
 }
 
 /**
@@ -200,39 +280,39 @@ function onAction(action: BlockOption) {
   }
 }
 
+function onSelect(item: Indexable, child?: Indexable) {
+  console.log('select', item, child)
+  if (child) {
+    promptInput.value = tr(child.label)
+  } else {
+    promptInput.value = tr(item.label)
+  }
+  showPopover.value = false
+}
+
 function onContextMenu(e: MouseEvent) {
   showContextMenu.value = true
   mouseEvent.value = e
 }
 
-function onSelect(command: string, value: any) {
-  switch (command) {
-    case 'backColor':
-      break
-    case 'foreColor':
-      break
-    case 'icon':
-      break
-  }
-}
-
 watch(
   () => props.node.content,
   (newValue) => {
-    console.log('node content', newValue)
+    checkFocus()
   }
 )
 
 watch(isFocused, (newValue) => {
-  console.log('isFocused', newValue)
-  // updatePopover.value = newValue
+  if (newValue) {
+    updatePopover.value = newValue
+  }
 })
 
 onMounted(() => {
-  // console.log('Mounted', props.node)
-  promptInput.value = prompt.value
+  init()
   bind(props)
 })
+
 onBeforeUnmount(() => {
   unbind()
 })
@@ -286,6 +366,25 @@ onBeforeUnmount(() => {
     .o-scroll {
       padding: 6px;
       max-height: 400px !important;
+    }
+  }
+}
+
+.ai-block-update-popover {
+  .popover-content {
+    min-width: unset !important;
+
+    .o-btn {
+      background: var(--yii-active-bg-color);
+    }
+
+    .o-input {
+      width: 600px;
+      outline: none;
+
+      &:has(input:focus) {
+        background: transparent;
+      }
     }
   }
 }

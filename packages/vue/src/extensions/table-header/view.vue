@@ -100,8 +100,7 @@ import { NodeViewWrapper, NodeViewContent, nodeViewProps } from '@tiptap/vue-3'
 
 import { OBlockPopover, OCommandBtn, OCommonBtn } from '../../components/index'
 
-import useI18n from '../../hooks/useI18n'
-import useTiptap from '../../hooks/useTiptap'
+import { useI18n, useTiptap } from '../../hooks'
 import { Color } from '../../constants/color'
 
 const props = defineProps(nodeViewProps)

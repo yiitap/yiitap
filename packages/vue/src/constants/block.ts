@@ -182,7 +182,7 @@ export const BlockMenus: BlockOption[] = [
     icon: 'cached',
     tips: 'Ctrl+R',
     color: Color.blue,
-    filter: 'image,video,model,aiBlock',
+    filter: 'image,video,model',
   },
   {
     label: 'label.color',
@@ -194,7 +194,7 @@ export const BlockMenus: BlockOption[] = [
   },
 ]
 
-export const AiBlocks: BlockOption[] = [
+export const AskAiBlocks: BlockOption[] = [
   {
     label: 'ai.improve_writing',
     value: 'improve_writing',
@@ -288,5 +288,79 @@ export const AiBlocks: BlockOption[] = [
     color: Color.purple,
     style: true,
     group: 'label.think',
+  },
+]
+
+export const AiBlocks: BlockOption[] = [
+  {
+    label: 'ai.improve_writing',
+    value: 'improve_writing',
+    icon: 'title', // title, format_paragraph, local_parking
+    color: Color.purple,
+    style: true,
+    group: 'label.suggested',
+  },
+  {
+    label: 'ai.fix_spelling_grammar',
+    value: 'fix_spelling_grammar',
+    icon: 'format_h1',
+    color: Color.purple,
+    style: true,
+    options: { level: 1 },
+  },
+  {
+    label: 'ai.translate',
+    value: 'translate',
+    icon: 'format_h2',
+    color: Color.purple,
+    style: true,
+    children: [
+      {
+        label: 'language.chinese_simplified',
+        value: 'chinese_simplified',
+        icon: 'language',
+      },
+      {
+        label: 'language.chinese_traditional',
+        value: 'chinese_traditional',
+        icon: 'language',
+      },
+      {
+        label: 'language.german',
+        value: 'german',
+        icon: 'language',
+      },
+      {
+        label: 'language.french',
+        value: 'french',
+        icon: 'language',
+      },
+      {
+        label: 'language.japanese',
+        value: 'japanese',
+        icon: 'language',
+      },
+      {
+        label: 'language.korean',
+        value: 'korean',
+        icon: 'language',
+      },
+    ] as BlockOption[],
+  },
+  {
+    label: 'ai.make_longer',
+    value: 'make_longer',
+    icon: 'format_h3',
+    color: Color.purple,
+    style: true,
+    options: { level: 3 },
+    group: 'label.edit',
+  },
+  {
+    label: 'ai.make_shorter',
+    value: 'make_shorter',
+    icon: 'check_box',
+    color: Color.purple,
+    style: true,
   },
 ]

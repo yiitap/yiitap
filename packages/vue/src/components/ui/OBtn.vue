@@ -5,6 +5,7 @@
     @click="emit('click', $event)"
   >
     <o-icon :name="icon" :class="iconClass" v-if="icon" />
+    <span class="o-btn__label" v-if="label">{{ label }}</span>
     <slot></slot>
   </button>
 </template>
@@ -19,6 +20,10 @@ defineProps({
   },
   iconClass: {
     type: [String, Object],
+    default: '',
+  },
+  label: {
+    type: String,
     default: '',
   },
   type: {
@@ -56,6 +61,10 @@ const emit = defineEmits(['click'])
     &:hover {
       background: #4098fc !important;
     }
+  }
+
+  &__label {
+    margin-left: 4px;
   }
 }
 </style>

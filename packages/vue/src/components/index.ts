@@ -27,6 +27,7 @@ export { default as DragNode } from './common/o-side-menu/DragNode.vue'
 
 // UI
 export { default as OBtn } from './ui/OBtn.vue'
+export { default as OBtnGroup } from './ui/OBtnGroup.vue'
 export { default as OCheckbox } from './ui/OCheckbox.vue'
 export { default as ODivider } from './ui/ODivider.vue'
 export { default as OIcon } from './ui/OIcon.vue'

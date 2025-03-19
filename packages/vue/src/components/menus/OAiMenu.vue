@@ -61,7 +61,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { Editor } from '@tiptap/core'
 import useI18n from '../../hooks/useI18n'
-import { AiBlocks } from '../../constants/block'
+import { AskAiBlocks } from '../../constants/block'
 
 import {
   OBlockPopover,
@@ -90,7 +90,7 @@ const output = ref('')
 const view = ref('main')
 
 const items = computed(() => {
-  return AiBlocks
+  return AskAiBlocks
 })
 
 function onInputBlur() {
@@ -161,7 +161,7 @@ onMounted(() => {
   .ai-io-panel {
     width: 445px;
     .o-input {
-      border: none;
+      outline: none;
 
       &:has(input:focus) {
         background: transparent;

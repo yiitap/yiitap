@@ -28,6 +28,8 @@ export default function () {
 
   const checkFocus = () => {
     const selection = nodeViewProps.value?.editor.state.selection
+    if (!selection) return
+
     const inNode =
       selection?.$from.pos >= nodeRange.value.start &&
       selection?.$to.pos <= nodeRange.value.end
@@ -40,5 +42,6 @@ export default function () {
 
     bind,
     unbind,
+    checkFocus,
   }
 }
