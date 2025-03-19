@@ -300,7 +300,7 @@ onBeforeUnmount(() => {
 .o-ai-block-view {
   position: relative;
   border-radius: 4px;
-  padding: 0 8px;
+  padding: 8px 8px;
   margin: 8px -8px;
 
   &.is-empty,

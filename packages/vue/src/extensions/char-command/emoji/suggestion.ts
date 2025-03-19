@@ -1,14 +1,12 @@
 import tippy, { type Instance, type Props } from 'tippy.js'
 import { VueRenderer } from '@tiptap/vue-3'
 import View from './view.vue'
-import type { Editor } from '@tiptap/core'
 import { filterEmojiGroups } from '@yiitap/util-emoji'
-
-export interface SuggestionOptions {
-  editor: Editor
-  event: KeyboardEvent
-  clientRect?: (() => DOMRect | null) | null
-}
+import {
+  type SuggestionProps,
+  type SuggestionKeyDownProps,
+} from '@tiptap/suggestion'
+import { type MentionNodeAttrs } from '@tiptap/extension-mention'
 
 export default {
   items: ({ query }: { query: string }) => {
@@ -19,11 +17,15 @@ export default {
     let popup: Instance<Props>[]
 
     return {
-      onStart: (props: SuggestionOptions) => {
+      onStart: (props: SuggestionProps<any, MentionNodeAttrs>) => {
         component = new VueRenderer(View, {
           props,
           editor: props.editor,
         })
+
+        if (!props.clientRect) {
+          return
+        }
 
         popup = tippy('body', {
           getReferenceClientRect: props.clientRect,
@@ -40,7 +42,7 @@ export default {
         })
       },
 
-      onUpdate(props: SuggestionOptions) {
+      onUpdate(props: SuggestionProps) {
         component.updateProps(props)
 
         popup[0].setProps({
@@ -48,7 +50,7 @@ export default {
         })
       },
 
-      onKeyDown(props: SuggestionOptions) {
+      onKeyDown(props: SuggestionKeyDownProps) {
         // console.log('down', props.event)
         if (props.event.key === 'Escape') {
           popup[0].hide()

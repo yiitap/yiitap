@@ -200,6 +200,8 @@ onMounted(() => {
   // console.debug('editor', yiiEditor.value?.editor)
   // console.debug('darkMode', yiiEditor.value?.darkMode)
   // console.debug('local', yiiEditor.value?.local)
+
+  console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
 })
 </script>
 

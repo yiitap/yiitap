@@ -31,7 +31,7 @@ export default function () {
   })
 
   const checkFocus = () => {
-    if (!nodeViewProps.value) return;
+    if (!nodeViewProps.value) return
 
     const { editor } = nodeViewProps.value
     if (!editor.isFocused) {
@@ -42,7 +42,8 @@ export default function () {
     const { selection } = editor.state
     if (!selection) return
 
-    isFocused.value = selection?.$from.pos >= nodeRange.value.start &&
+    isFocused.value =
+      selection?.$from.pos >= nodeRange.value.start &&
       selection?.$to.pos <= nodeRange.value.end
   }
 
