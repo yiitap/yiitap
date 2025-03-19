@@ -9,7 +9,11 @@
       <template #popover-content>
         <section class="o-scroll">
           <section class="view-main" v-if="view === 'main'">
-            <o-block-list :items="items" @select="onClick" />
+            <o-block-list
+              :items="items"
+              @select="onClick"
+              :use-keyboard="showPopover"
+            />
           </section>
           <section class="view-output" v-if="view === 'output'">
             <div class="action-container">

@@ -15,7 +15,11 @@
       <template #popover-content>
         <section class="o-scroll">
           <section class="view-main">
-            <o-block-list :items="items" @select="onSelect" />
+            <o-block-list
+              :items="items"
+              @select="onSelect"
+              :use-keyboard="showPopover"
+            />
           </section>
         </section>
       </template>

@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import useI18n from '../../hooks/useI18n'
 import { OBlockList, OBlockListItem, ODivider, OList, OPopover } from '../index'
 
@@ -48,6 +48,10 @@ const props = defineProps({
   items: {
     type: Array as () => BlockOption[],
     required: true,
+  },
+  useKeyboard: {
+    type: Boolean,
+    required: false,
   },
 })
 const emit = defineEmits(['select'])
@@ -71,6 +75,60 @@ function onClick(item: Indexable, index: number, child?: Indexable) {
     popovers.value[index].setShow(false)
   }
 }
+
+function upHandler() {
+  selectedIndex.value =
+    (selectedIndex.value + props.items.length - 1) % props.items.length
+}
+
+function downHandler() {
+  selectedIndex.value = (selectedIndex.value + 1) % props.items.length
+}
+
+function enterHandler() {
+  onClick(props.items[selectedIndex.value], selectedIndex.value)
+}
+
+function onKeydown(event: KeyboardEvent) {
+  switch (event.key) {
+    case 'ArrowUp':
+      event.preventDefault()
+      upHandler()
+      break
+    case 'ArrowDown':
+      event.preventDefault()
+      downHandler()
+      break
+    case 'Enter':
+      event.preventDefault()
+      enterHandler()
+      break
+    default:
+  }
+}
+
+watch(
+  () => props.useKeyboard,
+  (newValue) => {
+    if (newValue) {
+      window.addEventListener('keydown', onKeydown)
+    } else {
+      window.removeEventListener('keydown', onKeydown)
+    }
+  }
+)
+
+onMounted(() => {
+  if (props.useKeyboard) {
+    window.addEventListener('keydown', onKeydown)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (props.useKeyboard) {
+    window.removeEventListener('keydown', onKeydown)
+  }
+})
 </script>
 
 <style lang="scss">
