@@ -7,7 +7,12 @@
         :style="contentStyle"
         @click="emit('click', $event)"
       >
-        <o-icon :name="icon" :color="color" :class="iconClass" />
+        <template v-if="loading">
+          <div class="spinner"></div>
+        </template>
+        <template v-else>
+          <o-icon :name="icon" :color="color" :class="iconClass" />
+        </template>
         <slot></slot>
       </div>
     </template>
@@ -43,6 +48,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
   contentClass: {
     type: [String, Object],
     default: '',
@@ -66,5 +75,20 @@ const emit = defineEmits(['click'])
   align-items: center;
   width: 30px;
   height: 30px;
+
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--yii-border-color);
+  border-top-color: var(--yii-brand-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-sizing: border-box;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

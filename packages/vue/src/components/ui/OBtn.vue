@@ -4,7 +4,12 @@
     :class="type ? `type-${type}` : ''"
     @click="emit('click', $event)"
   >
-    <o-icon :name="icon" :class="iconClass" v-if="icon" />
+    <template v-if="loading">
+      <div class="spinner"></div>
+    </template>
+    <template v-else>
+      <o-icon :name="icon" :class="iconClass" v-if="icon" />
+    </template>
     <span class="o-btn__label" v-if="label">{{ label }}</span>
     <slot></slot>
   </button>
@@ -29,6 +34,10 @@ defineProps({
   type: {
     type: String,
     default: '',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 })
 const emit = defineEmits(['click'])

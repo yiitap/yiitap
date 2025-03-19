@@ -94,6 +94,7 @@
             <o-common-btn
               icon="autorenew"
               tooltip="Update"
+              :loading="generating"
               @click="onGenerate"
             />
           </o-btn-group>
@@ -153,6 +154,7 @@ const showPopover = ref(false)
 const updatePopover = ref(false)
 const updateView = ref('')
 const updateInputRef = ref(null)
+const generating = ref(false)
 
 const aiGeneratedHtml = `
 <h2>AI generated</h2>
@@ -216,11 +218,14 @@ function onGenerate() {
   prompt.value = promptInput.value
   time.value = Date.now()
   const pos = getPos()
+
+  generating.value = true
   const json = toJSON(aiGeneratedHtml)
   setContentLocal(pos, json)
   setTimeout(() => {
     setContentLocal(pos, toJSON(aiGeneratedAppendHtml))
-  }, 500)
+    generating.value = false
+  }, 1000)
   if (updateView.value) {
     updateView.value = ''
   }
@@ -308,6 +313,7 @@ watch(
 
 watch(isFocused, (newValue) => {
   if (newValue) {
+    updateView.value = ''
     updatePopover.value = newValue
   }
 })
