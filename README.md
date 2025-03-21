@@ -1,6 +1,6 @@
-# Yiitap Editor
+# Yiitap
 
-Yiitap Editor is a WYSIWYG rich-text block-based editor built on top of [tiptap](https://tiptap.dev).🔥
+Yiitap is an AI powered, Notion-style WYSIWYG rich-text block-based editor, built on top of [tiptap](https://tiptap.dev).🔥
 
 <p align="center">
     <a href="https://github.com/yiitap/yiitap/actions/workflows/build.yml" alt="Build Status">
@@ -15,13 +15,36 @@ Yiitap Editor is a WYSIWYG rich-text block-based editor built on top of [tiptap]
         <img src="https://img.shields.io/npm/l/@yiitap/vue.svg" /></a>
 </p>
 
+## Features
+
+🚀 **Supports Vue & React** – Seamless integration with both frameworks.  
+📝 **Modern Notion-style editor** – Clean, intuitive, and distraction-free.  
+🔧 **Highly customizable & extensible** – Built on **Tiptap** & **ProseMirror**.  
+🤖 **AI-powered** – Smart features to boost productivity.  
+🧩 **Block-based editing** – Manipulate content via **bubble, floating, main, or side menus**.  
+✨ **Rich feature set** – Includes **15+ custom extensions** & **50+ UI components**.  
+🌗 Light & Dark mode.  
+🆓 MIT Licensed.
+
+## Quick start
+
+- [Guide to Yiitap](https://yiitap.pileax.ai/guide/getting-started)
+- [Live Demo](https://yiitap.pileax.ai/demo/vue)
+- Full Example: [Live](https://yiitap.github.io/yiitap/) | [Source](https://github.com/yiitap/yiitap/blob/main/apps/vue/src/components/Demo.vue)
+
+For more detailed information, make sure to check out our [documentation](https://yiitap.pileax.ai/guide/getting-started). If you encounter any problems or have suggestions, please open an issue.
+
+## Screenshots
+
+![Screenshot](docs/screenshots/screenshot-main.png)
+
 ## Development
 ### Install dependencies
 ```shell
 pnpm install
 ```
 
-### Run
+### Run demo
 ```shell
 pnpm dev
 ```
@@ -37,7 +60,38 @@ pnpm build
 tree -d -L 3 -I "node_modules|dist|src|public|types" yiitap
 ```
 
+```shell
+yiitap
+├── apps
+│   ├── react           # react demo app
+│   └── vue             # vue demo app
+└── packages
+    ├── core            # core functions
+    ├── extensions      # extensions
+    │   ├── ai-block
+    │   ├── callout
+    │   ├── char-command
+    │   ├── code-block
+    │   ├── color-highlighter   
+    │   ├── focus
+    │   ├── image
+    │   ├── link
+    │   ├── placeholder
+    │   ├── table
+    │   ├── table-wrapper
+    │   ├── trailing-node
+    │   ├── unique-id
+    │   └── video
+    ├── icon            # editor icon set
+    ├── react           # react component
+    ├── utils           # utilities
+    │   └── emoji
+    └── vue             # vue component
+```
+
 ## Thanks
+
+- [Tiptap](https://github.com/ueberdosis/tiptap) & [ProseMirror](https://github.com/ProseMirror/prosemirror): Yiitap is built on top of Tiptap and ProseMirror.
 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
