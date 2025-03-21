@@ -12,4 +12,3 @@ packages/*/types
 *.tsbuildinfo
 
 TODO.md
-.changeset/*.md
