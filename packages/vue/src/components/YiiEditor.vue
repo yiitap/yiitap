@@ -45,7 +45,14 @@
  */
 defineOptions({ name: 'YiiEditor' })
 
-import { ref, computed, onBeforeMount, provide, watch } from 'vue'
+import {
+  ref,
+  computed,
+  onBeforeMount,
+  provide,
+  watch,
+  type PropType,
+} from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
@@ -58,9 +65,9 @@ import OSideMenu from './menus/OSideMenu.vue'
 
 import useI18n from '../hooks/useI18n'
 import {
-  DefaultExtensions,
+  DefaultExtensionNames,
+  BuiltinExtensionNames,
   OPlaceholder,
-  BuiltinExtensions,
 } from '../extensions'
 import DynamicClass, { TableExtensions } from '../extensions/dynamic'
 import type { Editor } from '@tiptap/core'
@@ -187,6 +194,10 @@ const props = defineProps({
     default: 'page',
     validator: (value: string) => ['page', 'full'].includes(value),
   },
+  aiOption: {
+    type: Object as PropType<AiOption>,
+    default: () => {},
+  },
 })
 
 // const emit = defineEmits(['transaction', 'update'])
@@ -207,10 +218,12 @@ const darkModeAlt = ref(false)
 const isEditable = ref(true)
 const localeAlt = ref('en')
 const sideNodeAlt = ref(false)
+const aiOptionAlt = ref<AiOption>()
 provide('darkMode', darkModeAlt)
 provide('isEditable', isEditable)
 provide('locale', localeAlt)
 provide('sideNode', sideNodeAlt)
+provide('aiOption', aiOptionAlt)
 
 const customExtensions = computed(() => {
   return buildExtensions()
@@ -306,11 +319,11 @@ function buildExtensions() {
 
   // User custom extension
   // console.debug('default', DefaultExtensions)
-  const list = DefaultExtensions.concat(props.extensions)
+  const list = DefaultExtensionNames.concat(props.extensions)
   for (const item of list) {
     if (typeof item === 'string') {
       // builtin extension
-      if (!BuiltinExtensions.includes(item)) {
+      if (!BuiltinExtensionNames.includes(item)) {
         continue
       }
 
@@ -351,6 +364,14 @@ watch(
 )
 
 watch(
+  () => props.aiOption,
+  (newValue) => {
+    aiOptionAlt.value = newValue
+  },
+  { deep: true }
+)
+
+watch(
   () => props.editable,
   (newValue) => {
     editor.value?.setEditable(newValue)
@@ -359,6 +380,7 @@ watch(
 )
 
 onBeforeMount(() => {
+  aiOptionAlt.value = props.aiOption
   darkModeAlt.value = props.darkMode
   localeAlt.value = props.locale
   sideNodeAlt.value = !props.showSideMenu && props.showSideNode

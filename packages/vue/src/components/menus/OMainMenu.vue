@@ -53,7 +53,7 @@ const dynamicMenu = computed(() => {
 
 <style lang="scss">
 .o-main-menu {
-  color: red;
+  height: 30px;
 
   .o-simple-command-btn:not(:first-child) {
     margin-left: 2px;
@@ -66,6 +66,11 @@ const dynamicMenu = computed(() => {
   .left {
     display: flex;
     align-items: center;
+    height: 100%;
+  }
+
+  .o-divider {
+    height: 24px;
   }
 }
 </style>

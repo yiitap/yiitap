@@ -120,3 +120,48 @@
 	}
 
 }
+
+// Toast
+// ====================================================
+.o-toast {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 12px 16px;
+  min-width: 180px;
+  color: var(--yii-color);
+  background: var(--yii-tippy-popover-bg-color);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
+  0 2px 2px rgba(0, 0, 0, 0.14),
+  0 3px 1px -2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &.error {
+    color: white;
+    background: var(--yii-brand-red);
+  }
+
+  &.info {
+    color: white;
+    background: var(--yii-brand-blue);
+  }
+
+  &.success {
+    color: white;
+    background: var(--yii-brand-green);
+  }
+
+  &.warning {
+    color: white;
+    background: var(--yii-brand-orange);
+  }
+
+  .yiitip-icon {
+    font-size: 1.3rem;
+  }
+
+  .message {
+    margin-left: 4px;
+  }
+}

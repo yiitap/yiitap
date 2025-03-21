@@ -1,5 +1,6 @@
 export default {
   isoName: 'zh-hant',
+  name: 'Traditional Chinese',
   nativeName: '繁體中文',
   diagram: {
     name: '文本繪圖',

@@ -8,10 +8,9 @@
 		"email": "yiinote@gmail.com"
 	},
 	"homepage": "",
-	"license": "MIT",
+	"license": "Apache License 2.0",
 	"files": [
 		"dist",
-		"src",
 		"README.md"
 	],
 	"scripts": {

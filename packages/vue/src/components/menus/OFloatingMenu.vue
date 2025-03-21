@@ -1,7 +1,7 @@
 <template>
-  <section class="o-floating-menu" v-if="editor">
+  <section v-if="editor">
     <floating-menu
-      class="floating-menu"
+      class="o-floating-menu"
       :class="menuClass"
       :editor="editor"
       :tippy-options="options"

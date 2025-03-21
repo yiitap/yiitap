@@ -8,6 +8,7 @@
         @click="emit('click', $event)"
       >
         <o-icon :name="icon" :color="color" :class="iconClass" />
+        <slot></slot>
       </button>
     </template>
 

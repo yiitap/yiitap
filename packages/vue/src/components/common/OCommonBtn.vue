@@ -5,9 +5,14 @@
         class="o-menubar-btn o-command-btn o-btn"
         :class="contentClass"
         :style="contentStyle"
-        @click="emit('click', $event)"
+        @click.stop="onClick"
       >
-        <o-icon :name="icon" :color="color" :class="iconClass" />
+        <template v-if="loading">
+          <div class="spinner"></div>
+        </template>
+        <template v-else>
+          <o-icon :name="icon" :color="color" :class="iconClass" />
+        </template>
         <slot></slot>
       </div>
     </template>
@@ -18,7 +23,7 @@
 <script setup lang="ts">
 import { OIcon, OTooltip } from '../index'
 
-defineProps({
+const props = defineProps({
   icon: {
     type: String,
     default: '',
@@ -43,6 +48,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
   contentClass: {
     type: [String, Object],
     default: '',
@@ -57,14 +66,38 @@ defineProps({
   },
 })
 const emit = defineEmits(['click'])
+
+function onClick() {
+  if (!props.loading) {
+    emit('click')
+  }
+}
 </script>
 
 <style lang="scss">
 .o-common-btn {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 30px;
   height: 30px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--yii-border-color);
+  border-top-color: var(--yii-brand-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-sizing: border-box;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

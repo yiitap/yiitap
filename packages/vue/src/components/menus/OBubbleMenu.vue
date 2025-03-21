@@ -1,13 +1,14 @@
 <template>
-  <section class="o-bubble-menu" v-if="editor">
+  <section v-if="editor">
     <bubble-menu
-      class="bubble-menu"
+      class="o-bubble-menu"
       :class="menuClass"
       :editor="editor"
       :should-show="shouldShow"
       :tippy-options="options"
     >
-      <section class="container">
+      <o-ai-menu :editor="editor" @confirm="onAiConfirm" v-if="showAi" />
+      <section class="container" v-else>
         <template v-if="showBack">
           <o-menubar-btn
             icon="arrow_back"
@@ -23,6 +24,7 @@
             :name="item"
             :is="getComponent(item)"
             :editor="editor"
+            @click="onClick(item)"
             v-else-if="typeof item === 'string'"
           />
           <component :is="item" :editor="editor" v-else />
@@ -46,7 +48,7 @@ import {
   LinkBubble,
   TableBubble,
 } from '../../constants/menu'
-import { ODivider, OMenubarBtn } from '../index'
+import { ODivider, OMenubarBtn, OAiMenu } from '../index'
 
 const props = defineProps({
   editor: {
@@ -72,19 +74,36 @@ const props = defineProps({
 const { tr } = useI18n()
 const { theme } = useTheme()
 const backToMain = ref(false)
+const showAi = ref(false)
+const aiConfirmed = ref(false)
 const options = ref({
   duration: 100,
-  placement: 'top' as 'top' | 'bottom',
+  placement: 'bottom' as 'bottom' | 'top',
   role: 'popover',
+  trigger: 'manual',
   arrow: false,
-  // offset: [0, 0]
   onShow: () => {
     backToMain.value = false
+    showAi.value = false
+    aiConfirmed.value = false
+  },
+  onHide: () => {
+    aiConfirmed.value = false
   },
 })
 
 function onBackToMain() {
   backToMain.value = true
+}
+
+function onClick(item: string) {
+  if (item === 'ai') {
+    showAi.value = true
+  }
+}
+
+function onAiConfirm() {
+  aiConfirmed.value = true
 }
 
 function isLinkSelection(selection) {
@@ -97,7 +116,6 @@ function isLinkSelection(selection) {
   const range = getMarkRange($from, linkType)
   if (!range) return false
   return true
-  // return range.to === $to.pos
 }
 
 function shouldShow({ editor, element, view, state, oldState, from, to }) {
@@ -106,7 +124,8 @@ function shouldShow({ editor, element, view, state, oldState, from, to }) {
   const isEmptyTextBlock =
     !doc.textBetween(from, to).length && isTextSelection(state.selection)
 
-  if (!view.hasFocus() || empty) {
+  // if (showAi.value) return true
+  if (!view.hasFocus() || empty || aiConfirmed.value) {
     return false
   }
   if (isEmptyTextBlock) {

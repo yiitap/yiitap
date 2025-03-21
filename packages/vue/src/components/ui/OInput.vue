@@ -4,7 +4,13 @@
       <slot name="prefix"></slot>
     </div>
     <div class="o-input__main">
-      <input ref="input" v-model="value" @blur="emit('blur')" />
+      <input
+        ref="input"
+        v-model="value"
+        :placeholder="placeholder"
+        @focus="emit('focus')"
+        @blur="emit('blur')"
+      />
     </div>
     <div class="o-input__suffix">
       <slot name="suffix"></slot>
@@ -27,6 +33,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  placeholder: {
+    type: String,
+    default: '',
+  },
   clearable: {
     type: Boolean,
     default: false,
@@ -36,7 +46,7 @@ const props = defineProps({
     default: '',
   },
 })
-const emit = defineEmits(['blur', 'update:modelValue'])
+const emit = defineEmits(['blur', 'focus', 'update:modelValue'])
 const input = ref<HTMLInputElement | null>(null)
 
 const value = computed({
@@ -72,11 +82,11 @@ defineExpose({
   width: 100%;
   border-radius: 3px;
   box-sizing: border-box;
-  border: solid 1px rgba(0, 0, 0, 0.05);
+  outline: solid 1px rgba(0, 0, 0, 0.05);
 
   &:has(input:focus) {
     background: var(--yii-active-bg-color);
-    border: solid 1px #2080f0;
+    outline: solid 1px #2080f0;
   }
 
   &__prefix {
@@ -102,9 +112,14 @@ defineExpose({
 
   &__suffix {
     flex: 0;
+    display: flex;
 
     .o-icon.clear {
       cursor: pointer;
+      width: 30px;
+      margin-left: 4px;
+      text-align: center;
+      justify-content: center;
 
       &:hover {
         border-radius: 50%;

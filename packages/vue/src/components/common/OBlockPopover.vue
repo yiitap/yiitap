@@ -3,6 +3,7 @@
     ref="popover"
     :placement="placement"
     :tippy-class="tippyClass"
+    :content-class="contentClass"
     trigger="manual"
     :arrow="showArrow"
     :offset="offset"
@@ -19,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, type PropType } from 'vue'
+import { ref, watch, onMounted, onUnmounted, type PropType } from 'vue'
 import { OPopover } from '../index'
 
 const props = defineProps({
@@ -43,6 +44,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  contentClass: {
+    type: String,
+    default: '',
+  },
   offset: {
     type: Object as PropType<[number, number]>,
     default: function () {
@@ -59,6 +64,7 @@ function onShow(value: boolean) {
 }
 
 function onClickOutside() {
+  console.log('click outside')
   if (props.hideClickOutside) {
     emit('update:modelValue', false)
   }
@@ -67,7 +73,6 @@ function onClickOutside() {
 watch(
   () => props.modelValue,
   (newValue) => {
-    console.log('modelValue', newValue)
     if (newValue) {
       popover.value?.setShow(true)
     } else {
@@ -80,6 +85,10 @@ onMounted(() => {
   if (props.modelValue) {
     popover.value?.setShow(true)
   }
+})
+
+onUnmounted(() => {
+  popover.value?.setShow(false)
 })
 </script>
 

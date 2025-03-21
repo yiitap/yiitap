@@ -2,30 +2,34 @@
  * Extensions Dynamic
  */
 // ---------------------------------------------------------
-// Tiptap extensions imports
-// ---------------------------------------------------------
-import BackColor from '@tiptap/extension-highlight'
-import Focus from '@tiptap/extension-focus'
-import FontFamily from '@tiptap/extension-font-family'
-import ForeColor from '@tiptap/extension-color'
-import Image from '@tiptap/extension-image'
-import Link from '@tiptap/extension-link'
-import TaskItem from '@tiptap/extension-task-item'
-import TaskList from '@tiptap/extension-task-list'
-import TextAlign from '@tiptap/extension-text-align'
-import Typography from '@tiptap/extension-typography'
-import Underline from '@tiptap/extension-underline'
-import Table from '@tiptap/extension-table'
-import TableHeader from '@tiptap/extension-table-header'
-import TableCell from '@tiptap/extension-table-cell'
-import TableRow from '@tiptap/extension-table-row'
-
-// ---------------------------------------------------------
 // YiiEditor extension imports
 // ---------------------------------------------------------
 import {
+  // Tiptap
+  Document,
+  BackColor,
+  Focus,
+  FontFamily,
+  ForeColor,
+  Image,
+  Link,
+  Mention,
+  TaskItem,
+  TaskList,
+  TextAlign,
+  Typography,
+  Underline,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
+  Text,
+
+  // Yiitap
+  OAiBlock,
   OBlockquote,
   OCallout,
+  OCharCommand,
   OCodeBlock,
   OColorHighlighter,
   OColonCommand,
@@ -44,6 +48,7 @@ import {
   OTrailingNode,
   OUniqueID,
   OVideo,
+  BuiltinExtensionNames,
 } from './index'
 
 // ---------------------------------------------------------
@@ -73,6 +78,7 @@ const classes: Indexable = {
   Typography,
 
   // Custom extensions
+  OAiBlock: OAiBlock,
   OColon: OColonCommand.configure({
     suggestion: EmojiSuggestion,
   }),
@@ -97,9 +103,6 @@ const classes: Indexable = {
   OParagraph,
   OTrailingNode,
   // OColumnExtension: ColumnExtension,
-  // OColon: Colon.configure({
-  //   suggestion: colonSuggestion
-  // }),
   OUniqueID: OUniqueID.configure({
     attributeName: 'data-id',
     enableRender: false,
@@ -141,7 +144,7 @@ export const TableExtensions = [
 ]
 
 // Default table
-export const TableExtensions0 = [
+export const DefaultTableExtensions = [
   Table.configure({
     resizable: true,
   }),

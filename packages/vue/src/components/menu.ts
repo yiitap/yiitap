@@ -1,4 +1,5 @@
 import OSimpleCommandBtn from './buttons/OSimpleCommandBtn.vue'
+import OAiBtn from './buttons/OAiBtn.vue'
 import OAlignDropdown from './buttons/OAlignDropdown.vue'
 import OAlignGroup from './buttons/OAlignGroup.vue'
 import OBackColorDropdown from './buttons/OBackColorDropdown.vue'
@@ -22,7 +23,7 @@ import OTextFormatDropdown from './buttons/OTextFormatDropdown.vue'
  * Command component except for simple commands
  */
 const CommandComponents: Indexable = {
-  // 'add-more': 'o-add-more-btn',
+  ai: OAiBtn,
   'align-dropdown': OAlignDropdown,
   'align-group': OAlignGroup,
   'back-color': OBackColorDropdown,

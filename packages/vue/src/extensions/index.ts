@@ -1,32 +1,64 @@
-export { default as OColorHighlighter } from '@yiitap/extension-color-highlighter'
-export { default as OFocus } from '@yiitap/extension-focus'
-export { default as OPlaceholder } from '@yiitap/extension-placeholder'
-export { default as OTable } from '@yiitap/extension-table'
-export { default as OTrailingNode } from '@yiitap/extension-trailing-node'
-export { default as OUniqueID } from '@yiitap/extension-unique-id'
-export {
+// ---------------------------------------------------------
+// Tiptap extensions imports
+// ---------------------------------------------------------
+import BackColor from '@tiptap/extension-highlight'
+import Document from '@tiptap/extension-document'
+import Focus from '@tiptap/extension-focus'
+import FontFamily from '@tiptap/extension-font-family'
+import ForeColor from '@tiptap/extension-color'
+import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
+import Mention from '@tiptap/extension-mention'
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
+import TextAlign from '@tiptap/extension-text-align'
+import Typography from '@tiptap/extension-typography'
+import Underline from '@tiptap/extension-underline'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
+import Text from '@tiptap/extension-text'
+
+// ---------------------------------------------------------
+// YiiEditor extension imports
+// ---------------------------------------------------------
+// Extension lib
+import OColorHighlighter from '@yiitap/extension-color-highlighter'
+import OFocus from '@yiitap/extension-focus'
+import OPlaceholder from '@yiitap/extension-placeholder'
+import OTable from '@yiitap/extension-table'
+import OTrailingNode from '@yiitap/extension-trailing-node'
+import OUniqueID from '@yiitap/extension-unique-id'
+import OCharCommand from '@yiitap/extension-char-command'
+import {
   ColonCommand as OColonCommand,
   SlashCommand as OSlashCommand,
   SlashZhCommand as OSlashZhCommand,
 } from '@yiitap/extension-char-command'
 
-export { default as OBlockquote } from './blockquote'
-export { default as OCallout } from './callout'
-export { default as OCodeBlock } from './code-block'
-export { default as OHeading } from './heading'
-export { default as OHorizontalRule } from './horizontal-rule'
-export { default as OImage } from './image'
-export { default as OLink } from './link'
-export { default as OParagraph } from './paragraph'
-export { default as OTableCell } from './table-cell'
-export { default as OTableHeader } from './table-header'
-export { default as OTableWrapper } from './table-wrapper'
-export { default as OVideo } from './video'
+// Extension local
+import OAiBlock from './ai-block'
+import OBlockquote from './blockquote'
+import OCallout from './callout'
+import OCodeBlock from './code-block'
+import OHeading from './heading'
+import OHorizontalRule from './horizontal-rule'
+import OImage from './image'
+import OLink from './link'
+import OParagraph from './paragraph'
+import OTableCell from './table-cell'
+import OTableHeader from './table-header'
+import OTableWrapper from './table-wrapper'
+import OVideo from './video'
 
-// --------------------------------------------------------------------------------
+// ---------------------------------------------------------
 // Extensions
-// --------------------------------------------------------------------------------
-export const DefaultExtensions = [
+// ---------------------------------------------------------
+/**
+ * Enable by default
+ */
+export const DefaultExtensionNames = [
   'BackColor',
   'Focus',
   'FontFamily',
@@ -37,7 +69,6 @@ export const DefaultExtensions = [
   'TextAlign',
   'Typography',
   'Underline',
-
   'OHorizontalRule',
   'OUniqueID',
 ]
@@ -45,9 +76,8 @@ export const DefaultExtensions = [
 // --------------------------------------------------------------------------------
 // Exposed Extension List
 // --------------------------------------------------------------------------------
-export const TipTapExtensions = [
+export const TiptapExtensionNames = [
   'BackColor',
-  'Blockquote',
   'Bold',
   'BulletList',
   'Code',
@@ -60,6 +90,7 @@ export const TipTapExtensions = [
   'Italic',
   'Link',
   'ListItem',
+  'Mention',
   'OrderedList',
   'Strike',
   'Table',
@@ -70,42 +101,112 @@ export const TipTapExtensions = [
   'Underline',
 ]
 
-export const ExtendedExtensions = [
+export const YiitapExtensionNames = [
+  'OAiBlock',
   'OBlockquote',
   'OCallout',
+  'OCharCommand',
   'OCodeBlock',
   'OColon',
   'OColorHighlighter',
-  'OColumnExtension',
-  'ODiagram',
-  'ODoc',
-  'ODraggableItem',
-  'OEmbed',
+  // 'ODiagram',
   'OFocus',
-  'OFontFamily',
-  'OFormatClear',
   'OHeading',
   'OHorizontalRule',
-  'OIframe',
   'OImage',
-  'OIndent',
-  'OInsertHtml',
-  'OKatexBlock',
-  'OKatexInline',
-  'OLineHeight',
+  // 'OKatexBlock',
+  // 'OKatexInline',
   'OLink',
-  'OModelViewer',
   'OParagraph',
-  'OPrint',
   'OSlash',
   'OSlashZh',
-  'OTOC',
   'OTableWrapper',
-  'OTitle',
-  'OTodoItem',
   'OTrailingNode',
   'OUniqueID',
   'OVideo',
 ]
 
-export const BuiltinExtensions = [...TipTapExtensions, ...ExtendedExtensions]
+export const BuiltinExtensionNames = [
+  ...TiptapExtensionNames,
+  ...YiitapExtensionNames,
+]
+
+export const BuiltinExtensions = [
+  Document,
+  BackColor,
+  Focus,
+  FontFamily,
+  ForeColor,
+  Link,
+  Mention,
+  TaskItem,
+  TaskList,
+  TextAlign,
+  Typography,
+  Underline,
+  TableRow,
+  Text,
+
+  OAiBlock,
+  OBlockquote,
+  OColorHighlighter,
+  OCallout,
+  OCharCommand,
+  OCodeBlock,
+  OHeading,
+  OHorizontalRule,
+  OImage,
+  OParagraph,
+  OPlaceholder,
+  OTable,
+  OTableCell,
+  OTableHeader,
+  OTableWrapper,
+  OTrailingNode,
+  OUniqueID,
+  OVideo,
+]
+
+export {
+  Document,
+  BackColor,
+  Focus,
+  FontFamily,
+  ForeColor,
+  Image,
+  Link,
+  Mention,
+  TaskItem,
+  TaskList,
+  TextAlign,
+  Typography,
+  Underline,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
+  Text,
+  OAiBlock,
+  OBlockquote,
+  OCallout,
+  OCharCommand,
+  OCodeBlock,
+  OColonCommand,
+  OColorHighlighter,
+  OFocus,
+  OSlashCommand,
+  OSlashZhCommand,
+  OHeading,
+  OHorizontalRule,
+  OImage,
+  OLink,
+  OParagraph,
+  OPlaceholder,
+  OTable,
+  OTableCell,
+  OTableHeader,
+  OTableWrapper,
+  OTrailingNode,
+  OUniqueID,
+  OVideo,
+}

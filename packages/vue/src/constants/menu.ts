@@ -28,7 +28,7 @@ export const DefaultMenu = [
   'callout',
   'emoji',
   'columns',
-  'aiViewer',
+  'aiBlock',
 ]
 
 /**
@@ -63,6 +63,8 @@ export const DefaultBubble = [
   'strike',
   'text-color-dropdown',
   'clearFormat',
+  'separator',
+  'ai',
   'separator',
   'list-group',
   'link',

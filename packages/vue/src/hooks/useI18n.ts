@@ -8,6 +8,10 @@ export default function () {
     return getMessage(locale.value)
   })
 
+  const languageName = computed(() => {
+    return message.value?.name || 'English'
+  })
+
   function tr(key: string) {
     return key.split('.').reduce((o, i) => {
       if (o) return o[i]
@@ -15,6 +19,7 @@ export default function () {
   }
 
   return {
+    languageName,
     locale,
     message,
 

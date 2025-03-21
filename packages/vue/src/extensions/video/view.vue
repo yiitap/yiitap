@@ -197,7 +197,7 @@ onMounted(() => {
         width: 100%;
         padding: 0;
         caret-color: transparent !important;
-        border: none;
+        outline: none;
         background: transparent !important;
 
         input {

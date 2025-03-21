@@ -91,12 +91,13 @@ export const BasicBlocks: BlockOption[] = [
     color: Color.blue,
   },
 ]
+
 export const StyleBlocks: BlockOption[] = BasicBlocks.filter((e) => e.style)
 
 export const CommonBlocks: BlockOption[] = [
   {
-    label: 'label.ai',
-    value: 'aiViewer',
+    label: 'editor.aiBlock',
+    value: 'aiBlock',
     icon: 'auto_awesome',
     color: Color.purple,
     tips: 'ai',
@@ -190,5 +191,201 @@ export const BlockMenus: BlockOption[] = [
     color: Color.purple,
     filter: 'callout',
     component: 'OCalloutColorBoard',
+  },
+]
+
+export const AskAiBlocks: BlockOption[] = [
+  {
+    label: 'ai.improve_writing',
+    value: 'improve_writing',
+    icon: 'title',
+    color: Color.purple,
+    group: 'label.suggested',
+    options: {
+      prompt: 'Improve writing of the following content: [CONTENT]',
+    },
+    tips: 'improve',
+  },
+  {
+    label: 'ai.fix_spelling_grammar',
+    value: 'fix_spelling_grammar',
+    icon: 'spellcheck',
+    color: Color.purple,
+    options: {
+      prompt: 'Fix spelling and grammar of the following content: [CONTENT]',
+    },
+    tips: 'fix',
+  },
+  {
+    label: 'ai.enrich_with_emoji',
+    value: 'enrich_with_emoji',
+    icon: 'emoji_emotions',
+    color: Color.purple,
+    options: {
+      prompt: 'Enrich the following content with Emoji: [CONTENT]',
+    },
+    tips: 'emoji',
+  },
+  {
+    label: 'ai.translate',
+    value: 'translate',
+    icon: 'translate',
+    color: Color.purple,
+    options: {
+      prompt: 'Translate the following content to [LANGUAGE]: [CONTENT]',
+    },
+    children: [
+      {
+        label: 'language.chinese_simplified',
+        value: 'Simplified Chinese',
+        icon: 'language',
+      },
+      {
+        label: 'language.chinese_traditional',
+        value: 'Traditional Chinese',
+        icon: 'language',
+      },
+      {
+        label: 'language.german',
+        value: 'German',
+        icon: 'language',
+      },
+      {
+        label: 'language.french',
+        value: 'French',
+        icon: 'language',
+      },
+      {
+        label: 'language.japanese',
+        value: 'Japanese',
+        icon: 'language',
+      },
+      {
+        label: 'language.korean',
+        value: 'Korean',
+        icon: 'language',
+      },
+    ] as BlockOption[],
+  },
+  {
+    label: 'ai.make_longer',
+    value: 'make_longer',
+    icon: 'subject',
+    color: Color.purple,
+    options: {
+      prompt: 'Make following content longer: [CONTENT]',
+    },
+    group: 'label.edit',
+    tips: 'long',
+  },
+  {
+    label: 'ai.make_shorter',
+    value: 'make_shorter',
+    icon: 'short_text',
+    color: Color.purple,
+    options: {
+      prompt: 'Make following content shorter: [CONTENT]',
+    },
+    tips: 'short',
+  },
+  {
+    label: 'ai.change_tone',
+    value: 'change_tone',
+    icon: 'invert_colors',
+    color: Color.purple,
+    options: {
+      prompt: 'Change tone of the following content to [TONE]: [CONTENT]',
+    },
+    children: [
+      {
+        label: 'ai.tone.formal',
+        value: 'Formal',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.casual',
+        value: 'Casual',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.friendly',
+        value: 'Friendly',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.enthusiastic',
+        value: 'Enthusiastic',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.authoritative',
+        value: 'Authoritative',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.humorous',
+        value: 'Humorous',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.inspirational',
+        value: 'Inspirational',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.empathetic',
+        value: 'Empathetic',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.mysterious',
+        value: 'Mysterious',
+        icon: 'invert_colors',
+      },
+    ] as BlockOption[],
+  },
+  // {
+  //   label: 'ai.write',
+  //   value: 'write',
+  //   icon: 'format_list_numbered',
+  //   color: Color.purple,
+  //   options: {
+  //     prompt: 'Improve writing of the following content: [CONTENT]',
+  //   },
+  //   tips: 'write',
+  //   group: 'label.write',
+  // },
+  {
+    label: 'ai.explain',
+    value: 'explain',
+    icon: 'format_quote_open',
+    color: Color.purple,
+    options: {
+      prompt: 'Improve writing of the following content: [CONTENT]',
+    },
+    tips: 'explain',
+    group: 'label.think',
+  },
+]
+
+export const AiBlocks: BlockOption[] = [
+  {
+    label: 'ai.summarize',
+    value: 'summarize',
+    icon: 'notes',
+    color: Color.purple,
+    options: {
+      prompt: 'Summarize the following content: [CONTENT]',
+    },
+    group: 'label.suggested',
+  },
+  {
+    label: 'ai.continuation',
+    value: 'continuation',
+    icon: 'edit_note',
+    color: Color.purple,
+    options: {
+      prompt: 'Continue writing with the content: [CONTENT]',
+    },
   },
 ]
