@@ -13,6 +13,8 @@
     "@yiitap/vue": "workspace:*",
     "@yiitap/util-emoji": "workspace:*",
     "naive-ui": "^2.35.0",
+    "markdown-it": "^14.1.0",
+    "openai": "^4.88.0",
     "vue": "^3.3.8"
   },
   "peerDependencies": {},

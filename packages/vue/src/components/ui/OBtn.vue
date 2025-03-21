@@ -72,7 +72,8 @@ const emit = defineEmits(['click'])
     }
   }
 
-  &__label {
+  &__label,
+  .label {
     margin-left: 4px;
   }
 }

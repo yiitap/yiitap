@@ -25,7 +25,7 @@
         </div>
       </template>
 
-      <div class="main-view">
+      <div class="main-view o-scroll">
         <div class="toc__title">{{ tr('label.toc') }}</div>
         <ul class="toc__list">
           <li
@@ -275,6 +275,7 @@ defineExpose({
 
 .o-toc-popover .main-view {
   min-width: 180px;
+  max-height: 600px;
   padding: 6px;
 }
 </style>

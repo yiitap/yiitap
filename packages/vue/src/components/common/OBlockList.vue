@@ -35,7 +35,7 @@
         />
       </template>
     </template>
-    <div class="item" v-else>No result</div>
+    <div class="item" v-else>{{ tr('label.noResults') }}</div>
   </o-list>
 </template>
 

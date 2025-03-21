@@ -18,20 +18,20 @@
             <o-icon name="github" />
           </n-button>
           <n-button quaternary @click="onToggleDrawer">
-            <o-icon name="menu" />
+            <o-icon name="settings" />
           </n-button>
         </section>
       </header>
       <div class="toolbar">
         <o-main-menu
           :editor="yiiEditor?.editor"
-          :menu="options.mainMenu"
+          :menu="editorOptions.mainMenu"
           :data-theme="darkMode ? 'dark' : ''"
         />
       </div>
     </section>
     <section class="layout-content" @scroll="onScroll">
-      <YiiEditor ref="yiiEditor" v-bind="options" @update="onUpdate" />
+      <YiiEditor ref="yiiEditor" v-bind="editorOptions" @update="onUpdate" />
     </section>
 
     <n-drawer
@@ -42,6 +42,8 @@
     >
       <n-drawer-content title="Yii Editor" closable>
         <n-form ref="form" label-placement="left" label-width="auto">
+          <h3>通用</h3>
+          <n-divider />
           <n-form-item label="Language">
             <n-radio-group v-model:value="locale" name="radiogroup1">
               <n-space>
@@ -62,6 +64,21 @@
               <template #unchecked> Readonly </template>
             </n-switch>
           </n-form-item>
+
+          <h3>AI</h3>
+          <n-divider />
+          <n-form-item label="AI Provider">
+            <n-select
+              v-model:value="aiOption.provider"
+              :options="aiProviders"
+            />
+          </n-form-item>
+          <n-form-item label="Base URL" v-if="aiOption.provider === 'custom'">
+            <n-input v-model:value="aiOption.baseURL" placeholder="baseURL" />
+          </n-form-item>
+          <n-form-item label="API Key">
+            <n-input v-model:value="aiOption.apiKey" placeholder="apiKey" />
+          </n-form-item>
         </n-form>
       </n-drawer-content>
     </n-drawer>
@@ -79,12 +96,15 @@
 import { computed, provide, ref, onMounted, watch } from 'vue'
 import {
   NButton,
+  NDivider,
   NDrawer,
   NDrawerContent,
   NForm,
   NFormItem,
+  NInput,
   NRadio,
   NRadioGroup,
+  NSelect,
   NSpace,
   NSwitch,
 } from 'naive-ui'
@@ -99,11 +119,15 @@ const tocRef = ref<InstanceType<typeof ODocToc>>()
 const locale = ref('en')
 const darkMode = ref(false)
 const editable = ref(true)
+const aiOption = ref<AiOption>({
+  provider: 'deepseek',
+})
 const showDrawer = ref(false)
 provide('locale', locale)
 
-const options = computed(() => {
+const editorOptions = computed(() => {
   return {
+    aiOption: aiOption.value,
     locale: locale.value,
     darkMode: darkMode.value,
     editable: editable.value,
@@ -164,6 +188,38 @@ const content = computed(() => {
   // return ''
 })
 
+const aiProviders = computed(() => {
+  return [
+    {
+      label: 'OpenAI',
+      value: 'openai',
+      baseURL: '',
+    },
+    {
+      label: 'DeepSeek',
+      value: 'deepseek',
+      baseURL: 'https://api.deepseek.com/v1',
+    },
+    {
+      label: 'Custom',
+      value: 'custom',
+      baseURL: '',
+    },
+  ]
+})
+
+function init() {
+  try {
+    locale.value = localStorage.getItem('yiitap.locale') || 'en'
+    const aiOptionString = localStorage.getItem('yiitap.ai.option')
+    if (aiOptionString) {
+      aiOption.value = JSON.parse(aiOptionString)
+    }
+  } catch (e) {
+    // ignore
+  }
+}
+
 function onToggleDrawer() {
   showDrawer.value = !showDrawer.value
 }
@@ -178,8 +234,8 @@ function onMode() {
 
 function onUpdate({ json, html }: { json: any; html: string }) {
   // Get content of editor
-  // console.log('update', json)
-  // console.log('update', html)
+  // console.log(json)
+  // console.log(html)
 }
 
 function onScroll(event: Event) {
@@ -193,15 +249,27 @@ function onDocScroll(event: Event) {
 
 watch(locale, (newValue) => {
   yiiEditor.value?.editor.commands.setContent(content.value, true)
+  localStorage.setItem('yiitap.locale', newValue)
 })
 
+watch(
+  aiOption,
+  (newValue) => {
+    localStorage.setItem('yiitap.ai.option', JSON.stringify(aiOption.value))
+  },
+  { deep: true }
+)
+
 onMounted(() => {
+  // initialization
+  init()
+
   // Access properties exposed by YiiEditor
   // console.debug('editor', yiiEditor.value?.editor)
   // console.debug('darkMode', yiiEditor.value?.darkMode)
   // console.debug('local', yiiEditor.value?.local)
 
-  console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
+  // console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
 })
 </script>
 

@@ -2,7 +2,7 @@
   <o-node-view
     v-bind="props"
     class="o-ai-block-view"
-    :class="{ 'is-empty': isEmpty, 'has-focus': updatePopover }"
+    :class="{ 'is-empty': isEmpty, 'has-focus': isFocused }"
     @contextmenu.prevent="onContextMenu"
   >
     <!-- Empty -->
@@ -10,6 +10,7 @@
       v-model="showPopover"
       placement="bottom-start"
       tippy-class="ai-block-popover"
+      :offset="[0, 14]"
       v-if="isEmpty"
     >
       <template #popover-content>
@@ -30,7 +31,7 @@
           <o-input
             ref="inputRef"
             v-model="promptInput"
-            placeholder="Tell the AI what to write"
+            :placeholder="tr('ai.tellAi')"
             type="text"
             autofocus
             clearable
@@ -43,7 +44,7 @@
               <o-common-btn
                 icon="arrow_back"
                 icon-class="rotate-90"
-                tooltip="Generate"
+                :tooltip="tr('label.generate')"
                 :loading="generating"
                 @click="onGenerate"
               />
@@ -58,7 +59,7 @@
       v-model="updatePopover"
       placement="top-end"
       tippy-class="ai-block-update-popover"
-      content-class=""
+      :offset="[0, 18]"
       v-show="!isEmpty"
     >
       <template #popover-content>
@@ -66,7 +67,7 @@
           <o-input
             ref="updateInputRef"
             v-model="promptInput"
-            placeholder="Tell the AI what to write"
+            :placeholder="tr('ai.tellAi')"
             type="text"
             autofocus
             clearable
@@ -78,7 +79,8 @@
               <o-common-btn
                 icon="arrow_back"
                 icon-class="rotate-90"
-                tooltip="Generate"
+                :tooltip="tr('label.generate')"
+                :loading="generating"
                 @click="onGenerate"
               />
             </template>
@@ -87,15 +89,16 @@
         <section v-else>
           <o-btn-group>
             <div data-tippy-role="tooltip">
-              <o-btn
-                icon="auto_awesome"
-                label="Generate by AI"
-                @click="onUpdate"
-              />
+              <o-btn icon="auto_awesome" @click="onUpdate">
+                <span class="label">
+                  {{ tr('label.generatedBy') }}
+                  {{ getProviderProp(aiProvider, 'name') || 'AI' }}
+                </span>
+              </o-btn>
             </div>
             <o-common-btn
               icon="autorenew"
-              tooltip="Update"
+              :tooltip="tr('label.update')"
               :loading="generating"
               @click="onGenerate"
             />
@@ -135,20 +138,23 @@ import {
   ONodeView,
   OBtn,
   OBtnGroup,
+  OToast,
 } from '../../components'
-import { useI18n, useNodeView, useTheme, useTiptap } from '../../hooks'
-import { AiBlocks } from '../../constants'
+import { useAi, useI18n, useNodeView, useTheme, useTiptap } from '../../hooks'
+import { AiBlocks, getProviderProp, Prompts } from '../../constants'
+import { AiMessageChunks } from '../../constants/data'
 import { toJSON } from '../../utils/convert'
 
 const props = defineProps(nodeViewProps)
-const { tr } = useI18n()
+const { md, aiOption, createStreamingChatCompletion } = useAi()
+const { languageName, tr } = useI18n()
 const { isFocused, bind, unbind, checkFocus } = useNodeView()
 const { theme } = useTheme()
 const { isEditable } = useTiptap()
 
+const { getPos } = props
 const inputRef = ref(null)
 const promptInput = ref('')
-const { getPos } = props
 const showContextMenu = ref(false)
 const mouseEvent = ref({})
 const showPopover = ref(false)
@@ -156,16 +162,16 @@ const updatePopover = ref(false)
 const updateView = ref('')
 const updateInputRef = ref(null)
 const generating = ref(false)
+const isDebug = ref(false)
 
-const aiGeneratedHtml = `
-<h2>AI generated</h2>
-<p>A gentleman should constantly strike to become stronger just like the evolution of the universe.</p>
-`
-const aiGeneratedAppendHtml = `
-<h2>AI generated</h2>
-<p>A gentleman should constantly strike to become stronger just like the evolution of the universe.</p>
-<p>A gentleman should constantly strike to become stronger just like the evolution of the universe.</p>
-`
+const systemMessage = computed((): ChatMessage => {
+  const prompt = Prompts.writing.replace('[LANGUAGE]', languageName.value)
+  return {
+    role: 'system',
+    content: prompt,
+  }
+})
+const messages = ref<ChatMessage[]>([systemMessage.value])
 
 const isEmpty = computed(() => {
   return !props.node.textContent
@@ -173,6 +179,15 @@ const isEmpty = computed(() => {
 
 const items = computed(() => {
   return AiBlocks
+})
+
+const aiProvider = computed({
+  get() {
+    return props.node.attrs.provider
+  },
+  set(value) {
+    props.updateAttributes({ provider: value })
+  },
 })
 
 const prompt = computed({
@@ -204,7 +219,8 @@ function init() {
 
 function onInputFocus() {
   setTimeout(() => {
-    showPopover.value = true
+    // Todo
+    // showPopover.value = true
   }, 0)
 }
 
@@ -216,20 +232,69 @@ function onUpdate() {
 }
 
 function onGenerate() {
+  aiProvider.value = aiOption.value.provider
   prompt.value = promptInput.value
   time.value = Date.now()
-  const pos = getPos()
-
   generating.value = true
-  const json = toJSON(aiGeneratedHtml)
-  setContent(pos, json)
-  setTimeout(() => {
-    setContent(pos, toJSON(aiGeneratedAppendHtml))
-    generating.value = false
-  }, 1000)
   if (updateView.value) {
     updateView.value = ''
   }
+
+  if (isDebug.value) {
+    onAiGenerateMock()
+  } else {
+    onAiGenerate()
+  }
+}
+
+async function onAiGenerate() {
+  const pos = getPos()
+  let aiMessage = ''
+  messages.value.push({ role: 'user', content: prompt.value })
+  if (messages.value[0].role === 'system') {
+    messages.value.shift()
+    messages.value.unshift(systemMessage.value)
+  }
+
+  try {
+    const fullMessage = await createStreamingChatCompletion(
+      messages.value,
+      (chunk) => {
+        aiMessage += chunk
+        messages.value = [
+          ...messages.value.slice(0, -1),
+          { role: 'assistant', content: aiMessage },
+        ]
+        const json = toJSON(md.render(aiMessage))
+        setContent(pos, json)
+      }
+    )
+    // messages.value.push({role: 'assistant', content: fullMessage})
+  } catch (e) {
+    // Remove last use message if failed
+    messages.value.pop()
+    console.error(e)
+    OToast.error(tr('ai.error'))
+  }
+  generating.value = false
+}
+
+async function onAiGenerateMock() {
+  const pos = getPos()
+  let aiMessage = ''
+
+  try {
+    for (const chunk of AiMessageChunks) {
+      await new Promise((resolve) => setTimeout(resolve, 500))
+      aiMessage += chunk
+
+      const json = toJSON(md.render(aiMessage))
+      setContent(pos, json)
+    }
+  } catch (e) {
+    console.error(e)
+  }
+  generating.value = false
 }
 
 /**
@@ -245,7 +310,20 @@ function setContent(pos: number, json: Record<string, any>) {
   props.editor?.commands.updateAiBlock(pos, nodeJson)
   props.editor.commands.setNodeSelection(pos)
   props.editor.view.focus()
-  // console.log('node', props.node.toJSON())
+
+  scrollIntoView()
+}
+
+function scrollIntoView() {
+  const content = props.node.content
+  const lastContent = content.lastChild
+  if (lastContent && lastContent.attrs['data-id']) {
+    const dataId = lastContent.attrs['data-id']
+    const element = document.querySelector(`[data-id="${dataId}"]`)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
 }
 
 function onAction(action: BlockOption) {
@@ -277,9 +355,16 @@ watch(
   }
 )
 
+watch(isEmpty, (newValue) => {
+  if (newValue) {
+    updatePopover.value = false
+  }
+})
+
 watch(isFocused, (newValue) => {
   if (newValue && !isEmpty.value) {
     setTimeout(() => {
+      promptInput.value = prompt.value
       updateView.value = ''
       updatePopover.value = newValue
     }, 100)
@@ -321,7 +406,7 @@ onBeforeUnmount(() => {
     }
 
     .o-input {
-      padding: 8px 8px;
+      padding: 0 8px;
       outline: none;
       &:has(input:focus) {
         background: transparent;
@@ -351,9 +436,14 @@ onBeforeUnmount(() => {
 .ai-block-update-popover {
   .popover-content {
     min-width: unset !important;
+    padding: 0 !important;
 
-    .o-btn {
-      background: var(--yii-active-bg-color);
+    .o-btn-group {
+      .o-btn {
+        background: transparent;
+        height: 40px;
+        min-width: 40px;
+      }
     }
 
     .o-input {

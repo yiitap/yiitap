@@ -198,54 +198,71 @@ export const AskAiBlocks: BlockOption[] = [
   {
     label: 'ai.improve_writing',
     value: 'improve_writing',
-    icon: 'title', // title, format_paragraph, local_parking
+    icon: 'title',
     color: Color.purple,
-    style: true,
     group: 'label.suggested',
+    options: {
+      prompt: 'Improve writing of the following content: [CONTENT]',
+    },
+    tips: 'improve',
   },
   {
     label: 'ai.fix_spelling_grammar',
     value: 'fix_spelling_grammar',
-    icon: 'format_h1',
+    icon: 'spellcheck',
     color: Color.purple,
-    style: true,
-    options: { level: 1 },
+    options: {
+      prompt: 'Fix spelling and grammar of the following content: [CONTENT]',
+    },
+    tips: 'fix',
+  },
+  {
+    label: 'ai.enrich_with_emoji',
+    value: 'enrich_with_emoji',
+    icon: 'emoji_emotions',
+    color: Color.purple,
+    options: {
+      prompt: 'Enrich the following content with Emoji: [CONTENT]',
+    },
+    tips: 'emoji',
   },
   {
     label: 'ai.translate',
     value: 'translate',
-    icon: 'format_h2',
+    icon: 'translate',
     color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Translate the following content to [LANGUAGE]: [CONTENT]',
+    },
     children: [
       {
         label: 'language.chinese_simplified',
-        value: 'chinese_simplified',
+        value: 'Simplified Chinese',
         icon: 'language',
       },
       {
         label: 'language.chinese_traditional',
-        value: 'chinese_traditional',
+        value: 'Traditional Chinese',
         icon: 'language',
       },
       {
         label: 'language.german',
-        value: 'german',
+        value: 'German',
         icon: 'language',
       },
       {
         label: 'language.french',
-        value: 'french',
+        value: 'French',
         icon: 'language',
       },
       {
         label: 'language.japanese',
-        value: 'japanese',
+        value: 'Japanese',
         icon: 'language',
       },
       {
         label: 'language.korean',
-        value: 'korean',
+        value: 'Korean',
         icon: 'language',
       },
     ] as BlockOption[],
@@ -253,114 +270,122 @@ export const AskAiBlocks: BlockOption[] = [
   {
     label: 'ai.make_longer',
     value: 'make_longer',
-    icon: 'format_h3',
+    icon: 'subject',
     color: Color.purple,
-    style: true,
-    options: { level: 3 },
+    options: {
+      prompt: 'Make following content longer: [CONTENT]',
+    },
     group: 'label.edit',
+    tips: 'long',
   },
   {
     label: 'ai.make_shorter',
     value: 'make_shorter',
-    icon: 'check_box',
+    icon: 'short_text',
     color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Make following content shorter: [CONTENT]',
+    },
+    tips: 'short',
   },
   {
     label: 'ai.change_tone',
     value: 'change_tone',
-    icon: 'format_list_bulleted',
+    icon: 'invert_colors',
     color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Change tone of the following content to [TONE]: [CONTENT]',
+    },
+    children: [
+      {
+        label: 'ai.tone.formal',
+        value: 'Formal',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.casual',
+        value: 'Casual',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.friendly',
+        value: 'Friendly',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.enthusiastic',
+        value: 'Enthusiastic',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.authoritative',
+        value: 'Authoritative',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.humorous',
+        value: 'Humorous',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.inspirational',
+        value: 'Inspirational',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.empathetic',
+        value: 'Empathetic',
+        icon: 'invert_colors',
+      },
+      {
+        label: 'ai.tone.mysterious',
+        value: 'Mysterious',
+        icon: 'invert_colors',
+      },
+    ] as BlockOption[],
   },
-  {
-    label: 'ai.write',
-    value: 'write',
-    icon: 'format_list_numbered',
-    color: Color.purple,
-    style: true,
-    group: 'label.write',
-  },
+  // {
+  //   label: 'ai.write',
+  //   value: 'write',
+  //   icon: 'format_list_numbered',
+  //   color: Color.purple,
+  //   options: {
+  //     prompt: 'Improve writing of the following content: [CONTENT]',
+  //   },
+  //   tips: 'write',
+  //   group: 'label.write',
+  // },
   {
     label: 'ai.explain',
     value: 'explain',
     icon: 'format_quote_open',
     color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Improve writing of the following content: [CONTENT]',
+    },
+    tips: 'explain',
     group: 'label.think',
   },
 ]
 
 export const AiBlocks: BlockOption[] = [
   {
-    label: 'ai.improve_writing',
-    value: 'improve_writing',
-    icon: 'title', // title, format_paragraph, local_parking
+    label: 'ai.summarize',
+    value: 'summarize',
+    icon: 'notes',
     color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Summarize the following content: [CONTENT]',
+    },
     group: 'label.suggested',
   },
   {
-    label: 'ai.fix_spelling_grammar',
-    value: 'fix_spelling_grammar',
-    icon: 'format_h1',
+    label: 'ai.continuation',
+    value: 'continuation',
+    icon: 'edit_note',
     color: Color.purple,
-    style: true,
-    options: { level: 1 },
-  },
-  {
-    label: 'ai.translate',
-    value: 'translate',
-    icon: 'format_h2',
-    color: Color.purple,
-    style: true,
-    children: [
-      {
-        label: 'language.chinese_simplified',
-        value: 'chinese_simplified',
-        icon: 'language',
-      },
-      {
-        label: 'language.chinese_traditional',
-        value: 'chinese_traditional',
-        icon: 'language',
-      },
-      {
-        label: 'language.german',
-        value: 'german',
-        icon: 'language',
-      },
-      {
-        label: 'language.french',
-        value: 'french',
-        icon: 'language',
-      },
-      {
-        label: 'language.japanese',
-        value: 'japanese',
-        icon: 'language',
-      },
-      {
-        label: 'language.korean',
-        value: 'korean',
-        icon: 'language',
-      },
-    ] as BlockOption[],
-  },
-  {
-    label: 'ai.make_longer',
-    value: 'make_longer',
-    icon: 'format_h3',
-    color: Color.purple,
-    style: true,
-    options: { level: 3 },
-    group: 'label.edit',
-  },
-  {
-    label: 'ai.make_shorter',
-    value: 'make_shorter',
-    icon: 'check_box',
-    color: Color.purple,
-    style: true,
+    options: {
+      prompt: 'Continue writing with the content: [CONTENT]',
+    },
   },
 ]

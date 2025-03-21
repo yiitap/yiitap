@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, type PropType } from 'vue'
+import { onMounted, onUnmounted, ref, watch, type PropType } from 'vue'
 import tippy, { type Instance, type Placement, type Props } from 'tippy.js'
 import 'tippy.js/animations/perspective.css'
 
@@ -67,8 +67,13 @@ function resetTippy() {
 watch(theme, (newValue) => {
   resetTippy()
 })
+
 onMounted(() => {
   initTippy()
+})
+
+onUnmounted(() => {
+  instance.value && instance.value.destroy()
 })
 </script>
 

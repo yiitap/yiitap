@@ -54,6 +54,8 @@ export default defineConfig({
         // '@tiptap/pm',
         // '@tiptap/vue-3',
         '@yiitap/util-emoji',
+        'markdown-it',
+        'openai',
       ],
       output: {
         banner: `
@@ -69,6 +71,8 @@ export default defineConfig({
           // '@tiptap/pm': 'TiptapPm',
           // '@tiptap/vue-3': 'TiptapVue3',
           '@yiitap/util-emoji': 'EmojiUtil',
+          'markdown-it': 'MarkdownIt',
+          openai: 'OpenAi',
         },
       },
     },

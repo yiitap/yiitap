@@ -5,7 +5,7 @@
         class="o-menubar-btn o-command-btn o-btn"
         :class="contentClass"
         :style="contentStyle"
-        @click="emit('click', $event)"
+        @click.stop="onClick"
       >
         <template v-if="loading">
           <div class="spinner"></div>
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { OIcon, OTooltip } from '../index'
 
-defineProps({
+const props = defineProps({
   icon: {
     type: String,
     default: '',
@@ -66,6 +66,12 @@ defineProps({
   },
 })
 const emit = defineEmits(['click'])
+
+function onClick() {
+  if (!props.loading) {
+    emit('click')
+  }
+}
 </script>
 
 <style lang="scss">

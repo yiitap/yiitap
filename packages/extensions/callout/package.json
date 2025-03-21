@@ -34,7 +34,8 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"@tiptap/core": "^2.11.5"
+		"@tiptap/core": "^2.11.5",
+    "@tiptap/pm": "^2.11.5"
 	},
 	"devDependencies": {}
 }

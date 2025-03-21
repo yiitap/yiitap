@@ -24,7 +24,7 @@ export default mergeConfig(
       },
       minify: true,
       rollupOptions: {
-        external: ['@tiptap/core', '@tiptap/pm/model'],
+        external: ['@tiptap/core', '@tiptap/pm/model', '@tiptap/pm/state'],
         output: {
           banner: `
 /**
@@ -36,6 +36,7 @@ export default mergeConfig(
           globals: {
             '@tiptap/core': 'TiptapCore',
             '@tiptap/pm/model': 'TiptapPmModel',
+            '@tiptap/pm/state': 'TiptapPmState',
           },
         },
       },

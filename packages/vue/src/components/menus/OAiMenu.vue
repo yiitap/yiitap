@@ -7,33 +7,39 @@
       content-class=""
     >
       <template #popover-content>
-        <section class="o-scroll">
-          <section class="view-main" v-if="view === 'main'">
+        <div class="o-scroll" v-if="view === 'main'">
+          <section class="view-main">
             <o-block-list
               :items="items"
               @select="onClick"
               :use-keyboard="showPopover"
             />
           </section>
-          <section class="view-output" v-if="view === 'output'">
-            <div class="action-container">
-              <div>
-                <o-icon name="auto_awesome" class="o-tips" />
-              </div>
-              <div class="actions">
-                <o-common-btn
-                  icon="arrow_back"
-                  icon-class="rotate-90"
-                  tooltip="Confirm"
-                  @click="onConfirm"
-                />
-                <o-common-btn icon="close" tooltip="Cancel" @click="onCancel" />
-              </div>
+        </div>
+        <section class="view-output" v-if="view === 'output'">
+          <div class="action-container">
+            <div>
+              <o-icon name="auto_awesome" class="o-tips" />
             </div>
-            <div class="output">
-              {{ output }}
+            <div class="actions">
+              <o-common-btn
+                icon="arrow_back"
+                icon-class="rotate-90"
+                tooltip="Confirm"
+                :loading="generating"
+                @click="onConfirm"
+              />
+              <o-common-btn
+                icon="close"
+                tooltip="Cancel"
+                @click="onCancel"
+                v-if="!generating"
+              />
             </div>
-          </section>
+          </div>
+          <div class="o-scroll" v-if="output">
+            <div class="tiptap output" v-html="output"></div>
+          </div>
         </section>
       </template>
 
@@ -41,9 +47,9 @@
         <o-input
           ref="inputRef"
           class="caption-input"
-          v-model="input"
+          v-model="filterTerm"
           type="text"
-          placeholder="Input caption"
+          :placeholder="tr('ai.askAi')"
           autofocus
           @focus="onInputBlur"
         >
@@ -64,8 +70,12 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Editor } from '@tiptap/core'
-import useI18n from '../../hooks/useI18n'
-import { AskAiBlocks } from '../../constants/block'
+import { useAi, useI18n } from '../../hooks'
+import { AskAiBlocks, Prompts } from '../../constants'
+import { AiMessageChunks } from '../../constants/data'
+import { toJSON } from '../../utils/convert'
+
+import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 
 import {
   OBlockPopover,
@@ -73,6 +83,7 @@ import {
   OCommonBtn,
   OIcon,
   OInput,
+  OToast,
 } from '../../components/index'
 
 const props = defineProps({
@@ -86,16 +97,40 @@ const props = defineProps({
   },
 })
 const emit = defineEmits(['confirm'])
-const { tr } = useI18n()
+
+const { md, aiOption, createStreamingChatCompletion } = useAi()
+const { languageName, tr } = useI18n()
 const inputRef = ref<InstanceType<typeof OInput>>()
 const showPopover = ref(false)
-const input = ref('')
+const filterTerm = ref('')
 const output = ref('')
 const view = ref('main')
+const prompt = ref('')
+const generating = ref(false)
+const isDebug = ref(false)
+
+const systemMessage = computed((): ChatMessage => {
+  const prompt = Prompts.writing.replace('[LANGUAGE]', languageName.value)
+  return {
+    role: 'system',
+    content: prompt,
+  }
+})
+const messages = ref<ChatMessage[]>([
+  {
+    role: 'system',
+    content: 'You are an assistant. Please answer in [LANGUAGE].',
+  },
+])
 
 const items = computed(() => {
-  return AskAiBlocks
+  return AskAiBlocks.filter((item) => item.value.indexOf(filterTerm.value) >= 0)
 })
+
+function getSelectedText() {
+  const { from, to } = props.editor.state.selection
+  return props.editor.state.doc.textBetween(from, to, '')
+}
 
 function onInputBlur() {
   setTimeout(() => {
@@ -104,22 +139,23 @@ function onInputBlur() {
 }
 
 function onClick(item: Indexable, child?: Indexable) {
-  console.log('click', item, child)
   if (child) {
     showPopover.value = true
   }
+  prompt.value = item.options.prompt.replaceAll('[CONTENT]', getSelectedText())
   switch (item.value) {
+    case 'translate':
+      prompt.value = prompt.value.replace('[LANGUAGE]', child.value)
+      break
+    case 'change_tone':
+      prompt.value = prompt.value.replace('[TONE]', child.value)
+      break
     default:
       break
   }
-  view.value = 'output'
-  input.value = tr(item.label)
-  output.value =
-    'A gentleman should constantly strike to become stronger just like the evolution of the universe.\n' +
-    'A gentleman should constantly strike to become stronger just like the evolution of the universe.\n' +
-    'A gentleman should constantly strike to become stronger just like the evolution of the universe.\n' +
-    'A gentleman should constantly strike to become stronger just like the evolution of the universe.\n' +
-    'A gentleman should generously cultivate to become tolerant just like the earth bears everything on it.\n'
+  filterTerm.value = tr(item.label)
+  onGenerate()
+
   return true
 }
 
@@ -129,14 +165,21 @@ function onCancel() {
 }
 
 function onConfirm() {
+  const json = toJSON(output.value)
+  let totalSize = 0
+  for (const nodeJson of json.content) {
+    const newNode = ProseMirrorNode.fromJSON(props.editor.schema, nodeJson)
+    totalSize += newNode.nodeSize
+  }
+
   props.editor
     .chain()
     .focus()
     .deleteSelection()
-    .insertContent(output.value)
+    .insertContent(json.content)
     .setTextSelection({
       from: props.editor.state.selection.from,
-      to: props.editor.state.selection.from + output.value.length,
+      to: props.editor.state.selection.from + totalSize + 1,
     })
     .run()
   reset()
@@ -146,10 +189,62 @@ function onConfirm() {
   }, 0)
 }
 
+function onGenerate() {
+  view.value = 'output'
+  generating.value = true
+
+  if (isDebug.value) {
+    onAiGenerateMock()
+  } else {
+    onAiGenerate()
+  }
+}
+
+async function onAiGenerate() {
+  let aiMessage = ''
+  messages.value.push({ role: 'user', content: prompt.value })
+  if (messages.value[0].role === 'system') {
+    messages.value.shift()
+    messages.value.unshift(systemMessage.value)
+  }
+
+  try {
+    const fullMessage = await createStreamingChatCompletion(
+      messages.value,
+      (chunk) => {
+        aiMessage += chunk
+        messages.value = [
+          ...messages.value.slice(0, -1),
+          { role: 'assistant', content: aiMessage },
+        ]
+        output.value = md.render(aiMessage)
+      }
+    )
+    // messages.value.push({role: 'assistant', content: fullMessage})
+  } catch (e) {
+    // Remove last use message if failed
+    messages.value.pop()
+    console.error(e)
+    OToast.error(tr('ai.error'))
+  }
+  generating.value = false
+}
+
+async function onAiGenerateMock() {
+  let aiMessage = ''
+
+  for (const chunk of AiMessageChunks) {
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    aiMessage += chunk
+    output.value = md.render(aiMessage)
+  }
+  generating.value = false
+}
+
 function reset() {
   view.value = 'main'
   output.value = ''
-  input.value = ''
+  filterTerm.value = ''
 }
 
 onMounted(() => {
@@ -176,7 +271,7 @@ onMounted(() => {
 
 .ai-menu-popover {
   .tippy-content {
-    min-width: 240px !important;
+    min-width: 280px !important;
     max-width: 640px !important;
 
     .popover-content {
@@ -185,10 +280,11 @@ onMounted(() => {
 
     .o-scroll {
       padding: 6px;
-      max-height: 400px !important;
+      max-height: 480px !important;
     }
 
     .view-output {
+      width: 600px;
       padding: 2px;
       text-align: justify;
       .action-container {
@@ -198,12 +294,16 @@ onMounted(() => {
         padding-bottom: 4px;
       }
 
+      .action-container {
+        padding: 6px;
+      }
+
       .actions {
         display: flex;
         align-items: center;
         .o-btn {
           height: 30px;
-          padding: 8px 12px;
+          //padding: 8px 12px;
           margin-left: 4px;
           background: var(--yii-active-bg-color);
         }

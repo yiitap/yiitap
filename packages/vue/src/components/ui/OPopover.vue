@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, type PropType } from 'vue'
+import { onMounted, onUnmounted, ref, watch, type PropType } from 'vue'
 import tippy from 'tippy.js'
 import type { Instance, Props, Placement } from 'tippy.js'
 import 'tippy.js/animations/scale.css'
@@ -146,12 +146,16 @@ watch(theme, (newValue) => {
   resetTippy()
 })
 
+defineExpose({
+  setShow,
+})
+
 onMounted(() => {
   initTippy()
 })
 
-defineExpose({
-  setShow,
+onUnmounted(() => {
+  instance.value && instance.value.destroy()
 })
 </script>
 

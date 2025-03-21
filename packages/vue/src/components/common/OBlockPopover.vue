@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, type PropType } from 'vue'
+import { ref, watch, onMounted, onUnmounted, type PropType } from 'vue'
 import { OPopover } from '../index'
 
 const props = defineProps({
@@ -85,6 +85,10 @@ onMounted(() => {
   if (props.modelValue) {
     popover.value?.setShow(true)
   }
+})
+
+onUnmounted(() => {
+  popover.value?.setShow(false)
 })
 </script>
 

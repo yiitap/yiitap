@@ -1,5 +1,6 @@
-import { Node, mergeAttributes } from '@tiptap/core'
+import { Node, findParentNode, mergeAttributes } from '@tiptap/core'
 import { Node as ProseMirrorNode } from '@tiptap/pm/model'
+import { TextSelection } from '@tiptap/pm/state'
 
 export interface AiBlockOptions {
   HTMLAttributes: Record<string, any>
@@ -45,6 +46,9 @@ export const AiBlock = Node.create<AiBlockOptions>({
 
   addAttributes() {
     return {
+      provider: {
+        default: '',
+      },
       prompt: {
         default: '',
       },
@@ -107,6 +111,31 @@ export const AiBlock = Node.create<AiBlockOptions>({
             return false
           }
         },
+    }
+  },
+
+  addKeyboardShortcuts() {
+    return {
+      'Mod-a': ({ editor }) => {
+        const { state, view } = editor
+        const { selection, tr } = state
+        const { $from } = selection
+        const node = $from.node(-1) // Get current node（-1 表示获取最近的块级节点）
+
+        if (node?.type.name === this.name) {
+          // Compute the selection of inner aiBlock
+          const start = $from.start(-1) + 1
+          const end = $from.end(-1) - 1
+          const newSelection = TextSelection.create(tr.doc, start, end)
+
+          // Apply select
+          tr.setSelection(newSelection)
+          view.dispatch(tr)
+          return true // Prevents the default behavior
+        }
+
+        return false // Use default behavior
+      },
     }
   },
 })

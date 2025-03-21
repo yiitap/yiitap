@@ -19,6 +19,7 @@ export { default as OMenubarBtn } from './common/OMenubarBtn.vue'
 export { default as OTableGrid } from './common/OTableGrid.vue'
 export { default as OTableCellBackground } from './common/OTableCellBackground.vue'
 export { default as OTextColorBoard } from './common/OTextColorBoard.vue'
+export { OToast } from './common/OToast'
 
 // Node
 export { default as ONodeView } from './common/ONodeView.vue'
