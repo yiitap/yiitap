@@ -42,7 +42,7 @@
     >
       <n-drawer-content title="Yii Editor" closable>
         <n-form ref="form" label-placement="left" label-width="auto">
-          <h3>通用</h3>
+          <h3>General</h3>
           <n-divider />
           <n-form-item label="Language">
             <n-radio-group v-model:value="locale" name="radiogroup1">
