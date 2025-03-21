@@ -1,5 +1,30 @@
 # @yiitap/vue
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: integrate AI
+
+### Patch Changes
+
+- Updated dependencies
+  - @yiitap/extension-ai-block@1.3.0
+  - @yiitap/util-emoji@1.3.0
+  - @yiitap/vue@1.3.0
+  - @yiitap/core@1.3.0
+  - @yiitap/extension-callout@1.3.0
+  - @yiitap/extension-char-command@1.3.0
+  - @yiitap/extension-color-highlighter@1.3.0
+  - @yiitap/extension-focus@1.3.0
+  - @yiitap/extension-image@1.3.0
+  - @yiitap/extension-placeholder@1.3.0
+  - @yiitap/extension-table@1.3.0
+  - @yiitap/extension-table-wrapper@1.3.0
+  - @yiitap/extension-trailing-node@1.3.0
+  - @yiitap/extension-unique-id@1.3.0
+  - @yiitap/extension-video@1.3.0
+
 ## 1.2.4
 
 ### Patch Changes

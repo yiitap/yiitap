@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-color-highlighter",
 	"description": "Color highlighter extension",
-	"version": "1.2.4",
+	"version": "1.3.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -12,14 +12,14 @@
 	"type": "module",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
+	"types": "dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"files": [
 		"dist",
 		"src"

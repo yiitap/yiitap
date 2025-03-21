@@ -1,5 +1,17 @@
 # app-vue
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: integrate AI
+
+### Patch Changes
+
+- Updated dependencies
+  - @yiitap/util-emoji@1.3.0
+  - @yiitap/vue@1.3.0
+
 ## 1.2.4
 
 ### Patch Changes
