@@ -71,7 +71,9 @@ export const DefaultExtensionNames = [
   'TextAlign',
   'Typography',
   'Underline',
+
   'OHorizontalRule',
+  'OSelectionDecoration',
   'OUniqueID',
 ]
 

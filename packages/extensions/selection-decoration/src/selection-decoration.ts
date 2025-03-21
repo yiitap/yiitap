@@ -33,9 +33,13 @@ export const SelectionDecoration = Extension.create({
             }
 
             if (hasSelection && decoTransform?.action === ACTION_TYPES.BLUR) {
-              const decoration = Decoration.inline(selection.from, selection.to, {
-                class: 'selection-decoration-blur',
-              })
+              const decoration = Decoration.inline(
+                selection.from,
+                selection.to,
+                {
+                  class: 'selection-decoration-blur',
+                }
+              )
 
               return DecorationSet.create(doc, [decoration])
             }
@@ -49,7 +53,7 @@ export const SelectionDecoration = Extension.create({
             return this.getState(state)
           },
           handleDOMEvents: {
-            blur: view => {
+            blur: (view) => {
               const { tr } = view.state
 
               const transaction = tr.setMeta(NAME, {
@@ -61,7 +65,7 @@ export const SelectionDecoration = Extension.create({
               view.dispatch(transaction)
             },
 
-            focus: view => {
+            focus: (view) => {
               const { tr } = view.state
 
               const transaction = tr.setMeta(NAME, {
