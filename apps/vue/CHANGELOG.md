@@ -1,5 +1,14 @@
 # app-vue
 
+## 1.3.1
+
+### Patch Changes
+
+- 74e6a82: feat: selection-decoration
+- Updated dependencies [74e6a82]
+  - @yiitap/vue@1.3.1
+  - @yiitap/util-emoji@1.3.1
+
 ## 1.3.0
 
 ### Minor Changes

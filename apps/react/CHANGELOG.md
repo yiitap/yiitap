@@ -1,5 +1,11 @@
 # app-react
 
+## 1.3.1
+
+### Patch Changes
+
+- @yiitap/react@1.3.1
+
 ## 1.3.0
 
 ### Patch Changes

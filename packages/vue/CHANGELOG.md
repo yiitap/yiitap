@@ -1,5 +1,28 @@
 # @yiitap/vue
 
+## 1.3.1
+
+### Patch Changes
+
+- 74e6a82: feat: selection-decoration
+- Updated dependencies [74e6a82]
+  - @yiitap/vue@1.3.1
+  - @yiitap/extension-selection-decoration@1.3.1
+  - @yiitap/core@1.3.1
+  - @yiitap/extension-ai-block@1.3.1
+  - @yiitap/extension-callout@1.3.1
+  - @yiitap/extension-char-command@1.3.1
+  - @yiitap/extension-color-highlighter@1.3.1
+  - @yiitap/extension-focus@1.3.1
+  - @yiitap/extension-image@1.3.1
+  - @yiitap/extension-placeholder@1.3.1
+  - @yiitap/extension-table@1.3.1
+  - @yiitap/extension-table-wrapper@1.3.1
+  - @yiitap/extension-trailing-node@1.3.1
+  - @yiitap/extension-unique-id@1.3.1
+  - @yiitap/extension-video@1.3.1
+  - @yiitap/util-emoji@1.3.1
+
 ## 1.3.0
 
 ### Minor Changes
