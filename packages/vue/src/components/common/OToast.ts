@@ -1,24 +1,5 @@
-// toast.ts
 import tippy from 'tippy.js'
 import type { Instance, Props } from 'tippy.js'
-// import 'tippy.js/dist/tippy.css'
-
-// 创建全局容器
-const toastContainer = document.createElement('div')
-toastContainer.className = 'global-toast-container'
-document.body.appendChild(toastContainer)
-
-// Tippy 配置
-const defaultConfig: Partial<Props> = {
-  arrow: false,
-  allowHTML: true,
-  placement: 'bottom',
-  theme: 'toast-theme',
-  trigger: 'manual',
-  appendTo: toastContainer,
-  animation: 'shift-away',
-  duration: 500,
-}
 
 class ToastManager {
   private instances: Instance[] = []
@@ -51,8 +32,15 @@ class ToastManager {
       </div>
     `
 
-    const instance = tippy(toastContainer, {
-      ...defaultConfig,
+    const instance = tippy(document.body, {
+      arrow: false,
+      allowHTML: true,
+      placement: 'top',
+      theme: 'toast-theme',
+      trigger: 'manual',
+      appendTo: () => document.body,
+      animation: 'shift-away',
+      duration: 500,
       content: template,
       onHidden: (instance) => {
         instance.destroy()
@@ -74,11 +62,10 @@ class ToastManager {
     this.instances.forEach((instance, index) => {
       instance.setProps({
         placement: 'bottom',
-        offset: [0, index * 55], // 每个 toast 间隔 55px
+        offset: [0, index * 55],
       })
     })
   }
 }
 
-// 全局实例
 export const OToast = new ToastManager()
