@@ -240,6 +240,15 @@ importers:
         specifier: ^2.11.5
         version: 2.11.5
 
+  packages/extensions/selection-decoration:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^2.11.5
+        version: 2.11.5(@tiptap/pm@2.11.5)
+      '@tiptap/pm':
+        specifier: ^2.11.5
+        version: 2.11.5
+
   packages/extensions/table:
     dependencies:
       '@tiptap/core':
@@ -461,6 +470,9 @@ importers:
       '@yiitap/extension-placeholder':
         specifier: workspace:*
         version: link:../extensions/placeholder
+      '@yiitap/extension-selection-decoration':
+        specifier: workspace:*
+        version: link:../extensions/selection-decoration
       '@yiitap/extension-table':
         specifier: workspace:*
         version: link:../extensions/table

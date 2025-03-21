@@ -536,6 +536,16 @@
 			border-radius: 4px;
 		}
 	}
+
+  //  selection
+  // --------------------------------------------------
+  .selection-decoration-blur {
+    background: #ACCEF7;
+  }
+
+  .ProseMirror *::selection {
+    //background: #ACCEF7!important;
+  }
 }
 
 //  table resizer

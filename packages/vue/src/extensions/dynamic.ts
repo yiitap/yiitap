@@ -39,6 +39,7 @@ import {
   OImage,
   OLink,
   OParagraph,
+  OSelectionDecoration,
   OSlashCommand,
   OSlashZhCommand,
   OTable,
@@ -101,6 +102,7 @@ const classes: Indexable = {
     openOnClick: false,
   }),
   OParagraph,
+  OSelectionDecoration,
   OTrailingNode,
   // OColumnExtension: ColumnExtension,
   OUniqueID: OUniqueID.configure({

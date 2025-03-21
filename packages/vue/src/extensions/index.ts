@@ -27,9 +27,11 @@ import Text from '@tiptap/extension-text'
 import OColorHighlighter from '@yiitap/extension-color-highlighter'
 import OFocus from '@yiitap/extension-focus'
 import OPlaceholder from '@yiitap/extension-placeholder'
+import OSelectionDecoration from '@yiitap/extension-selection-decoration'
 import OTable from '@yiitap/extension-table'
 import OTrailingNode from '@yiitap/extension-trailing-node'
 import OUniqueID from '@yiitap/extension-unique-id'
+
 import OCharCommand from '@yiitap/extension-char-command'
 import {
   ColonCommand as OColonCommand,
@@ -69,7 +71,9 @@ export const DefaultExtensionNames = [
   'TextAlign',
   'Typography',
   'Underline',
+
   'OHorizontalRule',
+  'OSelectionDecoration',
   'OUniqueID',
 ]
 
@@ -118,6 +122,7 @@ export const YiitapExtensionNames = [
   // 'OKatexInline',
   'OLink',
   'OParagraph',
+  'OSelectionDecoration',
   'OSlash',
   'OSlashZh',
   'OTableWrapper',
@@ -158,6 +163,7 @@ export const BuiltinExtensions = [
   OImage,
   OParagraph,
   OPlaceholder,
+  OSelectionDecoration,
   OTable,
   OTableCell,
   OTableHeader,
@@ -194,6 +200,7 @@ export {
   OColonCommand,
   OColorHighlighter,
   OFocus,
+  OSelectionDecoration,
   OSlashCommand,
   OSlashZhCommand,
   OHeading,
