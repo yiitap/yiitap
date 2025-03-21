@@ -2,7 +2,7 @@
   <section class="o-doc-toc toc" v-if="headings.length">
     <o-popover
       ref="popover"
-      content-class="o-toc-popover"
+      tippy-class="o-toc-popover"
       placement="left-start"
       :offset="[0, -50]"
       :delay="0"
@@ -186,7 +186,7 @@ defineExpose({
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .toc {
   .mini-view {
     border-radius: 4px;
@@ -273,9 +273,14 @@ defineExpose({
   }
 }
 
-.o-toc-popover .main-view {
-  min-width: 180px;
-  max-height: 600px;
-  padding: 6px;
+.o-toc-popover {
+  .popover-content {
+    padding: 2px !important;
+  }
+  .main-view {
+    min-width: 240px;
+    max-height: 600px;
+    padding: 10px;
+  }
 }
 </style>

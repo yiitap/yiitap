@@ -78,7 +78,7 @@ const showAi = ref(false)
 const aiConfirmed = ref(false)
 const options = ref({
   duration: 100,
-  placement: 'bottom' as 'bottom' | 'top',
+  placement: 'top-start' as 'bottom' | 'top',
   role: 'popover',
   trigger: 'manual',
   arrow: false,

@@ -354,7 +354,8 @@ onMounted(() => {
   .o-doc-toc {
     position: absolute;
 
-    right: 20px;
+    top: 116px;
+    right: 10px;
   }
 }
 
