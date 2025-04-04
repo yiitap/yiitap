@@ -294,13 +294,11 @@ function buildExtensions() {
   if (props.title) {
     extensions.push(
       Document.extend({
-        content: 'heading block*'
+        content: 'heading block*',
       })
     )
   } else {
-    extensions.push(
-      Document
-    )
+    extensions.push(Document)
   }
   extensions.push(
     OPlaceholder.configure({

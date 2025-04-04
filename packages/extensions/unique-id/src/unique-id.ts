@@ -34,7 +34,7 @@ export const UniqueID = Node.create({
             },
             toJSON: (value: string | null) => {
               return this.options.enableInJSON ? value : undefined
-            }
+            },
           },
         },
       },
