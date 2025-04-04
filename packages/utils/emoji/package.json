@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/util-emoji",
 	"description": "Yiitap emoji functions",
-	"version": "1.3.1",
+	"version": "0.3.1",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
