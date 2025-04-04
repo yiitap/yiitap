@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["./env.d.ts", "./*", "./*.vue"],
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "types",
+    "allowJs": false,
+    "baseUrl": "./",
+    "rootDir": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
