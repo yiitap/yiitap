@@ -3,7 +3,7 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var require_index_001 = __commonJS({
-  "assets/index-rQwz67C4.js"(exports, module) {
+  "assets/index-Baq_VeTu.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -22724,7 +22724,7 @@ ${style2}
       }
       return true;
     }
-    let Xe = class Pl {
+    let Ze = class Pl {
       /**
       @internal
       */
@@ -22829,7 +22829,7 @@ ${style2}
         return n.sort((r, o) => r.type.rank - o.type.rank), n;
       }
     };
-    Xe.none = [];
+    Ze.none = [];
     class Is extends Error {
     }
     class K {
@@ -23127,7 +23127,7 @@ ${style2}
       marks() {
         let e = this.parent, n = this.index();
         if (e.content.size == 0)
-          return Xe.none;
+          return Ze.none;
         if (this.textOffset)
           return e.child(n).marks;
         let r = e.maybeChild(n - 1), o = e.maybeChild(n);
@@ -23294,7 +23294,7 @@ ${style2}
       /**
       @internal
       */
-      constructor(e, n, r, o = Xe.none) {
+      constructor(e, n, r, o = Ze.none) {
         this.type = e, this.attrs = n, this.marks = o, this.content = r || R.empty;
       }
       /**
@@ -23408,7 +23408,7 @@ ${style2}
       attributes, and marks.
       */
       hasMarkup(e, n, r) {
-        return this.type == e && Rs(this.attrs, n || e.defaultAttrs || vb) && Xe.sameSet(this.marks, r || Xe.none);
+        return this.type == e && Rs(this.attrs, n || e.defaultAttrs || vb) && Ze.sameSet(this.marks, r || Ze.none);
       }
       /**
       Create a new node with the same markup as this node, containing
@@ -23618,12 +23618,12 @@ ${style2}
       */
       check() {
         this.type.checkContent(this.content), this.type.checkAttrs(this.attrs);
-        let e = Xe.none;
+        let e = Ze.none;
         for (let n = 0; n < this.marks.length; n++) {
           let r = this.marks[n];
           r.type.checkAttrs(r.attrs), e = r.addToSet(e);
         }
-        if (!Xe.sameSet(e, this.marks))
+        if (!Ze.sameSet(e, this.marks))
           throw new RangeError(`Invalid collection of marks for node ${this.type.name}: ${this.marks.map((n) => n.type.name)}`);
         this.content.forEach((n) => n.check());
       }
@@ -24166,7 +24166,7 @@ ${style2}
       create(e = null, n, r) {
         if (this.isText)
           throw new Error("NodeType.create can't construct text nodes");
-        return new Mr(this, this.computeAttrs(e), R.from(n), Xe.setFrom(r));
+        return new Mr(this, this.computeAttrs(e), R.from(n), Ze.setFrom(r));
       }
       /**
       Like [`create`](https://prosemirror.net/docs/ref/#model.NodeType.create), but check the given content
@@ -24174,7 +24174,7 @@ ${style2}
       if it doesn't match.
       */
       createChecked(e = null, n, r) {
-        return n = R.from(n), this.checkContent(n), new Mr(this, this.computeAttrs(e), n, Xe.setFrom(r));
+        return n = R.from(n), this.checkContent(n), new Mr(this, this.computeAttrs(e), n, Ze.setFrom(r));
       }
       /**
       Like [`create`](https://prosemirror.net/docs/ref/#model.NodeType.create), but see if it is
@@ -24192,7 +24192,7 @@ ${style2}
           n = s.append(n);
         }
         let o = this.contentMatch.matchFragment(n), i = o && o.fillBefore(R.empty, true);
-        return i ? new Mr(this, e, n.append(i), Xe.setFrom(r)) : null;
+        return i ? new Mr(this, e, n.append(i), Ze.setFrom(r)) : null;
       }
       /**
       Returns true if the given fragment is valid content for this node
@@ -24248,7 +24248,7 @@ ${style2}
         let n;
         for (let r = 0; r < e.length; r++)
           this.allowsMarkType(e[r].type) ? n && n.push(e[r]) : n || (n = e.slice(0, r));
-        return n ? n.length ? n : Xe.none : e;
+        return n ? n.length ? n : Ze.none : e;
       }
       /**
       @internal
@@ -24289,7 +24289,7 @@ ${style2}
       constructor(e, n, r, o) {
         this.name = e, this.rank = n, this.schema = r, this.spec = o, this.attrs = kp(e, o.attrs), this.excluded = null;
         let i = yp(this.attrs);
-        this.instance = i ? new Xe(this, i) : null;
+        this.instance = i ? new Ze(this, i) : null;
       }
       /**
       Create a mark of this type. `attrs` may be `null` or an object
@@ -24297,7 +24297,7 @@ ${style2}
       they have defaults, will be added.
       */
       create(e = null) {
-        return !e && this.instance ? this.instance : new Xe(this, vp(this.attrs, e));
+        return !e && this.instance ? this.instance : new Ze(this, vp(this.attrs, e));
       }
       /**
       @internal
@@ -24388,7 +24388,7 @@ ${style2}
       */
       text(e, n) {
         let r = this.nodes.text;
-        return new Ps(r, r.defaultAttrs, e, Xe.setFrom(n));
+        return new Ps(r, r.defaultAttrs, e, Ze.setFrom(n));
       }
       /**
       Create a mark with the given type and attributes.
@@ -24408,7 +24408,7 @@ ${style2}
       bound.
       */
       markFromJSON(e) {
-        return Xe.fromJSON(this, e);
+        return Ze.fromJSON(this, e);
       }
       /**
       @internal
@@ -24469,7 +24469,7 @@ ${style2}
       */
       parse(e, n = {}) {
         let r = new Hu(this, n, false);
-        return r.addAll(e, Xe.none, n.from, n.to), r.finish();
+        return r.addAll(e, Ze.none, n.from, n.to), r.finish();
       }
       /**
       Parses the content of the given DOM node, like
@@ -24481,7 +24481,7 @@ ${style2}
       */
       parseSlice(e, n = {}) {
         let r = new Hu(this, n, true);
-        return r.addAll(e, Xe.none, n.from, n.to), K.maxOpen(r.finish());
+        return r.addAll(e, Ze.none, n.from, n.to), K.maxOpen(r.finish());
       }
       /**
       @internal
@@ -24603,7 +24603,7 @@ ${style2}
     }
     class Zi {
       constructor(e, n, r, o, i, s) {
-        this.type = e, this.attrs = n, this.marks = r, this.solid = o, this.options = s, this.content = [], this.activeMarks = Xe.none, this.match = i || (s & ws ? null : e.contentMatch);
+        this.type = e, this.attrs = n, this.marks = r, this.solid = o, this.options = s, this.content = [], this.activeMarks = Ze.none, this.match = i || (s & ws ? null : e.contentMatch);
       }
       findWrapping(e) {
         if (!this.match) {
@@ -24638,7 +24638,7 @@ ${style2}
       constructor(e, n, r) {
         this.parser = e, this.options = n, this.isOpen = r, this.open = 0, this.localPreserveWS = false;
         let o = n.topNode, i, s = zu(null, n.preserveWhitespace, 0) | (r ? ws : 0);
-        o ? i = new Zi(o.type, o.attrs, Xe.none, true, n.topMatch || o.type.contentMatch, s) : r ? i = new Zi(null, null, Xe.none, true, null, s) : i = new Zi(e.schema.topNodeType, null, Xe.none, true, null, s), this.nodes = [i], this.find = n.findPositions, this.needsBlock = false;
+        o ? i = new Zi(o.type, o.attrs, Ze.none, true, n.topMatch || o.type.contentMatch, s) : r ? i = new Zi(null, null, Ze.none, true, null, s) : i = new Zi(e.schema.topNodeType, null, Ze.none, true, null, s), this.nodes = [i], this.find = n.findPositions, this.needsBlock = false;
       }
       get top() {
         return this.nodes[this.open];
@@ -24788,7 +24788,7 @@ ${style2}
           this.closeExtra();
           let o = this.top;
           o.match && (o.match = o.match.matchType(e.type));
-          let i = Xe.none;
+          let i = Ze.none;
           for (let s of r.concat(e.marks))
             (o.type ? o.type.allowsMarkType(s.type) : Vu(s.type, e.type)) && (i = s.addToSet(i));
           return o.content.push(e.mark(i)), true;
@@ -24808,7 +24808,7 @@ ${style2}
         s.match = s.match && s.match.matchType(e);
         let a = zu(e, i, s.options);
         s.options & ws && s.content.length == 0 && (a |= ws);
-        let l = Xe.none;
+        let l = Ze.none;
         return r = r.filter((c2) => (s.type ? s.type.allowsMarkType(c2.type) : Vu(c2.type, e)) ? (l = c2.addToSet(l), false) : true), this.nodes.push(new Zi(e, n, l, o, null, a)), this.open++, r;
       }
       // Make sure all nodes above this.open are finished and added to
@@ -26556,7 +26556,7 @@ ${style2}
       position `pos`.
       */
       removeNodeMark(e, n) {
-        if (!(n instanceof Xe)) {
+        if (!(n instanceof Ze)) {
           let r = this.doc.nodeAt(e);
           if (!r)
             throw new RangeError("No node at position " + e);
@@ -27039,7 +27039,7 @@ ${style2}
       this is already the case.
       */
       ensureMarks(e) {
-        return Xe.sameSet(this.storedMarks || this.selection.$from.marks(), e) || this.setStoredMarks(e), this;
+        return Ze.sameSet(this.storedMarks || this.selection.$from.marks(), e) || this.setStoredMarks(e), this;
       }
       /**
       Add a mark to the set of stored marks.
@@ -27084,7 +27084,7 @@ ${style2}
       */
       replaceSelectionWith(e, n = true) {
         let r = this.selection;
-        return n && (e = e.mark(this.storedMarks || (r.empty ? r.$from.marks() : r.$from.marksAcross(r.$to) || Xe.none))), r.replaceWith(this, e), this;
+        return n && (e = e.mark(this.storedMarks || (r.empty ? r.$from.marks() : r.$from.marksAcross(r.$to) || Ze.none))), r.replaceWith(this, e), this;
       }
       /**
       Delete the selection.
@@ -27388,7 +27388,7 @@ ${style2}
     function Hp(t2) {
       return t2 in sl ? t2 + "$" + ++sl[t2] : (sl[t2] = 0, t2 + "$");
     }
-    class Ze {
+    class Xe {
       /**
       Create a plugin key.
       */
@@ -28350,7 +28350,7 @@ ${style2}
       updateChildren(e, n) {
         let r = this.node.inlineContent, o = n, i = e.composing ? this.localCompositionInfo(e, n) : null, s = i && i.pos > -1 ? i : null, a = i && i.pos < 0, l = new Py(this, s && s.node, e);
         Fy(this.node, this.innerDeco, (c2, u, d) => {
-          c2.spec.marks ? l.syncToMarks(c2.spec.marks, r, e) : c2.type.side >= 0 && !d && l.syncToMarks(u == this.node.childCount ? Xe.none : this.node.child(u).marks, r, e), l.placeWidget(c2, e, o);
+          c2.spec.marks ? l.syncToMarks(c2.spec.marks, r, e) : c2.type.side >= 0 && !d && l.syncToMarks(u == this.node.childCount ? Ze.none : this.node.child(u).marks, r, e), l.placeWidget(c2, e, o);
         }, (c2, u, d, f) => {
           l.syncToMarks(c2.marks, r, e);
           let p2;
@@ -32644,7 +32644,7 @@ ${style2}
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("clipboardTextSerializer"),
+            key: new Xe("clipboardTextSerializer"),
             props: {
               clipboardTextSerializer: () => {
                 const { editor: t2 } = this, { state: e, schema: n } = t2, { doc: r, selection: o } = e, { ranges: i } = o, s = Math.min(...i.map((u) => u.$from.pos)), a = Math.max(...i.map((u) => u.$to.pos)), l = Kc(n);
@@ -33627,7 +33627,7 @@ ${style2}
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("tiptapDrop"),
+            key: new Xe("tiptapDrop"),
             props: {
               handleDrop: (t2, e, n, r) => {
                 this.editor.emit("drop", {
@@ -33646,7 +33646,7 @@ ${style2}
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("editable"),
+            key: new Xe("editable"),
             props: {
               editable: () => this.editor.options.editable
             }
@@ -33659,7 +33659,7 @@ ${style2}
         const { editor: t2 } = this;
         return [
           new Ue({
-            key: new Ze("focusEvents"),
+            key: new Xe("focusEvents"),
             props: {
               handleDOMEvents: {
                 focus: (e, n) => {
@@ -33732,7 +33732,7 @@ ${style2}
           // This is an alternative to ProseMirror's `AllSelection`, which doesn’t work well
           // with many other commands.
           new Ue({
-            key: new Ze("clearDocument"),
+            key: new Xe("clearDocument"),
             appendTransaction: (t2, e, n) => {
               if (t2.some((m) => m.getMeta("composition")))
                 return;
@@ -33760,7 +33760,7 @@ ${style2}
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("tiptapPaste"),
+            key: new Xe("tiptapPaste"),
             props: {
               handlePaste: (t2, e, n) => {
                 this.editor.emit("paste", {
@@ -33778,7 +33778,7 @@ ${style2}
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("tabindex"),
+            key: new Xe("tabindex"),
             props: {
               attributes: () => this.editor.isEditable ? { tabindex: "0" } : {}
             }
@@ -36291,7 +36291,7 @@ img.ProseMirror-separator {
       }
     }
     const hm = (t2) => new Ue({
-      key: typeof t2.pluginKey == "string" ? new Ze(t2.pluginKey) : t2.pluginKey,
+      key: typeof t2.pluginKey == "string" ? new Xe(t2.pluginKey) : t2.pluginKey,
       view: (e) => new Fw({ view: e, ...t2 })
     });
     Ke.create({
@@ -36386,7 +36386,7 @@ img.ProseMirror-separator {
       }
     }
     const mm = (t2) => new Ue({
-      key: typeof t2.pluginKey == "string" ? new Ze(t2.pluginKey) : t2.pluginKey,
+      key: typeof t2.pluginKey == "string" ? new Xe(t2.pluginKey) : t2.pluginKey,
       view: (e) => new zw({ view: e, ...t2 })
     });
     Ke.create({
@@ -37141,7 +37141,7 @@ img.ProseMirror-separator {
           // this plugin creates a code block for pasted content from VS Code
           // we can also detect the copied code language
           new Ue({
-            key: new Ze("codeBlockVSCodeHandler"),
+            key: new Xe("codeBlockVSCodeHandler"),
             props: {
               handlePaste: (t2, e) => {
                 if (!e.clipboardData || this.editor.isActive(this.type.name))
@@ -37865,7 +37865,7 @@ img.ProseMirror-separator {
       }
       return wl;
     }
-    const no = new Ze("history"), S_ = new Ze("closeHistory");
+    const no = new Xe("history"), S_ = new Xe("closeHistory");
     function C_(t2 = {}) {
       return t2 = {
         depth: t2.depth || 100,
@@ -43908,7 +43908,7 @@ img.ProseMirror-separator {
         pos: n
       };
     }
-    const Js = new Ze("sideMenu");
+    const Js = new Xe("sideMenu");
     class Ex {
       constructor() {
         Ge(this, "hovered", false);
@@ -44234,7 +44234,93 @@ img.ProseMirror-separator {
           }, 8, ["class", "editor", "tippy-options"])
         ])) : createCommentVNode("", true);
       }
-    }), Ax = /* @__PURE__ */ defineComponent({
+    });
+    /**
+     *  Copyright 2025 Yiitap 
+     *  @license MIT
+    **/
+    const yf = (t2) => {
+      const e = /(#[0-9a-f]{3,6})\b/gi, n = [];
+      return t2.descendants((r, o) => {
+        r.text && Array.from(r.text.matchAll(e)).forEach((i) => {
+          const s = i[0], a = i.index || 0, l = o + a, c2 = l + s.length, u = ht.inline(l, c2, {
+            class: "color",
+            style: `--color: ${s}`
+          });
+          n.push(u);
+        });
+      }), He.create(t2, n);
+    }, Ax = Ke.create({
+      name: "colorHighlighter",
+      addProseMirrorPlugins() {
+        return [
+          new Ue({
+            key: new Xe("colorHighlighter"),
+            state: {
+              init(t2, { doc: e }) {
+                return yf(e);
+              },
+              apply(t2, e) {
+                return t2.docChanged ? yf(t2.doc) : e;
+              }
+            },
+            props: {
+              decorations(t2) {
+                return this.getState(t2);
+              }
+            }
+          })
+        ];
+      }
+    });
+    /**
+     *  Copyright 2025 Yiitap 
+     *  @license MIT
+    **/
+    Ke.create({
+      name: "focus",
+      addOptions() {
+        return {
+          className: "has-focus",
+          mode: "all"
+        };
+      },
+      addProseMirrorPlugins() {
+        return [
+          new Ue({
+            key: new Xe("focus"),
+            props: {
+              decorations: ({ doc: t2, selection: e }) => {
+                const { isEditable: n, isFocused: r } = this.editor, { anchor: o } = e, i = [];
+                if (!n || !r)
+                  return He.create(t2, []);
+                let s = 0;
+                this.options.mode === "deepest" && t2.descendants((l, c2) => {
+                  if (!l.isText) {
+                    if (!(o >= c2 && o <= c2 + l.nodeSize - 1))
+                      return false;
+                    s += 1;
+                  }
+                });
+                let a = 0;
+                return t2.descendants((l, c2) => {
+                  if (l.isText || !(o >= c2 && o <= c2 + l.nodeSize - 1))
+                    return false;
+                  if (a += 1, this.options.mode === "deepest" && s - a > 0 || this.options.mode === "shallowest" && a > 1)
+                    return this.options.mode === "deepest";
+                  i.push(
+                    ht.node(c2, c2 + l.nodeSize, {
+                      class: this.options.className
+                    })
+                  );
+                }), He.create(t2, i);
+              }
+            }
+          })
+        ];
+      }
+    });
+    const Mx = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -44248,17 +44334,17 @@ img.ProseMirror-separator {
           _: 1
         }, 16));
       }
-    }), Mx = ym.extend({
+    }), Rx = ym.extend({
       draggable: true,
       addNodeView() {
-        return Ln(Ax);
+        return Ln(Mx);
       }
     });
     /**
      *  Copyright 2025 Yiitap 
      *  @license MIT
     **/
-    const Rx = st.create({
+    const Ix = st.create({
       name: "callout",
       group: "block",
       content: "block+",
@@ -44308,7 +44394,7 @@ img.ProseMirror-separator {
           unsetCallout: () => ({ commands: t2 }) => t2.lift(this.name)
         };
       }
-    }), Ix = { class: "callout-container" }, Dx = { class: "callout-icon" }, Lx = { class: "callout-content" }, Px = /* @__PURE__ */ defineComponent({
+    }), Dx = { class: "callout-container" }, Lx = { class: "callout-icon" }, Px = { class: "callout-content" }, Bx = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -44368,9 +44454,9 @@ img.ProseMirror-separator {
           onContextmenu: withModifiers(h2, ["prevent"])
         }), {
           default: withCtx(() => [
-            createBaseVNode("div", Ix, [
-              createBaseVNode("div", Dx, toDisplayString(g.node.attrs.icon), 1),
-              createBaseVNode("div", Lx, [
+            createBaseVNode("div", Dx, [
+              createBaseVNode("div", Lx, toDisplayString(g.node.attrs.icon), 1),
+              createBaseVNode("div", Px, [
                 createVNode(unref(hr))
               ]),
               createVNode(unref(au), {
@@ -44388,12 +44474,12 @@ img.ProseMirror-separator {
           _: 1
         }, 16, ["style"]));
       }
-    }), Bx = Rx.extend({
+    }), $x = Ix.extend({
       addNodeView() {
-        return Ln(Px);
+        return Ln(Bx);
       }
     });
-    function $x(t2) {
+    function Fx(t2) {
       return t2 && t2.__esModule && Object.prototype.hasOwnProperty.call(t2, "default") ? t2.default : t2;
     }
     function $m(t2) {
@@ -44406,7 +44492,7 @@ img.ProseMirror-separator {
         (r === "object" || r === "function") && !Object.isFrozen(n) && $m(n);
       }), t2;
     }
-    class yf {
+    class vf {
       /**
        * @param {CompiledMode} mode
        */
@@ -44430,7 +44516,7 @@ img.ProseMirror-separator {
       }), /** @type {T} */
       n;
     }
-    const Fx = "</span>", vf = (t2) => !!t2.scope, zx = (t2, { prefix: e }) => {
+    const zx = "</span>", Ef = (t2) => !!t2.scope, Hx = (t2, { prefix: e }) => {
       if (t2.startsWith("language:"))
         return t2.replace("language:", "language-");
       if (t2.includes(".")) {
@@ -44442,7 +44528,7 @@ img.ProseMirror-separator {
       }
       return `${e}${t2}`;
     };
-    class Hx {
+    class Ux {
       /**
        * Creates a new HTMLRenderer
        *
@@ -44464,8 +44550,8 @@ img.ProseMirror-separator {
        *
        * @param {Node} node */
       openNode(e) {
-        if (!vf(e)) return;
-        const n = zx(
+        if (!Ef(e)) return;
+        const n = Hx(
           e.scope,
           { prefix: this.classPrefix }
         );
@@ -44476,7 +44562,7 @@ img.ProseMirror-separator {
        *
        * @param {Node} node */
       closeNode(e) {
-        vf(e) && (this.buffer += Fx);
+        Ef(e) && (this.buffer += zx);
       }
       /**
        * returns the accumulated buffer
@@ -44493,13 +44579,13 @@ img.ProseMirror-separator {
         this.buffer += `<span class="${e}">`;
       }
     }
-    const Ef = (t2 = {}) => {
+    const kf = (t2 = {}) => {
       const e = { children: [] };
       return Object.assign(e, t2), e;
     };
     class du {
       constructor() {
-        this.rootNode = Ef(), this.stack = [this.rootNode];
+        this.rootNode = kf(), this.stack = [this.rootNode];
       }
       get top() {
         return this.stack[this.stack.length - 1];
@@ -44513,7 +44599,7 @@ img.ProseMirror-separator {
       }
       /** @param {string} scope */
       openNode(e) {
-        const n = Ef({ scope: e });
+        const n = kf({ scope: e });
         this.add(n), this.stack.push(n);
       }
       closeNode() {
@@ -44549,7 +44635,7 @@ img.ProseMirror-separator {
         }));
       }
     }
-    class Ux extends du {
+    class Vx extends du {
       /**
        * @param {*} options
        */
@@ -44578,7 +44664,7 @@ img.ProseMirror-separator {
         n && (r.scope = `language:${n}`), this.add(r);
       }
       toHTML() {
-        return new Hx(this, this.options).value();
+        return new Ux(this, this.options).value();
       }
       finalize() {
         return this.closeAllNodes(), true;
@@ -44590,30 +44676,30 @@ img.ProseMirror-separator {
     function zm(t2) {
       return mo("(?=", t2, ")");
     }
-    function Vx(t2) {
+    function Wx(t2) {
       return mo("(?:", t2, ")*");
     }
-    function Wx(t2) {
+    function Kx(t2) {
       return mo("(?:", t2, ")?");
     }
     function mo(...t2) {
       return t2.map((n) => Mi(n)).join("");
     }
-    function Kx(t2) {
+    function qx(t2) {
       const e = t2[t2.length - 1];
       return typeof e == "object" && e.constructor === Object ? (t2.splice(t2.length - 1, 1), e) : {};
     }
     function fu(...t2) {
-      return "(" + (Kx(t2).capture ? "" : "?:") + t2.map((r) => Mi(r)).join("|") + ")";
+      return "(" + (qx(t2).capture ? "" : "?:") + t2.map((r) => Mi(r)).join("|") + ")";
     }
     function Hm(t2) {
       return new RegExp(t2.toString() + "|").exec("").length - 1;
     }
-    function qx(t2, e) {
+    function Gx(t2, e) {
       const n = t2 && t2.exec(e);
       return n && n.index === 0;
     }
-    const Gx = /\[(?:[^\\\]]|\\.)*\]|\(\??|\\([1-9][0-9]*)|\\./;
+    const jx = /\[(?:[^\\\]]|\\.)*\]|\(\??|\\([1-9][0-9]*)|\\./;
     function pu(t2, { joinWith: e }) {
       let n = 0;
       return t2.map((r) => {
@@ -44621,7 +44707,7 @@ img.ProseMirror-separator {
         const o = n;
         let i = Mi(r), s = "";
         for (; i.length > 0; ) {
-          const a = Gx.exec(i);
+          const a = jx.exec(i);
           if (!a) {
             s += i;
             break;
@@ -44631,7 +44717,7 @@ img.ProseMirror-separator {
         return s;
       }).map((r) => `(${r})`).join(e);
     }
-    const jx = /\b\B/, Um = "[a-zA-Z]\\w*", hu = "[a-zA-Z_]\\w*", Vm = "\\b\\d+(\\.\\d+)?", Wm = "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)", Km = "\\b(0b[01]+)", Yx = "!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~", Jx = (t2 = {}) => {
+    const Yx = /\b\B/, Um = "[a-zA-Z]\\w*", hu = "[a-zA-Z_]\\w*", Vm = "\\b\\d+(\\.\\d+)?", Wm = "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)", Km = "\\b(0b[01]+)", Jx = "!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~", Xx = (t2 = {}) => {
       const e = /^#![ ]*\//;
       return t2.binary && (t2.begin = mo(
         e,
@@ -44651,19 +44737,19 @@ img.ProseMirror-separator {
     }, Ri = {
       begin: "\\\\[\\s\\S]",
       relevance: 0
-    }, Xx = {
+    }, Zx = {
       scope: "string",
       begin: "'",
       end: "'",
       illegal: "\\n",
       contains: [Ri]
-    }, Zx = {
+    }, Qx = {
       scope: "string",
       begin: '"',
       end: '"',
       illegal: "\\n",
       contains: [Ri]
-    }, Qx = {
+    }, eT = {
       begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
     }, Wa = function(t2, e, n = {}) {
       const r = Ar(
@@ -44731,19 +44817,19 @@ img.ProseMirror-separator {
           // look for 3 words in a row
         }
       ), r;
-    }, eT = Wa("//", "$"), tT = Wa("/\\*", "\\*/"), nT = Wa("#", "$"), rT = {
+    }, tT = Wa("//", "$"), nT = Wa("/\\*", "\\*/"), rT = Wa("#", "$"), oT = {
       scope: "number",
       begin: Vm,
       relevance: 0
-    }, oT = {
+    }, iT = {
       scope: "number",
       begin: Wm,
       relevance: 0
-    }, iT = {
+    }, sT = {
       scope: "number",
       begin: Km,
       relevance: 0
-    }, sT = {
+    }, aT = {
       scope: "regexp",
       begin: /\/(?=[^/\n]*\/)/,
       end: /\/[gimuy]*/,
@@ -44756,19 +44842,19 @@ img.ProseMirror-separator {
           contains: [Ri]
         }
       ]
-    }, aT = {
+    }, lT = {
       scope: "title",
       begin: Um,
       relevance: 0
-    }, lT = {
+    }, cT = {
       scope: "title",
       begin: hu,
       relevance: 0
-    }, cT = {
+    }, uT = {
       // excludes method names from keyword processing
       begin: "\\.\\s*" + hu,
       relevance: 0
-    }, uT = function(t2) {
+    }, dT = function(t2) {
       return Object.assign(
         t2,
         {
@@ -44785,53 +44871,53 @@ img.ProseMirror-separator {
     };
     var as = /* @__PURE__ */ Object.freeze({
       __proto__: null,
-      APOS_STRING_MODE: Xx,
+      APOS_STRING_MODE: Zx,
       BACKSLASH_ESCAPE: Ri,
-      BINARY_NUMBER_MODE: iT,
+      BINARY_NUMBER_MODE: sT,
       BINARY_NUMBER_RE: Km,
       COMMENT: Wa,
-      C_BLOCK_COMMENT_MODE: tT,
-      C_LINE_COMMENT_MODE: eT,
-      C_NUMBER_MODE: oT,
+      C_BLOCK_COMMENT_MODE: nT,
+      C_LINE_COMMENT_MODE: tT,
+      C_NUMBER_MODE: iT,
       C_NUMBER_RE: Wm,
-      END_SAME_AS_BEGIN: uT,
-      HASH_COMMENT_MODE: nT,
+      END_SAME_AS_BEGIN: dT,
+      HASH_COMMENT_MODE: rT,
       IDENT_RE: Um,
-      MATCH_NOTHING_RE: jx,
-      METHOD_GUARD: cT,
-      NUMBER_MODE: rT,
+      MATCH_NOTHING_RE: Yx,
+      METHOD_GUARD: uT,
+      NUMBER_MODE: oT,
       NUMBER_RE: Vm,
-      PHRASAL_WORDS_MODE: Qx,
-      QUOTE_STRING_MODE: Zx,
-      REGEXP_MODE: sT,
-      RE_STARTERS_RE: Yx,
-      SHEBANG: Jx,
-      TITLE_MODE: aT,
+      PHRASAL_WORDS_MODE: eT,
+      QUOTE_STRING_MODE: Qx,
+      REGEXP_MODE: aT,
+      RE_STARTERS_RE: Jx,
+      SHEBANG: Xx,
+      TITLE_MODE: lT,
       UNDERSCORE_IDENT_RE: hu,
-      UNDERSCORE_TITLE_MODE: lT
+      UNDERSCORE_TITLE_MODE: cT
     });
-    function dT(t2, e) {
+    function fT(t2, e) {
       t2.input[t2.index - 1] === "." && e.ignoreMatch();
     }
-    function fT(t2, e) {
+    function pT(t2, e) {
       t2.className !== void 0 && (t2.scope = t2.className, delete t2.className);
     }
-    function pT(t2, e) {
-      e && t2.beginKeywords && (t2.begin = "\\b(" + t2.beginKeywords.split(" ").join("|") + ")(?!\\.)(?=\\b|\\s)", t2.__beforeBegin = dT, t2.keywords = t2.keywords || t2.beginKeywords, delete t2.beginKeywords, t2.relevance === void 0 && (t2.relevance = 0));
-    }
     function hT(t2, e) {
-      Array.isArray(t2.illegal) && (t2.illegal = fu(...t2.illegal));
+      e && t2.beginKeywords && (t2.begin = "\\b(" + t2.beginKeywords.split(" ").join("|") + ")(?!\\.)(?=\\b|\\s)", t2.__beforeBegin = fT, t2.keywords = t2.keywords || t2.beginKeywords, delete t2.beginKeywords, t2.relevance === void 0 && (t2.relevance = 0));
     }
     function mT(t2, e) {
+      Array.isArray(t2.illegal) && (t2.illegal = fu(...t2.illegal));
+    }
+    function gT(t2, e) {
       if (t2.match) {
         if (t2.begin || t2.end) throw new Error("begin & end are not supported with match");
         t2.begin = t2.match, delete t2.match;
       }
     }
-    function gT(t2, e) {
+    function bT(t2, e) {
       t2.relevance === void 0 && (t2.relevance = 1);
     }
-    const bT = (t2, e) => {
+    const yT = (t2, e) => {
       if (!t2.beforeMatch) return;
       if (t2.starts) throw new Error("beforeMatch cannot be used with starts");
       const n = Object.assign({}, t2);
@@ -44843,7 +44929,7 @@ img.ProseMirror-separator {
           Object.assign(n, { endsParent: true })
         ]
       }, t2.relevance = 0, delete n.beforeMatch;
-    }, yT = [
+    }, vT = [
       "of",
       "and",
       "for",
@@ -44858,8 +44944,8 @@ img.ProseMirror-separator {
       // common variable name
       "value"
       // common variable name
-    ], vT = "keyword";
-    function qm(t2, e, n = vT) {
+    ], ET = "keyword";
+    function qm(t2, e, n = ET) {
       const r = /* @__PURE__ */ Object.create(null);
       return typeof t2 == "string" ? o(n, t2.split(" ")) : Array.isArray(t2) ? o(n, t2) : Object.keys(t2).forEach(function(i) {
         Object.assign(
@@ -44870,22 +44956,22 @@ img.ProseMirror-separator {
       function o(i, s) {
         e && (s = s.map((a) => a.toLowerCase())), s.forEach(function(a) {
           const l = a.split("|");
-          r[l[0]] = [i, ET(l[0], l[1])];
+          r[l[0]] = [i, kT(l[0], l[1])];
         });
       }
     }
-    function ET(t2, e) {
-      return e ? Number(e) : kT(t2) ? 0 : 1;
+    function kT(t2, e) {
+      return e ? Number(e) : wT(t2) ? 0 : 1;
     }
-    function kT(t2) {
-      return yT.includes(t2.toLowerCase());
+    function wT(t2) {
+      return vT.includes(t2.toLowerCase());
     }
-    const kf = {}, oo = (t2) => {
+    const wf = {}, oo = (t2) => {
       console.error(t2);
-    }, wf = (t2, ...e) => {
+    }, _f = (t2, ...e) => {
       console.log(`WARN: ${t2}`, ...e);
     }, vo = (t2, e) => {
-      kf[`${t2}/${e}`] || (console.log(`Deprecated as of ${t2}. ${e}`), kf[`${t2}/${e}`] = true);
+      wf[`${t2}/${e}`] || (console.log(`Deprecated as of ${t2}. ${e}`), wf[`${t2}/${e}`] = true);
     }, Xs = new Error();
     function Gm(t2, e, { key: n }) {
       let r = 0;
@@ -44894,7 +44980,7 @@ img.ProseMirror-separator {
         s[a + r] = o[a], i[a + r] = true, r += Hm(e[a - 1]);
       t2[n] = s, t2[n]._emit = i, t2[n]._multi = true;
     }
-    function wT(t2) {
+    function _T(t2) {
       if (Array.isArray(t2.begin)) {
         if (t2.skip || t2.excludeBegin || t2.returnBegin)
           throw oo("skip, excludeBegin, returnBegin not compatible with beginScope: {}"), Xs;
@@ -44903,7 +44989,7 @@ img.ProseMirror-separator {
         Gm(t2, t2.begin, { key: "beginScope" }), t2.begin = pu(t2.begin, { joinWith: "" });
       }
     }
-    function _T(t2) {
+    function ST(t2) {
       if (Array.isArray(t2.end)) {
         if (t2.skip || t2.excludeEnd || t2.returnEnd)
           throw oo("skip, excludeEnd, returnEnd not compatible with endScope: {}"), Xs;
@@ -44912,13 +44998,13 @@ img.ProseMirror-separator {
         Gm(t2, t2.end, { key: "endScope" }), t2.end = pu(t2.end, { joinWith: "" });
       }
     }
-    function ST(t2) {
+    function CT(t2) {
       t2.scope && typeof t2.scope == "object" && t2.scope !== null && (t2.beginScope = t2.scope, delete t2.scope);
     }
-    function CT(t2) {
-      ST(t2), typeof t2.beginScope == "string" && (t2.beginScope = { _wrap: t2.beginScope }), typeof t2.endScope == "string" && (t2.endScope = { _wrap: t2.endScope }), wT(t2), _T(t2);
-    }
     function xT(t2) {
+      CT(t2), typeof t2.beginScope == "string" && (t2.beginScope = { _wrap: t2.beginScope }), typeof t2.endScope == "string" && (t2.endScope = { _wrap: t2.endScope }), _T(t2), ST(t2);
+    }
+    function TT(t2) {
       function e(s, a) {
         return new RegExp(
           Mi(s),
@@ -44991,26 +45077,26 @@ img.ProseMirror-separator {
         );
         if (s.isCompiled) return l;
         [
-          fT,
+          pT,
           // do this early so compiler extensions generally don't have to worry about
           // the distinction between match/begin
-          mT,
-          CT,
-          bT
+          gT,
+          xT,
+          yT
         ].forEach((u) => u(s, a)), t2.compilerExtensions.forEach((u) => u(s, a)), s.__beforeBegin = null, [
-          pT,
+          hT,
           // do this later so compiler extensions that come earlier have access to the
           // raw array if they wanted to perhaps manipulate it, etc.
-          hT,
+          mT,
           // default to 1 relevance if not specified
-          gT
+          bT
         ].forEach((u) => u(s, a)), s.isCompiled = true;
         let c2 = null;
         return typeof s.keywords == "object" && s.keywords.$pattern && (s.keywords = Object.assign({}, s.keywords), c2 = s.keywords.$pattern, delete s.keywords.$pattern), c2 = c2 || /\w+/, s.keywords && (s.keywords = qm(s.keywords, t2.case_insensitive)), l.keywordPatternRe = e(c2, true), a && (s.begin || (s.begin = /\B|\b/), l.beginRe = e(l.begin), !s.end && !s.endsWithParent && (s.end = /\B|\b/), s.end && (l.endRe = e(l.end)), l.terminatorEnd = Mi(l.end) || "", s.endsWithParent && a.terminatorEnd && (l.terminatorEnd += (s.end ? "|" : "") + a.terminatorEnd)), s.illegal && (l.illegalRe = e(
           /** @type {RegExp | string} */
           s.illegal
         )), s.contains || (s.contains = []), s.contains = [].concat(...s.contains.map(function(u) {
-          return TT(u === "self" ? s : u);
+          return OT(u === "self" ? s : u);
         })), s.contains.forEach(function(u) {
           i(
             /** @type Mode */
@@ -45029,18 +45115,18 @@ img.ProseMirror-separator {
     function jm(t2) {
       return t2 ? t2.endsWithParent || jm(t2.starts) : false;
     }
-    function TT(t2) {
+    function OT(t2) {
       return t2.variants && !t2.cachedVariants && (t2.cachedVariants = t2.variants.map(function(e) {
         return Ar(t2, { variants: null }, e);
       })), t2.cachedVariants ? t2.cachedVariants : jm(t2) ? Ar(t2, { starts: t2.starts ? Ar(t2.starts) : null }) : Object.isFrozen(t2) ? Ar(t2) : t2;
     }
-    var OT = "11.10.0";
-    class NT extends Error {
+    var NT = "11.10.0";
+    class AT extends Error {
       constructor(e, n) {
         super(e), this.name = "HTMLInjectionError", this.html = n;
       }
     }
-    const Sl = Fm, _f = Ar, Sf = Symbol("nomatch"), AT = 7, Ym = function(t2) {
+    const Sl = Fm, Sf = Ar, Cf = Symbol("nomatch"), MT = 7, Ym = function(t2) {
       const e = /* @__PURE__ */ Object.create(null), n = /* @__PURE__ */ Object.create(null), r = [];
       let o = true;
       const i = "Could not find the language '{}', did you forget to load/include a language module?", s = { disableAutodetect: true, name: "Plain text", contains: [] };
@@ -45054,7 +45140,7 @@ img.ProseMirror-separator {
         languages: null,
         // beta configuration options, subject to change, welcome to discuss
         // https://github.com/highlightjs/highlight.js/issues/1086
-        __emitter: Ux
+        __emitter: Vx
       };
       function l(N) {
         return a.noHighlightRe.test(N);
@@ -45065,7 +45151,7 @@ img.ProseMirror-separator {
         const Y = a.languageDetectRe.exec(D);
         if (Y) {
           const oe = L(Y[1]);
-          return oe || (wf(i.replace("{}", Y[1])), wf("Falling back to no-highlight mode for this block.", N)), oe ? Y[1] : "no-highlight";
+          return oe || (_f(i.replace("{}", Y[1])), _f("Falling back to no-highlight mode for this block.", N)), oe ? Y[1] : "no-highlight";
         }
         return D.split(/\s+/).find((oe) => l(oe) || L(oe));
       }
@@ -45099,7 +45185,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
             const Ie = ve.case_insensitive ? J[0].toLowerCase() : J[0], gt = Se(le, Ie);
             if (gt) {
               const [an, qo] = gt;
-              if (qe.addText(we), we = "", ce[Ie] = (ce[Ie] || 0) + 1, ce[Ie] <= AT && (Wt += qo), an.startsWith("_"))
+              if (qe.addText(we), we = "", ce[Ie] = (ce[Ie] || 0) + 1, ce[Ie] <= MT && (Wt += qo), an.startsWith("_"))
                 we += J[0];
               else {
                 const O = ve.classNameAliases[an] || an;
@@ -45147,10 +45233,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           return H.scope && typeof H.scope == "string" && qe.openNode(ve.classNameAliases[H.scope] || H.scope), H.beginScope && (H.beginScope._wrap ? (et(Re, ve.classNameAliases[H.beginScope._wrap] || H.beginScope._wrap), Re = "") : H.beginScope._multi && (on2(H.beginScope, J), Re = "")), le = Object.create(H, { parent: { value: le } }), le;
         }
         function hn(H, J, we) {
-          let Ie = qx(H.endRe, we);
+          let Ie = Gx(H.endRe, we);
           if (Ie) {
             if (H["on:end"]) {
-              const gt = new yf(H);
+              const gt = new vf(H);
               H["on:end"](J, gt), gt.isMatchIgnored && (Ie = false);
             }
             if (Ie) {
@@ -45166,7 +45252,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           return le.matcher.regexIndex === 0 ? (Re += H[0], 1) : (Kt = true, 0);
         }
         function mn(H) {
-          const J = H[0], we = H.rule, Ie = new yf(we), gt = [we.__beforeBegin, we["on:begin"]];
+          const J = H[0], we = H.rule, Ie = new vf(we), gt = [we.__beforeBegin, we["on:begin"]];
           for (const an of gt)
             if (an && (an(H, Ie), Ie.isMatchIgnored))
               return At(J);
@@ -45175,7 +45261,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         function $n(H) {
           const J = H[0], we = D.substring(H.index), Ie = hn(le, H, we);
           if (!Ie)
-            return Sf;
+            return Cf;
           const gt = le;
           le.endScope && le.endScope._wrap ? (ze(), et(J, le.endScope._wrap)) : le.endScope && le.endScope._multi ? (ze(), on2(le.endScope, H)) : gt.skip ? Re += J : (gt.returnEnd || gt.excludeEnd || (Re += J), ze(), gt.excludeEnd && (Re = J));
           do
@@ -45208,7 +45294,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
             throw Ie.mode = le, Ie;
           } else if (J.type === "end") {
             const Ie = $n(J);
-            if (Ie !== Sf)
+            if (Ie !== Cf)
               return Ie;
           }
           if (J.type === "illegal" && we === "")
@@ -45220,7 +45306,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         const ve = L(N);
         if (!ve)
           throw oo(i.replace("{}", N)), new Error('Unknown language: "' + N + '"');
-        const Xt = xT(ve);
+        const Xt = TT(ve);
         let Bt = "", le = oe || Xt;
         const Vt = {}, qe = new a.__emitter(a);
         On();
@@ -45319,7 +45405,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           return;
         }
         if (N.children.length > 0 && (a.ignoreUnescapedHTML || (console.warn("One of your code blocks includes unescaped HTML. This is a potentially serious security risk."), console.warn("https://github.com/highlightjs/highlight.js/wiki/security"), console.warn("The element with unescaped HTML:"), console.warn(N)), a.throwUnescapedHTML))
-          throw new NT(
+          throw new AT(
             "One of your code blocks includes unescaped HTML.",
             N.innerHTML
           );
@@ -45336,7 +45422,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         }), pe("after:highlightElement", { el: N, result: ce, text: oe });
       }
       function g(N) {
-        a = _f(a, N);
+        a = Sf(a, N);
       }
       const b = () => {
         v(), vo("10.6.0", "initHighlighting() deprecated.  Use highlightAll() now.");
@@ -45432,29 +45518,29 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         getLanguage: L,
         registerAliases: W,
         autoDetection: te,
-        inherit: _f,
+        inherit: Sf,
         addPlugin: ke,
         removePlugin: Ee
       }), t2.debugMode = function() {
         o = false;
       }, t2.safeMode = function() {
         o = true;
-      }, t2.versionString = OT, t2.regex = {
+      }, t2.versionString = NT, t2.regex = {
         concat: mo,
         lookahead: zm,
         either: fu,
-        optional: Wx,
-        anyNumberOfTimes: Vx
+        optional: Kx,
+        anyNumberOfTimes: Wx
       };
       for (const N in as)
         typeof as[N] == "object" && $m(as[N]);
       return Object.assign(t2, as), t2;
     }, zo = Ym({});
     zo.newInstance = () => Ym({});
-    var MT = zo;
+    var RT = zo;
     zo.HighlightJS = zo;
     zo.default = zo;
-    var RT = /* @__PURE__ */ $x(MT);
+    var IT = /* @__PURE__ */ Fx(RT);
     function Jm(t2, e = []) {
       return t2.map((n) => {
         const r = [...e, ...n.properties ? n.properties.className : []];
@@ -45464,18 +45550,18 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         };
       }).flat();
     }
-    function Cf(t2) {
+    function xf(t2) {
       return t2.value || t2.children || [];
     }
-    function IT(t2) {
-      return !!RT.getLanguage(t2);
+    function DT(t2) {
+      return !!IT.getLanguage(t2);
     }
-    function xf({ doc: t2, name: e, lowlight: n, defaultLanguage: r }) {
+    function Tf({ doc: t2, name: e, lowlight: n, defaultLanguage: r }) {
       const o = [];
       return ec(t2, (i) => i.type.name === e).forEach((i) => {
         var s;
         let a = i.pos + 1;
-        const l = i.node.attrs.language || r, c2 = n.listLanguages(), u = l && (c2.includes(l) || IT(l) || !((s = n.registered) === null || s === void 0) && s.call(n, l)) ? Cf(n.highlight(l, i.node.textContent)) : Cf(n.highlightAuto(i.node.textContent));
+        const l = i.node.attrs.language || r, c2 = n.listLanguages(), u = l && (c2.includes(l) || DT(l) || !((s = n.registered) === null || s === void 0) && s.call(n, l)) ? xf(n.highlight(l, i.node.textContent)) : xf(n.highlightAuto(i.node.textContent));
         Jm(u).forEach((d) => {
           const f = a + d.text.length;
           if (d.classes.length) {
@@ -45488,16 +45574,16 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         });
       }), He.create(t2, o);
     }
-    function DT(t2) {
+    function LT(t2) {
       return typeof t2 == "function";
     }
-    function LT({ name: t2, lowlight: e, defaultLanguage: n }) {
-      if (!["highlight", "highlightAuto", "listLanguages"].every((o) => DT(e[o])))
+    function PT({ name: t2, lowlight: e, defaultLanguage: n }) {
+      if (!["highlight", "highlightAuto", "listLanguages"].every((o) => LT(e[o])))
         throw Error("You should provide an instance of lowlight to use the code-block-lowlight extension");
       const r = new Ue({
-        key: new Ze("lowlight"),
+        key: new Xe("lowlight"),
         state: {
-          init: (o, { doc: i }) => xf({
+          init: (o, { doc: i }) => Tf({
             doc: i,
             name: t2,
             lowlight: e,
@@ -45511,7 +45597,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
                 // @ts-ignore
                 p2.pos >= f.from && p2.pos + p2.node.nodeSize <= f.to
               ))
-            ))) ? xf({
+            ))) ? Tf({
               doc: o.doc,
               name: t2,
               lowlight: e,
@@ -45527,7 +45613,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       });
       return r;
     }
-    const PT = vm.extend({
+    const BT = vm.extend({
       addOptions() {
         var t2;
         return {
@@ -45544,7 +45630,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         var t2;
         return [
           ...((t2 = this.parent) === null || t2 === void 0 ? void 0 : t2.call(this)) || [],
-          LT({
+          PT({
             name: this.name,
             lowlight: this.options.lowlight,
             defaultLanguage: this.options.defaultLanguage
@@ -45552,7 +45638,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ];
       }
     });
-    function BT(t2) {
+    function $T(t2) {
       const e = t2.regex, n = t2.COMMENT("//", "$", { contains: [{ begin: /\\\n/ }] }), r = "decltype\\(auto\\)", o = "[a-zA-Z_]\\w*::", s = "(?!struct)(" + r + "|" + e.optional(o) + "[a-zA-Z_]\\w*" + e.optional("<[^<>]+>") + ")", a = {
         className: "type",
         begin: "\\b[a-z\\d_]*_t\\b"
@@ -46070,7 +46156,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         )
       };
     }
-    function $T(t2) {
+    function FT(t2) {
       const e = {
         type: [
           "boolean",
@@ -46436,7 +46522,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           "HIGH",
           "LOW"
         ]
-      }, n = BT(t2), r = (
+      }, n = $T(t2), r = (
         /** @type {Record<string,any>} */
         n.keywords
       );
@@ -46451,7 +46537,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ...e.built_in
       ], r._hints = e._hints, n.name = "Arduino", n.aliases = ["ino"], n.supersetOf = "cpp", n;
     }
-    function FT(t2) {
+    function zT(t2) {
       const e = t2.regex, n = {}, r = {
         begin: /\$\{/,
         end: /\}/,
@@ -46825,7 +46911,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function zT(t2) {
+    function HT(t2) {
       const e = t2.regex, n = t2.COMMENT("//", "$", { contains: [{ begin: /\\\n/ }] }), r = "decltype\\(auto\\)", o = "[a-zA-Z_]\\w*::", s = "(" + r + "|" + e.optional(o) + "[a-zA-Z_]\\w*" + e.optional("<[^<>]+>") + ")", a = {
         className: "type",
         variants: [
@@ -47099,7 +47185,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         }
       };
     }
-    function HT(t2) {
+    function UT(t2) {
       const e = t2.regex, n = t2.COMMENT("//", "$", { contains: [{ begin: /\\\n/ }] }), r = "decltype\\(auto\\)", o = "[a-zA-Z_]\\w*::", s = "(?!struct)(" + r + "|" + e.optional(o) + "[a-zA-Z_]\\w*" + e.optional("<[^<>]+>") + ")", a = {
         className: "type",
         begin: "\\b[a-z\\d_]*_t\\b"
@@ -47617,7 +47703,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         )
       };
     }
-    function UT(t2) {
+    function VT(t2) {
       const e = [
         "bool",
         "byte",
@@ -47996,7 +48082,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    const VT = (t2) => ({
+    const WT = (t2) => ({
       IMPORTANT: {
         scope: "meta",
         begin: "!important"
@@ -48029,7 +48115,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         className: "attr",
         begin: /--[A-Za-z_][A-Za-z0-9_-]*/
       }
-    }), WT = [
+    }), KT = [
       "a",
       "abbr",
       "address",
@@ -48107,7 +48193,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "ul",
       "var",
       "video"
-    ], KT = [
+    ], qT = [
       "defs",
       "g",
       "marker",
@@ -48149,10 +48235,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "tspan",
       "foreignObject",
       "clipPath"
-    ], qT = [
-      ...WT,
-      ...KT
     ], GT = [
+      ...KT,
+      ...qT
+    ], jT = [
       "any-hover",
       "any-pointer",
       "aspect-ratio",
@@ -48187,7 +48273,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "max-width",
       "min-height",
       "max-height"
-    ].sort().reverse(), jT = [
+    ].sort().reverse(), YT = [
       "active",
       "any-link",
       "blank",
@@ -48261,7 +48347,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "visited",
       "where"
       // where()
-    ].sort().reverse(), YT = [
+    ].sort().reverse(), JT = [
       "after",
       "backdrop",
       "before",
@@ -48276,7 +48362,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "selection",
       "slotted",
       "spelling-error"
-    ].sort().reverse(), JT = [
+    ].sort().reverse(), XT = [
       "accent-color",
       "align-content",
       "align-items",
@@ -48793,8 +48879,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "z-index",
       "zoom"
     ].sort().reverse();
-    function XT(t2) {
-      const e = t2.regex, n = VT(t2), r = { begin: /-(webkit|moz|ms|o)-(?=[a-z])/ }, o = "and or not only", i = /@-?\w[\w]*(-\w+)*/, s = "[a-zA-Z-][a-zA-Z0-9_-]*", a = [
+    function ZT(t2) {
+      const e = t2.regex, n = WT(t2), r = { begin: /-(webkit|moz|ms|o)-(?=[a-z])/ }, o = "and or not only", i = /@-?\w[\w]*(-\w+)*/, s = "[a-zA-Z-][a-zA-Z0-9_-]*", a = [
         t2.APOS_STRING_MODE,
         t2.QUOTE_STRING_MODE
       ];
@@ -48828,8 +48914,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           {
             className: "selector-pseudo",
             variants: [
-              { begin: ":(" + jT.join("|") + ")" },
-              { begin: ":(:)?(" + YT.join("|") + ")" }
+              { begin: ":(" + YT.join("|") + ")" },
+              { begin: ":(:)?(" + JT.join("|") + ")" }
             ]
           },
           // we may actually need this (12/2020)
@@ -48841,7 +48927,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           n.CSS_VARIABLE,
           {
             className: "attribute",
-            begin: "\\b(" + JT.join("|") + ")\\b"
+            begin: "\\b(" + XT.join("|") + ")\\b"
           },
           // attribute values
           {
@@ -48896,7 +48982,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
                 keywords: {
                   $pattern: /[a-z-]+/,
                   keyword: o,
-                  attribute: GT.join(" ")
+                  attribute: jT.join(" ")
                 },
                 contains: [
                   {
@@ -48911,12 +48997,12 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           },
           {
             className: "selector-tag",
-            begin: "\\b(" + qT.join("|") + ")\\b"
+            begin: "\\b(" + GT.join("|") + ")\\b"
           }
         ]
       };
     }
-    function ZT(t2) {
+    function QT(t2) {
       const e = t2.regex;
       return {
         name: "Diff",
@@ -48967,7 +49053,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function QT(t2) {
+    function e1(t2) {
       const i = {
         keyword: [
           "break",
@@ -49115,7 +49201,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function e1(t2) {
+    function t1(t2) {
       const e = t2.regex, n = /[_A-Za-z][_0-9A-Za-z]*/;
       return {
         name: "GraphQL",
@@ -49182,7 +49268,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function t1(t2) {
+    function n1(t2) {
       const e = t2.regex, n = {
         className: "number",
         relevance: 0,
@@ -49286,7 +49372,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    var _o = "[0-9](_*[0-9])*", ls = `\\.(${_o})`, cs = "[0-9a-fA-F](_*[0-9a-fA-F])*", Tf = {
+    var _o = "[0-9](_*[0-9])*", ls = `\\.(${_o})`, cs = "[0-9a-fA-F](_*[0-9a-fA-F])*", Of = {
       className: "number",
       variants: [
         // DecimalFloatingPointLiteral
@@ -49312,7 +49398,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
     function Xm(t2, e, n) {
       return n === -1 ? "" : t2.replace(e, (r) => Xm(t2, e, n - 1));
     }
-    function n1(t2) {
+    function r1(t2) {
       const e = t2.regex, n = "[À-ʸa-zA-Z_$][À-ʸa-zA-Z_$0-9]*", r = n + Xm("(?:<" + n + "~~~(?:\\s*,\\s*" + n + "~~~)*>)?", /~~~/g, 2), l = {
         keyword: [
           "synchronized",
@@ -49510,7 +49596,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
                   c2,
                   t2.APOS_STRING_MODE,
                   t2.QUOTE_STRING_MODE,
-                  Tf,
+                  Of,
                   t2.C_BLOCK_COMMENT_MODE
                 ]
               },
@@ -49518,12 +49604,12 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
               t2.C_BLOCK_COMMENT_MODE
             ]
           },
-          Tf,
+          Of,
           c2
         ]
       };
     }
-    const Of = "[A-Za-z$_][0-9A-Za-z$_]*", r1 = [
+    const Nf = "[A-Za-z$_][0-9A-Za-z$_]*", o1 = [
       "as",
       // for exports
       "in",
@@ -49568,7 +49654,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "extends",
       // It's reached stage 3, which is "recommended for implementation":
       "using"
-    ], o1 = [
+    ], i1 = [
       "true",
       "false",
       "null",
@@ -49652,7 +49738,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "encodeURIComponent",
       "escape",
       "unescape"
-    ], i1 = [
+    ], s1 = [
       "arguments",
       "this",
       "super",
@@ -49664,16 +49750,16 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "module",
       "global"
       // Node.js
-    ], s1 = [].concat(
+    ], a1 = [].concat(
       eg,
       Zm,
       Qm
     );
-    function a1(t2) {
+    function l1(t2) {
       const e = t2.regex, n = (D, { after: Y }) => {
         const oe = "</" + D[0].slice(1);
         return D.input.indexOf(oe, Y) !== -1;
-      }, r = Of, o = {
+      }, r = Nf, o = {
         begin: "<>",
         end: "</>"
       }, i = /<[A-Za-z0-9\\._:-]+\s*\/>/, s = {
@@ -49709,11 +49795,11 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           }
         }
       }, a = {
-        $pattern: Of,
-        keyword: r1,
-        literal: o1,
-        built_in: s1,
-        "variable.language": i1
+        $pattern: Nf,
+        keyword: o1,
+        literal: i1,
+        built_in: a1,
+        "variable.language": s1
       }, l = "[0-9](_?[0-9])*", c2 = `\\.(${l})`, u = "0|[1-9](_?[0-9])*|0[0-7]*[89][0-9]*", d = {
         className: "number",
         variants: [
@@ -50178,7 +50264,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function l1(t2) {
+    function c1(t2) {
       const e = {
         className: "attr",
         begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
@@ -50213,7 +50299,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         illegal: "\\S"
       };
     }
-    var So = "[0-9](_*[0-9])*", us = `\\.(${So})`, ds = "[0-9a-fA-F](_*[0-9a-fA-F])*", c1 = {
+    var So = "[0-9](_*[0-9])*", us = `\\.(${So})`, ds = "[0-9a-fA-F](_*[0-9a-fA-F])*", u1 = {
       className: "number",
       variants: [
         // DecimalFloatingPointLiteral
@@ -50236,7 +50322,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       ],
       relevance: 0
     };
-    function u1(t2) {
+    function d1(t2) {
       const e = {
         keyword: "abstract as val var vararg get set class object open private protected public noinline crossinline dynamic final enum if else do while for when throw try catch finally import package is in fun override companion reified inline lateinit init interface annotation data sealed internal infix operator out by constructor super tailrec where const inner suspend typealias external expect actual",
         built_in: "Byte Short Char Int Long Boolean Float Double Void Unit Nothing",
@@ -50310,7 +50396,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
             ]
           }
         ]
-      }, c2 = c1, u = t2.COMMENT(
+      }, c2 = u1, u = t2.COMMENT(
         "/\\*",
         "\\*/",
         { contains: [t2.C_BLOCK_COMMENT_MODE] }
@@ -50452,7 +50538,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    const d1 = (t2) => ({
+    const f1 = (t2) => ({
       IMPORTANT: {
         scope: "meta",
         begin: "!important"
@@ -50485,7 +50571,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         className: "attr",
         begin: /--[A-Za-z_][A-Za-z0-9_-]*/
       }
-    }), f1 = [
+    }), p1 = [
       "a",
       "abbr",
       "address",
@@ -50563,7 +50649,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "ul",
       "var",
       "video"
-    ], p1 = [
+    ], h1 = [
       "defs",
       "g",
       "marker",
@@ -50605,10 +50691,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "tspan",
       "foreignObject",
       "clipPath"
-    ], h1 = [
-      ...f1,
-      ...p1
     ], m1 = [
+      ...p1,
+      ...h1
+    ], g1 = [
       "any-hover",
       "any-pointer",
       "aspect-ratio",
@@ -50732,7 +50818,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "selection",
       "slotted",
       "spelling-error"
-    ].sort().reverse(), g1 = [
+    ].sort().reverse(), b1 = [
       "accent-color",
       "align-content",
       "align-items",
@@ -51248,9 +51334,9 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "y",
       "z-index",
       "zoom"
-    ].sort().reverse(), b1 = tg.concat(ng).sort().reverse();
-    function y1(t2) {
-      const e = d1(t2), n = b1, r = "and or not only", o = "[\\w-]+", i = "(" + o + "|@\\{" + o + "\\})", s = [], a = [], l = function(_) {
+    ].sort().reverse(), y1 = tg.concat(ng).sort().reverse();
+    function v1(t2) {
+      const e = f1(t2), n = y1, r = "and or not only", o = "[\\w-]+", i = "(" + o + "|@\\{" + o + "\\})", s = [], a = [], l = function(_) {
         return {
           // Less strings are not multiline (also include '~' for more consistent coloring of "escaped" strings)
           className: "string",
@@ -51265,7 +51351,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       }, u = {
         $pattern: /[a-z-]+/,
         keyword: r,
-        attribute: m1.join(" ")
+        attribute: g1.join(" ")
       }, d = {
         // used only to properly balance nested parens inside mixin call, def. arg list
         begin: "\\(",
@@ -51326,7 +51412,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           e.CSS_VARIABLE,
           {
             className: "attribute",
-            begin: "\\b(" + g1.join("|") + ")\\b",
+            begin: "\\b(" + b1.join("|") + ")\\b",
             end: /(?=:)/,
             starts: {
               endsWithParent: true,
@@ -51391,7 +51477,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           c2("variable", "@\\{" + o + "\\}"),
           // otherwise it’s identified as tag
           {
-            begin: "\\b(" + h1.join("|") + ")\\b",
+            begin: "\\b(" + m1.join("|") + ")\\b",
             className: "selector-tag"
           },
           e.CSS_NUMBER_MODE,
@@ -51441,7 +51527,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         contains: s
       };
     }
-    function v1(t2) {
+    function E1(t2) {
       const e = "\\[=*\\[", n = "\\]=*\\]", r = {
         begin: e,
         end: n,
@@ -51497,7 +51583,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ])
       };
     }
-    function E1(t2) {
+    function k1(t2) {
       const e = {
         className: "variable",
         variants: [
@@ -51561,7 +51647,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function k1(t2) {
+    function w1(t2) {
       const e = t2.regex, n = {
         begin: /<\/?[A-Za-z_]/,
         end: ">",
@@ -51774,7 +51860,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function w1(t2) {
+    function _1(t2) {
       const e = {
         className: "built_in",
         begin: "\\b(AV|CA|CF|CG|CI|CL|CM|CN|CT|MK|MP|MTK|MTL|NS|SCN|SK|UI|WK|XC)\\w+"
@@ -52008,7 +52094,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function _1(t2) {
+    function S1(t2) {
       const e = t2.regex, n = [
         "abs",
         "accept",
@@ -52474,7 +52560,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         contains: h2
       };
     }
-    function S1(t2) {
+    function C1(t2) {
       const e = t2.regex, n = /(?![A-Za-z0-9])(?![$])/, r = e.concat(
         /[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/,
         n
@@ -53037,7 +53123,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function C1(t2) {
+    function x1(t2) {
       return {
         name: "PHP template",
         subLanguage: "xml",
@@ -53081,7 +53167,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function x1(t2) {
+    function T1(t2) {
       return {
         name: "Plain text",
         aliases: [
@@ -53091,7 +53177,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         disableAutodetect: true
       };
     }
-    function T1(t2) {
+    function O1(t2) {
       const e = t2.regex, n = new RegExp("[\\p{XID_Start}_]\\p{XID_Continue}*", "u"), r = [
         "and",
         "as",
@@ -53487,7 +53573,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function O1(t2) {
+    function N1(t2) {
       return {
         aliases: ["pycon"],
         contains: [
@@ -53510,7 +53596,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function N1(t2) {
+    function A1(t2) {
       const e = t2.regex, n = /(?:(?:[a-zA-Z]|\.[._a-zA-Z])[._a-zA-Z0-9]*)|\.(?!\d)/, r = e.either(
         // Special case: only hexadecimal binary powers can contain fractions
         /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*[pP][+-]?\d+i?/,
@@ -53714,7 +53800,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function A1(t2) {
+    function M1(t2) {
       const e = t2.regex, n = "([a-zA-Z_]\\w*[!?=]?|[-+~]@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?)", r = e.either(
         /\b([A-Z]+[a-z0-9]+)+/,
         // ends in caps
@@ -54099,7 +54185,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         contains: [t2.SHEBANG({ binary: "ruby" })].concat(W).concat(c2).concat(S)
       };
     }
-    function M1(t2) {
+    function R1(t2) {
       const e = t2.regex, n = /(r#)?/, r = e.concat(n, t2.UNDERSCORE_IDENT_RE), o = e.concat(n, t2.IDENT_RE), i = {
         className: "title.function.invoke",
         relevance: 0,
@@ -54401,7 +54487,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    const R1 = (t2) => ({
+    const I1 = (t2) => ({
       IMPORTANT: {
         scope: "meta",
         begin: "!important"
@@ -54434,7 +54520,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         className: "attr",
         begin: /--[A-Za-z_][A-Za-z0-9_-]*/
       }
-    }), I1 = [
+    }), D1 = [
       "a",
       "abbr",
       "address",
@@ -54512,7 +54598,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "ul",
       "var",
       "video"
-    ], D1 = [
+    ], L1 = [
       "defs",
       "g",
       "marker",
@@ -54554,10 +54640,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "tspan",
       "foreignObject",
       "clipPath"
-    ], L1 = [
-      ...I1,
-      ...D1
     ], P1 = [
+      ...D1,
+      ...L1
+    ], B1 = [
       "any-hover",
       "any-pointer",
       "aspect-ratio",
@@ -54592,7 +54678,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "max-width",
       "min-height",
       "max-height"
-    ].sort().reverse(), B1 = [
+    ].sort().reverse(), $1 = [
       "active",
       "any-link",
       "blank",
@@ -54666,7 +54752,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "visited",
       "where"
       // where()
-    ].sort().reverse(), $1 = [
+    ].sort().reverse(), F1 = [
       "after",
       "backdrop",
       "before",
@@ -54681,7 +54767,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "selection",
       "slotted",
       "spelling-error"
-    ].sort().reverse(), F1 = [
+    ].sort().reverse(), z1 = [
       "accent-color",
       "align-content",
       "align-items",
@@ -55198,8 +55284,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "z-index",
       "zoom"
     ].sort().reverse();
-    function z1(t2) {
-      const e = R1(t2), n = $1, r = B1, o = "@[a-z-]+", i = "and or not only", a = {
+    function H1(t2) {
+      const e = I1(t2), n = F1, r = $1, o = "@[a-z-]+", i = "and or not only", a = {
         className: "variable",
         begin: "(\\$[a-zA-Z-][a-zA-Z0-9_-]*)\\b",
         relevance: 0
@@ -55227,7 +55313,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           e.ATTRIBUTE_SELECTOR_MODE,
           {
             className: "selector-tag",
-            begin: "\\b(" + L1.join("|") + ")\\b",
+            begin: "\\b(" + P1.join("|") + ")\\b",
             // was there, before, but why?
             relevance: 0
           },
@@ -55249,7 +55335,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           e.CSS_VARIABLE,
           {
             className: "attribute",
-            begin: "\\b(" + F1.join("|") + ")\\b"
+            begin: "\\b(" + z1.join("|") + ")\\b"
           },
           { begin: "\\b(whitespace|wait|w-resize|visible|vertical-text|vertical-ideographic|uppercase|upper-roman|upper-alpha|underline|transparent|top|thin|thick|text|text-top|text-bottom|tb-rl|table-header-group|table-footer-group|sw-resize|super|strict|static|square|solid|small-caps|separate|se-resize|scroll|s-resize|rtl|row-resize|ridge|right|repeat|repeat-y|repeat-x|relative|progress|pointer|overline|outside|outset|oblique|nowrap|not-allowed|normal|none|nw-resize|no-repeat|no-drop|newspaper|ne-resize|n-resize|move|middle|medium|ltr|lr-tb|lowercase|lower-roman|lower-alpha|loose|list-item|line|line-through|line-edge|lighter|left|keep-all|justify|italic|inter-word|inter-ideograph|inside|inset|inline|inline-block|inherit|inactive|ideograph-space|ideograph-parenthesis|ideograph-numeric|ideograph-alpha|horizontal|hidden|help|hand|groove|fixed|ellipsis|e-resize|double|dotted|distribute|distribute-space|distribute-letter|distribute-all-lines|disc|disabled|default|decimal|dashed|crosshair|collapse|col-resize|circle|char|center|capitalize|break-word|break-all|bottom|both|bolder|bold|block|bidi-override|below|baseline|auto|always|all-scroll|absolute|table|table-cell)\\b" },
           {
@@ -55284,7 +55370,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
             keywords: {
               $pattern: /[a-z-]+/,
               keyword: i,
-              attribute: P1.join(" ")
+              attribute: B1.join(" ")
             },
             contains: [
               {
@@ -55306,7 +55392,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function H1(t2) {
+    function U1(t2) {
       return {
         name: "Shell Session",
         aliases: [
@@ -55328,7 +55414,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function U1(t2) {
+    function V1(t2) {
       const e = t2.regex, n = t2.COMMENT("--", "$"), r = {
         scope: "string",
         variants: [
@@ -55949,26 +56035,26 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
     function je(...t2) {
       return t2.map((n) => rg(n)).join("");
     }
-    function V1(t2) {
+    function W1(t2) {
       const e = t2[t2.length - 1];
       return typeof e == "object" && e.constructor === Object ? (t2.splice(t2.length - 1, 1), e) : {};
     }
     function Gt(...t2) {
-      return "(" + (V1(t2).capture ? "" : "?:") + t2.map((r) => rg(r)).join("|") + ")";
+      return "(" + (W1(t2).capture ? "" : "?:") + t2.map((r) => rg(r)).join("|") + ")";
     }
     const mu = (t2) => je(
       /\b/,
       t2,
       /\w$/.test(t2) ? /\b/ : /\B/
-    ), W1 = [
+    ), K1 = [
       "Protocol",
       // contextual
       "Type"
       // contextual
-    ].map(mu), Nf = [
+    ].map(mu), Af = [
       "init",
       "self"
-    ].map(mu), K1 = [
+    ].map(mu), q1 = [
       "Any",
       "Self"
     ], Cl = [
@@ -56107,11 +56193,11 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "while",
       "willSet"
       // contextual
-    ], Af = [
+    ], Mf = [
       "false",
       "nil",
       "true"
-    ], q1 = [
+    ], G1 = [
       "assignment",
       "associativity",
       "higherThan",
@@ -56119,7 +56205,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "lowerThan",
       "none",
       "right"
-    ], G1 = [
+    ], j1 = [
       "#colorLiteral",
       "#column",
       "#dsohandle",
@@ -56139,7 +56225,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "#selector",
       "#sourceLocation",
       "#warning"
-    ], Mf = [
+    ], Rf = [
       "abs",
       "all",
       "any",
@@ -56224,7 +56310,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       sg,
       /\d/,
       /[\u0300-\u036F\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F]/
-    ), Hn = je(sg, Zs, "*"), fs = je(/[A-Z]/, Zs, "*"), j1 = [
+    ), Hn = je(sg, Zs, "*"), fs = je(/[A-Z]/, Zs, "*"), Y1 = [
       "attached",
       "autoclosure",
       je(/convention\(/, Gt("swift", "block", "c"), /\)/),
@@ -56259,7 +56345,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "unknown",
       "usableFromInline",
       "warn_unqualified_access"
-    ], Y1 = [
+    ], J1 = [
       "iOS",
       "iOSApplicationExtension",
       "macOS",
@@ -56272,7 +56358,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       "tvOSApplicationExtension",
       "swift"
     ];
-    function J1(t2) {
+    function X1(t2) {
       const e = {
         match: /\s+/,
         relevance: 0
@@ -56286,17 +56372,17 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       ], o = {
         match: [
           /\./,
-          Gt(...W1, ...Nf)
+          Gt(...K1, ...Af)
         ],
         className: { 2: "keyword" }
       }, i = {
         // Consume .keyword to prevent highlighting properties and methods as keywords.
         match: je(/\./, Gt(...Cl)),
         relevance: 0
-      }, s = Cl.filter((ve) => typeof ve == "string").concat(["_|0"]), a = Cl.filter((ve) => typeof ve != "string").concat(K1).map(mu), l = { variants: [
+      }, s = Cl.filter((ve) => typeof ve == "string").concat(["_|0"]), a = Cl.filter((ve) => typeof ve != "string").concat(q1).map(mu), l = { variants: [
         {
           className: "keyword",
-          match: Gt(...a, ...Nf)
+          match: Gt(...a, ...Af)
         }
       ] }, c2 = {
         $pattern: Gt(
@@ -56305,19 +56391,19 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           /#\w+/
           // number keywords
         ),
-        keyword: s.concat(G1),
-        literal: Af
+        keyword: s.concat(j1),
+        literal: Mf
       }, u = [
         o,
         i,
         l
       ], d = {
         // Consume .built_in to prevent highlighting properties and methods.
-        match: je(/\./, Gt(...Mf)),
+        match: je(/\./, Gt(...Rf)),
         relevance: 0
       }, f = {
         className: "built_in",
-        match: je(/\b/, Gt(...Mf), /(?=\()/)
+        match: je(/\b/, Gt(...Rf), /(?=\()/)
       }, p2 = [
         d,
         f
@@ -56445,7 +56531,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
           {
             begin: /\(/,
             end: /\)/,
-            keywords: Y1,
+            keywords: J1,
             contains: [
               ...g,
               _,
@@ -56455,7 +56541,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ] }
       }, Y = {
         scope: "keyword",
-        match: je(/@/, Gt(...j1), Xo(Gt(/\(/, /\s+/)))
+        match: je(/@/, Gt(...Y1), Xo(Gt(/\(/, /\s+/)))
       }, oe = {
         scope: "meta",
         match: je(/@/, Hn)
@@ -56625,8 +56711,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         },
         contains: [Se],
         keywords: [
-          ...q1,
-          ...Af
+          ...G1,
+          ...Mf
         ],
         end: /}/
       }, On = {
@@ -56882,7 +56968,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
       cg,
       ug
     );
-    function X1(t2) {
+    function Z1(t2) {
       const e = t2.regex, n = (D, { after: Y }) => {
         const oe = "</" + D[0].slice(1);
         return D.input.indexOf(oe, Y) !== -1;
@@ -57391,8 +57477,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function Z1(t2) {
-      const e = t2.regex, n = X1(t2), r = Qs, o = [
+    function Q1(t2) {
+      const e = t2.regex, n = Z1(t2), r = Qs, o = [
         "any",
         "void",
         "number",
@@ -57486,7 +57572,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       }), n;
     }
-    function Q1(t2) {
+    function eO(t2) {
       const e = t2.regex, n = {
         className: "string",
         begin: /"(""|[^/n])"C\b/
@@ -57605,7 +57691,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function eO(t2) {
+    function tO(t2) {
       t2.regex;
       const e = t2.COMMENT(/\(;/, /;\)/);
       e.contains.push("self");
@@ -57716,7 +57802,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function tO(t2) {
+    function nO(t2) {
       const e = t2.regex, n = e.concat(/[\p{L}_]/u, e.optional(/[\p{L}0-9_.-]*:/u), /[\p{L}0-9_.-]*/u), r = /[\p{L}0-9._:-]+/u, o = {
         className: "symbol",
         begin: /&[a-z]+;|&#[0-9]+;|&#x[a-f0-9]+;/
@@ -57932,7 +58018,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         ]
       };
     }
-    function nO(t2) {
+    function rO(t2) {
       const e = "true false yes no null", n = "[\\w#;/?:@&=+$,.~*'()[\\]]+", r = {
         className: "attr",
         variants: [
@@ -58112,52 +58198,52 @@ https://github.com/highlightjs/highlight.js/issues/2277`), ce = N, oe = D), Y ==
         contains: g
       };
     }
-    const rO = {
-      arduino: $T,
-      bash: FT,
-      c: zT,
-      cpp: HT,
-      csharp: UT,
-      css: XT,
-      diff: ZT,
-      go: QT,
-      graphql: e1,
-      ini: t1,
-      java: n1,
-      javascript: a1,
-      json: l1,
-      kotlin: u1,
-      less: y1,
-      lua: v1,
-      makefile: E1,
-      markdown: k1,
-      objectivec: w1,
-      perl: _1,
-      php: S1,
-      "php-template": C1,
-      plaintext: x1,
-      python: T1,
-      "python-repl": O1,
-      r: N1,
-      ruby: A1,
-      rust: M1,
-      scss: z1,
-      shell: H1,
-      sql: U1,
-      swift: J1,
-      typescript: Z1,
-      vbnet: Q1,
-      wasm: eO,
-      xml: tO,
-      yaml: nO
+    const oO = {
+      arduino: FT,
+      bash: zT,
+      c: HT,
+      cpp: UT,
+      csharp: VT,
+      css: ZT,
+      diff: QT,
+      go: e1,
+      graphql: t1,
+      ini: n1,
+      java: r1,
+      javascript: l1,
+      json: c1,
+      kotlin: d1,
+      less: v1,
+      lua: E1,
+      makefile: k1,
+      markdown: w1,
+      objectivec: _1,
+      perl: S1,
+      php: C1,
+      "php-template": x1,
+      plaintext: T1,
+      python: O1,
+      "python-repl": N1,
+      r: A1,
+      ruby: M1,
+      rust: R1,
+      scss: H1,
+      shell: U1,
+      sql: V1,
+      swift: X1,
+      typescript: Q1,
+      vbnet: eO,
+      wasm: tO,
+      xml: nO,
+      yaml: rO
     };
-    function oO(t2) {
+    function iO(t2) {
       return t2 && t2.__esModule && Object.prototype.hasOwnProperty.call(t2, "default") ? t2.default : t2;
     }
-    var Tl, Rf;
-    function iO() {
-      if (Rf) return Tl;
-      Rf = 1;
+    var Tl, If;
+    function sO() {
+      if (If) return Tl;
+      If = 1;
       function t2(k) {
         return k instanceof Map ? k.clear = k.delete = k.set = function() {
           throw new Error("map is read-only");
@@ -59214,10 +59300,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       }, Zt = Go({});
       return Zt.newInstance = () => Go({}), Tl = Zt, Zt.HighlightJS = Zt, Zt.default = Zt, Tl;
     }
-    var sO = /* @__PURE__ */ iO();
-    const aO = /* @__PURE__ */ oO(sO), If = {}, lO = "hljs-";
-    function cO(t2) {
-      const e = aO.newInstance();
+    var aO = /* @__PURE__ */ sO();
+    const lO = /* @__PURE__ */ iO(aO), Df = {}, cO = "hljs-";
+    function uO(t2) {
+      const e = lO.newInstance();
       return t2 && i(t2), {
         highlight: n,
         highlightAuto: r,
@@ -59227,10 +59313,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         registered: a
       };
       function n(l, c2, u) {
-        const d = u || If, f = typeof d.prefix == "string" ? d.prefix : lO;
+        const d = u || Df, f = typeof d.prefix == "string" ? d.prefix : cO;
         if (!e.getLanguage(l))
           throw new Error("Unknown language: `" + l + "` is not registered");
-        e.configure({ __emitter: uO, classPrefix: f });
+        e.configure({ __emitter: dO, classPrefix: f });
         const p2 = (
           /** @type {HighlightResult & {_emitter: HastEmitter}} */
           e.highlight(c2, { ignoreIllegals: true, language: l })
@@ -59246,7 +59332,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         return m.language = p2.language, m.relevance = p2.relevance, h2;
       }
       function r(l, c2) {
-        const d = (c2 || If).subset || o();
+        const d = (c2 || Df).subset || o();
         let f = -1, p2 = 0, h2;
         for (; ++f < d.length; ) {
           const m = d[f];
@@ -59296,7 +59382,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         return !!e.getLanguage(l);
       }
     }
-    class uO {
+    class dO {
       /**
        * @param {Readonly<HljsOptions>} options
        *   Configuration.
@@ -59397,19 +59483,19 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         return "";
       }
     }
-    function dO(t2) {
+    function fO(t2) {
       const e = document.createElement("textarea");
       e.value = t2, e.contentEditable = "true", e.style.position = "fixed", document.body.appendChild(e), e.focus(), e.select();
       const n = document.execCommand("copy");
       return e.remove(), n;
     }
-    function fO(t2) {
+    function pO(t2) {
       return navigator.clipboard !== void 0 ? navigator.clipboard.writeText(t2) : new Promise((e, n) => {
-        const r = dO(t2);
+        const r = fO(t2);
         r ? e(true) : n(r);
       });
     }
-    const pO = { class: "code-block-toolbar" }, hO = { class: "wrap editable" }, mO = { class: "wrap" }, gO = { class: "language readonly" }, bO = /* @__PURE__ */ defineComponent({
+    const hO = { class: "code-block-toolbar" }, mO = { class: "wrap editable" }, gO = { class: "wrap" }, bO = { class: "language readonly" }, yO = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -59433,7 +59519,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         }
         function a() {
           const c2 = e.node.content.content[0].text;
-          fO(c2).then(() => {
+          pO(c2).then(() => {
             n.value = "done", setTimeout(() => {
               n.value = "content_copy";
             }, 2e3);
@@ -59444,15 +59530,15 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         }
         return (c2, u) => (openBlock(), createBlock(unref(mr), mergeProps(e, { class: "o-code-block-view" }), {
           default: withCtx(() => [
-            createBaseVNode("div", pO, [
-              createBaseVNode("div", hO, [
+            createBaseVNode("div", hO, [
+              createBaseVNode("div", mO, [
                 createVNode(unref(bS), {
                   language: r.value,
                   onSelect: s
                 }, null, 8, ["language"])
               ]),
-              createBaseVNode("div", mO, [
-                createBaseVNode("div", gO, toDisplayString(r.value), 1),
+              createBaseVNode("div", gO, [
+                createBaseVNode("div", bO, toDisplayString(r.value), 1),
                 createVNode(unref(Ye), {
                   icon: i.value,
                   "icon-class": { "rotate-270": o.value },
@@ -59477,7 +59563,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
           _: 1
         }, 16));
       }
-    }), yO = cO(rO), vO = PT.extend({
+    }), vO = uO(oO), EO = BT.extend({
       draggable: true,
       addAttributes() {
         var t2;
@@ -59490,89 +59576,13 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         };
       },
       addNodeView() {
-        return Ln(bO);
+        return Ln(yO);
       }
     }).configure({
       languageClassPrefix: "language-",
       defaultLanguage: "bash",
-      lowlight: yO
-    }), Df = (t2) => {
-      const e = /(#[0-9a-f]{3,6})\b/gi, n = [];
-      return t2.descendants((r, o) => {
-        r.text && Array.from(r.text.matchAll(e)).forEach((i) => {
-          const s = i[0], a = i.index || 0, l = o + a, c2 = l + s.length, u = ht.inline(l, c2, {
-            class: "color",
-            style: `--color: ${s}`
-          });
-          n.push(u);
-        });
-      }), He.create(t2, n);
-    }, EO = Ke.create({
-      name: "colorHighlighter",
-      addProseMirrorPlugins() {
-        return [
-          new Ue({
-            state: {
-              init(t2, { doc: e }) {
-                return Df(e);
-              },
-              apply(t2, e) {
-                return t2.docChanged ? Df(t2.doc) : e;
-              }
-            },
-            props: {
-              decorations(t2) {
-                return this.getState(t2);
-              }
-            }
-          })
-        ];
-      }
-    });
-    Ke.create({
-      name: "focus",
-      addOptions() {
-        return {
-          className: "has-focus",
-          mode: "all"
-        };
-      },
-      addProseMirrorPlugins() {
-        return [
-          new Ue({
-            key: new Ze("focus"),
-            props: {
-              decorations: ({ doc: t2, selection: e }) => {
-                const { isEditable: n, isFocused: r } = this.editor, { anchor: o } = e, i = [];
-                if (!n || !r)
-                  return He.create(t2, []);
-                let s = 0;
-                this.options.mode === "deepest" && t2.descendants((l, c2) => {
-                  if (l.isText)
-                    return;
-                  if (!(o >= c2 && o <= c2 + l.nodeSize - 1))
-                    return false;
-                  s += 1;
-                });
-                let a = 0;
-                return t2.descendants((l, c2) => {
-                  if (l.isText || !(o >= c2 && o <= c2 + l.nodeSize - 1))
-                    return false;
-                  if (a += 1, this.options.mode === "deepest" && s - a > 0 || this.options.mode === "shallowest" && a > 1)
-                    return this.options.mode === "deepest";
-                  i.push(
-                    ht.node(c2, c2 + l.nodeSize, {
-                      class: this.options.className
-                    })
-                  );
-                }), He.create(t2, i);
-              }
-            }
-          })
-        ];
-      }
-    });
-    const kO = /* @__PURE__ */ defineComponent({
+      lowlight: vO
+    }), kO = /* @__PURE__ */ defineComponent({
       __name: "view",
       props: Ot,
       setup(t2) {
@@ -60542,7 +60552,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
     }
     function YO(t2) {
       return new Ue({
-        key: new Ze("autolink"),
+        key: new Xe("autolink"),
         appendTransaction: (e, n, r) => {
           const o = e.some((c2) => c2.docChanged) && !n.doc.eq(r.doc), i = e.some((c2) => c2.getMeta("preventAutolink"));
           if (!o || i)
@@ -60578,7 +60588,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
     }
     function JO(t2) {
       return new Ue({
-        key: new Ze("handleClickLink"),
+        key: new Xe("handleClickLink"),
         props: {
           handleClick: (e, n, r) => {
             var o, i;
@@ -60598,7 +60608,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
     }
     function XO(t2) {
       return new Ue({
-        key: new Ze("handlePasteLink"),
+        key: new Xe("handlePasteLink"),
         props: {
           handlePaste: (e, n, r) => {
             const { state: o } = e, { selection: i } = o, { empty: s } = i;
@@ -60795,7 +60805,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
     });
     function QO(t2) {
       return new Ue({
-        key: new Ze("handleClickSelectLink"),
+        key: new Xe("handleClickSelectLink"),
         props: {
           handleClick: (e, n, r) => {
             const { schema: o, doc: i, tr: s } = e.state, a = Vo(i.resolve(n), o.marks.link);
@@ -60855,7 +60865,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("placeholder"),
+            key: new Xe("placeholder"),
             props: {
               decorations: ({ doc: t2, selection: e }) => {
                 const n = this.editor.isEditable || !this.options.showOnlyWhenEditable, { anchor: r } = e, o = [];
@@ -61090,7 +61100,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       }
       return e;
     }
-    var xr = new Ze("selectingCells");
+    var xr = new Xe("selectingCells");
     function Ko(t2) {
       for (let e = t2.depth - 1; e > 0; e--)
         if (t2.node(e).type.spec.tableRole == "row")
@@ -61394,7 +61404,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       } else r instanceof ie && hN(r) ? i = ie.create(o, r.from) : r instanceof ie && mN(r) && (i = ie.create(o, r.$from.start(), r.$from.end()));
       return i && (e || (e = t2.tr)).setSelection(i), e;
     }
-    var bN = new Ze("fix-tables");
+    var bN = new Xe("fix-tables");
     function Og(t2, e, n, r) {
       const o = t2.childCount, i = e.childCount;
       e: for (let s = 0, a = 0; s < i; s++) {
@@ -62308,7 +62318,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         l ? (n.style.width = a + "px", n.style.minWidth = "") : (n.style.width = "", n.style.minWidth = a + "px");
       }
     }
-    var dn = new Ze(
+    var dn = new Xe(
       "tableColumnResizing"
     );
     function WN({
@@ -63263,7 +63273,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         };
       },
       addProseMirrorPlugins() {
-        const t2 = new Ze(this.name), e = Object.entries(this.editor.schema.nodes).map(([, n]) => n).filter((n) => this.options.notAfter.includes(n.name));
+        const t2 = new Xe(this.name), e = Object.entries(this.editor.schema.nodes).map(([, n]) => n).filter((n) => this.options.notAfter.includes(n.name));
         return [
           new Ue({
             key: t2,
@@ -63686,7 +63696,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       addProseMirrorPlugins() {
         return [
           new Ue({
-            key: new Ze("focus"),
+            key: new Xe("focus"),
             props: {
               decorations: ({ doc: t2, selection: e }) => {
                 const { isEditable: n, isFocused: r } = this.editor, { anchor: o } = e, i = [];
@@ -64129,7 +64139,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
         text: g[0]
       } : null;
     }
-    const mM = new Ze("suggestion");
+    const mM = new Xe("suggestion");
     function Fg({ pluginKey: t2 = mM, editor: e, char: n = "@", allowSpaces: r = false, allowToIncludeChar: o = false, allowedPrefixes: i = [" "], startOfLine: s = false, decorationTag: a = "span", decorationClass: l = "suggestion", command: c2 = () => null, items: u = () => [], render: d = () => ({}), allow: f = () => true, findSuggestionMatch: p2 = hM }) {
       let h2;
       const m = d == null ? void 0 : d(), g = new Ue({
@@ -64275,7 +64285,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       addProseMirrorPlugins() {
         return [
           Fg({
-            pluginKey: new Ze("slash-zh-suggestion"),
+            pluginKey: new Xe("slash-zh-suggestion"),
             editor: this.editor,
             ...this.options.suggestion
           })
@@ -64503,10 +64513,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`), vt = z, nt = se), Me 
       // // custom
       // OTOC: TOC,
       // OModelViewer: ModelViewer,
-      OBlockquote: Mx,
-      OCallout: Bx,
-      OCodeBlock: vO,
-      OColorHighlighter: EO,
+      OBlockquote: Rx,
+      OCallout: $x,
+      OCodeBlock: EO,
+      OColorHighlighter: Ax,
       OHeading: wO,
       OHorizontalRule: CO,
       OImage: AO,
