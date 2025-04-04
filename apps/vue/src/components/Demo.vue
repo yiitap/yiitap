@@ -235,7 +235,7 @@ function onMode() {
 function onUpdate({ json, html }: { json: any; html: string }) {
   // Get content of editor
   // console.log(json)
-  // console.log(html)
+  console.log(html)
 }
 
 function onScroll(event: Event) {
@@ -269,7 +269,7 @@ onMounted(() => {
   // console.debug('darkMode', yiiEditor.value?.darkMode)
   // console.debug('local', yiiEditor.value?.local)
 
-  // console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
+  console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
 })
 </script>
 

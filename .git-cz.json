@@ -33,7 +33,8 @@
     "extension",
     "util",
     "app-vue",
-    "app-react"
+    "app-react",
+    "example"
   ],
   "types": {
     "chore": {

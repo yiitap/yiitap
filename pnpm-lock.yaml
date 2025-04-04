@@ -144,6 +144,56 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0(vite@6.2.2(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0))
 
+  examples/vue/basic/default-blocks:
+    dependencies:
+      '@yiitap/vue':
+        specifier: workspace:*
+        version: link:../../../../packages/vue
+      vue:
+        specifier: ^3.3.8
+        version: 3.5.13(typescript@5.8.2)
+    devDependencies:
+      '@vue/compiler-sfc':
+        specifier: ^3.3.8
+        version: 3.5.13
+      autoprefixer:
+        specifier: ^10.4.16
+        version: 10.4.21(postcss@8.5.3)
+      postcss:
+        specifier: ^8.4.31
+        version: 8.5.3
+      sass:
+        specifier: ^1.69.5
+        version: 1.85.1
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.2(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
+
+  examples/vue/basic/minimal:
+    dependencies:
+      '@yiitap/vue':
+        specifier: workspace:*
+        version: link:../../../../packages/vue
+      vue:
+        specifier: ^3.3.8
+        version: 3.5.13(typescript@5.8.2)
+    devDependencies:
+      '@vue/compiler-sfc':
+        specifier: ^3.3.8
+        version: 3.5.13
+      autoprefixer:
+        specifier: ^10.4.16
+        version: 10.4.21(postcss@8.5.3)
+      postcss:
+        specifier: ^8.4.31
+        version: 8.5.3
+      sass:
+        specifier: ^1.69.5
+        version: 1.85.1
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.2(@types/node@20.8.10)(sass@1.85.1)(yaml@2.7.0)
+
   packages/core:
     dependencies:
       '@tiptap/core':

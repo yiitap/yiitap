@@ -10,6 +10,7 @@ export const UniqueID = Node.create({
     attributeName: 'data-id',
     types: ['heading'],
     enableRender: false,
+    enableInJSON: false,
     generateId: () => v4(),
   }),
 
@@ -30,6 +31,9 @@ export const UniqueID = Node.create({
                       attributes[this.options.attributeName],
                   }
                 : {}
+            },
+            toJSON: (value: string | null) => {
+              return this.options.enableInJSON ? value : undefined
             },
           },
         },
