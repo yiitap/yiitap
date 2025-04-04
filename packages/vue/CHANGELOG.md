@@ -1,5 +1,31 @@
 # @yiitap/vue
 
+## 0.4.0
+
+### Minor Changes
+
+- 05e5b85: feat: add examples
+
+### Patch Changes
+
+- Updated dependencies [05e5b85]
+  - @yiitap/extension-unique-id@0.4.0
+  - @yiitap/vue@0.4.0
+  - @yiitap/core@0.4.0
+  - @yiitap/extension-ai-block@0.4.0
+  - @yiitap/extension-callout@0.4.0
+  - @yiitap/extension-char-command@0.4.0
+  - @yiitap/extension-color-highlighter@0.4.0
+  - @yiitap/extension-focus@0.4.0
+  - @yiitap/extension-image@0.4.0
+  - @yiitap/extension-placeholder@0.4.0
+  - @yiitap/extension-selection-decoration@0.4.0
+  - @yiitap/extension-table@0.4.0
+  - @yiitap/extension-table-wrapper@0.4.0
+  - @yiitap/extension-trailing-node@0.4.0
+  - @yiitap/extension-video@0.4.0
+  - @yiitap/util-emoji@0.4.0
+
 ## 1.3.1
 
 ### Patch Changes

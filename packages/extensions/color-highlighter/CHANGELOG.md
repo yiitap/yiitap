@@ -1,5 +1,7 @@
 # @yiitap/extension-color-highlighter
 
+## 0.4.0
+
 ## 1.3.1
 
 ## 1.3.0

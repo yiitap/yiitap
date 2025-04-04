@@ -1,5 +1,17 @@
 # app-vue
 
+## 0.4.0
+
+### Minor Changes
+
+- 05e5b85: feat: add examples
+
+### Patch Changes
+
+- Updated dependencies [05e5b85]
+  - @yiitap/vue@0.4.0
+  - @yiitap/util-emoji@0.4.0
+
 ## 1.3.1
 
 ### Patch Changes

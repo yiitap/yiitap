@@ -1,5 +1,11 @@
 # @yiitap/extension-unique-id
 
+## 0.4.0
+
+### Minor Changes
+
+- 05e5b85: feat: add examples
+
 ## 1.3.1
 
 ## 1.3.0
