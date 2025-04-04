@@ -400,6 +400,7 @@ watch(
 )
 
 onBeforeMount(() => {
+  isEditable.value = props.editable
   aiOptionAlt.value = props.aiOption
   darkModeAlt.value = props.darkMode
   localeAlt.value = props.locale

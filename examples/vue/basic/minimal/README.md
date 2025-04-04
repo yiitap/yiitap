@@ -1,1 +1,1 @@
-# Vue Demo
+# Minimal Setup

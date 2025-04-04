@@ -235,7 +235,7 @@ function onMode() {
 function onUpdate({ json, html }: { json: any; html: string }) {
   // Get content of editor
   // console.log(json)
-  // console.log(html)
+  console.log(html)
 }
 
 function onScroll(event: Event) {
