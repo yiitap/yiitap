@@ -53,6 +53,7 @@ import {
   watch,
   type PropType,
 } from 'vue'
+import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
@@ -81,11 +82,25 @@ const props = defineProps({
     default: '',
   },
   /**
+   * Set first block as title.
+   */
+  title: {
+    type: Boolean,
+    default: false,
+  },
+  /**
    * Determines if users can write into the editor.
    */
   editable: {
     type: Boolean,
     default: true,
+  },
+  /**
+   * Force the cursor to jump in the editor on initialization.
+   */
+  autofocus: {
+    type: [String, Number, Boolean] as PropType<FocusPosition>,
+    default: false,
   },
   /**
    * Set the locale of the editor
@@ -232,6 +247,7 @@ const customExtensions = computed(() => {
 const editor = useEditor({
   editable: props.editable,
   content: props.content,
+  autofocus: props.autofocus,
   extensions: customExtensions.value,
   onUpdate: () => {
     const json = editor.value?.getJSON()
@@ -274,12 +290,16 @@ const sideMenuOptions = computed(() => {
 function buildExtensions() {
   const extensions = []
 
-  // Default
-  if (!props.extensions.includes('OColumn')) {
+  // Default block
+  if (props.title) {
     extensions.push(
       Document.extend({
-        content: 'heading block*',
+        content: 'heading block*'
       })
+    )
+  } else {
+    extensions.push(
+      Document
     )
   }
   extensions.push(

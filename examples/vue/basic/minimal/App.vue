@@ -8,10 +8,9 @@ import { YiiEditor } from '@yiitap/vue'
 
 const editorOptions = computed(() => {
   return {
-    editable: true,
     content: '',
+    autofocus: true,
     showBubbleMenu: true,
-    showFloatingMenu: true,
     showSideMenu: true,
     pageView: 'page',
     extensions: [
