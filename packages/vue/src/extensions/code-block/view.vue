@@ -1,11 +1,15 @@
 <template>
   <o-node-view v-bind="props" class="o-code-block-view">
     <div class="code-block-toolbar">
-      <div class="wrap editable">
-        <o-language-dropdown :language="language" @select="onSelectLanguage" />
-      </div>
       <div class="wrap">
         <div class="language readonly">{{ language }}</div>
+        <o-language-dropdown
+          :language="language"
+          class="editable"
+          @select="onSelectLanguage"
+        />
+      </div>
+      <div class="wrap">
         <o-menubar-btn
           :icon="wrapIcon"
           :icon-class="{ 'rotate-270': wrap }"
@@ -13,9 +17,22 @@
           class="editable"
           @click="onWrap"
         />
+        <o-menubar-btn icon="download" tooltip="Download" @click="onDownload" />
+        <o-menubar-btn
+          icon="play_circle"
+          tooltip="Run"
+          @click="onRun"
+          v-if="runnable"
+        />
         <o-menubar-btn :icon="copyIcon" tooltip="Copy" @click="onCopy" />
       </div>
     </div>
+    <o-dialog v-model:show="showDialog">
+      <template #title>Run</template>
+
+      <iframe sandbox="allow-same-origin allow-scripts" :srcdoc="html">
+      </iframe>
+    </o-dialog>
 
     <pre><node-view-content as="code" :class="{'wrap': wrap}" /></pre>
   </o-node-view>
@@ -24,15 +41,19 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { NodeViewContent, nodeViewProps } from '@tiptap/vue-3'
+import { copyToClipboard } from '@yiitap/core'
 import {
   OLanguageDropdown,
   OMenubarBtn,
   ONodeView,
+  ODialog,
 } from '../../components/index'
-import { copyToClipboard } from '@yiitap/core'
+import { Languages } from '../../constants/language'
 
 const props = defineProps(nodeViewProps)
 const copyIcon = ref('content_copy')
+const showDialog = ref(false)
+const html = ref('')
 
 const language = computed({
   get() {
@@ -50,6 +71,11 @@ const wrap = computed({
   set(wrap) {
     props.updateAttributes({ wrap })
   },
+})
+
+const runnable = computed(() => {
+  const list = ['html', 'svg']
+  return list.includes(language.value)
 })
 
 const wrapIcon = computed(() => {
@@ -70,6 +96,39 @@ function onCopy() {
   })
 }
 
+function onDownload() {
+  const name = language.value
+  let ext = name
+  const lang = Languages.find((e) => e.value === name)
+  if (lang) {
+    ext = lang.ext.at(0)
+  }
+
+  const text = props.node.content.content[0].text
+  const blob = new Blob([text], { type: 'text/plain' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${name}-${Date.now()}.${ext}`
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+function onRun() {
+  const code = props.node.content.content[0].text
+  html.value = buildHtml(code)
+  showDialog.value = true
+}
+
+function buildHtml(code: string) {
+  return `
+    <style>
+      body { margin: 0 !important; padding: 0; }
+    </style>
+    ${code}
+  `
+}
+
 function onWrap() {
   wrap.value = !wrap.value
 }
@@ -78,18 +137,19 @@ function onWrap() {
 <style lang="scss">
 .o-code-block-view {
   position: relative;
-  z-index: 1000;
   margin: 4px 0;
+  user-select: text !important;
+  pre {
+    border-radius: 0 0 5px 5px !important;
+  }
 
   .code-block-toolbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     height: 40px;
     padding: 0;
     border-radius: 5px 5px 0 0 !important;
@@ -125,33 +185,16 @@ function onWrap() {
       }
     }
   }
+
+  .o-dialog {
+    .dialog-box {
+    }
+  }
 }
 
 .tiptap[contenteditable='false'] {
   .o-code-block-view {
-    margin-top: 0;
-
-    &:hover {
-      .code-block-toolbar {
-        visibility: visible;
-      }
-    }
-
-    pre {
-      padding: 1rem;
-      border-radius: 5px;
-    }
-
     .code-block-toolbar {
-      left: unset;
-      top: 0;
-      height: unset;
-      padding: 0 !important;
-      margin: 12px;
-      border-radius: 3px !important;
-      background: #dfdfdf;
-      //visibility: hidden;
-
       .editable {
         display: none;
       }
@@ -160,30 +203,7 @@ function onWrap() {
       }
 
       .language {
-        padding: 0 8px;
-        height: 30px;
-        min-width: 40px;
-        text-align: center;
-        background: #eeeeee;
-        border-radius: 3px 0 0 3px;
-      }
-
-      .o-tooltip {
-        .o-menubar-btn {
-          height: 30px !important;
-          width: 36px !important;
-          border-radius: 0;
-
-          .icon {
-            font-size: 16px !important;
-          }
-        }
-
-        &:last-child {
-          .o-menubar-btn {
-            border-radius: 0 3px 3px 0;
-          }
-        }
+        padding: 0 12px;
       }
     }
   }

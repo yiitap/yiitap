@@ -13,6 +13,9 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * tippy: https://atomiks.github.io/tippyjs/v6/all-props/
+ */
 import { onMounted, onUnmounted, ref, watch, type PropType } from 'vue'
 import tippy from 'tippy.js'
 import type { Instance, Props, Placement } from 'tippy.js'

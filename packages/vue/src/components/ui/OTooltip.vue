@@ -8,6 +8,9 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * tippy: https://atomiks.github.io/tippyjs/v6/all-props/
+ */
 import { onMounted, onUnmounted, ref, watch, type PropType } from 'vue'
 import tippy, { type Instance, type Placement, type Props } from 'tippy.js'
 import 'tippy.js/animations/perspective.css'
