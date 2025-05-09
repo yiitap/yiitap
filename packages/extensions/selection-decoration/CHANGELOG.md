@@ -1,5 +1,7 @@
 # @yiitap/extension-selection-decoration
 
+## 0.4.1
+
 ## 0.4.0
 
 ## 1.3.1

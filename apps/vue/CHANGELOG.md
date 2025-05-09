@@ -1,5 +1,14 @@
 # app-vue
 
+## 0.4.1
+
+### Patch Changes
+
+- 1603e0b: enhancement: code block
+- Updated dependencies [1603e0b]
+  - @yiitap/vue@0.4.1
+  - @yiitap/util-emoji@0.4.1
+
 ## 0.4.0
 
 ### Minor Changes

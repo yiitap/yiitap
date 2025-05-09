@@ -1,5 +1,28 @@
 # @yiitap/vue
 
+## 0.4.1
+
+### Patch Changes
+
+- 1603e0b: enhancement: code block
+- Updated dependencies [1603e0b]
+  - @yiitap/vue@0.4.1
+  - @yiitap/core@0.4.1
+  - @yiitap/extension-ai-block@0.4.1
+  - @yiitap/extension-callout@0.4.1
+  - @yiitap/extension-char-command@0.4.1
+  - @yiitap/extension-color-highlighter@0.4.1
+  - @yiitap/extension-focus@0.4.1
+  - @yiitap/extension-image@0.4.1
+  - @yiitap/extension-placeholder@0.4.1
+  - @yiitap/extension-selection-decoration@0.4.1
+  - @yiitap/extension-table@0.4.1
+  - @yiitap/extension-table-wrapper@0.4.1
+  - @yiitap/extension-trailing-node@0.4.1
+  - @yiitap/extension-unique-id@0.4.1
+  - @yiitap/extension-video@0.4.1
+  - @yiitap/util-emoji@0.4.1
+
 ## 0.4.0
 
 ### Minor Changes

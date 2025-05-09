@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-ai-block",
 	"description": "AI block extension",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
