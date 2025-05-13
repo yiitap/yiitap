@@ -92,6 +92,7 @@ yiitap
 ## Thanks
 
 - [Tiptap](https://github.com/ueberdosis/tiptap) & [ProseMirror](https://github.com/ProseMirror/prosemirror): Yiitap is built on top of Tiptap and ProseMirror.
+- [BlockNote](https://github.com/TypeCellOS/BlockNote): A React Rich Text Editor that's block-based (Notion style) and extensible..
 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
