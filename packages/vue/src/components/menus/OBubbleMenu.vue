@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
-import { BubbleMenu } from '@tiptap/vue-3'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
 import { useTheme } from '../../hooks'

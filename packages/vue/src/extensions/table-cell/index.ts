@@ -1,6 +1,6 @@
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
-import TableCell from '@tiptap/extension-table-cell'
-import type { TableCellOptions } from '@tiptap/extension-table-cell'
+import { TableCell } from '@tiptap/extension-table'
+import type { TableCellOptions } from '@tiptap/extension-table'
 
 import View from './view.vue'
 

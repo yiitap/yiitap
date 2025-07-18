@@ -33,7 +33,7 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-		"@tiptap/extension-code-block-lowlight": "^2.11.5"
+		"@tiptap/extension-code-block-lowlight": "^3.0.7"
 	},
 	"peerDependencies": {},
 	"devDependencies": {}

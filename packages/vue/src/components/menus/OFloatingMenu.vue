@@ -29,7 +29,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { getMarkRange, isTextSelection } from '@tiptap/core'
-import { Editor, FloatingMenu } from '@tiptap/vue-3'
+import { Editor } from '@tiptap/vue-3'
+import { FloatingMenu } from '@tiptap/vue-3/menus'
 import { getComponent } from '../menu'
 import { DefaultFloating } from '../../constants/menu'
 import { ODivider, OMenubarBtn } from '../index'

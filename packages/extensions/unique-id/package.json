@@ -36,8 +36,8 @@
 		"uuid": "^10.0.0"
 	},
 	"peerDependencies": {
-		"@tiptap/core": "^2.11.5",
-		"@tiptap/pm": "^2.11.5",
+		"@tiptap/core": "^3.0.7",
+		"@tiptap/pm": "^3.0.7",
 		"@types/uuid": "^10.0.0"
 	},
 	"devDependencies": {}
