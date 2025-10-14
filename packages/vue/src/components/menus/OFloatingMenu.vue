@@ -1,12 +1,10 @@
 <template>
   <section v-if="editor">
     <floating-menu
-      class="o-floating-menu"
-      :class="menuClass"
       :editor="editor"
-      :tippy-options="options"
+      :options="options"
     >
-      <section class="container">
+      <section class="tiptap-toolbar" :class="menuClass">
         <template v-if="showBack">
           <o-menubar-btn icon="arrow_back" @click="onBackToMain" />
         </template>
@@ -27,6 +25,9 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * @see https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu
+ */
 import { ref, computed } from 'vue'
 import { getMarkRange, isTextSelection } from '@tiptap/core'
 import { Editor } from '@tiptap/vue-3'
@@ -61,11 +62,8 @@ const backToMain = ref(false)
 
 // @ts-ignore
 const options = ref({
-  arrow: false,
-  duration: 100,
-  role: 'popover',
   placement: 'right' as 'left' | 'right',
-  offset: [0, 168] as [number, number],
+  offset: 168,
 }) // mobile
 
 function onBackToMain() {
