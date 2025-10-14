@@ -33,11 +33,11 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-		"@tiptap/extension-link": "^3.0.7"
+		"@tiptap/extension-link": "^3.7.0"
 	},
 	"peerDependencies": {
-		"@tiptap/core": "^3.0.7",
-		"@tiptap/pm": "^3.0.7"
+		"@tiptap/core": "^3.7.0",
+		"@tiptap/pm": "^3.7.0"
 	},
 	"devDependencies": {}
 }
