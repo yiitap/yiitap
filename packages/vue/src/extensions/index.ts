@@ -2,7 +2,12 @@
 // Tiptap extensions imports
 // ---------------------------------------------------------
 import { Focus } from '@tiptap/extensions'
-import { Table, TableRow, TableCell, TableHeader } from '@tiptap/extension-table'
+import {
+  Table,
+  TableRow,
+  TableCell,
+  TableHeader,
+} from '@tiptap/extension-table'
 import BackColor from '@tiptap/extension-highlight'
 import Document from '@tiptap/extension-document'
 import FontFamily from '@tiptap/extension-font-family'

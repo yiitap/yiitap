@@ -1,10 +1,6 @@
 <template>
   <section v-if="editor">
-    <bubble-menu
-      :editor="editor"
-      :should-show="shouldShow"
-      :options="options"
-    >
+    <bubble-menu :editor="editor" :should-show="shouldShow" :options="options">
       <o-ai-menu :editor="editor" @confirm="onAiConfirm" v-if="showAi" />
       <section class="tiptap-toolbar" :class="menuClass" v-else>
         <template v-if="showBack">

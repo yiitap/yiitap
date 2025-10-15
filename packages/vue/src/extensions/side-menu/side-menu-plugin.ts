@@ -117,13 +117,20 @@ export class SideMenuView {
   createTooltip() {
     // console.log('createTooltip')
     const { element: editorElement } = this.editor.options
-    const editorIsAttached = !!editorElement.parentElement
+    const el =
+      editorElement instanceof Element
+        ? editorElement
+        : 'mount' in (editorElement as any)
+          ? (editorElement as { mount: HTMLElement }).mount
+          : null
+
+    const editorIsAttached = !!el?.parentElement
 
     if (this.tippy || !editorIsAttached) {
       return
     }
 
-    this.tippy = tippy(editorElement, {
+    this.tippy = tippy(el!, {
       duration: 0,
       getReferenceClientRect: null,
       content: this.element,

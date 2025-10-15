@@ -1,9 +1,6 @@
 <template>
   <section v-if="editor">
-    <floating-menu
-      :editor="editor"
-      :options="options"
-    >
+    <floating-menu :editor="editor" :options="options">
       <section class="tiptap-toolbar" :class="menuClass">
         <template v-if="showBack">
           <o-menubar-btn icon="arrow_back" @click="onBackToMain" />
