@@ -71,7 +71,6 @@ export const DefaultExtensionNames = [
   'TaskList',
   'TextAlign',
   'Typography',
-  'Underline',
 
   'OHorizontalRule',
   'OSelectionDecoration',
