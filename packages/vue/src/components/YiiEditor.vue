@@ -325,6 +325,7 @@ function buildExtensions() {
       codeBlock: false,
       document: false,
       horizontalRule: false,
+      link: false,
       blockquote: props.extensions.includes('OBlockquote') ? false : {},
       heading: props.extensions.includes('OHeading')
         ? false
