@@ -1,14 +1,8 @@
 <template>
   <section v-if="editor">
-    <bubble-menu
-      class="o-bubble-menu"
-      :class="menuClass"
-      :editor="editor"
-      :should-show="shouldShow"
-      :tippy-options="options"
-    >
+    <bubble-menu :editor="editor" :should-show="shouldShow" :options="options">
       <o-ai-menu :editor="editor" @confirm="onAiConfirm" v-if="showAi" />
-      <section class="container" v-else>
+      <section class="tiptap-toolbar" :class="menuClass" v-else>
         <template v-if="showBack">
           <o-menubar-btn
             icon="arrow_back"
@@ -35,9 +29,12 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * @see https://tiptap.dev/docs/editor/extensions/functionality/bubble-menu
+ */
 import { ref, computed, onMounted } from 'vue'
 import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
-import { BubbleMenu } from '@tiptap/vue-3'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
 import { useTheme } from '../../hooks'
@@ -77,11 +74,8 @@ const backToMain = ref(false)
 const showAi = ref(false)
 const aiConfirmed = ref(false)
 const options = ref({
-  duration: 100,
+  offset: 10,
   placement: 'bottom-start' as 'bottom' | 'top',
-  role: 'popover',
-  trigger: 'manual',
-  arrow: false,
   onShow: () => {
     backToMain.value = false
     showAi.value = false

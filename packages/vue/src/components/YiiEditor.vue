@@ -57,7 +57,7 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
-import TextStyle from '@tiptap/extension-text-style'
+import { TextStyle } from '@tiptap/extension-text-style'
 
 import OMainMenu from './menus/OMainMenu.vue'
 import OBubbleMenu from './menus/OBubbleMenu.vue'

@@ -1,5 +1,5 @@
 <template>
-  <section class="o-ai-menu" v-if="editor">
+  <section class="o-ai-menu tiptap-toolbar" v-if="editor">
     <o-block-popover
       v-model="showPopover"
       placement="bottom-start"

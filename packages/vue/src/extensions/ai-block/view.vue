@@ -139,6 +139,7 @@ import {
   OBtn,
   OBtnGroup,
   OToast,
+  OFloatingToast,
 } from '../../components'
 import { useAi, useI18n, useNodeView, useTheme, useTiptap } from '../../hooks'
 import { AiBlocks, getProviderProp, Prompts } from '../../constants'
@@ -275,6 +276,7 @@ async function onAiGenerate() {
     messages.value.pop()
     console.error(e)
     OToast.error(tr('ai.error'))
+    // OFloatingToast.error(tr('ai.error'))
   }
   generating.value = false
 }

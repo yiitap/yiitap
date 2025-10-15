@@ -5,7 +5,7 @@
  * select column/row: https://github.com/ueberdosis/tiptap/discussions/2065
  */
 import { RawCommands } from '@tiptap/core'
-import { default as TiptapTable, createTable } from '@tiptap/extension-table'
+import { Table as TiptapTable, createTable } from '@tiptap/extension-table'
 import type { TableOptions } from '@tiptap/extension-table'
 import { TextSelection } from '@tiptap/pm/state'
 import { CellSelection } from '@tiptap/pm/tables'

@@ -1,23 +1,24 @@
 // ---------------------------------------------------------
 // Tiptap extensions imports
 // ---------------------------------------------------------
+import { Focus } from '@tiptap/extensions'
+import {
+  Table,
+  TableRow,
+  TableCell,
+  TableHeader,
+} from '@tiptap/extension-table'
 import BackColor from '@tiptap/extension-highlight'
 import Document from '@tiptap/extension-document'
-import Focus from '@tiptap/extension-focus'
 import FontFamily from '@tiptap/extension-font-family'
 import ForeColor from '@tiptap/extension-color'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
-import TaskItem from '@tiptap/extension-task-item'
-import TaskList from '@tiptap/extension-task-list'
+import { TaskItem, TaskList } from '@tiptap/extension-list'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
 import Text from '@tiptap/extension-text'
 
 // ---------------------------------------------------------
