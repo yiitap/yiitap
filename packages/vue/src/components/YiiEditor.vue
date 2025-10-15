@@ -317,21 +317,22 @@ function buildExtensions() {
   extensions.push(TextStyle)
   extensions.push(
     StarterKit.configure({
-      document: false,
-      blockquote: props.extensions.includes('OBlockquote') ? false : {},
+      dropcursor: {
+        width: 5,
+        color: 'skyblue',
+        class: 'yiitap-dropcursor',
+      },
       codeBlock: false,
+      document: false,
+      horizontalRule: false,
+      blockquote: props.extensions.includes('OBlockquote') ? false : {},
       heading: props.extensions.includes('OHeading')
         ? false
         : {
             levels: [1, 2, 3, 4, 5],
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
-      dropcursor: {
-        width: 5,
-        color: 'skyblue',
-        class: 'yiitap-dropcursor',
-      },
-      horizontalRule: false,
+      trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
     })
   )
 

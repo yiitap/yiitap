@@ -177,7 +177,6 @@ const editorOptions = computed(() => {
       'OSlash',
       'OSlashZh',
       'OLink',
-      'OTrailingNode',
       'OVideo',
     ],
   }
