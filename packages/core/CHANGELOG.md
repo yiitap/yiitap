@@ -1,5 +1,11 @@
 # @yiitap/core
 
+## 0.5.0
+
+### Minor Changes
+
+- e5663f8: upgrade tiptap
+
 ## 0.4.1
 
 ## 0.4.0

@@ -1,5 +1,13 @@
 # app-vue
 
+## 0.5.0
+
+### Patch Changes
+
+- Updated dependencies [e5663f8]
+  - @yiitap/vue@0.5.0
+  - @yiitap/util-emoji@0.5.0
+
 ## 0.4.1
 
 ### Patch Changes

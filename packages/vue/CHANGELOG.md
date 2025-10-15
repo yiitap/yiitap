@@ -1,5 +1,31 @@
 # @yiitap/vue
 
+## 0.5.0
+
+### Minor Changes
+
+- e5663f8: upgrade tiptap
+
+### Patch Changes
+
+- Updated dependencies [e5663f8]
+  - @yiitap/extension-selection-decoration@0.5.0
+  - @yiitap/extension-color-highlighter@0.5.0
+  - @yiitap/extension-table-wrapper@0.5.0
+  - @yiitap/extension-trailing-node@0.5.0
+  - @yiitap/extension-char-command@0.5.0
+  - @yiitap/extension-placeholder@0.5.0
+  - @yiitap/extension-unique-id@0.5.0
+  - @yiitap/extension-ai-block@0.5.0
+  - @yiitap/extension-callout@0.5.0
+  - @yiitap/extension-focus@0.5.0
+  - @yiitap/extension-image@0.5.0
+  - @yiitap/extension-table@0.5.0
+  - @yiitap/extension-video@0.5.0
+  - @yiitap/core@0.5.0
+  - @yiitap/vue@0.5.0
+  - @yiitap/util-emoji@0.5.0
+
 ## 0.4.1
 
 ### Patch Changes
