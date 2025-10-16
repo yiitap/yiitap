@@ -2,10 +2,15 @@ import { VueNodeViewRenderer } from '@tiptap/vue-3'
 import { InputRule } from '@tiptap/core'
 import Blockquote from '@tiptap/extension-blockquote'
 import type { BlockquoteOptions } from '@tiptap/extension-blockquote'
+import { TextSelection } from '@tiptap/pm/state'
 
 import View from './view.vue'
 
-const OBlockquote = Blockquote.extend<BlockquoteOptions>({
+interface OBlockquoteOptions extends BlockquoteOptions {
+  triggerCharacters: string[]
+}
+
+const OBlockquote = Blockquote.extend<OBlockquoteOptions>({
   draggable: true,
 
   addOptions() {
@@ -49,9 +54,7 @@ const OBlockquote = Blockquote.extend<BlockquoteOptions>({
           tr.replaceRangeWith(blockStart, blockEnd, blockquote)
 
           // Selection
-          const selection = state.selection.constructor.near(
-            tr.doc.resolve(blockStart + 2)
-          )
+          const selection = TextSelection.near(tr.doc.resolve(blockStart + 2))
           tr.setSelection(selection)
 
           return tr
