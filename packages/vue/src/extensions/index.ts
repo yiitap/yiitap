@@ -16,14 +16,12 @@ import {
 import { TextStyle } from '@tiptap/extension-text-style'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
 import BackColor from '@tiptap/extension-highlight'
-import Document from '@tiptap/extension-document'
 import Emoji from '@tiptap/extension-emoji'
 import FontFamily from '@tiptap/extension-font-family'
 import ForeColor from '@tiptap/extension-color'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
-import Text from '@tiptap/extension-text'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
@@ -153,7 +151,6 @@ export const BuiltinExtensions = [
   Details,
   DetailsContent,
   DetailsSummary,
-  Document,
   Emoji,
   Focus,
   FontFamily,
@@ -163,7 +160,6 @@ export const BuiltinExtensions = [
   TableRow,
   TaskItem,
   TaskList,
-  Text,
   TextAlign,
   TextStyle,
   Typography,
@@ -196,7 +192,6 @@ export {
   Details,
   DetailsContent,
   DetailsSummary,
-  Document,
   Emoji,
   Focus,
   FontFamily,
@@ -210,7 +205,6 @@ export {
   TableRow,
   TaskItem,
   TaskList,
-  Text,
   TextAlign,
   TextStyle,
   Typography,
