@@ -24,6 +24,7 @@ import {
   Typography,
   Underline,
   Text,
+  TextStyle,
   Table,
   TableHeader,
   TableCell,
@@ -87,6 +88,7 @@ const classes: Indexable = {
   TextAlign: TextAlign.configure({
     types: ['heading', 'paragraph'],
   }),
+  TextStyle,
   Underline,
   Typography,
 

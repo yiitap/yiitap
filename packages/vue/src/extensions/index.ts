@@ -1,18 +1,19 @@
 // ---------------------------------------------------------
 // Tiptap extensions imports
 // ---------------------------------------------------------
+import { Focus } from '@tiptap/extensions'
 import {
   Details,
   DetailsContent,
   DetailsSummary,
 } from '@tiptap/extension-details'
-import { Focus } from '@tiptap/extensions'
 import {
   Table,
   TableRow,
   TableCell,
   TableHeader,
 } from '@tiptap/extension-table'
+import { TextStyle } from '@tiptap/extension-text-style'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
 import BackColor from '@tiptap/extension-highlight'
 import Document from '@tiptap/extension-document'
@@ -77,6 +78,7 @@ export const DefaultExtensionNames = [
   'TaskItem',
   'TaskList',
   'TextAlign',
+  'TextStyle',
   'Typography',
 
   'OHorizontalRule',
@@ -109,6 +111,7 @@ export const TiptapExtensionNames = [
   'TaskItem',
   'TaskList',
   'TextAlign',
+  'TextStyle',
   'Typography',
   'Underline',
 ]
@@ -162,6 +165,7 @@ export const BuiltinExtensions = [
   TaskList,
   Text,
   TextAlign,
+  TextStyle,
   Typography,
   Underline,
 
@@ -208,6 +212,7 @@ export {
   TaskList,
   Text,
   TextAlign,
+  TextStyle,
   Typography,
   Underline,
   OAiBlock,
