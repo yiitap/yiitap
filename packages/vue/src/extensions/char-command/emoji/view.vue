@@ -1,83 +1,140 @@
 <template>
-  <section class="o-colon-view">
-    <o-emoji-select :items="items" @select="onSelect" />
-  </section>
+  <div class="dropdown-menu">
+    <button
+      :class="{ 'is-selected': index === selectedIndex }"
+      v-for="(item, index) in items"
+      :key="index"
+      @click="selectItem(index)"
+    >
+      <img
+        v-if="item.fallbackImage"
+        :src="item.fallbackImage"
+        align="absmiddle"
+      />
+      <template v-else>
+        {{ item.emoji }}
+      </template>
+      :{{ item.name }}:
+    </button>
+  </div>
 </template>
 
-<script lang="ts">
-import useI18n from '../../../hooks/useI18n'
-import useTiptap from '../../../hooks/useTiptap'
-import { OEmojiSelect } from '../../../components'
-import { Editor } from '@tiptap/core'
-
+<script>
 export default {
   props: {
     items: {
-      type: Array as () => Indexable[],
+      type: Array,
       required: true,
     },
+
     command: {
       type: Function,
       required: true,
     },
+
     editor: {
       type: Object,
-    },
-    range: {
-      type: Object,
+      required: true,
     },
   },
-  setup() {
-    const { locale, tr } = useI18n()
-    const { run } = useTiptap()
 
-    return {
-      locale,
-      tr,
-      run,
-    }
-  },
   data() {
     return {
-      view: 'main',
+      selectedIndex: 0,
     }
   },
-  components: {
-    OEmojiSelect,
-  },
-  methods: {
-    onSelect(options: Indexable) {
-      const commands = this.editor.commands
-      commands.deleteRange(this.range)
-      this.editor.commands.insertContent(options.emoji)
-      this.editor.chain().focus()
+
+  watch: {
+    items() {
+      this.selectedIndex = 0
     },
+  },
+
+  methods: {
     onKeyDown({ event }) {
+      if (event.key === 'ArrowUp') {
+        this.upHandler()
+        return true
+      }
+
+      if (event.key === 'ArrowDown') {
+        this.downHandler()
+        return true
+      }
+
+      if (event.key === 'Enter') {
+        this.enterHandler()
+        return true
+      }
+
       return false
+    },
+
+    upHandler() {
+      this.selectedIndex =
+        (this.selectedIndex + this.items.length - 1) % this.items.length
+    },
+
+    downHandler() {
+      this.selectedIndex = (this.selectedIndex + 1) % this.items.length
+    },
+
+    enterHandler() {
+      this.selectItem(this.selectedIndex)
+    },
+
+    selectItem(index) {
+      const item = this.items[index]
+
+      if (item) {
+        this.command({ name: item.name })
+      }
     },
   },
 }
 </script>
 
 <style lang="scss">
-.o-colon-view {
-  //width: 420px;
-}
+/* Dropdown menu */
+.dropdown-menu {
+  background: var(--yii-bg-color);
+  border: 1px solid var(--yii-border-color);
+  border-radius: 0.7rem;
+  box-shadow: var(--yii-dropdown-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow: auto;
+  padding: 0.4rem;
+  position: relative;
 
-.emoji-tippy {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow:
-    0 1px 8px rgba(0, 0, 0, 0.2),
-    0 3px 4px rgba(0, 0, 0, 0.14),
-    0 3px 3px -2px rgba(0, 0, 0, 0.12);
+  button {
+    align-items: center;
+    color: var(--yii-color);
+    background-color: transparent;
+    display: flex;
+    gap: 0.25rem;
+    text-align: left;
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.375rem 0.625rem;
+    font-weight: 500;
+    font-size: 0.875rem;
 
-  .tippy-box {
-    max-width: 500px !important;
-  }
+    &:hover,
+    &:hover.is-selected {
+      background-color: var(--yii-hover-bg-color);
+    }
 
-  .tippy-content {
-    padding: 8px;
+    &.is-selected {
+      background-color: var(--yii-hover-bg-color);
+    }
+
+    img {
+      height: 1em;
+      width: 1em;
+    }
   }
 }
 </style>

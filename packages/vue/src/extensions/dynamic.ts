@@ -6,8 +6,9 @@
 // ---------------------------------------------------------
 import {
   // Tiptap
-  Document,
   BackColor,
+  Document,
+  Emoji,
   Focus,
   FontFamily,
   ForeColor,
@@ -19,11 +20,11 @@ import {
   TextAlign,
   Typography,
   Underline,
+  Text,
   Table,
   TableHeader,
   TableCell,
   TableRow,
-  Text,
 
   // Yiitap
   OAiBlock,
@@ -55,25 +56,32 @@ import {
 // ---------------------------------------------------------
 // Classes and configuration
 // ---------------------------------------------------------
+import ColonSuggestion from './char-command/colon/suggestion'
 import SlashSuggestion from './char-command/slash/suggestion'
 import EmojiSuggestion from './char-command/emoji/suggestion'
+import { gitHubEmojis } from '@tiptap/extension-emoji'
 const classes: Indexable = {
   // default
   BackColor: BackColor.configure({
     multicolor: true,
+  }),
+  Emoji: Emoji.configure({
+    emojis: gitHubEmojis,
+    enableEmoticons: true,
+    suggestion: EmojiSuggestion,
   }),
   Focus,
   ForeColor,
   FontFamily,
   Image,
   Link,
-  TextAlign: TextAlign.configure({
-    types: ['heading', 'paragraph'],
-  }),
   // task
   TaskItem,
   TaskList: TaskList.configure({
     itemTypeName: 'taskItem',
+  }),
+  TextAlign: TextAlign.configure({
+    types: ['heading', 'paragraph'],
   }),
   Underline,
   Typography,
@@ -81,7 +89,7 @@ const classes: Indexable = {
   // Custom extensions
   OAiBlock: OAiBlock,
   OColon: OColonCommand.configure({
-    suggestion: EmojiSuggestion,
+    suggestion: ColonSuggestion,
   }),
   OSlash: OSlashCommand.configure({
     suggestion: SlashSuggestion,

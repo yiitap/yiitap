@@ -8,18 +8,19 @@ import {
   TableCell,
   TableHeader,
 } from '@tiptap/extension-table'
+import { TaskItem, TaskList } from '@tiptap/extension-list'
 import BackColor from '@tiptap/extension-highlight'
 import Document from '@tiptap/extension-document'
+import Emoji from '@tiptap/extension-emoji'
 import FontFamily from '@tiptap/extension-font-family'
 import ForeColor from '@tiptap/extension-color'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
-import { TaskItem, TaskList } from '@tiptap/extension-list'
+import Text from '@tiptap/extension-text'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
-import Text from '@tiptap/extension-text'
 
 // ---------------------------------------------------------
 // YiiEditor extension imports
@@ -86,6 +87,7 @@ export const TiptapExtensionNames = [
   'BulletList',
   'Code',
   'CodeBlockLowlight',
+  'Emoji',
   'Focus',
   'FontFamily',
   'ForeColor',
@@ -137,20 +139,21 @@ export const BuiltinExtensionNames = [
 ]
 
 export const BuiltinExtensions = [
-  Document,
   BackColor,
+  Document,
+  Emoji,
   Focus,
   FontFamily,
   ForeColor,
   Link,
   Mention,
+  TableRow,
   TaskItem,
   TaskList,
+  Text,
   TextAlign,
   Typography,
   Underline,
-  TableRow,
-  Text,
 
   OAiBlock,
   OBlockquote,
@@ -174,24 +177,25 @@ export const BuiltinExtensions = [
 ]
 
 export {
-  Document,
   BackColor,
+  Document,
+  Emoji,
   Focus,
   FontFamily,
   ForeColor,
   Image,
   Link,
   Mention,
-  TaskItem,
-  TaskList,
-  TextAlign,
-  Typography,
-  Underline,
   Table,
   TableHeader,
   TableCell,
   TableRow,
+  TaskItem,
+  TaskList,
   Text,
+  TextAlign,
+  Typography,
+  Underline,
   OAiBlock,
   OBlockquote,
   OCallout,

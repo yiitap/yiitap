@@ -165,11 +165,12 @@ const editorOptions = computed(() => {
       'aiBlock',
     ],
     extensions: [
+      'Emoji',
       'OAiBlock',
       'OBlockquote',
       'OCallout',
       'OCodeBlock',
-      'OColon',
+      // 'OColon',
       'OColorHighlighter',
       'OHeading',
       'OImage',
