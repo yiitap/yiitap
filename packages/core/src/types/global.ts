@@ -18,6 +18,7 @@ declare global {
   interface BlockOption {
     label: string
     value: string
+    keywords?: string
     icon?: string
     color?: string
     tips?: string

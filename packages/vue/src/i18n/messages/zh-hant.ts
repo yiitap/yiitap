@@ -83,6 +83,8 @@ export default {
     noColor: '無色',
     delete: '刪除',
     duplicate: '創建副本',
+    aiBlock: 'AI块',
+    toggleList: '折叠列表',
   },
   label: {
     ai: 'AI',

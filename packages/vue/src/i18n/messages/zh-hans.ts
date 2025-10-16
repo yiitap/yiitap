@@ -84,6 +84,7 @@ export default {
     delete: '删除',
     duplicate: '创建副本',
     aiBlock: 'AI块',
+    toggleList: '折叠列表',
   },
   label: {
     ai: 'AI',

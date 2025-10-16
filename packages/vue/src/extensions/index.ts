@@ -1,6 +1,11 @@
 // ---------------------------------------------------------
 // Tiptap extensions imports
 // ---------------------------------------------------------
+import {
+  Details,
+  DetailsContent,
+  DetailsSummary,
+} from '@tiptap/extension-details'
 import { Focus } from '@tiptap/extensions'
 import {
   Table,
@@ -46,6 +51,7 @@ import OAiBlock from './ai-block'
 import OBlockquote from './blockquote'
 import OCallout from './callout'
 import OCodeBlock from './code-block'
+import ODetails from './details'
 import OHeading from './heading'
 import OHorizontalRule from './horizontal-rule'
 import OImage from './image'
@@ -115,6 +121,7 @@ export const YiitapExtensionNames = [
   'OCodeBlock',
   'OColon',
   'OColorHighlighter',
+  'ODetails',
   // 'ODiagram',
   'OFocus',
   'OHeading',
@@ -140,6 +147,9 @@ export const BuiltinExtensionNames = [
 
 export const BuiltinExtensions = [
   BackColor,
+  Details,
+  DetailsContent,
+  DetailsSummary,
   Document,
   Emoji,
   Focus,
@@ -161,6 +171,7 @@ export const BuiltinExtensions = [
   OCallout,
   OCharCommand,
   OCodeBlock,
+  ODetails,
   OHeading,
   OHorizontalRule,
   OImage,
@@ -178,6 +189,9 @@ export const BuiltinExtensions = [
 
 export {
   BackColor,
+  Details,
+  DetailsContent,
+  DetailsSummary,
   Document,
   Emoji,
   Focus,
@@ -203,6 +217,7 @@ export {
   OCodeBlock,
   OColonCommand,
   OColorHighlighter,
+  ODetails,
   OFocus,
   OSelectionDecoration,
   OSlashCommand,

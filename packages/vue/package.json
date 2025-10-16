@@ -43,6 +43,7 @@
 		"@tiptap/extension-bubble-menu": "^3.7.0",
 		"@tiptap/extension-code-block-lowlight": "^3.7.0",
 		"@tiptap/extension-color": "^3.7.0",
+		"@tiptap/extension-details": "^3.7.0",
 		"@tiptap/extension-document": "^3.7.0",
 		"@tiptap/extension-emoji": "^3.7.0",
 		"@tiptap/extension-font-family": "^3.7.0",

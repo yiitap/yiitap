@@ -53,6 +53,7 @@ import {
   EmptyParagraph,
   EmptyListItem,
   EmptyTaskItem,
+  EmptyDetails,
 } from '../../../constants/empty-block'
 import type { NodeViewProps } from '@tiptap/core'
 
@@ -109,6 +110,9 @@ function onClick(item) {
         content: [],
         attrs: { language: 'shell' },
       }
+      break
+    case 'details':
+      content = EmptyDetails
       break
     case 'emoji':
       content = {
@@ -172,7 +176,6 @@ function onClick(item) {
     // console.log('add', props.getPos(), newPos.value, insertPos)
     content.type = content.type || item.value
     setTimeout(() => {
-      // console.log('add2', props.getPos(), newPos.value, insertPos)
       if (isEmpty.value) {
         chain.insertContent(content).focus().run()
       } else {

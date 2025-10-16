@@ -84,6 +84,7 @@ export default {
     delete: 'Delete',
     duplicate: 'Duplicate',
     aiBlock: 'AI Block',
+    toggleList: 'Toggle List',
   },
   label: {
     ai: 'AI',

@@ -61,6 +61,13 @@ export default function () {
       case 'content':
         commands.insertContent(options.content)
         break
+      case 'details':
+        if (options.type === 'detailsSummary') {
+          commands.unsetDetails()
+        } else {
+          commands.setDetails()
+        }
+        break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)
         break

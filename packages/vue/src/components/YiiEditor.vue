@@ -70,7 +70,10 @@ import {
   BuiltinExtensionNames,
   OPlaceholder,
 } from '../extensions'
-import DynamicClass, { TableExtensions } from '../extensions/dynamic'
+import DynamicClass, {
+  DetailsExtensions,
+  TableExtensions,
+} from '../extensions/dynamic'
 import type { Editor } from '@tiptap/core'
 
 const props = defineProps({
@@ -348,6 +351,9 @@ function buildExtensions() {
       }
 
       switch (item) {
+        case 'ODetails':
+          extensions.push(...DetailsExtensions)
+          break
         case 'Table':
           extensions.push(...TableExtensions)
           break

@@ -7,6 +7,9 @@
 import {
   // Tiptap
   BackColor,
+  Details,
+  DetailsContent,
+  DetailsSummary,
   Document,
   Emoji,
   Focus,
@@ -34,6 +37,7 @@ import {
   OCodeBlock,
   OColorHighlighter,
   OColonCommand,
+  ODetails,
   // OFocus,
   OHeading,
   OHorizontalRule,
@@ -143,6 +147,18 @@ export default DynamicClass
 export const getDynamicExtension = (name: string) => {
   return new DynamicClass(name)
 }
+
+// Details
+export const DetailsExtensions = [
+  ODetails.configure({
+    persist: true,
+    HTMLAttributes: {
+      class: 'details',
+    },
+  }),
+  DetailsContent,
+  DetailsSummary,
+]
 
 // Custom table
 export const TableExtensions = [

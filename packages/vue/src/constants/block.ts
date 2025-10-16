@@ -65,6 +65,14 @@ export const BasicBlocks: BlockOption[] = [
     style: true,
   },
   {
+    label: 'editor.toggleList',
+    value: 'details',
+    keywords: 'details, toggle',
+    icon: 'toggle_list',
+    color: Color.indigo,
+    style: true,
+  },
+  {
     label: 'editor.codeBlock',
     value: 'codeBlock',
     icon: 'code_braces',
