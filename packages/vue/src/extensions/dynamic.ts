@@ -99,7 +99,9 @@ const classes: Indexable = {
   }),
   // OTOC: TOC,
   // OModelViewer: ModelViewer,
-  OBlockquote,
+  OBlockquote: OBlockquote.configure({
+    triggerCharacters: ['"', '“', '”'],
+  }),
   OCallout,
   OCodeBlock,
   OColorHighlighter,
