@@ -544,7 +544,10 @@
   //  selection
   // --------------------------------------------------
   .selection-decoration-blur {
-    background: #ACCEF7;
+    padding: 4px 0;
+    border-radius: 2px;
+    background: rgba(#ACCEF7, 0.5);
+    //box-shadow: 0 0 0 1px #ACCEF7;
   }
 
   .ProseMirror *::selection {
