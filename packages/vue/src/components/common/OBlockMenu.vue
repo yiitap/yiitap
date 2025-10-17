@@ -134,13 +134,27 @@ function onClick(item: Indexable) {
 
 function onAction(item: Indexable) {
   switch (item.value) {
+    case 'copy':
+      onCopy()
+      break
     case 'delete':
-      props.deleteNode()
+      onDelete()
       break
     case 'duplicate':
       onDuplicate()
       break
   }
+}
+
+function onCopy() {
+  const json = JSON.parse(JSON.stringify(props.node))
+  const text = JSON.stringify({ __tiptap_node__: true, node: json })
+  navigator.clipboard.writeText(text).catch(() => {})
+}
+
+function onDelete() {
+  onCopy()
+  props.deleteNode()
 }
 
 function onDuplicate() {

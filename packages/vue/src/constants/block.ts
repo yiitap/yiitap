@@ -197,6 +197,13 @@ export const BlockMenus: BlockOption[] = [
     filter: 'common',
   },
   {
+    label: 'label.copy',
+    value: 'copy',
+    icon: 'copy_all',
+    color: Color.indigo,
+    filter: 'common',
+  },
+  {
     label: 'editor.delete',
     value: 'delete',
     icon: 'delete',
