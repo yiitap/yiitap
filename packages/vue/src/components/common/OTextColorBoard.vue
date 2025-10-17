@@ -1,7 +1,35 @@
 <template>
   <section class="o-simple-color-board">
     <section class="fore-colors">
-      <div class="label o-tips">Color</div>
+      <header>
+        <div class="label o-tips">
+          {{ tr('editor.textColor') }}
+        </div>
+        <o-popover
+          ref="popover"
+          class="o-simple-command-btn"
+          size="medium"
+          placement="right-start"
+          trigger="mouseenter"
+          :offset="[-9, 14]"
+          :show-arrow="false"
+        >
+          <template #trigger>
+            <o-tooltip>
+              <template #trigger>
+                <o-btn icon="more_horiz" class="o-command-btn" />
+              </template>
+              {{ tr('label.more') }}
+            </o-tooltip>
+          </template>
+
+          <o-color-board
+            default-color=""
+            default-disabled
+            @select="onSelect('color', { value: $event })"
+          />
+        </o-popover>
+      </header>
       <div class="color-row">
         <o-menubar-btn
           icon="format_text"
@@ -30,7 +58,35 @@
       </div>
     </section>
     <section class="back-colors">
-      <div class="label o-tips">Background</div>
+      <header>
+        <div class="label o-tips">
+          {{ tr('editor.backgroundColor') }}
+        </div>
+        <o-popover
+          ref="popover"
+          class="o-simple-command-btn"
+          size="medium"
+          placement="right-start"
+          trigger="mouseenter"
+          :offset="[-9, 14]"
+          :show-arrow="false"
+        >
+          <template #trigger>
+            <o-tooltip>
+              <template #trigger>
+                <o-btn icon="more_horiz" class="o-command-btn" />
+              </template>
+              {{ tr('label.more') }}
+            </o-tooltip>
+          </template>
+
+          <o-color-board
+            default-color=""
+            default-disabled
+            @select="onSelect('backgroundColor', { value: $event })"
+          />
+        </o-popover>
+      </header>
       <div class="color-row">
         <o-menubar-btn
           icon="slash_forward"
@@ -63,7 +119,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { OMenubarBtn } from '../index'
+import { OMenubarBtn, OColorBoard, OPopover, OTooltip, OBtn } from '../index'
+
+import useI18n from '../../hooks/useI18n'
 
 const props = defineProps({
   foreColor: {
@@ -80,6 +138,8 @@ const props = defineProps({
   },
 })
 const emit = defineEmits(['select'])
+
+const { tr } = useI18n()
 
 function onSelect(command: string, color: Indexable) {
   emit('select', command, color.value)
@@ -117,6 +177,11 @@ const backColors = computed(() => {
 <style lang="scss">
 .o-simple-color-board {
   //padding: 0 10px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .color-row {
     display: flex;
@@ -139,12 +204,13 @@ const backColors = computed(() => {
       }
 
       .o-command-btn {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
       }
     }
   }
 
+  header,
   .fore-colors {
     .o-command-btn {
       border: solid 1px rgba(0, 0, 0, 0.05);
@@ -153,6 +219,10 @@ const backColors = computed(() => {
 
   .back-colors {
     margin-top: 10px;
+
+    .color-row .o-icon {
+      visibility: hidden;
+    }
   }
 }
 </style>

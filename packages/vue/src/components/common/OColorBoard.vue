@@ -1,6 +1,10 @@
 <template>
   <section class="o-color-board">
-    <div class="default-color" @click="onSelect({ hex: defaultColor })">
+    <div
+      class="default-color"
+      @click="onSelect({ hex: defaultColor })"
+      v-if="!defaultDisabled"
+    >
       <div class="cell-container">
         <div class="cell border" :style="{ background: defaultColor }">
           <o-icon name="slash_forward" />
@@ -40,6 +44,10 @@ const props = defineProps({
   defaultLabel: {
     type: String,
     default: '',
+  },
+  defaultDisabled: {
+    type: Boolean,
+    default: false,
   },
   activeColor: {
     type: String,
@@ -163,7 +171,7 @@ const colorSet = computed(() => {
 
 <style lang="scss">
 .o-color-board {
-  padding: 10px;
+  padding: 3px;
 
   .default-color {
     display: flex;

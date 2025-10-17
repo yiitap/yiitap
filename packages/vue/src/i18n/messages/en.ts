@@ -65,6 +65,7 @@ export default {
     size7: 'Maximum',
     viewSource: 'View Source',
     textColor: 'Text Color',
+    backgroundColor: 'Background Color',
     highlightColor: 'Highlight Color',
     default: 'Default',
     lineHeight: 'Line Height',
