@@ -31,6 +31,13 @@ export default function () {
           commands.unsetHighlight()
         }
         break
+      case 'backgroundColor':
+        if (options.color) {
+          commands.setBackgroundColor(options.color)
+        } else {
+          commands.unsetBackgroundColor()
+        }
+        break
       case 'blockquote':
         focus.toggleBlockquote().run()
         break
@@ -58,6 +65,9 @@ export default function () {
       // case 'columns':
       // 	commands.setColumns(2)
       // 	break
+      case 'color':
+        focus.setColor(options.color).run()
+        break
       case 'content':
         commands.insertContent(options.content)
         break
@@ -70,9 +80,6 @@ export default function () {
         break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)
-        break
-      case 'foreColor':
-        commands.setColor(options.color)
         break
       case 'heading':
         focus.toggleHeading(options as { level: Level }).run()

@@ -6,7 +6,7 @@ import OBackColorDropdown from './buttons/OBackColorDropdown.vue'
 import ODetailsBtn from './buttons/ODetailsBtn.vue'
 import OEmojiBtn from './buttons/OEmojiBtn.vue'
 import OFontFamilyDropdown from './buttons/OFontFamilyDropdown.vue'
-import OForeColorDropdown from './buttons/OForeColorDropdown.vue'
+import OColorDropdown from './buttons/OColorDropdown.vue'
 import OHeadingDropdown from './buttons/OHeadingDropdown.vue'
 import OListDropdown from './buttons/OListDropdown.vue'
 import OListGroup from './buttons/OListGroup.vue'
@@ -28,9 +28,9 @@ const CommandComponents: Indexable = {
   'align-dropdown': OAlignDropdown,
   'align-group': OAlignGroup,
   'back-color': OBackColorDropdown,
+  color: OColorDropdown,
   details: ODetailsBtn,
   'font-family': OFontFamilyDropdown,
-  'fore-color': OForeColorDropdown,
   heading: OHeadingDropdown,
   // 'indent-dropdown': 'o-indent-dropdown',
   // 'line-height': 'o-line-height-dropdown',

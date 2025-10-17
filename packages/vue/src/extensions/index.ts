@@ -13,12 +13,15 @@ import {
   TableCell,
   TableHeader,
 } from '@tiptap/extension-table'
-import { TextStyle } from '@tiptap/extension-text-style'
+import {
+  BackgroundColor,
+  Color,
+  FontFamily,
+  TextStyle,
+} from '@tiptap/extension-text-style'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
 import BackColor from '@tiptap/extension-highlight'
 import Emoji from '@tiptap/extension-emoji'
-import FontFamily from '@tiptap/extension-font-family'
-import ForeColor from '@tiptap/extension-color'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
@@ -69,9 +72,10 @@ import OVideo from './video'
  */
 export const DefaultExtensionNames = [
   'BackColor',
+  'BackgroundColor',
+  'Color',
   'Focus',
   'FontFamily',
-  'ForeColor',
   'Table',
   'TaskItem',
   'TaskList',
@@ -89,14 +93,15 @@ export const DefaultExtensionNames = [
 // --------------------------------------------------------------------------------
 export const TiptapExtensionNames = [
   'BackColor',
+  'BackgroundColor',
   'Bold',
   'BulletList',
+  'Color',
   'Code',
   'CodeBlockLowlight',
   'Emoji',
   'Focus',
   'FontFamily',
-  'ForeColor',
   'HorizontalRule',
   'Image',
   'Italic',
@@ -148,13 +153,15 @@ export const BuiltinExtensionNames = [
 
 export const BuiltinExtensions = [
   BackColor,
+  BackgroundColor,
+  Color,
   Details,
   DetailsContent,
   DetailsSummary,
   Emoji,
   Focus,
   FontFamily,
-  ForeColor,
+  // ForeColor,
   Link,
   Mention,
   TableRow,
@@ -189,13 +196,14 @@ export const BuiltinExtensions = [
 
 export {
   BackColor,
+  BackgroundColor,
+  Color,
   Details,
   DetailsContent,
   DetailsSummary,
   Emoji,
   Focus,
   FontFamily,
-  ForeColor,
   Image,
   Link,
   Mention,

@@ -46,7 +46,7 @@ const foreColor = ref('')
 const backColor = ref('')
 
 function onSelect(command: string, value: string) {
-  if (command === 'foreColor') {
+  if (command === 'color') {
     foreColor.value = value
     localStorage.setItem('yiitap.text-color.fore', value)
   } else if (command === 'backColor') {

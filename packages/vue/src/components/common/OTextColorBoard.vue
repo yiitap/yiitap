@@ -7,14 +7,14 @@
           icon="format_text"
           tooltip="Default color"
           content-class="border"
-          @click="onSelect('foreColor', { value: '' })"
+          @click="onSelect('color', { value: '' })"
         />
         <o-menubar-btn
           icon="format_text"
           :color="foreColor"
           tooltip="Last used"
           content-class="border"
-          @click="onSelect('foreColor', { value: foreColor })"
+          @click="onSelect('color', { value: foreColor })"
           v-if="foreColor"
         />
       </div>
@@ -24,7 +24,7 @@
             icon="format_text"
             :color="col.value"
             :tooltip="col.label"
-            @click="onSelect('foreColor', col)"
+            @click="onSelect('color', col)"
           />
         </template>
       </div>
@@ -36,14 +36,14 @@
           icon="slash_forward"
           tooltip="No Color"
           content-class="border"
-          @click="onSelect('backColor', { value: '' })"
+          @click="onSelect('backgroundColor', { value: '' })"
         />
         <o-menubar-btn
           icon="format_text"
           tooltip="Last used"
           content-class="border"
           :content-style="{ backgroundColor: backColor }"
-          @click="onSelect('backColor', { value: backColor })"
+          @click="onSelect('backgroundColor', { value: backColor })"
           v-if="backColor"
         />
       </div>
@@ -53,7 +53,7 @@
             icon="format_text"
             :tooltip="col.label"
             :content-style="{ backgroundColor: col.value }"
-            @click="onSelect('backColor', col)"
+            @click="onSelect('backgroundColor', col)"
           />
         </template>
       </div>

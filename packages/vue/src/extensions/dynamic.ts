@@ -7,13 +7,15 @@
 import {
   // Tiptap
   BackColor,
+  BackgroundColor,
+  Color,
   Details,
   DetailsContent,
   DetailsSummary,
   Emoji,
   Focus,
   FontFamily,
-  ForeColor,
+  // ForeColor,
   Image,
   Link,
   Mention,
@@ -66,13 +68,16 @@ const classes: Indexable = {
   BackColor: BackColor.configure({
     multicolor: true,
   }),
+  BackgroundColor: BackgroundColor.configure({
+    types: ['textStyle'],
+  }),
+  Color,
   Emoji: Emoji.configure({
     emojis: gitHubEmojis,
     enableEmoticons: true,
     suggestion: EmojiSuggestion,
   }),
   Focus,
-  ForeColor,
   FontFamily,
   Image,
   Link,

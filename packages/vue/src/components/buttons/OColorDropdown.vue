@@ -58,7 +58,7 @@ function onSelectCurrent() {
 function onSelect(value: string) {
   popover.value?.setShow(false)
   color.value = value
-  run(props.editor as Editor, 'foreColor', {
+  run(props.editor as Editor, 'color', {
     color: value,
   })
 }

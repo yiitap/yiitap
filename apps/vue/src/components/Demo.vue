@@ -146,7 +146,7 @@ const editorOptions = computed(() => {
       'heading',
       'font-family',
       'text-color-dropdown',
-      'fore-color',
+      'color',
       'back-color',
       'clearFormat',
       'separator',
