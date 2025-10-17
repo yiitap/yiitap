@@ -221,7 +221,15 @@ export const BlockMenus: BlockOption[] = [
   },
   {
     label: 'label.color',
-    value: 'palette',
+    value: 'color',
+    icon: 'palette',
+    color: Color.purple,
+    filter: 'style',
+    component: 'OTextColorBoard',
+  },
+  {
+    label: 'label.color',
+    value: 'callout_color',
     icon: 'palette',
     color: Color.purple,
     filter: 'callout',

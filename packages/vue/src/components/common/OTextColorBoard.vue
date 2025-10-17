@@ -142,7 +142,10 @@ const emit = defineEmits(['select'])
 const { tr } = useI18n()
 
 function onSelect(command: string, color: Indexable) {
-  emit('select', command, color.value)
+  emit('select', {
+    name: command,
+    value: color.value,
+  })
 }
 
 const foreColors = computed(() => {

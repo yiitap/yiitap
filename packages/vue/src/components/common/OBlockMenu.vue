@@ -3,7 +3,7 @@
     <template v-if="actions.length">
       <template v-for="(item, index) in actions" :key="index">
         <template v-if="item.group">
-          <o-divider v-if="index > 0" />
+          <o-divider v-if="index > 0 || isStyleType" />
           <div class="group o-tips" v-if="showGroup">
             {{ tr(item.group) }}
           </div>
@@ -52,6 +52,7 @@
 <script setup lang="ts">
 import { computed, type PropType, ref } from 'vue'
 import useI18n from '../../hooks/useI18n'
+import useTiptap from '../../hooks/useTiptap'
 import {
   OCalloutColorBoard,
   ODivider,
@@ -59,8 +60,9 @@ import {
   OList,
   OListItem,
   OPopover,
+  OTextColorBoard,
 } from '../../components/index'
-import { BlockMenus } from '../../constants/block'
+import { BlockMenus, StyleBlocks } from '../../constants/block'
 import type { NodeViewProps } from '@tiptap/core'
 
 const props = defineProps({
@@ -96,30 +98,45 @@ const props = defineProps({
 const emit = defineEmits(['action'])
 
 const { tr } = useI18n()
+const { run } = useTiptap()
 const popovers = ref([])
 
 const nodeType = computed(() => {
   return props.node?.type.name
 })
 
+const isStyleType = computed(() => {
+  return StyleBlocks.find((e) => e.value === nodeType.value)
+})
+
 const actions = computed(() => {
-  const commonActions = BlockMenus.filter(
-    (e) => e.filter?.indexOf('common') >= 0
-  )
-  const nodeActions = BlockMenus.filter(
-    (e) => e.filter?.indexOf(nodeType.value) >= 0
-  )
+  // style actions
+  const styleActions = isStyleType.value
+    ? (BlockMenus.filter((e) => e.filter?.indexOf('style') >= 0) ?? [])
+    : []
+
+  // node specific actions
+  let nodeActions =
+    BlockMenus.filter((e) => e.filter?.indexOf(nodeType.value) >= 0) ?? []
+  nodeActions = nodeActions.concat(styleActions)
   if (nodeActions.length > 0) {
     const firstAction = nodeActions[0]
     firstAction.group = `editor.${nodeType.value}`
   }
-  return [...commonActions, ...nodeActions]
+
+  // common actions
+  const commonActions = BlockMenus.filter(
+    (e) => e.filter?.indexOf('common') >= 0
+  )
+  return [...nodeActions, ...commonActions]
 })
 
 function getComponent(item: Indexable) {
   switch (item.component) {
     case 'OCalloutColorBoard':
       return OCalloutColorBoard
+    case 'OTextColorBoard':
+      return OTextColorBoard
     default:
       return null
   }
@@ -168,14 +185,20 @@ function onDuplicate() {
   props.editor?.commands.focus(size)
 }
 
-function onSelect(item: Indexable, value: Indexable) {
-  console.log('select', item, value)
-  switch (value.name) {
+function onSelect(item: Indexable, options: Indexable) {
+  console.log('select', item, options)
+  switch (options.name) {
     case 'backColor':
-      props.updateAttributes({ backColor: value.value })
+      props.updateAttributes({ backColor: options.value })
       break
     case 'foreColor':
-      props.updateAttributes({ borderColor: value.value })
+      props.updateAttributes({ borderColor: options.value })
+      break
+    case 'color':
+      run(props.editor, options.name, { color: options.value })
+      break
+    case 'backgroundColor':
+      run(props.editor, options.name, { color: options.value })
       break
   }
 }
