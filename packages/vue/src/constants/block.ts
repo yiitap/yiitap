@@ -15,6 +15,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.heading1',
     value: 'heading',
+    keywords: 'h1',
+    tips: '#',
     icon: 'format_h1',
     color: Color.blue,
     style: true,
@@ -23,6 +25,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.heading2',
     value: 'heading',
+    keywords: 'h2',
+    tips: '##',
     icon: 'format_h2',
     color: Color.blue,
     style: true,
@@ -31,6 +35,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.heading3',
     value: 'heading',
+    keywords: 'h3',
+    tips: '###',
     icon: 'format_h3',
     color: Color.blue,
     style: true,
@@ -39,6 +45,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.todoList',
     value: 'taskList',
+    keywords: 'task',
+    tips: '[]',
     icon: 'check_box',
     color: Color.indigo,
     style: true,
@@ -46,6 +54,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.unorderedList',
     value: 'bulletList',
+    keywords: 'bullet',
+    tips: '-',
     icon: 'format_list_bulleted',
     color: Color.indigo,
     style: true,
@@ -53,6 +63,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.orderedList',
     value: 'orderedList',
+    keywords: 'ordered',
+    tips: '1.',
     icon: 'format_list_numbered',
     color: Color.indigo,
     style: true,
@@ -60,6 +72,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.blockquote',
     value: 'blockquote',
+    keywords: 'quote',
+    tips: '"',
     icon: 'format_quote_open',
     color: Color.brown,
     style: true,
@@ -68,6 +82,7 @@ export const BasicBlocks: BlockOption[] = [
     label: 'editor.toggleList',
     value: 'details',
     keywords: 'details, toggle',
+    tips: '>',
     icon: 'toggle_list',
     color: Color.indigo,
     style: true,
@@ -75,6 +90,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.codeBlock',
     value: 'codeBlock',
+    keywords: 'code',
+    tips: '```',
     icon: 'code_braces',
     color: Color.lightBlue,
     style: true,
@@ -82,6 +99,7 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.horizontal',
     value: 'horizontalRule',
+    tips: '---',
     icon: 'horizontal_rule',
     color: Color.blue,
   },
@@ -95,6 +113,8 @@ export const BasicBlocks: BlockOption[] = [
   {
     label: 'editor.emoji',
     value: 'emoji',
+    keywords: 'emoji',
+    tips: ':',
     icon: 'emoji_emotions',
     color: Color.blue,
   },

@@ -11,7 +11,7 @@
 
         <o-popover
           :ref="popovers[item.value]"
-          :offset="[0, 16]"
+          :offset="[0, 4]"
           placement="right"
           v-if="getComponent(item)"
         >
