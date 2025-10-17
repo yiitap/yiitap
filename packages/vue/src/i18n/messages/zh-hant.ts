@@ -65,7 +65,7 @@ export default {
     size7: '超級大',
     viewSource: '查看資料',
     textColor: '文字顏色',
-    highlightColor: '背景顏色',
+    highlightColor: '高亮顏色',
     default: '默認',
     lineHeight: '行高',
     blockquote: '引用',

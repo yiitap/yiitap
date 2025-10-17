@@ -20,7 +20,7 @@ import {
   TextStyle,
 } from '@tiptap/extension-text-style'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
-import BackColor from '@tiptap/extension-highlight'
+import Highlight from '@tiptap/extension-highlight'
 import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
@@ -71,7 +71,7 @@ import OVideo from './video'
  * Enable by default
  */
 export const DefaultExtensionNames = [
-  'BackColor',
+  'Highlight',
   'BackgroundColor',
   'Color',
   'Focus',
@@ -92,7 +92,7 @@ export const DefaultExtensionNames = [
 // Exposed Extension List
 // --------------------------------------------------------------------------------
 export const TiptapExtensionNames = [
-  'BackColor',
+  'Highlight',
   'BackgroundColor',
   'Bold',
   'BulletList',
@@ -152,7 +152,6 @@ export const BuiltinExtensionNames = [
 ]
 
 export const BuiltinExtensions = [
-  BackColor,
   BackgroundColor,
   Color,
   Details,
@@ -161,7 +160,7 @@ export const BuiltinExtensions = [
   Emoji,
   Focus,
   FontFamily,
-  // ForeColor,
+  Highlight,
   Link,
   Mention,
   TableRow,
@@ -195,7 +194,6 @@ export const BuiltinExtensions = [
 ]
 
 export {
-  BackColor,
   BackgroundColor,
   Color,
   Details,
@@ -204,6 +202,7 @@ export {
   Emoji,
   Focus,
   FontFamily,
+  Highlight,
   Image,
   Link,
   Mention,

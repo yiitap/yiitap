@@ -8,7 +8,7 @@
     :show-arrow="false"
   >
     <template #trigger>
-      <o-tooltip trigger="hover">
+      <o-tooltip>
         <template #trigger>
           <div class="o-list-dropdown o-button-group">
             <o-btn

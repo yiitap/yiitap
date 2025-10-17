@@ -24,7 +24,7 @@ export default function () {
       case 'aiBlock':
         focus.toggleAiBlock().run()
         break
-      case 'backColor':
+      case 'highlight':
         if (options.color) {
           commands.setHighlight({ color: options.color })
         } else {

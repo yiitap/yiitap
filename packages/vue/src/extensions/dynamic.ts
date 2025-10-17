@@ -6,7 +6,6 @@
 // ---------------------------------------------------------
 import {
   // Tiptap
-  BackColor,
   BackgroundColor,
   Color,
   Details,
@@ -15,7 +14,7 @@ import {
   Emoji,
   Focus,
   FontFamily,
-  // ForeColor,
+  Highlight,
   Image,
   Link,
   Mention,
@@ -65,9 +64,6 @@ import EmojiSuggestion from './char-command/emoji/suggestion'
 import { gitHubEmojis } from '@tiptap/extension-emoji'
 const classes: Indexable = {
   // default
-  BackColor: BackColor.configure({
-    multicolor: true,
-  }),
   BackgroundColor: BackgroundColor.configure({
     types: ['textStyle'],
   }),
@@ -79,6 +75,9 @@ const classes: Indexable = {
   }),
   Focus,
   FontFamily,
+  Highlight: Highlight.configure({
+    multicolor: true,
+  }),
   Image,
   Link,
   // task

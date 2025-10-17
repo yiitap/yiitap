@@ -7,9 +7,9 @@
     :show-arrow="false"
   >
     <template #trigger>
-      <o-tooltip trigger="hover">
+      <o-tooltip>
         <template #trigger>
-          <div class="o-back-color-dropdown o-button-group">
+          <div class="o-highlight-dropdown o-button-group">
             <o-btn
               icon="ink_highlighter"
               class="o-command-btn label"
@@ -58,14 +58,14 @@ function onSelectCurrent() {
 function onSelect(value: string) {
   popover.value.setShow(false)
   color.value = value
-  run(props.editor as Editor, 'backColor', {
+  run(props.editor as Editor, 'highlight', {
     color: value,
   })
 }
 </script>
 
 <style lang="scss">
-.o-back-color-dropdown {
+.o-highlight-dropdown {
   display: flex;
 
   .o-command-btn {
