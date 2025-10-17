@@ -147,12 +147,10 @@ function onDuplicate() {
   const nodeSize = props.node.nodeSize
   const newPos = props.getPos() + nodeSize
   const json = JSON.parse(JSON.stringify(props.node))
-  props.editor?.commands.insertContentAt(newPos, {
-    type: 'paragraph',
-  })
   props.editor?.commands.insertContentAt(newPos, json)
 
-  const size = newPos + nodeSize + 1
+  // const size = newPos + nodeSize - 1 // Todo: The end of new node
+  const size = newPos // The start of new node
   props.editor?.commands.focus(size)
 }
 

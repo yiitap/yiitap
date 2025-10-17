@@ -550,6 +550,17 @@
   .ProseMirror *::selection {
     //background: #ACCEF7!important;
   }
+
+  .ProseMirror {
+    &-selectednode {
+      background: rgba(#ACCEF7, 0.5);
+      border-radius: 4px;
+
+      .ProseMirror-selectednode {
+        background: transparent!important;
+      }
+    }
+  }
 }
 
 //  table resizer

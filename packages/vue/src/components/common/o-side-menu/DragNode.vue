@@ -115,7 +115,7 @@ function onShow(value: boolean) {
 function selectNode() {
   let pos = props.getPos()
   if (!unliftBlocks.value.includes(nodeType.value)) {
-    pos += 1
+    // pos += 1
   }
   props.editor?.commands.setNodeSelection(pos)
 }
