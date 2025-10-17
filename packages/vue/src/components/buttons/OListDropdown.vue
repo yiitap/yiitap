@@ -93,6 +93,7 @@ onMounted(() => {
 
 <style lang="scss">
 .o-list-dropdown {
+  display: flex;
   .o-command-btn {
     width: 26px;
   }
