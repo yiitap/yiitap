@@ -200,7 +200,7 @@ export const BlockMenus: BlockOption[] = [
     label: 'editor.delete',
     value: 'delete',
     icon: 'delete',
-    tips: 'Ctrl+D',
+    tips: 'Ctrl+X',
     color: Color.deepOrange,
     filter: 'common',
   },

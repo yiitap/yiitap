@@ -178,6 +178,7 @@ const editorOptions = computed(() => {
       'OHeading',
       'OImage',
       'OParagraph',
+      'OShortcut',
       'OSlash',
       'OSlashZh',
       'OLink',

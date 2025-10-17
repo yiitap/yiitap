@@ -37,6 +37,7 @@ import OColorHighlighter from '@yiitap/extension-color-highlighter'
 import OFocus from '@yiitap/extension-focus'
 import OPlaceholder from '@yiitap/extension-placeholder'
 import OSelectionDecoration from '@yiitap/extension-selection-decoration'
+import OShortcut from '@yiitap/extension-shortcut'
 import OTable from '@yiitap/extension-table'
 import OTrailingNode from '@yiitap/extension-trailing-node'
 import OUniqueID from '@yiitap/extension-unique-id'
@@ -138,6 +139,7 @@ export const YiitapExtensionNames = [
   'OLink',
   'OParagraph',
   'OSelectionDecoration',
+  'OShortcut',
   'OSlash',
   'OSlashZh',
   'OTableWrapper',
@@ -184,6 +186,7 @@ export const BuiltinExtensions = [
   OParagraph,
   OPlaceholder,
   OSelectionDecoration,
+  OShortcut,
   OTable,
   OTableCell,
   OTableHeader,
@@ -226,6 +229,7 @@ export {
   ODetails,
   OFocus,
   OSelectionDecoration,
+  OShortcut,
   OSlashCommand,
   OSlashZhCommand,
   OHeading,

@@ -1,0 +1,41 @@
+{
+	"name": "@yiitap/extension-shortcut",
+	"description": "Customized shortcut extension",
+	"version": "0.5.0",
+	"private": false,
+	"author": {
+		"name": "Yiitap",
+		"email": "pileaxai@gmail.com"
+	},
+	"homepage": "",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"build": "pnpm build-lib && pnpm build-types",
+		"build-lib": "vite build",
+		"build-types": "tsc --emitDeclarationOnly",
+		"lint": "eslint 'src/**/*.{ts,vue}'",
+		"test": "vitest",
+		"test-ci": "vitest --run"
+	},
+	"dependencies": {},
+	"peerDependencies": {
+		"@tiptap/core": "^3.7.0",
+    "@tiptap/pm": "^3.7.0"
+	},
+	"devDependencies": {}
+}

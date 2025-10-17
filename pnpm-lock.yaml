@@ -299,6 +299,15 @@ importers:
         specifier: ^3.7.0
         version: 3.7.0
 
+  packages/extensions/shortcut:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^3.7.0
+        version: 3.7.0(@tiptap/pm@3.7.0)
+      '@tiptap/pm':
+        specifier: ^3.7.0
+        version: 3.7.0
+
   packages/extensions/table:
     dependencies:
       '@tiptap/core':
@@ -511,6 +520,9 @@ importers:
       '@yiitap/extension-selection-decoration':
         specifier: workspace:*
         version: link:../extensions/selection-decoration
+      '@yiitap/extension-shortcut':
+        specifier: workspace:*
+        version: link:../extensions/shortcut
       '@yiitap/extension-table':
         specifier: workspace:*
         version: link:../extensions/table

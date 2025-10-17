@@ -74,6 +74,7 @@
 		"@yiitap/extension-image": "workspace:*",
 		"@yiitap/extension-placeholder": "workspace:*",
 		"@yiitap/extension-selection-decoration": "workspace:*",
+		"@yiitap/extension-shortcut": "workspace:*",
 		"@yiitap/extension-table": "workspace:*",
 		"@yiitap/extension-table-wrapper": "workspace:*",
 		"@yiitap/extension-trailing-node": "workspace:*",
