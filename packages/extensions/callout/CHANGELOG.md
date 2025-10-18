@@ -1,5 +1,11 @@
 # @yiitap/extension-callout
 
+## 0.6.0
+
+### Minor Changes
+
+- 23b47a4: update extensions
+
 ## 0.5.0
 
 ### Minor Changes

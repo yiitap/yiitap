@@ -1,5 +1,32 @@
 # @yiitap/vue
 
+## 0.6.0
+
+### Minor Changes
+
+- 23b47a4: update extensions
+
+### Patch Changes
+
+- Updated dependencies [23b47a4]
+  - @yiitap/extension-selection-decoration@0.6.0
+  - @yiitap/extension-color-highlighter@0.6.0
+  - @yiitap/extension-table-wrapper@0.6.0
+  - @yiitap/extension-trailing-node@0.6.0
+  - @yiitap/extension-char-command@0.6.0
+  - @yiitap/extension-placeholder@0.6.0
+  - @yiitap/extension-unique-id@0.6.0
+  - @yiitap/extension-ai-block@0.6.0
+  - @yiitap/extension-shortcut@0.6.0
+  - @yiitap/extension-callout@0.6.0
+  - @yiitap/extension-focus@0.6.0
+  - @yiitap/extension-image@0.6.0
+  - @yiitap/extension-table@0.6.0
+  - @yiitap/extension-video@0.6.0
+  - @yiitap/core@0.6.0
+  - @yiitap/vue@0.6.0
+  - @yiitap/util-emoji@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes

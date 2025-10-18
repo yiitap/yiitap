@@ -1,5 +1,17 @@
 # app-vue
 
+## 0.6.0
+
+### Minor Changes
+
+- 23b47a4: update extensions
+
+### Patch Changes
+
+- Updated dependencies [23b47a4]
+  - @yiitap/vue@0.6.0
+  - @yiitap/util-emoji@0.6.0
+
 ## 0.5.0
 
 ### Patch Changes
