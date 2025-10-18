@@ -56,8 +56,6 @@ const OBlockquote = Blockquote.extend<OBlockquoteOptions>({
           // Selection
           const selection = TextSelection.near(tr.doc.resolve(blockStart + 2))
           tr.setSelection(selection)
-
-          return tr
         },
       }),
     ]

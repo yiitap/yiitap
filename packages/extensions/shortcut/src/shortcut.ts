@@ -1,6 +1,6 @@
 import { Extension } from '@tiptap/core'
 import { Node as ProseMirrorNode } from '@tiptap/pm/model'
-import { Plugin, PluginKey } from '@tiptap/pm/state'
+import { Plugin, PluginKey, TextSelection } from '@tiptap/pm/state'
 
 export interface ShortcutOptions {
   duplicate?: {
@@ -11,6 +11,7 @@ export interface ShortcutOptions {
     enabled?: boolean
     keys?: string[] // e.g. ['Mod-x']
   }
+  nodes: string[]
 }
 
 declare module '@tiptap/core' {
@@ -31,6 +32,18 @@ export const Shortcut = Extension.create<ShortcutOptions>({
     return {
       duplicate: { enabled: true, keys: ['Mod-d'] },
       delete: { enabled: true, keys: ['Mod-x'] },
+      nodes: [
+        'aiBlock',
+        'blockquote',
+        'callout',
+        'codeBlock',
+        'heading',
+        'listItem',
+        'paragraph',
+        'tableCell',
+        'tableHeader',
+        'taskItem',
+      ],
     }
   },
 
@@ -39,7 +52,6 @@ export const Shortcut = Extension.create<ShortcutOptions>({
       duplicateNode:
         () =>
         ({ tr, state, dispatch }) => {
-          console.log('Selection: duplicateNode')
           const { selection } = state
           const { node, $from } = selection as any
 
@@ -78,7 +90,6 @@ export const Shortcut = Extension.create<ShortcutOptions>({
       deleteNode:
         () =>
         ({ tr, state, dispatch }) => {
-          console.log('Selection: deleteNode002')
           const { selection } = state
           const { $from } = selection
 
@@ -119,20 +130,75 @@ export const Shortcut = Extension.create<ShortcutOptions>({
   },
 
   addKeyboardShortcuts() {
-    const shortcuts: Record<string, () => boolean> = {}
+    const shortcuts: Record<string, (props: { editor: any }) => boolean> = {}
 
+    // Duplicate a node
     if (this.options.duplicate?.enabled) {
       const keys = this.options.duplicate.keys ?? ['Mod-d']
       for (const key of keys) {
-        shortcuts[key] = () => this.editor.commands.duplicateNode()
+        shortcuts[key] = ({ editor }) => editor.commands.duplicateNode()
       }
     }
 
+    // Delete a node
     if (this.options.delete?.enabled) {
       const keys = this.options.delete.keys ?? ['Mod-x']
       for (const key of keys) {
-        shortcuts[key] = () => this.editor.commands.deleteNode()
+        shortcuts[key] = ({ editor }) => editor.commands.deleteNode()
       }
+    }
+
+    // Select all
+    // Mod-a once: select inside node
+    // Mod-a twice: select all doc
+    shortcuts['Mod-a'] = ({ editor }) => {
+      const { state, view } = editor
+      const { selection, tr } = state
+      const { $from } = selection
+      const node = $from.node(-1)
+      // console.log('select node:', node?.type.name)
+
+      // New selection
+      let start = -1
+      let end = -1
+
+      if (this.options.nodes.includes(node?.type.name)) {
+        start = $from.start(-1) + 1
+        end = $from.end(-1) - 1
+      } else if (node?.type.name === 'doc') {
+        // codeBlock
+        let depth = $from.depth
+        let newNode = null
+        let pos = 0
+
+        while (depth > 0) {
+          const candidate = $from.node(depth)
+          if (candidate.isBlock) {
+            newNode = candidate
+            pos = $from.before(depth)
+            break
+          }
+          depth--
+        }
+        // console.log('select newNode: doc', newNode?.type.name)
+
+        if (this.options.nodes.includes(newNode?.type.name)) {
+          start = pos + 1
+          end = pos + newNode?.nodeSize - 1
+        }
+      }
+
+      if (start > -1 && end > -1) {
+        const { from, to } = selection
+        if (from !== start || to !== end) {
+          const newSelection = TextSelection.create(tr.doc, start, end)
+          tr.setSelection(newSelection)
+          view.dispatch(tr)
+          return true
+        }
+      }
+
+      return false
     }
 
     return shortcuts
