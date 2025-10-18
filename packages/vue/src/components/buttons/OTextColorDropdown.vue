@@ -45,18 +45,18 @@ const popover = ref(null)
 const foreColor = ref('')
 const backColor = ref('')
 
-function onSelect(command: string, value: string) {
-  if (command === 'foreColor') {
-    foreColor.value = value
-    localStorage.setItem('yiitap.text-color.fore', value)
-  } else if (command === 'backColor') {
-    backColor.value = value
-    localStorage.setItem('yiitap.text-color.back', value)
+function onSelect(options: Indexable) {
+  if (options.name === 'color') {
+    foreColor.value = options.value
+    localStorage.setItem('yiitap.text-color.fore', options.value)
+  } else if (options.name === 'backColor') {
+    backColor.value = options.value
+    localStorage.setItem('yiitap.text-color.back', options.value)
   }
 
   popover.value.setShow(false)
-  run(props.editor as Editor, command, {
-    color: value,
+  run(props.editor as Editor, options.name, {
+    color: options.value,
   })
 }
 

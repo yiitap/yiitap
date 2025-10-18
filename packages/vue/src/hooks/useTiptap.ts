@@ -24,11 +24,18 @@ export default function () {
       case 'aiBlock':
         focus.toggleAiBlock().run()
         break
-      case 'backColor':
+      case 'highlight':
         if (options.color) {
           commands.setHighlight({ color: options.color })
         } else {
           commands.unsetHighlight()
+        }
+        break
+      case 'backgroundColor':
+        if (options.color) {
+          commands.setBackgroundColor(options.color)
+        } else {
+          commands.unsetBackgroundColor()
         }
         break
       case 'blockquote':
@@ -58,14 +65,21 @@ export default function () {
       // case 'columns':
       // 	commands.setColumns(2)
       // 	break
+      case 'color':
+        focus.setColor(options.color).run()
+        break
       case 'content':
         commands.insertContent(options.content)
         break
+      case 'details':
+        if (options.type === 'detailsSummary') {
+          commands.unsetDetails()
+        } else {
+          commands.setDetails()
+        }
+        break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)
-        break
-      case 'foreColor':
-        commands.setColor(options.color)
         break
       case 'heading':
         focus.toggleHeading(options as { level: Level }).run()
@@ -127,6 +141,12 @@ export default function () {
         break
       case 'strike':
         focus.toggleStrike().run()
+        break
+      case 'subscript':
+        commands.toggleSubscript()
+        break
+      case 'superscript':
+        commands.toggleSuperscript()
         break
       case 'table':
         focus

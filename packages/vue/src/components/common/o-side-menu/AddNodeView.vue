@@ -38,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type PropType, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { nodeViewProps } from '@tiptap/vue-3'
 import useI18n from '../../../hooks/useI18n'
 import useTiptap from '../../../hooks/useTiptap'
 import {
@@ -53,31 +54,10 @@ import {
   EmptyParagraph,
   EmptyListItem,
   EmptyTaskItem,
+  EmptyDetails,
 } from '../../../constants/empty-block'
-import type { NodeViewProps } from '@tiptap/core'
 
-const props = defineProps({
-  editor: {
-    type: Object as PropType<NodeViewProps['editor']>,
-    required: true as const,
-  },
-  node: {
-    type: Object as PropType<NodeViewProps['node']>,
-    required: true as const,
-  },
-  getPos: {
-    type: Function as PropType<NodeViewProps['getPos']>,
-    required: true as const,
-  },
-  updateAttributes: {
-    type: Function as PropType<NodeViewProps['updateAttributes']>,
-    required: true as const,
-  },
-  deleteNode: {
-    type: Function as PropType<NodeViewProps['deleteNode']>,
-    required: true as const,
-  },
-})
+const props = defineProps(nodeViewProps)
 const emit = defineEmits(['action'])
 const { locale, tr } = useI18n()
 const { run } = useTiptap()
@@ -109,6 +89,9 @@ function onClick(item) {
         content: [],
         attrs: { language: 'shell' },
       }
+      break
+    case 'details':
+      content = EmptyDetails
       break
     case 'emoji':
       content = {
@@ -172,7 +155,6 @@ function onClick(item) {
     // console.log('add', props.getPos(), newPos.value, insertPos)
     content.type = content.type || item.value
     setTimeout(() => {
-      // console.log('add2', props.getPos(), newPos.value, insertPos)
       if (isEmpty.value) {
         chain.insertContent(content).focus().run()
       } else {

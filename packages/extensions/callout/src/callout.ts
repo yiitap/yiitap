@@ -1,8 +1,9 @@
-import { Node, mergeAttributes } from '@tiptap/core'
+import { Node, mergeAttributes, InputRule } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 
 export interface CalloutOptions {
   HTMLAttributes: Record<string, any>
+  triggerCharacters: string[]
 }
 
 declare module '@tiptap/core' {
@@ -33,6 +34,7 @@ export const Callout = Node.create<CalloutOptions>({
   addOptions() {
     return {
       HTMLAttributes: {},
+      triggerCharacters: ['?', '？'],
     }
   },
 
@@ -54,6 +56,42 @@ export const Callout = Node.create<CalloutOptions>({
         default: 'rgba(101, 117, 133, 0.16)',
       },
     }
+  },
+
+  addInputRules() {
+    const { triggerCharacters } = this.options
+    const escaped = triggerCharacters
+      .map((ch) => ch.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
+      .join('')
+    const regexp = new RegExp(`^[${escaped}]\\s$`)
+
+    return [
+      new InputRule({
+        find: regexp,
+        handler: ({ state, range }) => {
+          const { tr, schema } = state
+          const { $from } = tr.selection
+          const blockStart = $from.before($from.depth)
+          const blockEnd = $from.after($from.depth)
+
+          // Remove trigger character and space
+          tr.delete(range.from, range.to)
+
+          // Create a callout node
+          const calloutNode = schema.nodes.callout.create(
+            null,
+            schema.nodes.paragraph.create()
+          )
+
+          // Replace current node to blockquote
+          tr.replaceRangeWith(blockStart, blockEnd, calloutNode)
+
+          // Selection
+          const selection = TextSelection.near(tr.doc.resolve(blockStart + 2))
+          tr.setSelection(selection)
+        },
+      }),
+    ]
   },
 
   parseHTML() {
@@ -94,26 +132,7 @@ export const Callout = Node.create<CalloutOptions>({
 
   addKeyboardShortcuts() {
     return {
-      'Mod-a': ({ editor }) => {
-        const { state, view } = editor
-        const { selection, tr } = state
-        const { $from } = selection
-        const node = $from.node(-1) // Get current node（-1 表示获取最近的块级节点）
-
-        if (node?.type.name === this.name) {
-          // Compute the selection of inner aiBlock
-          const start = $from.start(-1) + 1
-          const end = $from.end(-1) - 1
-          const newSelection = TextSelection.create(tr.doc, start, end)
-
-          // Apply select
-          tr.setSelection(newSelection)
-          view.dispatch(tr)
-          return true // Prevents the default behavior
-        }
-
-        return false // Use default behavior
-      },
+      'Mod-Shift-c': () => this.editor.commands.toggleCallout(),
     }
   },
 })

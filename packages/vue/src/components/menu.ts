@@ -2,10 +2,12 @@ import OSimpleCommandBtn from './buttons/OSimpleCommandBtn.vue'
 import OAiBtn from './buttons/OAiBtn.vue'
 import OAlignDropdown from './buttons/OAlignDropdown.vue'
 import OAlignGroup from './buttons/OAlignGroup.vue'
-import OBackColorDropdown from './buttons/OBackColorDropdown.vue'
+import OBackgroundColorDropdown from './buttons/OBackgroundColorDropdown.vue'
+import OHighlightDropdown from './buttons/OHighlightDropdown.vue'
+import ODetailsBtn from './buttons/ODetailsBtn.vue'
 import OEmojiBtn from './buttons/OEmojiBtn.vue'
 import OFontFamilyDropdown from './buttons/OFontFamilyDropdown.vue'
-import OForeColorDropdown from './buttons/OForeColorDropdown.vue'
+import OColorDropdown from './buttons/OColorDropdown.vue'
 import OHeadingDropdown from './buttons/OHeadingDropdown.vue'
 import OListDropdown from './buttons/OListDropdown.vue'
 import OListGroup from './buttons/OListGroup.vue'
@@ -26,10 +28,12 @@ const CommandComponents: Indexable = {
   ai: OAiBtn,
   'align-dropdown': OAlignDropdown,
   'align-group': OAlignGroup,
-  'back-color': OBackColorDropdown,
+  'background-color': OBackgroundColorDropdown,
+  color: OColorDropdown,
+  details: ODetailsBtn,
   'font-family': OFontFamilyDropdown,
-  'fore-color': OForeColorDropdown,
   heading: OHeadingDropdown,
+  highlight: OHighlightDropdown,
   // 'indent-dropdown': 'o-indent-dropdown',
   // 'line-height': 'o-line-height-dropdown',
   'list-dropdown': OListDropdown,

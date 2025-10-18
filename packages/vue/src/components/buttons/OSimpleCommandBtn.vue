@@ -44,6 +44,7 @@ const commands: Indexable = computed(() => {
       tooltip: 'Column',
       rotate: true,
     },
+    // details: { icon: 'toggle_list', tooltip: tr('editor.toggleList') },
     horizontalRule: { icon: 'horizontal_rule', tooltip: tr('editor.hr') },
     italic: { icon: 'format_italic', tooltip: tr('editor.italic') },
     image: { icon: 'image', tooltip: tr('editor.photo') },

@@ -1,59 +1,65 @@
-import tippy, { type Instance, type Props } from 'tippy.js'
+import { computePosition } from '@floating-ui/dom'
 import { VueRenderer } from '@tiptap/vue-3'
+
 import View from './view.vue'
-import { filterEmojiGroups } from '@yiitap/util-emoji'
-import {
-  type SuggestionProps,
-  type SuggestionKeyDownProps,
-} from '@tiptap/suggestion'
-import { type MentionNodeAttrs } from '@tiptap/extension-mention'
 
 export default {
-  items: ({ query }: { query: string }) => {
-    return filterEmojiGroups(query)
+  items: ({ editor, query }) => {
+    return editor.storage.emoji.emojis
+      .filter(({ shortcodes, tags }) => {
+        return (
+          shortcodes.find((shortcode) =>
+            shortcode.startsWith(query.toLowerCase())
+          ) || tags.find((tag) => tag.startsWith(query.toLowerCase()))
+        )
+      })
+      .slice(0, 10)
   },
+
   render: () => {
-    let component: VueRenderer
-    let popup: Instance<Props>[]
+    let component
+
+    function repositionComponent(clientRect) {
+      if (!component || !component.element) {
+        return
+      }
+
+      const virtualElement = {
+        getBoundingClientRect() {
+          return clientRect
+        },
+      }
+
+      computePosition(virtualElement, component.element, {
+        placement: 'bottom-start',
+      }).then((pos) => {
+        Object.assign(component.element.style, {
+          left: `${pos.x}px`,
+          top: `${pos.y}px`,
+          position: pos.strategy === 'fixed' ? 'fixed' : 'absolute',
+        })
+      })
+    }
 
     return {
-      onStart: (props: SuggestionProps<any, MentionNodeAttrs>) => {
+      onStart: (props) => {
         component = new VueRenderer(View, {
           props,
           editor: props.editor,
         })
 
-        if (!props.clientRect) {
-          return
-        }
-
-        popup = tippy('body', {
-          getReferenceClientRect: props.clientRect,
-          appendTo: () => document.body,
-          content: component.element,
-          showOnCreate: true,
-          interactive: true,
-          trigger: 'manual',
-          placement: 'bottom-start',
-          arrow: false,
-          onShow(instance) {
-            instance.popper.classList.add('emoji-tippy')
-          },
-        })
+        document.body.appendChild(component.element)
+        repositionComponent(props.clientRect())
       },
 
-      onUpdate(props: SuggestionProps) {
+      onUpdate(props) {
         component.updateProps(props)
-
-        popup[0].setProps({
-          getReferenceClientRect: props.clientRect,
-        })
+        repositionComponent(props.clientRect())
       },
 
-      onKeyDown(props: SuggestionKeyDownProps) {
-        // console.log('down', props.event)
+      onKeyDown(props) {
         if (props.event.key === 'Escape') {
-          popup[0].hide()
+          document.body.removeChild(component.element)
           component.destroy()
 
           return true
@@ -63,7 +69,9 @@ export default {
       },
 
       onExit() {
-        popup[0].destroy()
+        if (document.body.contains(component.element)) {
+          document.body.removeChild(component.element)
+        }
         component.destroy()
       },
     }

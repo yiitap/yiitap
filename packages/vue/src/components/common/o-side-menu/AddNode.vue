@@ -21,31 +21,15 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { PropType } from 'vue'
+import { nodeViewProps } from '@tiptap/vue-3'
 import AddNodeView from './AddNodeView.vue'
 import { OBtn, OIcon, OPopover } from '../../index'
-import type { NodeViewProps } from '@tiptap/core'
 
 const props = defineProps({
-  editor: {
-    type: Object as PropType<NodeViewProps['editor']>,
-    required: true as const,
-  },
-  node: {
-    type: Object as PropType<NodeViewProps['node']>,
-    required: true as const,
-  },
-  getPos: {
-    type: Function as PropType<NodeViewProps['getPos']>,
-    required: true as const,
-  },
-  updateAttributes: {
-    type: Function as PropType<NodeViewProps['updateAttributes']>,
-    required: true as const,
-  },
-  deleteNode: {
-    type: Function as PropType<NodeViewProps['deleteNode']>,
-    required: true as const,
+  ...nodeViewProps,
+  add: {
+    type: String,
+    default: 'menu',
   },
 })
 const popover = ref<InstanceType<typeof OPopover>>()
@@ -68,8 +52,11 @@ function onShow(value: boolean) {
 }
 
 function onAdd() {
-  popover.value?.setShow(true)
-  // addEmpty()
+  if (props.add === 'menu') {
+    popover.value?.setShow(true)
+  } else {
+    addEmpty()
+  }
 }
 
 function addEmpty() {

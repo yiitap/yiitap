@@ -10,8 +10,8 @@ export const DefaultMenu = [
   'heading',
   'font-family',
   'text-color-dropdown',
-  'fore-color',
-  'back-color',
+  'color',
+  'highlight',
   'clearFormat',
   'separator',
   'align-dropdown',
@@ -50,6 +50,7 @@ export const TableMenu = [
   'separator',
   'horizontalRule',
   'blockquote',
+  'details',
   'list-dropdown',
   'link',
   'image',
@@ -89,12 +90,14 @@ export const ImageLinkBubble = [
 export const MoreBubble = [
   'heading',
   'separator',
+  'text-format-dropdown',
   'italic',
   'underline',
   'font-family',
   'separator',
   'code',
   'blockquote',
+  'details',
 ]
 
 export const TableBubble = [

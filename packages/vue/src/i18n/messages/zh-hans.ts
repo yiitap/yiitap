@@ -65,7 +65,8 @@ export default {
     size7: '超级大',
     viewSource: '查看资料',
     textColor: '文字颜色',
-    highlightColor: '背景颜色',
+    backgroundColor: '背景颜色',
+    highlightColor: '高亮颜色',
     default: '默认',
     lineHeight: '行高',
     blockquote: '引用',
@@ -84,6 +85,7 @@ export default {
     delete: '删除',
     duplicate: '创建副本',
     aiBlock: 'AI块',
+    toggleList: '折叠列表',
   },
   label: {
     ai: 'AI',
@@ -125,6 +127,7 @@ export default {
     generate: '生成',
     generatedBy: '生成自',
     update: '更新',
+    turnInto: '转成',
   },
   table: {
     cellBackground: '单元格背景色',

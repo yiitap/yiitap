@@ -27,7 +27,7 @@
     />
     <o-side-menu
       v-bind="sideMenuOptions"
-      v-if="editor?.isEditable && showSideMenu"
+      v-if="editor?.isEditable && sideMenu.show"
     />
 
     <!-- Editor Content -->
@@ -57,7 +57,6 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
-import { TextStyle } from '@tiptap/extension-text-style'
 
 import OMainMenu from './menus/OMainMenu.vue'
 import OBubbleMenu from './menus/OBubbleMenu.vue'
@@ -70,8 +69,17 @@ import {
   BuiltinExtensionNames,
   OPlaceholder,
 } from '../extensions'
-import DynamicClass, { TableExtensions } from '../extensions/dynamic'
+import DynamicClass, {
+  DetailsExtensions,
+  TableExtensions,
+} from '../extensions/dynamic'
 import type { Editor } from '@tiptap/core'
+
+type SideMenuAddType = 'menu' | 'empty'
+interface SideMenuConfig {
+  show: boolean
+  add: SideMenuAddType
+}
 
 const props = defineProps({
   /**
@@ -138,11 +146,14 @@ const props = defineProps({
     default: false,
   },
   /**
-   * Show side menu or not.
+   * Side menu config
    */
-  showSideMenu: {
-    type: Boolean,
-    default: false,
+  sideMenu: {
+    type: Object as PropType<SideMenuConfig>,
+    default: (): SideMenuConfig => ({
+      show: true,
+      add: 'menu',
+    }),
   },
   /**
    * Show side node or not.
@@ -283,6 +294,7 @@ const floatingMenuOptions = computed(() => {
 const sideMenuOptions = computed(() => {
   return {
     editor: editor.value,
+    add: props.sideMenu.add,
     menu: [],
   }
 })
@@ -314,24 +326,26 @@ function buildExtensions() {
       },
     })
   )
-  extensions.push(TextStyle)
+  // extensions.push(TextStyle)
   extensions.push(
     StarterKit.configure({
-      document: false,
-      blockquote: props.extensions.includes('OBlockquote') ? false : {},
+      dropcursor: {
+        width: 5,
+        color: 'skyblue',
+        class: 'yiitap-dropcursor',
+      },
       codeBlock: false,
+      document: false,
+      horizontalRule: false,
+      link: false,
+      blockquote: props.extensions.includes('OBlockquote') ? false : {},
       heading: props.extensions.includes('OHeading')
         ? false
         : {
             levels: [1, 2, 3, 4, 5],
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
-      dropcursor: {
-        width: 5,
-        color: 'skyblue',
-        class: 'yiitap-dropcursor',
-      },
-      horizontalRule: false,
+      trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
     })
   )
 
@@ -346,6 +360,9 @@ function buildExtensions() {
       }
 
       switch (item) {
+        case 'ODetails':
+          extensions.push(...DetailsExtensions)
+          break
         case 'Table':
           extensions.push(...TableExtensions)
           break
@@ -402,7 +419,7 @@ onBeforeMount(() => {
   aiOptionAlt.value = props.aiOption
   darkModeAlt.value = props.darkMode
   localeAlt.value = props.locale
-  sideNodeAlt.value = !props.showSideMenu && props.showSideNode
+  sideNodeAlt.value = !props.sideMenu.show && props.showSideNode
 })
 
 defineExpose({

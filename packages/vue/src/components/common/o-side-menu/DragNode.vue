@@ -29,37 +29,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type PropType, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { nodeViewProps } from '@tiptap/vue-3'
 import useTiptap from '../../../hooks/useTiptap'
 import { Blocks } from '../../../constants/block'
 import { Color } from '../../../constants/color'
 import DragNodeView from './DragNodeView.vue'
 import { OBtn, OIcon, OPopover } from '../../index'
-import type { NodeViewProps } from '@tiptap/core'
 
-const props = defineProps({
-  editor: {
-    type: Object as PropType<NodeViewProps['editor']>,
-    required: true as const,
-  },
-  node: {
-    type: Object as PropType<NodeViewProps['node']>,
-    required: true as const,
-  },
-  getPos: {
-    type: Function as PropType<NodeViewProps['getPos']>,
-    required: true as const,
-  },
-  updateAttributes: {
-    type: Function as PropType<NodeViewProps['updateAttributes']>,
-    required: true as const,
-  },
-  deleteNode: {
-    type: Function as PropType<NodeViewProps['deleteNode']>,
-    required: true as const,
-  },
-})
-const emit = defineEmits(['action', 'dragstart', 'dragend'])
+const props = defineProps(nodeViewProps)
+const emit = defineEmits(['dragstart', 'dragend'])
 const { run } = useTiptap()
 const popover = ref(null)
 const selected = ref(false)
@@ -99,7 +78,6 @@ function onDragEnd(event: DragEvent) {
 
 function onAction(item) {
   popover.value?.setShow(false)
-  emit('action', item)
 }
 
 function onShow(value: boolean) {
@@ -115,9 +93,10 @@ function onShow(value: boolean) {
 function selectNode() {
   let pos = props.getPos()
   if (!unliftBlocks.value.includes(nodeType.value)) {
-    pos += 1
+    // pos += 1
   }
   props.editor?.commands.setNodeSelection(pos)
+  console.log('currentPos', pos, props.node.nodeSize)
 }
 
 watch(

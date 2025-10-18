@@ -3,23 +3,33 @@
 // ---------------------------------------------------------
 import { Focus } from '@tiptap/extensions'
 import {
+  Details,
+  DetailsContent,
+  DetailsSummary,
+} from '@tiptap/extension-details'
+import {
   Table,
   TableRow,
   TableCell,
   TableHeader,
 } from '@tiptap/extension-table'
-import BackColor from '@tiptap/extension-highlight'
-import Document from '@tiptap/extension-document'
-import FontFamily from '@tiptap/extension-font-family'
-import ForeColor from '@tiptap/extension-color'
+import {
+  BackgroundColor,
+  Color,
+  FontFamily,
+  TextStyle,
+} from '@tiptap/extension-text-style'
+import { TaskItem, TaskList } from '@tiptap/extension-list'
+import Highlight from '@tiptap/extension-highlight'
+import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
-import { TaskItem, TaskList } from '@tiptap/extension-list'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
-import Text from '@tiptap/extension-text'
 
 // ---------------------------------------------------------
 // YiiEditor extension imports
@@ -29,6 +39,7 @@ import OColorHighlighter from '@yiitap/extension-color-highlighter'
 import OFocus from '@yiitap/extension-focus'
 import OPlaceholder from '@yiitap/extension-placeholder'
 import OSelectionDecoration from '@yiitap/extension-selection-decoration'
+import OShortcut from '@yiitap/extension-shortcut'
 import OTable from '@yiitap/extension-table'
 import OTrailingNode from '@yiitap/extension-trailing-node'
 import OUniqueID from '@yiitap/extension-unique-id'
@@ -45,6 +56,7 @@ import OAiBlock from './ai-block'
 import OBlockquote from './blockquote'
 import OCallout from './callout'
 import OCodeBlock from './code-block'
+import ODetails from './details'
 import OHeading from './heading'
 import OHorizontalRule from './horizontal-rule'
 import OImage from './image'
@@ -62,16 +74,19 @@ import OVideo from './video'
  * Enable by default
  */
 export const DefaultExtensionNames = [
-  'BackColor',
+  'Highlight',
+  'BackgroundColor',
+  'Color',
   'Focus',
   'FontFamily',
-  'ForeColor',
+  'Subscript',
+  'Superscript',
   'Table',
   'TaskItem',
   'TaskList',
   'TextAlign',
+  'TextStyle',
   'Typography',
-  'Underline',
 
   'OHorizontalRule',
   'OSelectionDecoration',
@@ -82,14 +97,16 @@ export const DefaultExtensionNames = [
 // Exposed Extension List
 // --------------------------------------------------------------------------------
 export const TiptapExtensionNames = [
-  'BackColor',
+  'Highlight',
+  'BackgroundColor',
   'Bold',
   'BulletList',
+  'Color',
   'Code',
   'CodeBlockLowlight',
+  'Emoji',
   'Focus',
   'FontFamily',
-  'ForeColor',
   'HorizontalRule',
   'Image',
   'Italic',
@@ -98,10 +115,13 @@ export const TiptapExtensionNames = [
   'Mention',
   'OrderedList',
   'Strike',
+  'Subscript',
+  'Superscript',
   'Table',
   'TaskItem',
   'TaskList',
   'TextAlign',
+  'TextStyle',
   'Typography',
   'Underline',
 ]
@@ -114,6 +134,7 @@ export const YiitapExtensionNames = [
   'OCodeBlock',
   'OColon',
   'OColorHighlighter',
+  'ODetails',
   // 'ODiagram',
   'OFocus',
   'OHeading',
@@ -124,6 +145,7 @@ export const YiitapExtensionNames = [
   'OLink',
   'OParagraph',
   'OSelectionDecoration',
+  'OShortcut',
   'OSlash',
   'OSlashZh',
   'OTableWrapper',
@@ -137,62 +159,31 @@ export const BuiltinExtensionNames = [
   ...YiitapExtensionNames,
 ]
 
-export const BuiltinExtensions = [
-  Document,
-  BackColor,
-  Focus,
-  FontFamily,
-  ForeColor,
-  Link,
-  Mention,
-  TaskItem,
-  TaskList,
-  TextAlign,
-  Typography,
-  Underline,
-  TableRow,
-  Text,
-
-  OAiBlock,
-  OBlockquote,
-  OColorHighlighter,
-  OCallout,
-  OCharCommand,
-  OCodeBlock,
-  OHeading,
-  OHorizontalRule,
-  OImage,
-  OParagraph,
-  OPlaceholder,
-  OSelectionDecoration,
-  OTable,
-  OTableCell,
-  OTableHeader,
-  OTableWrapper,
-  OTrailingNode,
-  OUniqueID,
-  OVideo,
-]
-
 export {
-  Document,
-  BackColor,
+  BackgroundColor,
+  Color,
+  Details,
+  DetailsContent,
+  DetailsSummary,
+  Emoji,
   Focus,
   FontFamily,
-  ForeColor,
+  Highlight,
   Image,
   Link,
   Mention,
-  TaskItem,
-  TaskList,
-  TextAlign,
-  Typography,
-  Underline,
+  Subscript,
+  Superscript,
   Table,
   TableHeader,
   TableCell,
   TableRow,
-  Text,
+  TaskItem,
+  TaskList,
+  TextAlign,
+  TextStyle,
+  Typography,
+  Underline,
   OAiBlock,
   OBlockquote,
   OCallout,
@@ -200,8 +191,10 @@ export {
   OCodeBlock,
   OColonCommand,
   OColorHighlighter,
+  ODetails,
   OFocus,
   OSelectionDecoration,
+  OShortcut,
   OSlashCommand,
   OSlashZhCommand,
   OHeading,

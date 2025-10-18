@@ -32,3 +32,22 @@ export const EmptyTaskItem = [
     ],
   },
 ]
+
+export const EmptyDetails = [
+  {
+    type: 'details',
+    attrs: {
+      open: false,
+    },
+    content: [
+      {
+        type: 'detailsSummary',
+        content: [],
+      },
+      {
+        type: 'detailsContent',
+        content: EmptyParagraph,
+      },
+    ],
+  },
+]

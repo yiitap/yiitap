@@ -10,8 +10,10 @@ import { type MentionNodeAttrs } from '@tiptap/extension-mention'
 
 export default {
   items: ({ query }: { query: string }) => {
-    return Blocks.filter((item) =>
-      item.value.toLowerCase().startsWith(query.toLowerCase())
+    return Blocks.filter(
+      (item) =>
+        item.value.toLowerCase().includes(query.toLowerCase()) ||
+        item.keywords?.toLowerCase().includes(query.toLowerCase())
     )
   },
   render: () => {

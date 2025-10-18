@@ -6,40 +6,46 @@
 // ---------------------------------------------------------
 import {
   // Tiptap
-  Document,
-  BackColor,
+  BackgroundColor,
+  Color,
+  Details,
+  DetailsContent,
+  DetailsSummary,
+  Emoji,
   Focus,
   FontFamily,
-  ForeColor,
+  Highlight,
   Image,
   Link,
   Mention,
+  Subscript,
+  Superscript,
   TaskItem,
   TaskList,
   TextAlign,
   Typography,
   Underline,
+  TextStyle,
   Table,
   TableHeader,
   TableCell,
   TableRow,
-  Text,
 
   // Yiitap
   OAiBlock,
   OBlockquote,
   OCallout,
-  OCharCommand,
   OCodeBlock,
   OColorHighlighter,
   OColonCommand,
-  // OFocus,
+  ODetails,
   OHeading,
   OHorizontalRule,
   OImage,
   OLink,
   OParagraph,
   OSelectionDecoration,
+  OShortcut,
   OSlashCommand,
   OSlashZhCommand,
   OTable,
@@ -55,33 +61,46 @@ import {
 // ---------------------------------------------------------
 // Classes and configuration
 // ---------------------------------------------------------
+import ColonSuggestion from './char-command/colon/suggestion'
 import SlashSuggestion from './char-command/slash/suggestion'
 import EmojiSuggestion from './char-command/emoji/suggestion'
+import { gitHubEmojis } from '@tiptap/extension-emoji'
 const classes: Indexable = {
   // default
-  BackColor: BackColor.configure({
-    multicolor: true,
+  BackgroundColor: BackgroundColor.configure({
+    types: ['textStyle'],
+  }),
+  Color,
+  Emoji: Emoji.configure({
+    emojis: gitHubEmojis,
+    enableEmoticons: true,
+    suggestion: EmojiSuggestion,
   }),
   Focus,
-  ForeColor,
   FontFamily,
+  Highlight: Highlight.configure({
+    multicolor: true,
+  }),
   Image,
   Link,
-  TextAlign: TextAlign.configure({
-    types: ['heading', 'paragraph'],
-  }),
+  Subscript,
+  Superscript,
   // task
   TaskItem,
   TaskList: TaskList.configure({
     itemTypeName: 'taskItem',
   }),
+  TextAlign: TextAlign.configure({
+    types: ['heading', 'paragraph'],
+  }),
+  TextStyle,
   Underline,
   Typography,
 
   // Custom extensions
   OAiBlock: OAiBlock,
   OColon: OColonCommand.configure({
-    suggestion: EmojiSuggestion,
+    suggestion: ColonSuggestion,
   }),
   OSlash: OSlashCommand.configure({
     suggestion: SlashSuggestion,
@@ -91,7 +110,9 @@ const classes: Indexable = {
   }),
   // OTOC: TOC,
   // OModelViewer: ModelViewer,
-  OBlockquote,
+  OBlockquote: OBlockquote.configure({
+    triggerCharacters: ['"', '“', '”'],
+  }),
   OCallout,
   OCodeBlock,
   OColorHighlighter,
@@ -103,6 +124,7 @@ const classes: Indexable = {
   }),
   OParagraph,
   OSelectionDecoration,
+  OShortcut,
   OTrailingNode,
   // OColumnExtension: ColumnExtension,
   OUniqueID: OUniqueID.configure({
@@ -133,6 +155,18 @@ export default DynamicClass
 export const getDynamicExtension = (name: string) => {
   return new DynamicClass(name)
 }
+
+// Details
+export const DetailsExtensions = [
+  ODetails.configure({
+    persist: true,
+    HTMLAttributes: {
+      class: 'details',
+    },
+  }),
+  DetailsContent,
+  DetailsSummary,
+]
 
 // Custom table
 export const TableExtensions = [
