@@ -38,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type PropType, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { nodeViewProps } from '@tiptap/vue-3'
 import useI18n from '../../../hooks/useI18n'
 import useTiptap from '../../../hooks/useTiptap'
 import {
@@ -55,30 +56,8 @@ import {
   EmptyTaskItem,
   EmptyDetails,
 } from '../../../constants/empty-block'
-import type { NodeViewProps } from '@tiptap/core'
 
-const props = defineProps({
-  editor: {
-    type: Object as PropType<NodeViewProps['editor']>,
-    required: true as const,
-  },
-  node: {
-    type: Object as PropType<NodeViewProps['node']>,
-    required: true as const,
-  },
-  getPos: {
-    type: Function as PropType<NodeViewProps['getPos']>,
-    required: true as const,
-  },
-  updateAttributes: {
-    type: Function as PropType<NodeViewProps['updateAttributes']>,
-    required: true as const,
-  },
-  deleteNode: {
-    type: Function as PropType<NodeViewProps['deleteNode']>,
-    required: true as const,
-  },
-})
+const props = defineProps(nodeViewProps)
 const emit = defineEmits(['action'])
 const { locale, tr } = useI18n()
 const { run } = useTiptap()

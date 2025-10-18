@@ -135,7 +135,10 @@ const editorOptions = computed(() => {
     showMainMenu: false,
     showBubbleMenu: true,
     showFloatingMenu: true,
-    showSideMenu: true,
+    sideMenu: {
+      show: true,
+      add: 'menu',
+    },
     // showSideNode: true,
     pageView: 'page',
     mainMenu: [
@@ -252,7 +255,9 @@ function onDocScroll(event: Event) {
 }
 
 watch(locale, (newValue) => {
-  yiiEditor.value?.editor.commands.setContent(content.value, true)
+  yiiEditor.value?.editor.commands.setContent(content.value, {
+    emitUpdate: true,
+  })
   localStorage.setItem('yiitap.locale', newValue)
 })
 

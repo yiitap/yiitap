@@ -33,7 +33,7 @@
             @select="onSelect(item, $event)"
           />
         </o-popover>
-        <o-list-item class="item" clickable @click="onClick(item)" v-else>
+        <o-list-item class="item" clickable @click.stop="onClick(item)" v-else>
           <template #prefix>
             <o-icon :name="item.icon" :color="colorful ? item.color : ''" />
           </template>
@@ -64,28 +64,10 @@ import {
 } from '../../components/index'
 import { BlockMenus, StyleBlocks } from '../../constants/block'
 import type { NodeViewProps } from '@tiptap/core'
+import { nodeViewProps } from '@tiptap/vue-3'
 
 const props = defineProps({
-  editor: {
-    type: Object as PropType<NodeViewProps['editor']>,
-    required: true as const,
-  },
-  node: {
-    type: Object as PropType<NodeViewProps['node']>,
-    required: true as const,
-  },
-  getPos: {
-    type: Function as PropType<NodeViewProps['getPos']>,
-    required: true as const,
-  },
-  updateAttributes: {
-    type: Function as PropType<NodeViewProps['updateAttributes']>,
-    required: true as const,
-  },
-  deleteNode: {
-    type: Function as PropType<NodeViewProps['deleteNode']>,
-    required: true as const,
-  },
+  ...nodeViewProps,
   colorful: {
     type: Boolean,
     default: false,
@@ -143,9 +125,9 @@ function getComponent(item: Indexable) {
 }
 
 function onClick(item: Indexable) {
-  emit('action', item)
   setTimeout(() => {
     onAction(item)
+    emit('action', item)
   }, 0)
 }
 

@@ -27,7 +27,7 @@
     />
     <o-side-menu
       v-bind="sideMenuOptions"
-      v-if="editor?.isEditable && showSideMenu"
+      v-if="editor?.isEditable && sideMenu.show"
     />
 
     <!-- Editor Content -->
@@ -74,6 +74,12 @@ import DynamicClass, {
   TableExtensions,
 } from '../extensions/dynamic'
 import type { Editor } from '@tiptap/core'
+
+type SideMenuAddType = 'menu' | 'empty'
+interface SideMenuConfig {
+  show: boolean
+  add: SideMenuAddType
+}
 
 const props = defineProps({
   /**
@@ -140,11 +146,14 @@ const props = defineProps({
     default: false,
   },
   /**
-   * Show side menu or not.
+   * Side menu config
    */
-  showSideMenu: {
-    type: Boolean,
-    default: false,
+  sideMenu: {
+    type: Object as PropType<SideMenuConfig>,
+    default: (): SideMenuConfig => ({
+      show: true,
+      add: 'menu',
+    }),
   },
   /**
    * Show side node or not.
@@ -285,6 +294,7 @@ const floatingMenuOptions = computed(() => {
 const sideMenuOptions = computed(() => {
   return {
     editor: editor.value,
+    add: props.sideMenu.add,
     menu: [],
   }
 })
@@ -409,7 +419,7 @@ onBeforeMount(() => {
   aiOptionAlt.value = props.aiOption
   darkModeAlt.value = props.darkMode
   localeAlt.value = props.locale
-  sideNodeAlt.value = !props.showSideMenu && props.showSideNode
+  sideNodeAlt.value = !props.sideMenu.show && props.showSideNode
 })
 
 defineExpose({

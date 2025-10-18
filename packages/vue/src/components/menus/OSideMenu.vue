@@ -42,6 +42,10 @@ const props = defineProps({
     type: String,
     default: ``,
   },
+  add: {
+    type: String,
+    default: `menu`,
+  },
 })
 
 const menu = ref(null)
@@ -68,10 +72,11 @@ const nodeProps = computed(() => {
     pos: pos.value,
     updateAttributes: updateAttributes,
     deleteNode: deleteNode,
-    view: undefined,
+    view: {},
     innerDecorations: [],
-    HTMLAttributes: undefined,
-  }
+    HTMLAttributes: {},
+    add: props.add,
+  } as any
 })
 
 function deleteNode() {
