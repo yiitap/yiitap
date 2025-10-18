@@ -18,6 +18,7 @@
 
     <o-list hoverable clickable>
       <template v-for="(item, index) in options" :key="index">
+        <o-divider v-if="item.separator" />
         <o-list-item
           :class="{ 'is-active': editor?.isActive(item.value) }"
           @click="onSelect(item.value)"
@@ -38,7 +39,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Editor } from '@tiptap/core'
-import { OCommandBtn, OIcon, OList, OListItem, OPopover } from '../index'
+import {
+  OCommandBtn,
+  ODivider,
+  OIcon,
+  OList,
+  OListItem,
+  OPopover,
+} from '../index'
 
 import useI18n from '../../hooks/useI18n'
 import useTiptap from '../../hooks/useTiptap'
@@ -64,7 +72,14 @@ const options = computed(() => {
       value: 'underline',
       icon: 'format_underlined',
     },
-    { label: tr('editor.code'), value: 'code', icon: 'code' },
+    { label: tr('editor.code'), value: 'code', icon: 'code', separator: true },
+    {
+      label: tr('editor.code'),
+      value: 'subscript',
+      icon: 'subscript',
+      separator: true,
+    },
+    { label: tr('editor.code'), value: 'superscript', icon: 'superscript' },
   ]
 })
 

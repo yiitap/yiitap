@@ -90,6 +90,7 @@ export const ImageLinkBubble = [
 export const MoreBubble = [
   'heading',
   'separator',
+  'text-format-dropdown',
   'italic',
   'underline',
   'font-family',

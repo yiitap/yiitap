@@ -165,13 +165,12 @@ function onCancel() {
 }
 
 function onConfirm() {
-  const json = toJSON(output.value)
+  const json = toJSON(props.editor, output.value)
   let totalSize = 0
   for (const nodeJson of json.content) {
     const newNode = ProseMirrorNode.fromJSON(props.editor.schema, nodeJson)
     totalSize += newNode.nodeSize
   }
-
   props.editor
     .chain()
     .focus()

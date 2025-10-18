@@ -25,6 +25,8 @@ import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mention from '@tiptap/extension-mention'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
@@ -77,6 +79,8 @@ export const DefaultExtensionNames = [
   'Color',
   'Focus',
   'FontFamily',
+  'Subscript',
+  'Superscript',
   'Table',
   'TaskItem',
   'TaskList',
@@ -111,6 +115,8 @@ export const TiptapExtensionNames = [
   'Mention',
   'OrderedList',
   'Strike',
+  'Subscript',
+  'Superscript',
   'Table',
   'TaskItem',
   'TaskList',
@@ -153,49 +159,6 @@ export const BuiltinExtensionNames = [
   ...YiitapExtensionNames,
 ]
 
-export const BuiltinExtensions = [
-  BackgroundColor,
-  Color,
-  Details,
-  DetailsContent,
-  DetailsSummary,
-  Emoji,
-  Focus,
-  FontFamily,
-  Highlight,
-  Link,
-  Mention,
-  TableRow,
-  TaskItem,
-  TaskList,
-  TextAlign,
-  TextStyle,
-  Typography,
-  Underline,
-
-  OAiBlock,
-  OBlockquote,
-  OColorHighlighter,
-  OCallout,
-  OCharCommand,
-  OCodeBlock,
-  ODetails,
-  OHeading,
-  OHorizontalRule,
-  OImage,
-  OParagraph,
-  OPlaceholder,
-  OSelectionDecoration,
-  OShortcut,
-  OTable,
-  OTableCell,
-  OTableHeader,
-  OTableWrapper,
-  OTrailingNode,
-  OUniqueID,
-  OVideo,
-]
-
 export {
   BackgroundColor,
   Color,
@@ -209,6 +172,8 @@ export {
   Image,
   Link,
   Mention,
+  Subscript,
+  Superscript,
   Table,
   TableHeader,
   TableCell,

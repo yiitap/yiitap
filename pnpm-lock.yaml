@@ -457,6 +457,12 @@ importers:
       '@tiptap/extension-paragraph':
         specifier: ^3.7.0
         version: 3.7.0(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))
+      '@tiptap/extension-subscript':
+        specifier: ^3.7.0
+        version: 3.7.2(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)
+      '@tiptap/extension-superscript':
+        specifier: ^3.7.0
+        version: 3.7.2(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)
       '@tiptap/extension-table':
         specifier: ^3.7.0
         version: 3.7.0(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)
@@ -1391,6 +1397,18 @@ packages:
     resolution: {integrity: sha512-aijZWz7mCn2RUkqL3ZwTn1CYG9ETbryOIwVwX9fMs4xm3rwQ0D8dWBvZbkBEVg3CfZ2tz3HfWtMR0rbvcTl5Qg==}
     peerDependencies:
       '@tiptap/core': ^3.7.0
+
+  '@tiptap/extension-subscript@3.7.2':
+    resolution: {integrity: sha512-t06VC4nNDu91mwqkEKpqflW5ilFL+UFYp0s1m+WfKj+1N4Pdbm+hiYN2Ks5rMtnPNwU1eQrE180to6zekVCL6A==}
+    peerDependencies:
+      '@tiptap/core': ^3.7.2
+      '@tiptap/pm': ^3.7.2
+
+  '@tiptap/extension-superscript@3.7.2':
+    resolution: {integrity: sha512-mAcdfQScs9FT+j76M5wE9hWxgMjjr/ScGfYAvTqrfC6SKq9SNdAQiKL5ezdAIDbJB20xhqq3KN5qk79eO4FItQ==}
+    peerDependencies:
+      '@tiptap/core': ^3.7.2
+      '@tiptap/pm': ^3.7.2
 
   '@tiptap/extension-table@3.7.0':
     resolution: {integrity: sha512-MDOJLDWqie9IBl83ywedxI+X5QmW/+qQueuYWC++024SwFIntzWsb3F3JMK+DlFIi2ZSrstZuJNJq7uWPbjNOQ==}
@@ -4822,6 +4840,16 @@ snapshots:
   '@tiptap/extension-strike@3.7.0(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))':
     dependencies:
       '@tiptap/core': 3.7.0(@tiptap/pm@3.7.0)
+
+  '@tiptap/extension-subscript@3.7.2(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)':
+    dependencies:
+      '@tiptap/core': 3.7.0(@tiptap/pm@3.7.0)
+      '@tiptap/pm': 3.7.0
+
+  '@tiptap/extension-superscript@3.7.2(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)':
+    dependencies:
+      '@tiptap/core': 3.7.0(@tiptap/pm@3.7.0)
+      '@tiptap/pm': 3.7.0
 
   '@tiptap/extension-table@3.7.0(@tiptap/core@3.7.0(@tiptap/pm@3.7.0))(@tiptap/pm@3.7.0)':
     dependencies:

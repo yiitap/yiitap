@@ -18,6 +18,8 @@ import {
   Image,
   Link,
   Mention,
+  Subscript,
+  Superscript,
   TaskItem,
   TaskList,
   TextAlign,
@@ -81,6 +83,8 @@ const classes: Indexable = {
   }),
   Image,
   Link,
+  Subscript,
+  Superscript,
   // task
   TaskItem,
   TaskList: TaskList.configure({

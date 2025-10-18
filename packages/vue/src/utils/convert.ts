@@ -1,9 +1,8 @@
 /**
  * Convert
  */
-import { generateJSON } from '@tiptap/core'
-import { BuiltinExtensions } from '../extensions'
+import { Editor, generateJSON } from '@tiptap/core'
 
-export const toJSON = (html: string): Record<string, any> => {
-  return generateJSON(html, BuiltinExtensions as any[])
+export const toJSON = (editor: Editor, html: string): Record<string, any> => {
+  return generateJSON(html, editor.extensionManager.extensions)
 }

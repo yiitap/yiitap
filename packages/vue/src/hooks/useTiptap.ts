@@ -142,6 +142,12 @@ export default function () {
       case 'strike':
         focus.toggleStrike().run()
         break
+      case 'subscript':
+        commands.toggleSubscript()
+        break
+      case 'superscript':
+        commands.toggleSuperscript()
+        break
       case 'table':
         focus
           .insertTable({

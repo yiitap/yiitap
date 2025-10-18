@@ -266,7 +266,7 @@ async function onAiGenerate() {
           ...messages.value.slice(0, -1),
           { role: 'assistant', content: aiMessage },
         ]
-        const json = toJSON(md.render(aiMessage))
+        const json = toJSON(props.editor, md.render(aiMessage))
         setContent(pos, json)
       }
     )
@@ -290,7 +290,7 @@ async function onAiGenerateMock() {
       await new Promise((resolve) => setTimeout(resolve, 500))
       aiMessage += chunk
 
-      const json = toJSON(md.render(aiMessage))
+      const json = toJSON(props.editor, md.render(aiMessage))
       setContent(pos, json)
     }
   } catch (e) {
