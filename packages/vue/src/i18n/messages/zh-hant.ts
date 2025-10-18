@@ -119,6 +119,12 @@ export default {
     copy: '複製',
     cut: '剪切',
     search: '搜索',
+    think: '思考',
+    noResults: '没有结果',
+    generate: '生成',
+    generatedBy: '生成自',
+    update: '更新',
+    turnInto: '转成',
   },
   table: {
     cellBackground: '單元格背景色',

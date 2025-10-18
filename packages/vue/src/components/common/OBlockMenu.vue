@@ -38,7 +38,7 @@
             <o-icon :name="item.icon" :color="colorful ? item.color : ''" />
           </template>
           <template #suffix>
-            <div class="suffix o-tips">{{ item.tips }}</div>
+            <div class="suffix o-tips">{{ convertShortcut(item.tips) }}</div>
           </template>
 
           {{ tr(item.label) }}
@@ -50,9 +50,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type PropType, ref } from 'vue'
+import { computed, ref } from 'vue'
 import useI18n from '../../hooks/useI18n'
 import useTiptap from '../../hooks/useTiptap'
+import { convertShortcut } from '../../utils/convert'
 import {
   OCalloutColorBoard,
   ODivider,
@@ -63,7 +64,6 @@ import {
   OTextColorBoard,
 } from '../../components/index'
 import { BlockMenus, StyleBlocks } from '../../constants/block'
-import type { NodeViewProps } from '@tiptap/core'
 import { nodeViewProps } from '@tiptap/vue-3'
 
 const props = defineProps({

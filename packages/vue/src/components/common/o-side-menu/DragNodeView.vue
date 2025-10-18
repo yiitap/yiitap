@@ -2,7 +2,7 @@
   <section class="o-drag-node-view">
     <section class="view-main" v-if="view === 'main'">
       <section v-if="isStyleType">
-        <div class="group o-tips">Turn into</div>
+        <div class="group o-tips">{{ tr('label.turnInto') }}</div>
         <section class="panel">
           <o-menubar-btn
             v-for="(item, index) in StyleBlocks"

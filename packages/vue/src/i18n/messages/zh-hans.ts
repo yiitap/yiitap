@@ -127,6 +127,7 @@ export default {
     generate: '生成',
     generatedBy: '生成自',
     update: '更新',
+    turnInto: '转成',
   },
   table: {
     cellBackground: '单元格背景色',
