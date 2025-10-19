@@ -57,6 +57,7 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
+import { OShortcut } from '../extensions'
 
 import OMainMenu from './menus/OMainMenu.vue'
 import OBubbleMenu from './menus/OBubbleMenu.vue'
@@ -73,7 +74,7 @@ import DynamicClass, {
   DetailsExtensions,
   TableExtensions,
 } from '../extensions/dynamic'
-import type { Editor } from '@tiptap/core'
+import { Editor } from '@tiptap/core'
 
 type SideMenuAddType = 'menu' | 'empty'
 interface SideMenuConfig {
@@ -381,6 +382,22 @@ function buildExtensions() {
       extensions.push(item)
     }
   }
+
+  // shortcut
+  if (list.includes('OShortcut')) {
+    if (list.includes('Markdown')) {
+      extensions.push(
+        OShortcut.configure({
+          markdown: {
+            enabled: true,
+          },
+        })
+      )
+    } else {
+      extensions.push(OShortcut)
+    }
+  }
+
   return extensions
 }
 

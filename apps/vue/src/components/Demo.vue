@@ -171,6 +171,7 @@ const editorOptions = computed(() => {
     ],
     extensions: [
       'Emoji',
+      'Markdown',
       'OAiBlock',
       'OBlockquote',
       'OCallout',
@@ -242,7 +243,11 @@ function onMode() {
 function onUpdate({ json, html }: { json: any; html: string }) {
   // Get content of editor
   // console.log(json)
-  console.log(html)
+  // console.log(html)
+
+  // markdown
+  const markdown = yiiEditor.value?.editor.markdown.serialize(json)
+  // console.log(markdown)
 }
 
 function onScroll(event: Event) {
