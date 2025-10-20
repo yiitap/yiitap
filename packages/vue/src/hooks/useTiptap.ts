@@ -68,8 +68,14 @@ export default function () {
       case 'color':
         focus.setColor(options.color).run()
         break
+      case 'copySelected':
+        commands.copySelected()
+        break
       case 'content':
         commands.insertContent(options.content)
+        break
+      case 'deleteSelected':
+        commands.deleteSelected()
         break
       case 'details':
         if (options.type === 'detailsSummary') {
@@ -77,6 +83,9 @@ export default function () {
         } else {
           commands.setDetails()
         }
+        break
+      case 'duplicateSelected':
+        commands.duplicateSelected()
         break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)

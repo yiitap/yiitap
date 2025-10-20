@@ -110,6 +110,57 @@ export const Callout = Node.create<CalloutOptions>({
     ]
   },
 
+  markdownTokenName: 'callout',
+
+  parseMarkdown: (token, helpers) => {
+    const icon = token.info.replace('info', '').trim() || '🌾'
+    const content = helpers.parseChildren(token.tokens ?? [])
+    console.log('callout parseMarkdown', token.info)
+    console.log('callout parseMarkdown', token, content, icon)
+    return helpers.createNode('callout', { icon: icon }, content)
+  },
+
+  renderMarkdown: (node, h) => {
+    if (!node.content) {
+      return ''
+    }
+
+    const start = `::: info ${node.attrs?.icon || '🌾'}`
+    const end = ':::'
+    const lines: string[] = []
+
+    // Content
+    node.content.forEach((child) => {
+      const lineContent = h.renderChildren(child)
+      lines.push(lineContent)
+    })
+
+    return start + '\n' + lines.join('\n\n') + '\n' + end
+  },
+
+  markdownTokenizer: {
+    name: 'callout',
+    level: 'block',
+    start: (src: string) => src.match(/^:::/)?.index ?? -1,
+    tokenize(src: string, tokens: any[], lexer: any) {
+      const match = /^:::([^\n]+)\n([\s\S]*?)\n:::\s*(?:\n|$)/.exec(src)
+      if (!match) return undefined
+
+      const [, info, body] = match
+      console.log('markdownTokenizer', src, match, info, body)
+
+      // 解析 body 内部为 block token
+      const bodyTokens = lexer.blockTokens(body)
+
+      return {
+        type: 'callout',
+        raw: match[0],
+        info,
+        tokens: bodyTokens,
+      }
+    },
+  },
+
   addCommands() {
     return {
       setCallout:

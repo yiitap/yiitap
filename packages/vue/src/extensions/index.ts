@@ -7,6 +7,7 @@ import {
   DetailsContent,
   DetailsSummary,
 } from '@tiptap/extension-details'
+import { TaskItem, TaskList } from '@tiptap/extension-list'
 import {
   Table,
   TableRow,
@@ -19,7 +20,7 @@ import {
   FontFamily,
   TextStyle,
 } from '@tiptap/extension-text-style'
-import { TaskItem, TaskList } from '@tiptap/extension-list'
+import { Markdown } from '@tiptap/markdown'
 import Highlight from '@tiptap/extension-highlight'
 import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
@@ -112,6 +113,7 @@ export const TiptapExtensionNames = [
   'Italic',
   'Link',
   'ListItem',
+  'Markdown',
   'Mention',
   'OrderedList',
   'Strike',
@@ -171,6 +173,7 @@ export {
   Highlight,
   Image,
   Link,
+  Markdown,
   Mention,
   Subscript,
   Superscript,

@@ -4,12 +4,17 @@
  * example: https://github.com/ueberdosis/tiptap/blob/main/demos/src/Examples/Tables/Vue/index.vue
  * select column/row: https://github.com/ueberdosis/tiptap/discussions/2065
  */
-import { RawCommands } from '@tiptap/core'
+import { type JSONContent, type MarkdownToken, RawCommands } from '@tiptap/core'
 import { Table as TiptapTable, createTable } from '@tiptap/extension-table'
 import type { TableOptions } from '@tiptap/extension-table'
 import { TextSelection } from '@tiptap/pm/state'
 import { CellSelection } from '@tiptap/pm/tables'
 import { TableView } from './table_view.js'
+
+type MarkdownTableToken = {
+  header?: { tokens: MarkdownToken[] }[]
+  rows?: { tokens: MarkdownToken[] }[][]
+} & MarkdownToken
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -97,5 +102,45 @@ export const Table = TiptapTable.extend<TableOptions>({
           return true
         },
     }
+  },
+
+  /**
+   * Override table default parser
+   * Return a table-wrapper node instead of table
+   */
+  parseMarkdown: (token: MarkdownTableToken, h) => {
+    const rows = []
+
+    if (token.header) {
+      const headerCells: JSONContent[] = []
+
+      token.header.forEach((cell) => {
+        headerCells.push(
+          h.createNode('tableHeader', {}, [
+            { type: 'paragraph', content: h.parseInline(cell.tokens) },
+          ])
+        )
+      })
+
+      rows.push(h.createNode('tableRow', {}, headerCells))
+    }
+
+    if (token.rows) {
+      token.rows.forEach((row) => {
+        const bodyCells: JSONContent[] = []
+        row.forEach((cell) => {
+          bodyCells.push(
+            h.createNode('tableCell', {}, [
+              { type: 'paragraph', content: h.parseInline(cell.tokens) },
+            ])
+          )
+        })
+        rows.push(h.createNode('tableRow', {}, bodyCells))
+      })
+    }
+
+    const table = h.createNode('table', undefined, rows)
+
+    return h.createNode('table-wrapper', undefined, [table])
   },
 })

@@ -1,8 +1,30 @@
 import { Extension } from '@tiptap/core'
-import { Node as ProseMirrorNode } from '@tiptap/pm/model'
-import { Plugin, PluginKey, TextSelection } from '@tiptap/pm/state'
+import { Markdown } from '@tiptap/markdown'
+import { Node as ProseMirrorNode, Fragment, Slice } from '@tiptap/pm/model'
+import {
+  Plugin,
+  PluginKey,
+  NodeSelection,
+  TextSelection,
+} from '@tiptap/pm/state'
+
+import {
+  isMarkdown,
+  jsonToMarkdown,
+  jsonToHTML,
+  htmlToJSON,
+  recoverText,
+} from './util'
+
+type Indexable<T = any> = {
+  [key: string]: T
+}
 
 export interface ShortcutOptions {
+  copy?: {
+    enabled?: boolean
+    keys?: string[] // e.g. ['Mod-x']
+  }
   duplicate?: {
     enabled?: boolean
     keys?: string[] // e.g. ['Mod-d']
@@ -11,16 +33,21 @@ export interface ShortcutOptions {
     enabled?: boolean
     keys?: string[] // e.g. ['Mod-x']
   }
-  nodes: string[]
+  markdown?: {
+    enabled?: boolean
+  }
+  selectableNodes: string[]
 }
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    nodeShortcut: {
-      /** Duplicate current node */
-      duplicateNode: () => ReturnType
-      /** Delete current node */
-      deleteNode: () => ReturnType
+    shortcut: {
+      /** Copy selected nodes */
+      copySelected: () => ReturnType
+      /** Duplicate selected nodes */
+      duplicateSelected: () => ReturnType
+      /** Delete selected node */
+      deleteSelected: (option?: { delete?: boolean }) => ReturnType
     }
   }
 }
@@ -30,9 +57,11 @@ export const Shortcut = Extension.create<ShortcutOptions>({
 
   addOptions() {
     return {
+      copy: { enabled: true, keys: ['Mod-c'] },
       duplicate: { enabled: true, keys: ['Mod-d'] },
       delete: { enabled: true, keys: ['Mod-x'] },
-      nodes: [
+      markdown: { enabled: false },
+      selectableNodes: [
         'aiBlock',
         'blockquote',
         'callout',
@@ -49,51 +78,118 @@ export const Shortcut = Extension.create<ShortcutOptions>({
 
   addCommands() {
     return {
-      duplicateNode:
+      copySelected:
+        () =>
+        ({ tr, state, dispatch }) => {
+          return this.editor.commands.deleteSelected({ delete: false })
+        },
+
+      duplicateSelected:
         () =>
         ({ tr, state, dispatch }) => {
           const { selection } = state
-          const { node, $from } = selection as any
+          const { $from, $to } = selection as any
 
-          // 若选中的是整个节点
-          if (node) {
-            const pos = $from.before()
+          // 1. Select a single node
+          if (selection instanceof NodeSelection) {
+            const node = selection.node
+            const pos = selection.to
             const clone = node.type.create(node.attrs, node.content, node.marks)
             if (dispatch) {
-              tr.insert(pos + node.nodeSize, clone)
+              const tr = state.tr.insert(pos, clone)
+              dispatch(tr.scrollIntoView())
+
+              setTimeout(() => {
+                this.editor.commands.setNodeSelection(pos)
+              }, 100)
+            }
+            return true
+          }
+
+          // 2. Select multiple nodes
+          if (!selection.empty) {
+            const { from, to } = selection
+            const slice = state.doc.slice(from, to)
+            const insertPos = to // 复制后插入在选区后面
+
+            if (dispatch) {
+              let tr = state.tr.insert(insertPos, slice.content)
+              const insertedSize = slice.content.size
+
+              // Select inserted content
+              tr = tr.setSelection(
+                TextSelection.create(
+                  tr.doc,
+                  insertPos,
+                  insertPos + insertedSize
+                )
+              )
               dispatch(tr.scrollIntoView())
             }
             return true
           }
 
-          // 若仅在节点内部（未选中整个节点）
-          // 找到最外层节点
+          // 3. Select none, duplicate the cursor node
           const depth = $from.depth
           const pos = $from.before(depth)
-          const targetNode = $from.node(depth)
-          if (!targetNode) return false
+          const node = $from.node(depth)
+          if (!node) return false
 
-          const clone = targetNode.type.create(
-            targetNode.attrs,
-            targetNode.content,
-            targetNode.marks
-          )
+          const clone = node.type.create(node.attrs, node.content, node.marks)
 
           if (dispatch) {
-            tr.insert(pos + targetNode.nodeSize, clone)
+            const insertPos = pos + node.nodeSize
+            let tr = state.tr.insert(insertPos, clone)
+
+            // Place the cursor to the end of the new node.
+            const cursorPos = insertPos + node.nodeSize - 1
+            tr = tr.setSelection(TextSelection.create(tr.doc, cursorPos))
             dispatch(tr.scrollIntoView())
           }
 
           return true
         },
 
-      deleteNode:
-        () =>
+      deleteSelected:
+        (option: { delete?: boolean } = { delete: true }) =>
         ({ tr, state, dispatch }) => {
           const { selection } = state
-          const { $from } = selection
+          const { $from, from, to } = selection
 
-          // 找到最外层块级节点（非 text、inline）
+          // 1. Delete selected
+          if (from !== to) {
+            // Copy to clipboard
+            try {
+              const slice = state.doc.slice(from, to)
+              const json = slice.content.toJSON()
+              const html = jsonToHTML(json, this.editor)
+              const writeData: Indexable = {
+                'text/html': new Blob([html], { type: 'text/html' }),
+              }
+
+              if (this.options.markdown?.enabled) {
+                const markdown = jsonToMarkdown(json, this.editor) || ''
+                writeData['text/plain'] = new Blob([markdown], {
+                  type: 'text/plain',
+                })
+              }
+
+              const item = new ClipboardItem(writeData)
+              navigator.clipboard.write([item])
+              // console.log('Selected data: ', writeData)
+            } catch (err) {
+              console.error('Clipboard write failed.', err)
+            }
+
+            // Delete
+            if (option.delete && dispatch) {
+              tr.deleteRange(from, to)
+              dispatch(tr.scrollIntoView())
+            }
+            return true
+          }
+
+          // 2. Delete cursor node
           let depth = $from.depth
           let targetDepth = depth
           for (; depth > 0; depth--) {
@@ -110,17 +206,30 @@ export const Shortcut = Extension.create<ShortcutOptions>({
           const pos = $from.before(targetDepth)
           const end = pos + node.nodeSize
 
-          // write to clipboard
+          // Copy to clipboard
           try {
             const json = node.toJSON()
-            const text = JSON.stringify({ __tiptap_node__: true, node: json })
-            navigator.clipboard.writeText(text).catch(() => {})
+            const html = jsonToHTML(json, this.editor)
+            const writeData: Indexable = {
+              'text/html': new Blob([html], { type: 'text/html' }),
+            }
+
+            if (this.options.markdown?.enabled) {
+              const markdown = jsonToMarkdown(json, this.editor) || ''
+              writeData['text/plain'] = new Blob([markdown], {
+                type: 'text/plain',
+              })
+            }
+
+            const item = new ClipboardItem(writeData)
+            navigator.clipboard.write([item])
+            // console.log('Selected data: ', writeData)
           } catch (err) {
-            console.warn('Clipboard write failed:', err)
+            console.error('Clipboard write failed.', err)
           }
 
           // delete node
-          if (dispatch) {
+          if (option.delete && dispatch) {
             tr.delete(pos, end)
             dispatch(tr.scrollIntoView())
           }
@@ -132,19 +241,27 @@ export const Shortcut = Extension.create<ShortcutOptions>({
   addKeyboardShortcuts() {
     const shortcuts: Record<string, (props: { editor: any }) => boolean> = {}
 
-    // Duplicate a node
-    if (this.options.duplicate?.enabled) {
-      const keys = this.options.duplicate.keys ?? ['Mod-d']
+    // Copy selected nodes
+    if (this.options.copy?.enabled) {
+      const keys = this.options.copy.keys ?? ['Mod-c']
       for (const key of keys) {
-        shortcuts[key] = ({ editor }) => editor.commands.duplicateNode()
+        shortcuts[key] = ({ editor }) => editor.commands.copySelected()
       }
     }
 
-    // Delete a node
+    // Duplicate selected nodes
+    if (this.options.duplicate?.enabled) {
+      const keys = this.options.duplicate.keys ?? ['Mod-d']
+      for (const key of keys) {
+        shortcuts[key] = ({ editor }) => editor.commands.duplicateSelected()
+      }
+    }
+
+    // Delete selected node
     if (this.options.delete?.enabled) {
       const keys = this.options.delete.keys ?? ['Mod-x']
       for (const key of keys) {
-        shortcuts[key] = ({ editor }) => editor.commands.deleteNode()
+        shortcuts[key] = ({ editor }) => editor.commands.deleteSelected()
       }
     }
 
@@ -162,7 +279,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
       let start = -1
       let end = -1
 
-      if (this.options.nodes.includes(node?.type.name)) {
+      if (this.options.selectableNodes.includes(node?.type.name)) {
         start = $from.start(-1) + 1
         end = $from.end(-1) - 1
       } else if (node?.type.name === 'doc') {
@@ -182,7 +299,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
         }
         // console.log('select newNode: doc', newNode?.type.name)
 
-        if (this.options.nodes.includes(newNode?.type.name)) {
+        if (this.options.selectableNodes.includes(newNode?.type.name)) {
           start = pos + 1
           end = pos + newNode?.nodeSize - 1
         }
@@ -212,25 +329,59 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const clipboardData = event.clipboardData
             if (!clipboardData) return false
 
+            const html = clipboardData.getData('text/html')
             const text = clipboardData.getData('text/plain')
-            if (!text) return false
+            if (!html && !text) return false
+            // console.log('paste html: ', html)
+            // console.log('paste text: ', text)
 
-            try {
-              const parsed = JSON.parse(text)
-              if (parsed.__tiptap_node__ && parsed.node) {
-                const nodeJSON = parsed.node as ProseMirrorNode
-                view.dispatch(
-                  view.state.tr.replaceSelectionWith(
-                    this.editor.schema.nodeFromJSON(nodeJSON)
+            // Paste html
+            if (html) {
+              try {
+                const isFullDocument = /<html[\s\S]*>/i.test(html)
+                let fragment
+                if (isFullDocument) {
+                  const json = htmlToJSON(html, this.editor)
+                  fragment = Fragment.fromJSON(view.state.schema, json.content)
+                } else {
+                  const text = recoverText(html)
+                  const node = view.state.schema.nodes.codeBlock.create(
+                    {},
+                    view.state.schema.text(text)
                   )
-                )
+                  fragment = Fragment.from(node)
+                }
+
+                // console.log('Parsed html: ', html, json, fragment)
+                const slice = new Slice(fragment, 0, 0)
+                const tr = view.state.tr.replaceSelection(slice)
+                view.dispatch(tr.scrollIntoView())
                 return true
+              } catch (err) {
+                console.error('Parse html failed.', err)
               }
-            } catch {
-              console.warn('Parsed failed.')
             }
 
-            return false // fallback to default paste
+            // Paste markdown
+            if (this.options.markdown?.enabled) {
+              if (isMarkdown(text)) {
+                try {
+                  const json = this.editor.markdown?.parse(text) || {}
+                  const content = json?.content
+                  // console.log('Pasted markdown: ', text, json, content)
+                  const fragment = Fragment.fromJSON(view.state.schema, content)
+                  const slice = new Slice(fragment, 0, 0)
+                  const tr = view.state.tr.replaceSelection(slice)
+                  view.dispatch(tr.scrollIntoView())
+                  return true
+                } catch (err) {
+                  console.error('Parse Markdown failed.', err)
+                }
+              }
+            }
+
+            // fallback to default paste
+            return false
           },
         },
       }),

@@ -17,6 +17,7 @@ import {
   Highlight,
   Image,
   Link,
+  Markdown,
   Mention,
   Subscript,
   Superscript,
@@ -45,7 +46,7 @@ import {
   OLink,
   OParagraph,
   OSelectionDecoration,
-  OShortcut,
+  // OShortcut,
   OSlashCommand,
   OSlashZhCommand,
   OTable,
@@ -83,6 +84,17 @@ const classes: Indexable = {
   }),
   Image,
   Link,
+  Markdown: Markdown.configure({
+    indentation: {
+      style: 'space',
+      size: 2,
+    },
+    markedOptions: {
+      gfm: true, // GitHub Flavored Markdown
+      breaks: true, // Convert \n to <br>
+      pedantic: false, // Strict Markdown mode
+    },
+  }),
   Subscript,
   Superscript,
   // task
@@ -124,7 +136,7 @@ const classes: Indexable = {
   }),
   OParagraph,
   OSelectionDecoration,
-  OShortcut,
+  // OShortcut,
   OTrailingNode,
   // OColumnExtension: ColumnExtension,
   OUniqueID: OUniqueID.configure({
