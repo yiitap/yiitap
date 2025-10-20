@@ -1,5 +1,17 @@
 # app-vue
 
+## 0.7.0
+
+### Minor Changes
+
+- e7a1330: support markdown
+
+### Patch Changes
+
+- Updated dependencies [e7a1330]
+  - @yiitap/vue@0.7.0
+  - @yiitap/util-emoji@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/vue",
 	"description": "A WYSIWYG rich-text block-based editor built on top of tiptap.",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -63,7 +63,7 @@
 		"@tiptap/extension-typography": "^3.7.2",
 		"@tiptap/extension-underline": "^3.7.2",
 		"@tiptap/extensions": "^3.7.2",
-    "@tiptap/markdown": "^3.7.2",
+		"@tiptap/markdown": "^3.7.2",
 		"@tiptap/pm": "^3.7.2",
 		"@tiptap/starter-kit": "^3.7.2",
 		"@tiptap/suggestion": "^3.7.2",

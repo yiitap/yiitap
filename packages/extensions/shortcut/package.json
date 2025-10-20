@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-shortcut",
 	"description": "Customized shortcut extension",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -35,7 +35,7 @@
 	"dependencies": {},
 	"peerDependencies": {
 		"@tiptap/core": "^3.7.2",
-        "@tiptap/markdown": "^3.7.2",
+		"@tiptap/markdown": "^3.7.2",
 		"@tiptap/pm": "^3.7.2"
 	},
 	"devDependencies": {}
