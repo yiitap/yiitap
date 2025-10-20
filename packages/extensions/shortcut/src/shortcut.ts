@@ -1,7 +1,7 @@
 import { Extension } from '@tiptap/core'
 import { Markdown } from '@tiptap/markdown'
 import { Node as ProseMirrorNode, Fragment, Slice } from '@tiptap/pm/model'
-import { Plugin, PluginKey, TextSelection } from '@tiptap/pm/state'
+import { Plugin, PluginKey, NodeSelection, TextSelection } from '@tiptap/pm/state'
 
 import { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON } from './util'
 
@@ -77,34 +77,60 @@ export const Shortcut = Extension.create<ShortcutOptions>({
         () =>
         ({ tr, state, dispatch }) => {
           const { selection } = state
-          const { node, $from } = selection as any
+          const { $from, $to } = selection as any
 
-          // 若选中的是整个节点
-          if (node) {
-            const pos = $from.before()
+          // 1. Select a single node
+          if (selection instanceof NodeSelection) {
+            const node = selection.node
+            const pos = selection.to
             const clone = node.type.create(node.attrs, node.content, node.marks)
             if (dispatch) {
-              tr.insert(pos + node.nodeSize, clone)
+              let tr = state.tr.insert(pos, clone)
+              dispatch(tr.scrollIntoView())
+
+              setTimeout(() => {
+                this.editor.commands.setNodeSelection(pos)
+              }, 100)
+            }
+            return true
+          }
+
+          // 2. Select multiple nodes
+          if (!selection.empty) {
+            const { from, to } = selection
+            const slice = state.doc.slice(from, to)
+            const insertPos = to // 复制后插入在选区后面
+
+            if (dispatch) {
+              let tr = state.tr.insert(insertPos, slice.content)
+              const insertedSize = slice.content.size
+
+              // Select inserted content
+              tr = tr.setSelection(TextSelection.create(tr.doc, insertPos, insertPos + insertedSize))
               dispatch(tr.scrollIntoView())
             }
             return true
           }
 
-          // 若仅在节点内部（未选中整个节点）
-          // 找到最外层节点
+          // 3. Select none, duplicate the cursor node
           const depth = $from.depth
           const pos = $from.before(depth)
-          const targetNode = $from.node(depth)
-          if (!targetNode) return false
+          const node = $from.node(depth)
+          if (!node) return false
 
-          const clone = targetNode.type.create(
-            targetNode.attrs,
-            targetNode.content,
-            targetNode.marks
+          const clone = node.type.create(
+            node.attrs,
+            node.content,
+            node.marks
           )
 
           if (dispatch) {
-            tr.insert(pos + targetNode.nodeSize, clone)
+            const insertPos = pos + node.nodeSize
+            let tr = state.tr.insert(insertPos, clone)
+
+            // Place the cursor to the end of the new node.
+            const cursorPos = insertPos + node.nodeSize - 1
+            tr = tr.setSelection(TextSelection.create(tr.doc, cursorPos))
             dispatch(tr.scrollIntoView())
           }
 
