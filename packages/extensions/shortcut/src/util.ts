@@ -20,6 +20,8 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
     /!\[([^\]]*)\]\([^)]+\)/, // Image
     /<video\b[^>]*>/i, // Video (HTML <video> tag)
     /<\/video>/i, // Video (HTML <video> tag)
+    /^(\|.+\|)$/, // Table row
+    /^(\|?[\s-:|]+\|[\s-:|]+)$/, // Table separator row
   ]
 
   // Score

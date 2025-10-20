@@ -352,8 +352,8 @@ export const Shortcut = Extension.create<ShortcutOptions>({
               if (isMarkdown(text)) {
                 try {
                   const json = this.editor.markdown?.parse(text) || {}
-                  console.log('Pasted markdown: ', text, json)
                   const content = json?.content
+                  console.log('Pasted markdown: ', text, json, content)
                   const fragment = Fragment.fromJSON(view.state.schema, content)
                   const slice = new Slice(fragment, 0, 0)
                   const tr = view.state.tr.replaceSelection(slice)
