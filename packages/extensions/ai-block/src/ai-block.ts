@@ -1,4 +1,9 @@
-import { Node, findParentNode, mergeAttributes } from '@tiptap/core'
+import {
+  Node,
+  findParentNode,
+  mergeAttributes,
+  JSONContent,
+} from '@tiptap/core'
 import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { TextSelection } from '@tiptap/pm/state'
 
@@ -64,6 +69,38 @@ export const AiBlock = Node.create<AiBlockOptions>({
         tag: 'div[data-type="aiBlock"]',
       },
     ]
+  },
+
+  renderMarkdown: (node, h) => {
+    if (!node.content) {
+      return ''
+    }
+
+    const lines: string[] = []
+
+    node.content.forEach((childNode) => {
+      let line = ''
+
+      // todo: child node
+      if (
+        childNode.content &&
+        Array.isArray(childNode.content) &&
+        childNode.content.length > 1
+      ) {
+        const parts = childNode.content.map((child) =>
+          h.renderChildren(child as unknown as JSONContent)
+        )
+        line = parts.join('\n')
+      } else {
+        line = childNode.content
+          ? h.renderChildren(childNode.content as unknown as JSONContent[])
+          : ''
+      }
+
+      lines.push(line)
+    })
+
+    return lines.join('\n')
   },
 
   renderHTML({ HTMLAttributes }) {
