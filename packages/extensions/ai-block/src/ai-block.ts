@@ -78,26 +78,30 @@ export const AiBlock = Node.create<AiBlockOptions>({
 
     const lines: string[] = []
 
-    node.content.forEach((childNode) => {
-      let line = ''
-
-      // todo: child node
-      if (
-        childNode.content &&
-        Array.isArray(childNode.content) &&
-        childNode.content.length > 1
-      ) {
-        const parts = childNode.content.map((child) =>
-          h.renderChildren(child as unknown as JSONContent)
-        )
-        line = parts.join('\n')
-      } else {
-        line = childNode.content
-          ? h.renderChildren(childNode.content as unknown as JSONContent[])
-          : ''
-      }
-
-      lines.push(line)
+    // node.content.forEach((childNode) => {
+    //   let line = ''
+    //
+    //   // todo: child node
+    //   if (
+    //     childNode.content &&
+    //     Array.isArray(childNode.content) &&
+    //     childNode.content.length > 1
+    //   ) {
+    //     const parts = childNode.content.map((child) =>
+    //       h.renderChildren(child as unknown as JSONContent)
+    //     )
+    //     line = parts.join('\n')
+    //   } else {
+    //     line = childNode.content
+    //       ? h.renderChildren(childNode.content as unknown as JSONContent[])
+    //       : ''
+    //   }
+    //
+    //   lines.push(line)
+    // })
+    node.content.forEach((child) => {
+      const lineContent = h.renderChildren(child)
+      lines.push(lineContent)
     })
 
     return lines.join('\n')

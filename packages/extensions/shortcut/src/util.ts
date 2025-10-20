@@ -35,7 +35,7 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
   const symbolCount = (text.match(/[*_`#>[\]]/g) || []).length
   const symbolDensity = symbolCount / text.length
 
-  console.log('isMarkdown: ', ratio, symbolDensity)
+  // console.log('isMarkdown: ', ratio, symbolDensity)
   return ratio >= threshold || symbolDensity > 0.05
 }
 
@@ -72,4 +72,56 @@ const htmlToJSON = (html: string, editor: Editor) => {
   return generateJSON(html, filteredExtensions)
 }
 
-export { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON }
+const recoverText = (html: string) => {
+  const tempDiv = document.createElement('div')
+  tempDiv.innerHTML = html
+
+  const lines: string[] = []
+  const preElement = tempDiv.querySelector('div[style]')
+
+  if (!preElement) return html // 如果不是 VSCode 格式，返回原内容
+
+  // 遍历所有子节点
+  for (let i = 0; i < preElement.childNodes.length; i++) {
+    const child = preElement.childNodes[i]
+
+    // 正确的类型检查
+    if (child.nodeType === Node.ELEMENT_NODE) {
+      const element = child as Element
+
+      if (element.nodeName === 'BR') {
+        // 处理空行
+        lines.push('')
+      } else if (element.nodeName === 'DIV') {
+        // 提取 div 中的文本内容
+        let lineText = ''
+        const spans = element.querySelectorAll('span')
+
+        if (spans.length > 0) {
+          // 如果有 span，提取所有 span 的文本
+          lineText = Array.from(spans)
+            .map((span) => span.textContent || '')
+            .join('')
+        } else {
+          // 直接获取 div 的文本
+          lineText = element.textContent || ''
+        }
+
+        const trimmed = lineText.trim()
+        if (trimmed) {
+          lines.push(trimmed)
+        }
+      }
+    } else if (child.nodeType === Node.TEXT_NODE) {
+      // 处理纯文本节点
+      const text = child.textContent?.trim()
+      if (text) {
+        lines.push(text)
+      }
+    }
+  }
+
+  return lines.join('\n')
+}
+
+export { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON, recoverText }

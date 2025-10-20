@@ -8,7 +8,13 @@ import {
   TextSelection,
 } from '@tiptap/pm/state'
 
-import { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON } from './util'
+import {
+  isMarkdown,
+  jsonToMarkdown,
+  jsonToHTML,
+  htmlToJSON,
+  recoverText,
+} from './util'
 
 type Indexable<T = any> = {
   [key: string]: T
@@ -170,7 +176,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
 
               const item = new ClipboardItem(writeData)
               navigator.clipboard.write([item])
-              console.log('Selected data: ', writeData)
+              // console.log('Selected data: ', writeData)
             } catch (err) {
               console.error('Clipboard write failed.', err)
             }
@@ -217,7 +223,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
 
             const item = new ClipboardItem(writeData)
             navigator.clipboard.write([item])
-            console.log('Selected data: ', writeData)
+            // console.log('Selected data: ', writeData)
           } catch (err) {
             console.error('Clipboard write failed.', err)
           }
@@ -326,17 +332,26 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const html = clipboardData.getData('text/html')
             const text = clipboardData.getData('text/plain')
             if (!html && !text) return false
-            console.log('paste html: ', html)
-            console.log('paste text: ', text)
+            // console.log('paste html: ', html)
+            // console.log('paste text: ', text)
 
             // Paste html
             if (html) {
               try {
-                const json = htmlToJSON(html, this.editor)
-                const fragment = Fragment.fromJSON(
-                  view.state.schema,
-                  json.content
-                )
+                const isFullDocument = /<html[\s\S]*>/i.test(html)
+                let fragment
+                if (isFullDocument) {
+                  const json = htmlToJSON(html, this.editor)
+                  fragment = Fragment.fromJSON(view.state.schema, json.content)
+                } else {
+                  const text = recoverText(html)
+                  const node = view.state.schema.nodes.codeBlock.create(
+                    {},
+                    view.state.schema.text(text)
+                  )
+                  fragment = Fragment.from(node)
+                }
+
                 // console.log('Parsed html: ', html, json, fragment)
                 const slice = new Slice(fragment, 0, 0)
                 const tr = view.state.tr.replaceSelection(slice)
@@ -353,7 +368,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
                 try {
                   const json = this.editor.markdown?.parse(text) || {}
                   const content = json?.content
-                  console.log('Pasted markdown: ', text, json, content)
+                  // console.log('Pasted markdown: ', text, json, content)
                   const fragment = Fragment.fromJSON(view.state.schema, content)
                   const slice = new Slice(fragment, 0, 0)
                   const tr = view.state.tr.replaceSelection(slice)
