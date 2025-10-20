@@ -1,7 +1,12 @@
 import { Extension } from '@tiptap/core'
 import { Markdown } from '@tiptap/markdown'
 import { Node as ProseMirrorNode, Fragment, Slice } from '@tiptap/pm/model'
-import { Plugin, PluginKey, NodeSelection, TextSelection } from '@tiptap/pm/state'
+import {
+  Plugin,
+  PluginKey,
+  NodeSelection,
+  TextSelection,
+} from '@tiptap/pm/state'
 
 import { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON } from './util'
 
@@ -85,7 +90,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const pos = selection.to
             const clone = node.type.create(node.attrs, node.content, node.marks)
             if (dispatch) {
-              let tr = state.tr.insert(pos, clone)
+              const tr = state.tr.insert(pos, clone)
               dispatch(tr.scrollIntoView())
 
               setTimeout(() => {
@@ -106,7 +111,13 @@ export const Shortcut = Extension.create<ShortcutOptions>({
               const insertedSize = slice.content.size
 
               // Select inserted content
-              tr = tr.setSelection(TextSelection.create(tr.doc, insertPos, insertPos + insertedSize))
+              tr = tr.setSelection(
+                TextSelection.create(
+                  tr.doc,
+                  insertPos,
+                  insertPos + insertedSize
+                )
+              )
               dispatch(tr.scrollIntoView())
             }
             return true
@@ -118,11 +129,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
           const node = $from.node(depth)
           if (!node) return false
 
-          const clone = node.type.create(
-            node.attrs,
-            node.content,
-            node.marks
-          )
+          const clone = node.type.create(node.attrs, node.content, node.marks)
 
           if (dispatch) {
             const insertPos = pos + node.nodeSize
@@ -319,6 +326,8 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const html = clipboardData.getData('text/html')
             const text = clipboardData.getData('text/plain')
             if (!html && !text) return false
+            console.log('paste html: ', html)
+            console.log('paste text: ', text)
 
             // Paste html
             if (html) {
@@ -343,7 +352,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
               if (isMarkdown(text)) {
                 try {
                   const json = this.editor.markdown?.parse(text) || {}
-                  // console.log('Pasted markdown: ', text, json)
+                  console.log('Pasted markdown: ', text, json)
                   const content = json?.content
                   const fragment = Fragment.fromJSON(view.state.schema, content)
                   const slice = new Slice(fragment, 0, 0)

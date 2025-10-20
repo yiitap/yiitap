@@ -65,6 +65,33 @@ export const Video = Node.create({
     ]
   },
 
+  parseMarkdown: (token, helpers) => {
+    if (token.type === 'html_block' || token.type === 'html_inline') {
+      const html = token.content
+      const videoMatch = html.match(/<video\b([^>]*)>/i)
+      if (!videoMatch) return {}
+
+      const attrsStr = videoMatch[1]
+      const srcMatch = html.match(/<source\s+src="([^"]+)"/i)
+      const captionMatch = attrsStr.match(/caption="([^"]*)"/i)
+      if (srcMatch) {
+        return helpers.createNode('video', {
+          src: srcMatch[1],
+          caption: captionMatch ? captionMatch[1] : '',
+        })
+      }
+    }
+    return {}
+  },
+
+  renderMarkdown: (node) => {
+    const src = node.attrs?.src ?? ''
+    const caption = node.attrs?.caption ?? ''
+    return `<video caption="${caption}" controls>
+  <source src="${src}">
+</video>`
+  },
+
   addCommands() {
     return {
       setVideo:

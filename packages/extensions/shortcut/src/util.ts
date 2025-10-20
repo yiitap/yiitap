@@ -6,35 +6,35 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0)
   if (lines.length === 0) return false
 
-  // 常见 Markdown 特征（正则更灵活）
+  // Common Markdown patterns (regex is more flexible)
   const patterns = [
     /^#{1,6}\s/, // Heading
-    /^[-*+]\s+/, // 无序列表
-    /^\d+\.\s+/, // 有序列表
-    /^>\s+/, // 引用
-    /^```/, // 代码块
-    /`[^`]+`/, // 行内代码
-    /\*\*[^*]+\*\*/, // 粗体
-    /_[^_]+_/, // 斜体
-    /\[([^\]]+)\]\([^)]+\)/, // 链接
-    /!\[([^\]]*)\]\([^)]+\)/, // 图片
+    /^[-*+]\s+/, // Unordered list
+    /^\d+\.\s+/, // Ordered list
+    /^>\s+/, // Blockquote
+    /^```/, // Code block
+    /`[^`]+`/, // Inline code
+    /\*\*[^*]+\*\*/, // Bold
+    /_[^_]+_/, // Italic
+    /\[([^\]]+)\]\([^)]+\)/, // Link
+    /!\[([^\]]*)\]\([^)]+\)/, // Image
+    /<video\b[^>]*>/i, // Video (HTML <video> tag)
+    /<\/video>/i, // Video (HTML <video> tag)
   ]
 
-  // 统计命中率
+  // Score
   let score = 0
   for (const line of lines) {
     if (patterns.some((p) => p.test(line.trim()))) score++
   }
-
-  // 当 Markdown 特征足够多 或 特殊符号密度较高
   const ratio = score / lines.length
-  if (ratio >= threshold) return true
 
-  // 辅助：检测全局符号密度
+  // Density
   const symbolCount = (text.match(/[*_`#>[\]]/g) || []).length
   const symbolDensity = symbolCount / text.length
 
-  return symbolDensity > 0.05
+  console.log('isMarkdown: ', ratio, symbolDensity)
+  return ratio >= threshold || symbolDensity > 0.05
 }
 
 const jsonToMarkdown = (json: any, editor: Editor) => {
