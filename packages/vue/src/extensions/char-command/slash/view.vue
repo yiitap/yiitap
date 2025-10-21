@@ -43,6 +43,9 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue'
+import { Editor, type Range } from '@tiptap/core'
+import { InlinePlaceholderKey } from '@yiitap/extension-inline-placeholder'
 import useI18n from '../../../hooks/useI18n'
 import useTiptap from '../../../hooks/useTiptap'
 import { ODivider, OIcon, OList, OListItem } from '../../../components/index'
@@ -59,20 +62,21 @@ export default {
       required: true,
     },
     editor: {
-      type: Object,
+      type: Editor,
     },
     range: {
-      type: Object,
+      type: Object as PropType<Range>,
     },
   },
   setup() {
     const { locale, tr } = useI18n()
-    const { onCommand } = useTiptap()
+    const { onCommand, run } = useTiptap()
 
     return {
       locale,
       tr,
       onCommand,
+      run,
     }
   },
   data() {
@@ -96,12 +100,12 @@ export default {
     onClick(item: Indexable) {
       switch (item.value) {
         default:
-          this.run(item)
+          this.runCommand(item)
           break
       }
       return true
     },
-    run(item: Indexable) {
+    runCommand(item: Indexable) {
       const focus = this.editor.chain().focus().deleteRange(this.range)
       const commands = this.editor.commands
       switch (item.value) {
@@ -116,6 +120,11 @@ export default {
         case 'emoji':
           commands.deleteRange(this.range)
           this.editor.commands.insertContent(':')
+          break
+        case 'inlineMath':
+          commands.deleteRange(this.range)
+          this.run(this.editor, 'inlineMath')
+          // this.onInlineMath()
           break
         case 'taskList':
           commands.deleteRange(this.range)

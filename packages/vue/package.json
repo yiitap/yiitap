@@ -77,6 +77,7 @@
 		"@yiitap/extension-focus": "workspace:*",
 		"@yiitap/extension-image": "workspace:*",
 		"@yiitap/extension-placeholder": "workspace:*",
+		"@yiitap/extension-inline-placeholder": "workspace:*",
 		"@yiitap/extension-selection-decoration": "workspace:*",
 		"@yiitap/extension-shortcut": "workspace:*",
 		"@yiitap/extension-table": "workspace:*",

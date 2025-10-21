@@ -48,6 +48,7 @@ const commands: Indexable = computed(() => {
     horizontalRule: { icon: 'horizontal_rule', tooltip: tr('editor.hr') },
     italic: { icon: 'format_italic', tooltip: tr('editor.italic') },
     image: { icon: 'image', tooltip: tr('editor.photo') },
+    inlineMath: { icon: 'function', tooltip: tr('editor.inlineMath') },
     inlineMathDelete: { icon: 'close', tooltip: tr('editor.delete') },
     linkUnset: { icon: 'link_off', tooltip: tr('link.off') },
     modelViewer: { icon: '3d_rotation', tooltip: tr('label.modelViewer') },

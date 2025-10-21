@@ -44,6 +44,7 @@ import {
   OHeading,
   OHorizontalRule,
   OImage,
+  OInlinePlaceholder,
   OLink,
   OParagraph,
   OSelectionDecoration,
@@ -133,6 +134,7 @@ const classes: Indexable = {
   OHeading,
   OHorizontalRule,
   OImage,
+  OInlinePlaceholder,
   OLink: OLink.configure({
     openOnClick: false,
   }),

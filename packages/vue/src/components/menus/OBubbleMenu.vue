@@ -2,6 +2,7 @@
   <section v-if="editor">
     <bubble-menu :editor="editor" :should-show="shouldShow" :options="options">
       <o-ai-menu :editor="editor" @confirm="onAiConfirm" v-if="showAi" />
+      <o-inline-math-menu :editor="editor" v-else-if="showInlineMath" />
       <section class="tiptap-toolbar" :class="menuClass" v-else>
         <template v-if="showBack">
           <o-menubar-btn
@@ -32,10 +33,14 @@
 /**
  * @see https://tiptap.dev/docs/editor/extensions/functionality/bubble-menu
  */
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
 import { NodeSelection } from '@tiptap/pm/state'
 import { BubbleMenu } from '@tiptap/vue-3/menus'
+import {
+  InlinePlaceholderKey,
+  type InlinePlaceholderMeta,
+} from '@yiitap/extension-inline-placeholder'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
 import { useTheme } from '../../hooks'
@@ -47,7 +52,7 @@ import {
   LinkBubble,
   TableBubble,
 } from '../../constants/menu'
-import { ODivider, OMenubarBtn, OAiMenu } from '../index'
+import { ODivider, OMenubarBtn, OAiMenu, OInlineMathMenu } from '../index'
 
 const props = defineProps({
   editor: {
@@ -75,6 +80,7 @@ const { theme } = useTheme()
 const backToMain = ref(false)
 const showAi = ref(false)
 const aiConfirmed = ref(false)
+const inlineMathActive = ref(false)
 const options = ref({
   offset: 10,
   placement: 'bottom-start' as 'bottom' | 'top',
@@ -102,19 +108,6 @@ function onAiConfirm() {
   aiConfirmed.value = true
 }
 
-function isInlineMathSelection(selection) {
-  const { schema } = props.editor
-  const type = schema.nodes.math_inline
-  if (!type || !selection) return false
-  const { $from } = selection
-
-  // 1️⃣ 判断当前光标位置的节点是否是 inlineMath
-  if ($from.parent.type === type) return true
-
-  // 2️⃣ 如果当前选中的是整个 node（NodeSelection）
-  return selection instanceof NodeSelection && selection.node.type === type
-}
-
 function isLinkSelection(selection) {
   const { schema } = props.editor
   const linkType = schema.marks.link
@@ -132,8 +125,16 @@ function shouldShow({ editor, element, view, state, oldState, from, to }) {
   const { empty } = selection
   const isEmptyTextBlock =
     !doc.textBetween(from, to).length && isTextSelection(state.selection)
+  inlineMathActive.value = props.editor.isActive('inlineMath')
 
-  if (editor.isActive('inlineMath')) return true
+  console.log(
+    'shouldShow',
+    showInlineMath.value,
+    isInlinePlaceholderActive.value,
+    inlineMathActive.value
+  )
+  if (isInlinePlaceholderActive.value) return true
+  if (props.editor.isActive('inlineMath')) return true
   if (!view.hasFocus() || empty || aiConfirmed.value) {
     return false
   }
@@ -170,24 +171,16 @@ const isLinkSelected = computed(() => {
   }
 })
 
-const isMathInlineSelected = computed(() => {
-  if (props.editor) {
-    const { state } = props.editor
-    const { tr } = state
-    const { selection } = tr
-
-    return isInlineMathSelection(selection)
-  } else {
-    return false
-  }
-})
-
 const showBack = computed(() => {
   return (
     !backToMain.value &&
     !props.editor?.isActive('image') &&
     (isLinkSelected.value || props.editor?.isActive('inlineMath'))
   )
+})
+
+const showInlineMath = computed(() => {
+  return isInlinePlaceholderActive.value || inlineMathActive.value
 })
 
 const dynamicMenu = computed(() => {
@@ -204,6 +197,14 @@ const dynamicMenu = computed(() => {
     }
   }
   return menu.length > 0 ? menu : DefaultBubble
+})
+
+const isInlinePlaceholderActive = computed(() => {
+  const pluginState = InlinePlaceholderKey.getState(props.editor.state) as {
+    active: InlinePlaceholderMeta | null
+  }
+  console.log('state1', pluginState)
+  return !!pluginState?.active
 })
 
 onMounted(() => {

@@ -39,6 +39,7 @@ import Underline from '@tiptap/extension-underline'
 // Extension lib
 import OColorHighlighter from '@yiitap/extension-color-highlighter'
 import OFocus from '@yiitap/extension-focus'
+import OInlinePlaceholder from '@yiitap/extension-inline-placeholder'
 import OPlaceholder from '@yiitap/extension-placeholder'
 import OSelectionDecoration from '@yiitap/extension-selection-decoration'
 import OShortcut from '@yiitap/extension-shortcut'
@@ -144,6 +145,7 @@ export const YiitapExtensionNames = [
   'OHeading',
   'OHorizontalRule',
   'OImage',
+  'OInlinePlaceholder',
   // 'OKatexBlock',
   // 'OKatexInline',
   'OLink',
@@ -199,16 +201,17 @@ export {
   OColorHighlighter,
   ODetails,
   OFocus,
-  OSelectionDecoration,
-  OShortcut,
-  OSlashCommand,
-  OSlashZhCommand,
+  OInlinePlaceholder,
   OHeading,
   OHorizontalRule,
   OImage,
   OLink,
   OParagraph,
   OPlaceholder,
+  OSelectionDecoration,
+  OShortcut,
+  OSlashCommand,
+  OSlashZhCommand,
   OTable,
   OTableCell,
   OTableHeader,

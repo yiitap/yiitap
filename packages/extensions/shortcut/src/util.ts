@@ -67,14 +67,18 @@ const excludeExtensions = ['Mathematics', 'starterKit']
 const jsonToHTML = (json: any, editor: Editor) => {
   const doc = Array.isArray(json) ? { type: 'doc', content: json } : json
   const extensions = editor.extensionManager.extensions
-  const filteredExtensions = extensions.filter((e) => !excludeExtensions.includes(e.name))
+  const filteredExtensions = extensions.filter(
+    (e) => !excludeExtensions.includes(e.name)
+  )
 
   return generateHTML(doc, filteredExtensions)
 }
 
 const htmlToJSON = (html: string, editor: Editor) => {
   const extensions = editor.extensionManager.extensions
-  const filteredExtensions = extensions.filter((e) => !excludeExtensions.includes(e.name))
+  const filteredExtensions = extensions.filter(
+    (e) => !excludeExtensions.includes(e.name)
+  )
 
   return generateJSON(html, filteredExtensions)
 }

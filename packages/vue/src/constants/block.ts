@@ -204,7 +204,11 @@ export const AdvancedBlocks: BlockOption[] = [
   },
 ]
 
-export const Blocks: BlockOption[] = [...BasicBlocks, ...CommonBlocks, ...AdvancedBlocks]
+export const Blocks: BlockOption[] = [
+  ...BasicBlocks,
+  ...CommonBlocks,
+  ...AdvancedBlocks,
+]
 
 export const BlockMenus: BlockOption[] = [
   {

@@ -36,7 +36,7 @@ const CommandComponents: Indexable = {
   'font-family': OFontFamilyDropdown,
   heading: OHeadingDropdown,
   highlight: OHighlightDropdown,
-  'inline-math': OInlineMathBtn,
+  // 'inline-math': OInlineMathBtn,
   'inline-math-edit': OInlineMathEditBtn,
   // 'line-height': 'o-line-height-dropdown',
   'list-dropdown': OListDropdown,

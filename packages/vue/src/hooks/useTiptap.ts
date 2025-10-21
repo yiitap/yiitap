@@ -1,6 +1,7 @@
 import { computed, ref, inject } from 'vue'
 import type { ChainedCommands, Editor, SingleCommands } from '@tiptap/core'
 import type { Level } from '@/extensions/heading'
+import { InlinePlaceholderKey } from '@yiitap/extension-inline-placeholder'
 
 export default function () {
   const isEditable = inject('isEditable', { value: true })
@@ -10,7 +11,14 @@ export default function () {
     const focus = editor?.chain().focus()
     const commands = editor?.commands
 
-    onCommand(commands, focus, command, options)
+    switch (command) {
+      case 'inlineMath':
+        newInlineMath(editor)
+        break
+      default:
+        onCommand(commands, focus, command, options)
+        break
+    }
   }
 
   function onCommand(
@@ -229,6 +237,21 @@ export default function () {
       // 	focus.setVideo(options).run()
       // 	break
     }
+  }
+
+  function newInlineMath(editor: Editor) {
+    const { state, view } = editor
+    const { from } = state.selection
+    const dom = view.domAtPos(from).node as HTMLElement
+    const rect = dom.getBoundingClientRect()
+
+    const tr = state.tr
+      .setMeta(InlinePlaceholderKey, {
+        type: 'show',
+        payload: { type: 'math', label: 'New equation', pos: from, rect },
+      })
+      .setSelection(state.selection)
+    view.dispatch(tr)
   }
 
   return {

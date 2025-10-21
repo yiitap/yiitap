@@ -171,7 +171,7 @@ const editorOptions = computed(() => {
       'emoji',
       'aiBlock',
       'separator',
-      'inline-math',
+      'inlineMath',
     ],
     extensions: [
       'Emoji',
@@ -186,11 +186,12 @@ const editorOptions = computed(() => {
       'ODetails',
       'OHeading',
       'OImage',
+      'OInlinePlaceholder',
+      'OLink',
       'OParagraph',
       'OShortcut',
       'OSlash',
       'OSlashZh',
-      'OLink',
       'OVideo',
     ],
   }

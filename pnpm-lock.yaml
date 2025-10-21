@@ -272,6 +272,15 @@ importers:
         specifier: ^3.7.2
         version: 3.7.2
 
+  packages/extensions/inline-placeholder:
+    dependencies:
+      '@tiptap/core':
+        specifier: ^3.7.2
+        version: 3.7.2(@tiptap/pm@3.7.2)
+      '@tiptap/pm':
+        specifier: ^3.7.2
+        version: 3.7.2
+
   packages/extensions/link:
     dependencies:
       '@tiptap/core':
@@ -535,6 +544,9 @@ importers:
       '@yiitap/extension-image':
         specifier: workspace:*
         version: link:../extensions/image
+      '@yiitap/extension-inline-placeholder':
+        specifier: workspace:*
+        version: link:../extensions/inline-placeholder
       '@yiitap/extension-placeholder':
         specifier: workspace:*
         version: link:../extensions/placeholder
