@@ -184,7 +184,27 @@ export const CommonBlocks: BlockOption[] = [
   },
 ]
 
-export const Blocks: BlockOption[] = [...BasicBlocks, ...CommonBlocks]
+export const AdvancedBlocks: BlockOption[] = [
+  {
+    label: 'editor.inlineMath',
+    value: 'inlineMath',
+    icon: 'function',
+    color: Color.purple,
+    tips: 'math',
+    keywords: 'inline, math, equation',
+    group: 'label.advanced',
+  },
+  {
+    label: 'editor.blockMath',
+    value: 'blockMath',
+    icon: 'functions',
+    color: Color.purple,
+    tips: 'math',
+    keywords: 'block, math, equation',
+  },
+]
+
+export const Blocks: BlockOption[] = [...BasicBlocks, ...CommonBlocks, ...AdvancedBlocks]
 
 export const BlockMenus: BlockOption[] = [
   {

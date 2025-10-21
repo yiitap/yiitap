@@ -34,6 +34,7 @@
  */
 import { ref, computed, onMounted } from 'vue'
 import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
+import { NodeSelection } from '@tiptap/pm/state'
 import { BubbleMenu } from '@tiptap/vue-3/menus'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
@@ -42,6 +43,7 @@ import {
   DefaultBubble,
   ImageBubble,
   ImageLinkBubble,
+  InlineMathBubble,
   LinkBubble,
   TableBubble,
 } from '../../constants/menu'
@@ -100,6 +102,19 @@ function onAiConfirm() {
   aiConfirmed.value = true
 }
 
+function isInlineMathSelection(selection) {
+  const { schema } = props.editor
+  const type = schema.nodes.math_inline
+  if (!type || !selection) return false
+  const { $from } = selection
+
+  // 1️⃣ 判断当前光标位置的节点是否是 inlineMath
+  if ($from.parent.type === type) return true
+
+  // 2️⃣ 如果当前选中的是整个 node（NodeSelection）
+  return selection instanceof NodeSelection && selection.node.type === type
+}
+
 function isLinkSelection(selection) {
   const { schema } = props.editor
   const linkType = schema.marks.link
@@ -118,7 +133,7 @@ function shouldShow({ editor, element, view, state, oldState, from, to }) {
   const isEmptyTextBlock =
     !doc.textBetween(from, to).length && isTextSelection(state.selection)
 
-  // if (showAi.value) return true
+  if (editor.isActive('inlineMath')) return true
   if (!view.hasFocus() || empty || aiConfirmed.value) {
     return false
   }
@@ -155,11 +170,23 @@ const isLinkSelected = computed(() => {
   }
 })
 
+const isMathInlineSelected = computed(() => {
+  if (props.editor) {
+    const { state } = props.editor
+    const { tr } = state
+    const { selection } = tr
+
+    return isInlineMathSelection(selection)
+  } else {
+    return false
+  }
+})
+
 const showBack = computed(() => {
   return (
     !backToMain.value &&
-    isLinkSelected.value &&
-    !props.editor?.isActive('image')
+    !props.editor?.isActive('image') &&
+    (isLinkSelected.value || props.editor?.isActive('inlineMath'))
   )
 })
 
@@ -172,6 +199,8 @@ const dynamicMenu = computed(() => {
       menu = TableBubble
     } else if (isLinkSelected.value) {
       menu = LinkBubble
+    } else if (props.editor?.isActive('inlineMath')) {
+      menu = InlineMathBubble
     }
   }
   return menu.length > 0 ? menu : DefaultBubble

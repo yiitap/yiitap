@@ -332,8 +332,8 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const html = clipboardData.getData('text/html')
             const text = clipboardData.getData('text/plain')
             if (!html && !text) return false
-            // console.log('paste html: ', html)
-            // console.log('paste text: ', text)
+            console.log('paste html: ', html)
+            console.log('paste text: ', text)
 
             // Paste html
             if (html) {
@@ -368,7 +368,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
                 try {
                   const json = this.editor.markdown?.parse(text) || {}
                   const content = json?.content
-                  // console.log('Pasted markdown: ', text, json, content)
+                  console.log('Pasted markdown: ', text, json, content)
                   const fragment = Fragment.fromJSON(view.state.schema, content)
                   const slice = new Slice(fragment, 0, 0)
                   const tr = view.state.tr.replaceSelection(slice)

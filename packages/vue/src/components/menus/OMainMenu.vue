@@ -1,5 +1,5 @@
 <template>
-  <section class="o-main-menu">
+  <section class="o-main-menu" v-if="editor">
     <!-- Left -->
     <section class="left">
       <template v-for="(item, index) of dynamicMenu" :key="index">

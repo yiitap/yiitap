@@ -18,6 +18,7 @@ import {
   Image,
   Link,
   Markdown,
+  Mathematics,
   Mention,
   Subscript,
   Superscript,
@@ -95,6 +96,7 @@ const classes: Indexable = {
       pedantic: false, // Strict Markdown mode
     },
   }),
+  Mathematics,
   Subscript,
   Superscript,
   // task

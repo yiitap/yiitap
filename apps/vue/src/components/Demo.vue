@@ -110,6 +110,8 @@ import {
 } from 'naive-ui'
 import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
+import 'katex/dist/katex.min.css'
+
 import VersionBadge from './VersionBadge.vue'
 
 const emit = defineEmits(['mode'])
@@ -168,10 +170,13 @@ const editorOptions = computed(() => {
       'callout',
       'emoji',
       'aiBlock',
+      'separator',
+      'inline-math',
     ],
     extensions: [
       'Emoji',
       'Markdown',
+      'Mathematics',
       'OAiBlock',
       'OBlockquote',
       'OCallout',

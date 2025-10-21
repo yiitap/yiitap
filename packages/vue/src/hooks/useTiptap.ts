@@ -115,6 +115,15 @@ export default function () {
           )
           .run()
         break
+      case 'inlineMathDelete':
+        commands.deleteInlineMath(options)
+        break
+      case 'inlineMathInsert':
+        commands.insertInlineMath(options as any)
+        break
+      case 'inlineMathUpdate':
+        commands.updateInlineMath(options)
+        break
       case 'italic':
         focus.toggleItalic().run()
         break

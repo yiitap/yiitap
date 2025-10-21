@@ -75,6 +75,8 @@ export const DefaultBubble = [
   'more',
 ]
 
+export const InlineMathBubble = ['inline-math-edit', 'inlineMathDelete']
+
 export const LinkBubble = ['link-open', 'link-edit', 'linkUnset']
 
 export const ImageBubble = ['align-group', 'separator', 'link']
@@ -98,6 +100,8 @@ export const MoreBubble = [
   'code',
   'blockquote',
   'details',
+  'separator',
+  'inline-math',
 ]
 
 export const TableBubble = [

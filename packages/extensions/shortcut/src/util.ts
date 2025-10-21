@@ -22,6 +22,10 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
     /<\/video>/i, // Video (HTML <video> tag)
     /^(\|.+\|)$/, // Table row
     /^(\|?[\s-:|]+\|[\s-:|]+)$/, // Table separator row
+    /\$\$[\s\S]+?\$\$/, // Block math: $$ ... $$
+    /\$[^$]+\$/, // Inline math: $...$
+    /\\\([^)]+\\\)/, // Inline math: \( ... \)
+    /\\\[[\s\S]+?\\\]/, // Block math: \[ ... \]
   ]
 
   // Score
@@ -29,13 +33,14 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
   for (const line of lines) {
     if (patterns.some((p) => p.test(line.trim()))) score++
   }
+  if (/\$\$[\s\S]+?\$\$/g.test(text)) score += 3
   const ratio = score / lines.length
 
   // Density
   const symbolCount = (text.match(/[*_`#>[\]]/g) || []).length
   const symbolDensity = symbolCount / text.length
 
-  // console.log('isMarkdown: ', ratio, symbolDensity)
+  console.log('isMarkdown: ', ratio, symbolDensity)
   return ratio >= threshold || symbolDensity > 0.05
 }
 
@@ -57,17 +62,19 @@ const jsonToMarkdown = (json: any, editor: Editor) => {
   return markdownParts.join('\n\n')
 }
 
+const excludeExtensions = ['Mathematics', 'starterKit']
+
 const jsonToHTML = (json: any, editor: Editor) => {
   const doc = Array.isArray(json) ? { type: 'doc', content: json } : json
   const extensions = editor.extensionManager.extensions
-  const filteredExtensions = extensions.filter((e) => e.name !== 'starterKit')
+  const filteredExtensions = extensions.filter((e) => !excludeExtensions.includes(e.name))
 
   return generateHTML(doc, filteredExtensions)
 }
 
 const htmlToJSON = (html: string, editor: Editor) => {
   const extensions = editor.extensionManager.extensions
-  const filteredExtensions = extensions.filter((e) => e.name !== 'starterKit')
+  const filteredExtensions = extensions.filter((e) => !excludeExtensions.includes(e.name))
 
   return generateJSON(html, filteredExtensions)
 }

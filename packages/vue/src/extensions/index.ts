@@ -25,6 +25,7 @@ import Highlight from '@tiptap/extension-highlight'
 import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
+import Mathematics from '@tiptap/extension-mathematics'
 import Mention from '@tiptap/extension-mention'
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
@@ -114,6 +115,7 @@ export const TiptapExtensionNames = [
   'Link',
   'ListItem',
   'Markdown',
+  'Mathematics',
   'Mention',
   'OrderedList',
   'Strike',
@@ -174,6 +176,7 @@ export {
   Image,
   Link,
   Markdown,
+  Mathematics,
   Mention,
   Subscript,
   Superscript,

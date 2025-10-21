@@ -52,6 +52,7 @@
 		"@tiptap/extension-image": "^3.7.2",
 		"@tiptap/extension-link": "^3.7.2",
 		"@tiptap/extension-list": "^3.7.2",
+		"@tiptap/extension-mathematics": "^3.7.2",
 		"@tiptap/extension-mention": "^3.7.2",
 		"@tiptap/extension-paragraph": "^3.7.2",
 		"@tiptap/extension-subscript": "^3.7.2",
