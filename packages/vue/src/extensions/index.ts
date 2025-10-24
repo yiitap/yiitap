@@ -8,6 +8,7 @@ import {
   DetailsSummary,
 } from '@tiptap/extension-details'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
+import { BlockMath, InlineMath } from '@tiptap/extension-mathematics'
 import {
   Table,
   TableRow,
@@ -25,7 +26,6 @@ import Highlight from '@tiptap/extension-highlight'
 import Emoji from '@tiptap/extension-emoji'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
-import Mathematics from '@tiptap/extension-mathematics'
 import Mention from '@tiptap/extension-mention'
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
@@ -56,6 +56,7 @@ import {
 
 // Extension local
 import OAiBlock from './ai-block'
+import OBlockMath from './block-math'
 import OBlockquote from './blockquote'
 import OCallout from './callout'
 import OCodeBlock from './code-block'
@@ -102,6 +103,7 @@ export const DefaultExtensionNames = [
 export const TiptapExtensionNames = [
   'Highlight',
   'BackgroundColor',
+  'BlockMath',
   'Bold',
   'BulletList',
   'Color',
@@ -112,11 +114,11 @@ export const TiptapExtensionNames = [
   'FontFamily',
   'HorizontalRule',
   'Image',
+  'InlineMath',
   'Italic',
   'Link',
   'ListItem',
   'Markdown',
-  'Mathematics',
   'Mention',
   'OrderedList',
   'Strike',
@@ -133,6 +135,7 @@ export const TiptapExtensionNames = [
 
 export const YiitapExtensionNames = [
   'OAiBlock',
+  'OBlockMath',
   'OBlockquote',
   'OCallout',
   'OCharCommand',
@@ -167,6 +170,7 @@ export const BuiltinExtensionNames = [
 
 export {
   BackgroundColor,
+  BlockMath,
   Color,
   Details,
   DetailsContent,
@@ -176,9 +180,9 @@ export {
   FontFamily,
   Highlight,
   Image,
+  InlineMath,
   Link,
   Markdown,
-  Mathematics,
   Mention,
   Subscript,
   Superscript,
@@ -193,6 +197,7 @@ export {
   Typography,
   Underline,
   OAiBlock,
+  OBlockMath,
   OBlockquote,
   OCallout,
   OCharCommand,

@@ -91,6 +91,7 @@ export default {
   },
   label: {
     ai: 'AI',
+    advanced: '进阶',
     cancel: '取消',
     color: '颜色',
     edit: '编辑',

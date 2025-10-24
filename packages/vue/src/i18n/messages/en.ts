@@ -91,6 +91,7 @@ export default {
   },
   label: {
     ai: 'AI',
+    advanced: 'Advanced',
     cancel: 'Cancel',
     color: 'Color',
     edit: 'Edit',

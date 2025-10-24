@@ -32,7 +32,7 @@ import { FloatingMenu } from '@tiptap/vue-3/menus'
 import {
   InlinePlaceholderKey,
   type InlinePlaceholderMeta,
-} from '@yiitap/extension-inline-placeholder'
+} from '@yiitap/extension-placeholder'
 import { getComponent } from '../menu'
 import { DefaultFloating } from '../../constants/menu'
 import { ODivider, OMenubarBtn } from '../index'

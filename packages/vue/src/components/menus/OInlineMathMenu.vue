@@ -29,7 +29,7 @@ import { Editor } from '@tiptap/core'
 import {
   InlinePlaceholderKey,
   type InlinePlaceholderMeta,
-} from '@yiitap/extension-inline-placeholder'
+} from '@yiitap/extension-placeholder'
 import { useAi, useI18n, useTiptap } from '../../hooks'
 
 import { OIcon, OInput, OToast } from '../../components/index'

@@ -577,6 +577,9 @@ importers:
       '@yiitap/vue':
         specifier: workspace:*
         version: 'link:'
+      katex:
+        specifier: ^0.16.25
+        version: 0.16.25
       lowlight:
         specifier: ^3.3.0
         version: 3.3.0

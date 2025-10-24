@@ -7,6 +7,7 @@
 import {
   // Tiptap
   BackgroundColor,
+  BlockMath,
   Color,
   Details,
   DetailsContent,
@@ -16,9 +17,9 @@ import {
   FontFamily,
   Highlight,
   Image,
+  InlineMath,
   Link,
   Markdown,
-  Mathematics,
   Mention,
   Subscript,
   Superscript,
@@ -35,6 +36,7 @@ import {
 
   // Yiitap
   OAiBlock,
+  OBlockMath,
   OBlockquote,
   OCallout,
   OCodeBlock,
@@ -73,6 +75,7 @@ const classes: Indexable = {
   BackgroundColor: BackgroundColor.configure({
     types: ['textStyle'],
   }),
+  BlockMath,
   Color,
   Emoji: Emoji.configure({
     emojis: gitHubEmojis,
@@ -85,6 +88,7 @@ const classes: Indexable = {
     multicolor: true,
   }),
   Image,
+  InlineMath,
   Link,
   Markdown: Markdown.configure({
     indentation: {
@@ -97,7 +101,6 @@ const classes: Indexable = {
       pedantic: false, // Strict Markdown mode
     },
   }),
-  Mathematics,
   Subscript,
   Superscript,
   // task
@@ -114,6 +117,7 @@ const classes: Indexable = {
 
   // Custom extensions
   OAiBlock: OAiBlock,
+  OBlockMath,
   OColon: OColonCommand.configure({
     suggestion: ColonSuggestion,
   }),

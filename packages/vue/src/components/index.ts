@@ -38,6 +38,7 @@ export { default as OInput } from './ui/OInput.vue'
 export { default as OList } from './ui/OList.vue'
 export { default as OListItem } from './ui/OListItem.vue'
 export { default as OPopover } from './ui/OPopover.vue'
+export { default as OTextarea } from './ui/OTextarea.vue'
 export { default as OTooltip } from './ui/OTooltip.vue'
 
 // Menu

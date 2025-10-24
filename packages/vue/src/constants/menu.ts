@@ -100,8 +100,6 @@ export const MoreBubble = [
   'code',
   'blockquote',
   'details',
-  'separator',
-  'inline-math',
 ]
 
 export const TableBubble = [

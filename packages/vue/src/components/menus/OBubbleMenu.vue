@@ -35,12 +35,11 @@
  */
 import { ref, computed, onMounted, watch } from 'vue'
 import { Editor, getMarkRange, isTextSelection } from '@tiptap/core'
-import { NodeSelection } from '@tiptap/pm/state'
 import { BubbleMenu } from '@tiptap/vue-3/menus'
 import {
   InlinePlaceholderKey,
   type InlinePlaceholderMeta,
-} from '@yiitap/extension-inline-placeholder'
+} from '@yiitap/extension-placeholder'
 import { getComponent } from '../menu'
 import useI18n from '../../hooks/useI18n'
 import { useTheme } from '../../hooks'
@@ -127,12 +126,6 @@ function shouldShow({ editor, element, view, state, oldState, from, to }) {
     !doc.textBetween(from, to).length && isTextSelection(state.selection)
   inlineMathActive.value = props.editor.isActive('inlineMath')
 
-  console.log(
-    'shouldShow',
-    showInlineMath.value,
-    isInlinePlaceholderActive.value,
-    inlineMathActive.value
-  )
   if (isInlinePlaceholderActive.value) return true
   if (props.editor.isActive('inlineMath')) return true
   if (!view.hasFocus() || empty || aiConfirmed.value) {
@@ -203,7 +196,6 @@ const isInlinePlaceholderActive = computed(() => {
   const pluginState = InlinePlaceholderKey.getState(props.editor.state) as {
     active: InlinePlaceholderMeta | null
   }
-  console.log('state1', pluginState)
   return !!pluginState?.active
 })
 

@@ -1,7 +1,7 @@
 import { computed, ref, inject } from 'vue'
 import type { ChainedCommands, Editor, SingleCommands } from '@tiptap/core'
 import type { Level } from '@/extensions/heading'
-import { InlinePlaceholderKey } from '@yiitap/extension-inline-placeholder'
+import { InlinePlaceholderKey } from '@yiitap/extension-placeholder'
 
 export default function () {
   const isEditable = inject('isEditable', { value: true })
@@ -45,6 +45,9 @@ export default function () {
         } else {
           commands.unsetBackgroundColor()
         }
+        break
+      case 'blockMath':
+        commands.insertBlockMath({ latex: '' })
         break
       case 'blockquote':
         focus.toggleBlockquote().run()
@@ -248,7 +251,7 @@ export default function () {
     const tr = state.tr
       .setMeta(InlinePlaceholderKey, {
         type: 'show',
-        payload: { type: 'math', label: 'New equation', pos: from, rect },
+        payload: { type: 'inlineMath', label: 'New equation', pos: from, rect },
       })
       .setSelection(state.selection)
     view.dispatch(tr)

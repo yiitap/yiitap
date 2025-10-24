@@ -45,7 +45,6 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { Editor, type Range } from '@tiptap/core'
-import { InlinePlaceholderKey } from '@yiitap/extension-inline-placeholder'
 import useI18n from '../../../hooks/useI18n'
 import useTiptap from '../../../hooks/useTiptap'
 import { ODivider, OIcon, OList, OListItem } from '../../../components/index'
@@ -109,6 +108,10 @@ export default {
       const focus = this.editor.chain().focus().deleteRange(this.range)
       const commands = this.editor.commands
       switch (item.value) {
+        case 'blockMath':
+          commands.deleteRange(this.range)
+          this.editor.commands.insertBlockMath({ latex: '' })
+          break
         case 'codeBlock':
           commands.deleteRange(this.range)
           this.editor.commands.setCodeBlock({ language: 'bash' })
