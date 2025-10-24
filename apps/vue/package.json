@@ -10,14 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@yiitap/vue": "workspace:*",
     "@yiitap/util-emoji": "workspace:*",
-    "naive-ui": "^2.35.0",
+    "@yiitap/vue": "workspace:*",
+    "katex": "^0.16.25",
     "markdown-it": "^14.1.0",
+    "naive-ui": "^2.35.0",
     "openai": "^4.88.0",
     "vue": "^3.3.8"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@vue/compiler-sfc": "^3.3.8",
     "autoprefixer": "^10.4.16",

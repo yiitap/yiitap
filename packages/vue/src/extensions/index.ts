@@ -8,6 +8,7 @@ import {
   DetailsSummary,
 } from '@tiptap/extension-details'
 import { TaskItem, TaskList } from '@tiptap/extension-list'
+import { BlockMath, InlineMath } from '@tiptap/extension-mathematics'
 import {
   Table,
   TableRow,
@@ -38,6 +39,7 @@ import Underline from '@tiptap/extension-underline'
 // Extension lib
 import OColorHighlighter from '@yiitap/extension-color-highlighter'
 import OFocus from '@yiitap/extension-focus'
+import OInlinePlaceholder from '@yiitap/extension-inline-placeholder'
 import OPlaceholder from '@yiitap/extension-placeholder'
 import OSelectionDecoration from '@yiitap/extension-selection-decoration'
 import OShortcut from '@yiitap/extension-shortcut'
@@ -54,6 +56,7 @@ import {
 
 // Extension local
 import OAiBlock from './ai-block'
+import OBlockMath from './block-math'
 import OBlockquote from './blockquote'
 import OCallout from './callout'
 import OCodeBlock from './code-block'
@@ -100,6 +103,7 @@ export const DefaultExtensionNames = [
 export const TiptapExtensionNames = [
   'Highlight',
   'BackgroundColor',
+  'BlockMath',
   'Bold',
   'BulletList',
   'Color',
@@ -110,6 +114,7 @@ export const TiptapExtensionNames = [
   'FontFamily',
   'HorizontalRule',
   'Image',
+  'InlineMath',
   'Italic',
   'Link',
   'ListItem',
@@ -130,6 +135,7 @@ export const TiptapExtensionNames = [
 
 export const YiitapExtensionNames = [
   'OAiBlock',
+  'OBlockMath',
   'OBlockquote',
   'OCallout',
   'OCharCommand',
@@ -142,6 +148,7 @@ export const YiitapExtensionNames = [
   'OHeading',
   'OHorizontalRule',
   'OImage',
+  'OInlinePlaceholder',
   // 'OKatexBlock',
   // 'OKatexInline',
   'OLink',
@@ -163,6 +170,7 @@ export const BuiltinExtensionNames = [
 
 export {
   BackgroundColor,
+  BlockMath,
   Color,
   Details,
   DetailsContent,
@@ -172,6 +180,7 @@ export {
   FontFamily,
   Highlight,
   Image,
+  InlineMath,
   Link,
   Markdown,
   Mention,
@@ -188,6 +197,7 @@ export {
   Typography,
   Underline,
   OAiBlock,
+  OBlockMath,
   OBlockquote,
   OCallout,
   OCharCommand,
@@ -196,16 +206,17 @@ export {
   OColorHighlighter,
   ODetails,
   OFocus,
-  OSelectionDecoration,
-  OShortcut,
-  OSlashCommand,
-  OSlashZhCommand,
+  OInlinePlaceholder,
   OHeading,
   OHorizontalRule,
   OImage,
   OLink,
   OParagraph,
   OPlaceholder,
+  OSelectionDecoration,
+  OShortcut,
+  OSlashCommand,
+  OSlashZhCommand,
   OTable,
   OTableCell,
   OTableHeader,

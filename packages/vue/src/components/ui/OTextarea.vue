@@ -1,18 +1,19 @@
 <template>
-  <div class="o-input" :class="`type-${type}`">
-    <div class="o-input__prefix">
+  <div class="o-textarea" :class="`type-${type}`">
+    <div class="o-textarea__prefix">
       <slot name="prefix"></slot>
     </div>
-    <div class="o-input__main">
-      <input
+    <div class="o-textarea__main">
+      <textarea
         ref="input"
         v-model="value"
         :placeholder="placeholder"
+        :rows="rows"
         @focus="emit('focus')"
         @blur="emit('blur')"
       />
     </div>
-    <div class="o-input__suffix">
+    <div class="o-textarea__suffix">
       <slot name="suffix"></slot>
       <o-icon
         name="close"
@@ -45,6 +46,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  rows: {
+    type: Number,
+    default: 3,
+  },
 })
 const emit = defineEmits(['blur', 'focus', 'update:modelValue'])
 const input = ref<HTMLInputElement | null>(null)
@@ -74,7 +79,7 @@ defineExpose({
 </script>
 
 <style lang="scss">
-.o-input {
+.o-textarea {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +89,7 @@ defineExpose({
   box-sizing: border-box;
   outline: solid 1px rgba(0, 0, 0, 0.05);
 
-  &:has(input:focus) {
+  &:has(textarea:focus) {
     background: var(--yii-active-bg-color);
     outline: solid 1px #2080f0;
   }
@@ -97,7 +102,7 @@ defineExpose({
   &__main {
     flex: 1;
 
-    input {
+    textarea {
       width: 100%;
       height: 30px;
       border: none;

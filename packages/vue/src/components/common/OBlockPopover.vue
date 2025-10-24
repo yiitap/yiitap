@@ -7,7 +7,7 @@
     trigger="manual"
     :arrow="showArrow"
     :offset="offset"
-    :show="modelValue"
+    :show="modelValue && !readonly"
     @update:show="onShow"
     @clickoutside="onClickOutside"
   >
@@ -37,6 +37,10 @@ const props = defineProps({
     default: false,
   },
   hideClickOutside: {
+    type: Boolean,
+    default: false,
+  },
+  readonly: {
     type: Boolean,
     default: false,
   },
@@ -73,7 +77,7 @@ function onClickOutside() {
 watch(
   () => props.modelValue,
   (newValue) => {
-    if (newValue) {
+    if (newValue && !props.readonly) {
       popover.value?.setShow(true)
     } else {
       popover.value?.setShow(false)

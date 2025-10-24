@@ -7,6 +7,7 @@
 import {
   // Tiptap
   BackgroundColor,
+  BlockMath,
   Color,
   Details,
   DetailsContent,
@@ -16,6 +17,7 @@ import {
   FontFamily,
   Highlight,
   Image,
+  InlineMath,
   Link,
   Markdown,
   Mention,
@@ -34,6 +36,7 @@ import {
 
   // Yiitap
   OAiBlock,
+  OBlockMath,
   OBlockquote,
   OCallout,
   OCodeBlock,
@@ -43,6 +46,7 @@ import {
   OHeading,
   OHorizontalRule,
   OImage,
+  OInlinePlaceholder,
   OLink,
   OParagraph,
   OSelectionDecoration,
@@ -71,6 +75,7 @@ const classes: Indexable = {
   BackgroundColor: BackgroundColor.configure({
     types: ['textStyle'],
   }),
+  BlockMath,
   Color,
   Emoji: Emoji.configure({
     emojis: gitHubEmojis,
@@ -83,6 +88,7 @@ const classes: Indexable = {
     multicolor: true,
   }),
   Image,
+  InlineMath,
   Link,
   Markdown: Markdown.configure({
     indentation: {
@@ -111,6 +117,7 @@ const classes: Indexable = {
 
   // Custom extensions
   OAiBlock: OAiBlock,
+  OBlockMath,
   OColon: OColonCommand.configure({
     suggestion: ColonSuggestion,
   }),
@@ -131,6 +138,7 @@ const classes: Indexable = {
   OHeading,
   OHorizontalRule,
   OImage,
+  OInlinePlaceholder,
   OLink: OLink.configure({
     openOnClick: false,
   }),

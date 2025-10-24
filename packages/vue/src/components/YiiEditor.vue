@@ -57,8 +57,8 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
-import { OShortcut } from '../extensions'
 
+import { OShortcut } from '../extensions'
 import OMainMenu from './menus/OMainMenu.vue'
 import OBubbleMenu from './menus/OBubbleMenu.vue'
 import OFloatingMenu from './menus/OFloatingMenu.vue'
@@ -270,6 +270,8 @@ const editor = useEditor({
     emit('transaction', { editor, transaction })
   },
 })
+
+console.log('editor', editor.value)
 
 const mainMenuOptions = computed(() => {
   return {

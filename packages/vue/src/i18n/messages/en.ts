@@ -86,9 +86,12 @@ export default {
     duplicate: 'Duplicate',
     aiBlock: 'AI Block',
     toggleList: 'Toggle List',
+    inlineMath: 'Inline Math',
+    blockMath: 'Block Math',
   },
   label: {
     ai: 'AI',
+    advanced: 'Advanced',
     cancel: 'Cancel',
     color: 'Color',
     edit: 'Edit',

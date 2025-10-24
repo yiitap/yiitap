@@ -1,6 +1,7 @@
 import { computed, ref, inject } from 'vue'
 import type { ChainedCommands, Editor, SingleCommands } from '@tiptap/core'
 import type { Level } from '@/extensions/heading'
+import { InlinePlaceholderKey } from '@yiitap/extension-placeholder'
 
 export default function () {
   const isEditable = inject('isEditable', { value: true })
@@ -10,7 +11,14 @@ export default function () {
     const focus = editor?.chain().focus()
     const commands = editor?.commands
 
-    onCommand(commands, focus, command, options)
+    switch (command) {
+      case 'inlineMath':
+        newInlineMath(editor)
+        break
+      default:
+        onCommand(commands, focus, command, options)
+        break
+    }
   }
 
   function onCommand(
@@ -37,6 +45,9 @@ export default function () {
         } else {
           commands.unsetBackgroundColor()
         }
+        break
+      case 'blockMath':
+        commands.insertBlockMath({ latex: '' })
         break
       case 'blockquote':
         focus.toggleBlockquote().run()
@@ -114,6 +125,15 @@ export default function () {
             }
           )
           .run()
+        break
+      case 'inlineMathDelete':
+        commands.deleteInlineMath(options)
+        break
+      case 'inlineMathInsert':
+        commands.insertInlineMath(options as any)
+        break
+      case 'inlineMathUpdate':
+        commands.updateInlineMath(options)
         break
       case 'italic':
         focus.toggleItalic().run()
@@ -220,6 +240,21 @@ export default function () {
       // 	focus.setVideo(options).run()
       // 	break
     }
+  }
+
+  function newInlineMath(editor: Editor) {
+    const { state, view } = editor
+    const { from } = state.selection
+    const dom = view.domAtPos(from).node as HTMLElement
+    const rect = dom.getBoundingClientRect()
+
+    const tr = state.tr
+      .setMeta(InlinePlaceholderKey, {
+        type: 'show',
+        payload: { type: 'inlineMath', label: 'New equation', pos: from, rect },
+      })
+      .setSelection(state.selection)
+    view.dispatch(tr)
   }
 
   return {

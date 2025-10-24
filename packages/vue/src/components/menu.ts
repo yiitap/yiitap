@@ -9,6 +9,8 @@ import OEmojiBtn from './buttons/OEmojiBtn.vue'
 import OFontFamilyDropdown from './buttons/OFontFamilyDropdown.vue'
 import OColorDropdown from './buttons/OColorDropdown.vue'
 import OHeadingDropdown from './buttons/OHeadingDropdown.vue'
+import OInlineMathBtn from './buttons/OInlineMathBtn.vue'
+import OInlineMathEditBtn from './buttons/OInlineMathEditBtn.vue'
 import OListDropdown from './buttons/OListDropdown.vue'
 import OListGroup from './buttons/OListGroup.vue'
 import OLinkBtn from './buttons/OLinkBtn.vue'
@@ -34,7 +36,8 @@ const CommandComponents: Indexable = {
   'font-family': OFontFamilyDropdown,
   heading: OHeadingDropdown,
   highlight: OHighlightDropdown,
-  // 'indent-dropdown': 'o-indent-dropdown',
+  // 'inline-math': OInlineMathBtn,
+  'inline-math-edit': OInlineMathEditBtn,
   // 'line-height': 'o-line-height-dropdown',
   'list-dropdown': OListDropdown,
   'list-group': OListGroup,

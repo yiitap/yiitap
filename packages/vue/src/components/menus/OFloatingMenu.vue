@@ -1,5 +1,5 @@
 <template>
-  <section v-if="editor">
+  <section v-if="editor && !isInlinePlaceholderActive">
     <floating-menu :editor="editor" :options="options">
       <section class="tiptap-toolbar" :class="menuClass">
         <template v-if="showBack">
@@ -26,9 +26,13 @@
  * @see https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu
  */
 import { ref, computed } from 'vue'
-import { getMarkRange, isTextSelection } from '@tiptap/core'
+import { getMarkRange } from '@tiptap/core'
 import { Editor } from '@tiptap/vue-3'
 import { FloatingMenu } from '@tiptap/vue-3/menus'
+import {
+  InlinePlaceholderKey,
+  type InlinePlaceholderMeta,
+} from '@yiitap/extension-placeholder'
 import { getComponent } from '../menu'
 import { DefaultFloating } from '../../constants/menu'
 import { ODivider, OMenubarBtn } from '../index'
@@ -77,20 +81,6 @@ function isLinkSelection(selection) {
   const range = getMarkRange($from, linkType)
   if (!range) return false
   return true
-  // return range.to === $to.pos
-}
-
-function shouldShow({ editor, view, state, oldState, from, to }) {
-  const { doc, selection } = state
-  const { empty } = selection
-  const isEmptyTextBlock =
-    !doc.textBetween(from, to).length && isTextSelection(state.selection)
-
-  if (!view.hasFocus() || empty) {
-    return false
-  }
-
-  return true
 }
 
 const isLinkSelected = computed(() => {
@@ -112,6 +102,13 @@ const showBack = computed(() => {
 const dynamicMenu = computed(() => {
   let menu = props.menu
   return menu.length > 0 ? menu : DefaultFloating
+})
+
+const isInlinePlaceholderActive = computed(() => {
+  const pluginState = InlinePlaceholderKey.getState(props.editor.state) as {
+    active: InlinePlaceholderMeta | null
+  }
+  return !!pluginState?.active
 })
 </script>
 

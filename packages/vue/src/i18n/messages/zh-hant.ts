@@ -86,9 +86,12 @@ export default {
     duplicate: '創建副本',
     aiBlock: 'AI块',
     toggleList: '折叠列表',
+    inlineMath: '行内公式',
+    blockMath: '块级公式',
   },
   label: {
     ai: 'AI',
+    advanced: '进阶',
     cancel: '取消',
     edit: '編輯',
     link: '鏈接',
