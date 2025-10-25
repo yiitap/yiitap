@@ -11,7 +11,10 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import type { CodeBlockLowlightOptions } from '@tiptap/extension-code-block-lowlight'
 import { common, createLowlight } from 'lowlight'
 
+import { mermaidGrammar } from './highlight/mermaid'
+
 const lowlight = createLowlight(common)
+lowlight.register('mermaid', mermaidGrammar)
 
 import View from './view.vue'
 

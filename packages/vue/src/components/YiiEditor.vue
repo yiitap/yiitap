@@ -271,8 +271,6 @@ const editor = useEditor({
   },
 })
 
-console.log('editor', editor.value)
-
 const mainMenuOptions = computed(() => {
   return {
     editor: editor.value,

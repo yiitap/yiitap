@@ -66,6 +66,9 @@ export default defineConfig({
             if (id.includes('cytoscape')) {
               return 'vendor-cytoscape' // Split utils
             }
+            if (id.includes('elk')) {
+              return 'vendor-elk' // Split utils
+            }
             return 'vendor' // Others
           }
           // if (id.includes("node_modules")) {
@@ -78,7 +81,7 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1200,
+    chunkSizeWarningLimit: 1500,
   },
   optimizeDeps: {
     include: ['vue'],

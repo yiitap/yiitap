@@ -67,9 +67,13 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * @see https://mermaid.js.org/config/schema-docs/config.html
+ */
 import { computed, onMounted, ref, watch } from 'vue'
 import { NodeViewContent, nodeViewProps } from '@tiptap/vue-3'
 import mermaid from 'mermaid'
+import elkLayouts from '@mermaid-js/layout-elk'
 import { copyToClipboard } from '@yiitap/core'
 import {
   OCodeBlockDownloadDropdown,
@@ -80,6 +84,7 @@ import {
   ODialog,
 } from '../../components/index'
 import { Languages } from '../../constants/language'
+import { uuid } from '../../utils/uuid'
 import { useCommon, useI18n, useTheme, useTiptap } from '../../hooks'
 
 const props = defineProps(nodeViewProps)
@@ -97,6 +102,21 @@ const mermaidSvg = ref('')
 const error = ref('')
 const view = ref('splitVertical')
 const diagramTheme = ref('default')
+
+mermaid.registerLayoutLoaders(elkLayouts)
+const mermaidConfig = {
+  layout: 'elk',
+  elk: {
+    // mergeEdges: true,
+    // nodePlacementStrategy: 'NETWORK_SIMPLEX',
+    // cycleBreakingStrategy: 'GREEDY',
+    // forceNodeModelOrder: true,
+    // considerModelOrder: 'true'
+  },
+  flowchart: {
+    curve: 'bumpY',
+  },
+} as any
 
 const language = computed({
   get() {
@@ -180,7 +200,6 @@ function downloadCode() {
 }
 
 function downloadSvg() {
-  console.log('download', 'svg')
   if (!mermaidSvg.value) {
     return
   }
@@ -220,6 +239,7 @@ function onRender() {
 
 function onRerender() {
   mermaid.initialize({
+    ...mermaidConfig,
     theme: darkMode.value ? 'dark' : (diagramTheme.value as 'default'),
   })
   onRender()
@@ -228,7 +248,7 @@ function onRerender() {
 async function renderMermaid() {
   try {
     error.value = ''
-    const id = `mermaid-${Date.now()}`
+    const id = `mermaid-${uuid()}`
     const { svg } = await mermaid.render(id, code.value)
     mermaidSvg.value = svg
   } catch (err) {
