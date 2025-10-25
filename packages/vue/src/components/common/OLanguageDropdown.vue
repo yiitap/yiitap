@@ -97,6 +97,7 @@ function onShow(show: boolean) {
 
 function onHide() {
   window.removeEventListener('keyup', onKeyup)
+  popover.value?.setShow(false)
 }
 
 function onSelect(item: Indexable) {

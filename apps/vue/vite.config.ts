@@ -50,8 +50,21 @@ export default defineConfig({
             if (id.includes('@yiitap') || id.includes('@tiptap')) {
               return 'vendor-core' // Split tiptap
             }
-            if (id.includes('lodash') || id.includes('moment')) {
+            if (
+              id.includes('lodash') ||
+              id.includes('moment') ||
+              id.includes('util')
+            ) {
               return 'vendor-utils' // Split utils
+            }
+            if (id.includes('katex')) {
+              return 'vendor-katex' // Split utils
+            }
+            if (id.includes('mermaid')) {
+              return 'vendor-mermaid' // Split utils
+            }
+            if (id.includes('cytoscape')) {
+              return 'vendor-cytoscape' // Split utils
             }
             return 'vendor' // Others
           }
@@ -68,6 +81,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1200,
   },
   optimizeDeps: {
+    include: ['vue'],
     exclude: [],
   },
 })

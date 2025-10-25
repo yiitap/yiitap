@@ -15,8 +15,19 @@ const lowlight = createLowlight(common)
 
 import View from './view.vue'
 
-const CustomCodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
+interface OCodeBlockOptions extends CodeBlockLowlightOptions {
+  diagramTheme: string
+}
+
+const OCodeBlockOptions = CodeBlockLowlight.extend<OCodeBlockOptions>({
   draggable: true,
+
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      diagramTheme: 'default',
+    }
+  },
 
   addAttributes() {
     return {
@@ -34,7 +45,8 @@ const CustomCodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
 }).configure({
   languageClassPrefix: 'language-',
   defaultLanguage: 'bash',
+  diagramTheme: 'neutral',
   lowlight,
 })
 
-export default CustomCodeBlock
+export default OCodeBlockOptions

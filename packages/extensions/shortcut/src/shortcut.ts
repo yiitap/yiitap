@@ -335,15 +335,33 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             console.log('paste html: ', html)
             console.log('paste text: ', text)
 
+            // Inside code block, paste text
+            const { state } = view
+            const { selection } = state
+            const { $from } = selection
+            const parentNodeType = $from.parent.type.name
+            console.log('光标所在节点类型:', parentNodeType)
+            if (parentNodeType === 'codeBlock') {
+              console.log('codeBlock内粘贴', text)
+              const tr = state.tr.insertText(text, selection.from, selection.to)
+              view.dispatch(tr.scrollIntoView())
+              return true
+            }
+
             // Paste html
             if (html) {
               try {
                 const isFullDocument = /<html[\s\S]*>/i.test(html)
                 let fragment
                 if (isFullDocument) {
+                  console.log('html full', html)
                   const json = htmlToJSON(html, this.editor)
                   fragment = Fragment.fromJSON(view.state.schema, json.content)
                 } else {
+                  console.log('html fragment', html)
+                  // single line -> text
+
+                  // multiple lines -> code
                   const text = recoverText(html)
                   const node = view.state.schema.nodes.codeBlock.create(
                     {},

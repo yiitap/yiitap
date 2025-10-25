@@ -250,6 +250,7 @@ defineExpose({
   .mini-view {
     .toc__item {
       background: var(--yii-caption-color);
+      opacity: 0.5;
       display: block;
       height: 3px;
       width: 20px;
@@ -264,9 +265,11 @@ defineExpose({
       &--3 {
         height: 2px;
         width: 14px;
+        margin-left: 6px;
       }
 
       &.selected {
+        opacity: 1;
         background: var(--yii-color-accent);
       }
     }

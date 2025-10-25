@@ -633,6 +633,12 @@ export const Languages: Indexable[] = [
   },
   { label: 'MEL', value: 'mel', ext: ['mel'], icon: 'code_blocks' },
   {
+    label: 'Mermaid',
+    value: 'mermaid',
+    ext: ['mermaid'],
+    icon: 'mermaid',
+  },
+  {
     label: 'Mercury',
     value: 'mercury',
     ext: ['m', 'moo'],

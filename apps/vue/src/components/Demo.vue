@@ -173,6 +173,7 @@ const editorOptions = computed(() => {
       'separator',
       'inlineMath',
       'blockMath',
+      'diagram',
     ],
     extensions: [
       // 'BlockMath',

@@ -1,3 +1,8 @@
+// Button
+export { default as OCodeBlockDownloadDropdown } from './buttons/OCodeBlockDownloadDropdown.vue'
+export { default as OCodeBlockViewDropdown } from './buttons/OCodeBlockViewDropdown.vue'
+
+// Common
 export { default as OBlockPlaceholder } from './common/OBlockPlaceholder.vue'
 export { default as OBlockList } from './common/OBlockList.vue'
 export { default as OBlockListItem } from './common/OBlockListItem.vue'
