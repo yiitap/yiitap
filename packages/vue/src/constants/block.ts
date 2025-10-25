@@ -161,6 +161,14 @@ export const CommonBlocks: BlockOption[] = [
     color: Color.indigo,
   },
   {
+    label: 'diagram.name',
+    value: 'diagram',
+    icon: 'mermaid',
+    color: Color.purple,
+    tips: 'diagram',
+    keywords: 'code, diagram, mermaid',
+  },
+  {
     label: 'label.image',
     value: 'image',
     icon: 'image',

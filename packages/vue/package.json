@@ -38,13 +38,13 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.7.4",
+		"@mermaid-js/layout-elk": "^0.2.0",
 		"@tiptap/core": "^3.7.2",
 		"@tiptap/extension-blockquote": "^3.7.2",
 		"@tiptap/extension-bubble-menu": "^3.7.2",
 		"@tiptap/extension-code-block-lowlight": "^3.7.2",
 		"@tiptap/extension-details": "^3.7.2",
 		"@tiptap/extension-document": "^3.7.2",
-		"@tiptap/extension-emoji": "^3.7.2",
 		"@tiptap/extension-font-family": "^3.7.2",
 		"@tiptap/extension-heading": "^3.7.2",
 		"@tiptap/extension-highlight": "^3.7.2",
@@ -89,12 +89,18 @@
 		"@yiitap/vue": "workspace:*",
 		"katex": "^0.16.25",
 		"lowlight": "^3.3.0",
+		"mermaid": "^11.12.0",
 		"tippy.js": "^6.3.7",
 		"uuid": "^10.0.0"
 	},
 	"peerDependencies": {
+    "@tiptap/extension-emoji": "3.7.2",
+    "@tiptap/extension-mathematics": "3.7.2",
 		"@types/uuid": "^10.0.0",
+    "@mermaid-js/layout-elk": "^0.2.0",
+		"katex": "^0.16.25",
 		"markdown-it": "^14.1.0",
+		"mermaid": "^11.12.0",
 		"openai": "^4.88.0",
 		"vue": "^3.3.8"
 	},

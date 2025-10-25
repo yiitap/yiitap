@@ -11,12 +11,26 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import type { CodeBlockLowlightOptions } from '@tiptap/extension-code-block-lowlight'
 import { common, createLowlight } from 'lowlight'
 
+import { mermaidGrammar } from './highlight/mermaid'
+
 const lowlight = createLowlight(common)
+lowlight.register('mermaid', mermaidGrammar)
 
 import View from './view.vue'
 
-const CustomCodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
+interface OCodeBlockOptions extends CodeBlockLowlightOptions {
+  diagramTheme: string
+}
+
+const OCodeBlockOptions = CodeBlockLowlight.extend<OCodeBlockOptions>({
   draggable: true,
+
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      diagramTheme: 'default',
+    }
+  },
 
   addAttributes() {
     return {
@@ -34,7 +48,8 @@ const CustomCodeBlock = CodeBlockLowlight.extend<CodeBlockLowlightOptions>({
 }).configure({
   languageClassPrefix: 'language-',
   defaultLanguage: 'bash',
+  diagramTheme: 'neutral',
   lowlight,
 })
 
-export default CustomCodeBlock
+export default OCodeBlockOptions

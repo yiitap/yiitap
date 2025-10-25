@@ -51,3 +51,18 @@ export const EmptyDetails = [
     ],
   },
 ]
+
+export const EmptyDiagram = [
+  {
+    type: 'codeBlock',
+    attrs: {
+      language: 'mermaid',
+    },
+    content: [
+      {
+        type: 'text',
+        text: 'graph TD\n' + '  Mermaid --> Diagram',
+      },
+    ],
+  },
+]

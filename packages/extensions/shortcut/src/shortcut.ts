@@ -9,6 +9,7 @@ import {
 } from '@tiptap/pm/state'
 
 import {
+  isMultiLine,
   isMarkdown,
   jsonToMarkdown,
   jsonToHTML,
@@ -332,30 +333,62 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const html = clipboardData.getData('text/html')
             const text = clipboardData.getData('text/plain')
             if (!html && !text) return false
-            console.log('paste html: ', html)
-            console.log('paste text: ', text)
+            // console.log('paste html: ', html)
+            // console.log('paste text: ', text)
+
+            // Inside code block, paste text
+            const { state } = view
+            const { selection } = state
+            const { $from } = selection
+            const parentNodeType = $from.parent.type.name
+            if (parentNodeType === 'codeBlock') {
+              // console.log('Inside codeBlock', text)
+              const tr = state.tr.insertText(text, selection.from, selection.to)
+              view.dispatch(tr.scrollIntoView())
+              return true
+            }
 
             // Paste html
             if (html) {
               try {
+                let insertAfter = true
                 const isFullDocument = /<html[\s\S]*>/i.test(html)
                 let fragment
                 if (isFullDocument) {
                   const json = htmlToJSON(html, this.editor)
-                  fragment = Fragment.fromJSON(view.state.schema, json.content)
+                  let content = json.content
+                  if (content.length === 1 && content[0].type === 'paragraph') {
+                    insertAfter = false
+                    content = content[0].content
+                  }
+                  fragment = Fragment.fromJSON(view.state.schema, content)
                 } else {
-                  const text = recoverText(html)
-                  const node = view.state.schema.nodes.codeBlock.create(
-                    {},
-                    view.state.schema.text(text)
-                  )
-                  fragment = Fragment.from(node)
+                  if (isMultiLine(text)) {
+                    // multiple lines -> code
+                    const htmlText = recoverText(html)
+                    const node = view.state.schema.nodes.codeBlock.create(
+                      {},
+                      view.state.schema.text(htmlText)
+                    )
+                    fragment = Fragment.from(node)
+                  } else {
+                    const tr = state.tr.insertText(text, selection.to)
+                    view.dispatch(tr.scrollIntoView())
+                    return true
+                  }
                 }
 
                 // console.log('Parsed html: ', html, json, fragment)
                 const slice = new Slice(fragment, 0, 0)
-                const tr = view.state.tr.replaceSelection(slice)
-                view.dispatch(tr.scrollIntoView())
+                if (insertAfter) {
+                  // Insert multiple nodes after current node
+                  const pos = $from.end()
+                  const tr = view.state.tr.insert(pos, fragment)
+                  view.dispatch(tr.scrollIntoView())
+                } else {
+                  const tr = view.state.tr.replaceSelection(slice)
+                  view.dispatch(tr.scrollIntoView())
+                }
                 return true
               } catch (err) {
                 console.error('Parse html failed.', err)

@@ -128,6 +128,10 @@ export default {
     generatedBy: '生成自',
     update: '更新',
     turnInto: '转成',
+    splitVertical: '垂直分割',
+    splitHorizontal: '水平分割',
+    view: '视图',
+    download: '下载',
   },
   table: {
     cellBackground: '單元格背景色',

@@ -55,6 +55,7 @@ import {
   EmptyListItem,
   EmptyTaskItem,
   EmptyDetails,
+  EmptyDiagram,
 } from '../../../constants/empty-block'
 
 const props = defineProps(nodeViewProps)
@@ -92,6 +93,9 @@ function onClick(item) {
       break
     case 'details':
       content = EmptyDetails
+      break
+    case 'diagram':
+      content = EmptyDiagram
       break
     case 'emoji':
       content = {

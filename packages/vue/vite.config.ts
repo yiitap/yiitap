@@ -16,6 +16,9 @@ export default defineConfig({
       filename: '.analysis/visualizer/stats.html',
     }),
   ],
+  optimizeDeps: {
+    include: ['mermaid'],
+  },
   resolve: {
     alias: {
       /*
@@ -53,8 +56,13 @@ export default defineConfig({
         // '@tiptap/core',
         // '@tiptap/pm',
         // '@tiptap/vue-3',
+        '@tiptap/extension-emoji',
+        '@tiptap/extension-mathematics',
         '@yiitap/util-emoji',
+        '@mermaid-js/layout-elk',
+        'katex',
         'markdown-it',
+        'mermaid',
         'openai',
       ],
       output: {
@@ -70,8 +78,13 @@ export default defineConfig({
           // '@tiptap/core': 'TiptapCore',
           // '@tiptap/pm': 'TiptapPm',
           // '@tiptap/vue-3': 'TiptapVue3',
+          '@tiptap/extension-emoji': 'TiptapExtensionEmoji',
+          '@tiptap/extension-mathematics': 'TiptapExtensionMathematics',
           '@yiitap/util-emoji': 'EmojiUtil',
+          '@mermaid-js/layout-elk': 'MermaidElk',
+          katex: 'Katex',
           'markdown-it': 'MarkdownIt',
+          mermaid: 'Mermaid',
           openai: 'OpenAi',
         },
       },

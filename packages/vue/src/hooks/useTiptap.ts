@@ -2,6 +2,7 @@ import { computed, ref, inject } from 'vue'
 import type { ChainedCommands, Editor, SingleCommands } from '@tiptap/core'
 import type { Level } from '@/extensions/heading'
 import { InlinePlaceholderKey } from '@yiitap/extension-placeholder'
+import { EmptyDiagram } from '../constants/empty-block'
 
 export default function () {
   const isEditable = inject('isEditable', { value: true })
@@ -27,7 +28,7 @@ export default function () {
     command: string,
     options: Indexable = {}
   ) {
-    console.log('command', command, options)
+    // console.log('command', command, options)
     switch (command) {
       case 'aiBlock':
         focus.toggleAiBlock().run()
@@ -70,7 +71,6 @@ export default function () {
         focus.toggleCode().run()
         break
       case 'codeBlock':
-        // commands.setCodeBlock({language: 'bash'})
         commands.toggleCodeBlock({ language: 'bash' })
         break
       // case 'columns':
@@ -95,8 +95,14 @@ export default function () {
           commands.setDetails()
         }
         break
+      case 'diagram':
+        commands.insertContent(EmptyDiagram)
+        break
       case 'duplicateSelected':
         commands.duplicateSelected()
+        break
+      case 'emoji':
+        commands.insertContent(':')
         break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)

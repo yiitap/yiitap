@@ -3,6 +3,6 @@
  */
 import { v4 } from 'uuid'
 
-export const uuvidv4 = () => {
+export const uuid = () => {
   return v4()
 }

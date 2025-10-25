@@ -1,6 +1,12 @@
 import { Editor, generateHTML, generateJSON } from '@tiptap/core'
 
-const isMarkdown = (text: string, threshold = 0.25): boolean => {
+const isMultiLine = (text: string) => {
+  if (!text) return false
+  const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0)
+  return lines.length > 1
+}
+
+const isMarkdown = (text: string, threshold = 0.2): boolean => {
   if (!text || text.trim().length < 2) return false
 
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0)
@@ -33,8 +39,16 @@ const isMarkdown = (text: string, threshold = 0.25): boolean => {
   for (const line of lines) {
     if (patterns.some((p) => p.test(line.trim()))) score++
   }
+
+  // block math
   if (/\$\$[\s\S]+?\$\$/g.test(text)) score += 3
-  const ratio = score / lines.length
+  let ratio = score / lines.length
+
+  // code block
+  if (/```([\s\S]*?)```/g.test(text)) {
+    console.log('has code block')
+    ratio = 1
+  }
 
   // Density
   const symbolCount = (text.match(/[*_`#>[\]]/g) || []).length
@@ -135,4 +149,11 @@ const recoverText = (html: string) => {
   return lines.join('\n')
 }
 
-export { isMarkdown, jsonToMarkdown, jsonToHTML, htmlToJSON, recoverText }
+export {
+  isMultiLine,
+  isMarkdown,
+  jsonToMarkdown,
+  jsonToHTML,
+  htmlToJSON,
+  recoverText,
+}

@@ -60,6 +60,7 @@ const commands: Indexable = computed(() => {
     underline: { icon: 'format_underlined', tooltip: tr('editor.underline') },
     video: { icon: 'videocam', tooltip: tr('editor.video') },
     aiBlock: { icon: 'auto_awesome', tooltip: tr('editor.aiBlock') },
+    diagram: { icon: 'mermaid', tooltip: tr('diagram.name') },
   }
 })
 const command: Indexable = computed(() => {
