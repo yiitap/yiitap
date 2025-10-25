@@ -390,6 +390,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     z-index: 100;
+    transform: translateZ(0);
 
     .code-block-toolbar {
       position: absolute;
@@ -400,7 +401,7 @@ onMounted(() => {
 
     pre {
       display: block;
-      width: 40%;
+      width: 33.3%;
       max-width: 800px;
       height: 100vh;
       background: var(--yii-pre-bg-color);
@@ -413,12 +414,11 @@ onMounted(() => {
     .preview {
       flex: 1;
       height: 100vh;
-      background: blue;
       display: flex;
       justify-content: center;
       background: var(--yii-bg-color);
 
-      div {
+      > div {
         padding: 1rem;
 
         &.error {

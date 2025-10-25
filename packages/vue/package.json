@@ -45,7 +45,6 @@
 		"@tiptap/extension-code-block-lowlight": "^3.7.2",
 		"@tiptap/extension-details": "^3.7.2",
 		"@tiptap/extension-document": "^3.7.2",
-		"@tiptap/extension-emoji": "^3.7.2",
 		"@tiptap/extension-font-family": "^3.7.2",
 		"@tiptap/extension-heading": "^3.7.2",
 		"@tiptap/extension-highlight": "^3.7.2",
@@ -95,6 +94,8 @@
 		"uuid": "^10.0.0"
 	},
 	"peerDependencies": {
+    "@tiptap/extension-emoji": "3.7.2",
+    "@tiptap/extension-mathematics": "3.7.2",
 		"@types/uuid": "^10.0.0",
     "@mermaid-js/layout-elk": "^0.2.0",
 		"katex": "^0.16.25",

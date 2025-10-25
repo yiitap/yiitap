@@ -108,39 +108,21 @@ export default {
     runCommand(item: Indexable) {
       const focus = this.editor.chain().focus().deleteRange(this.range)
       const commands = this.editor.commands
-      switch (item.value) {
-        case 'blockMath':
-          commands.deleteRange(this.range)
-          this.editor.commands.insertBlockMath({ latex: '' })
-          break
-        case 'codeBlock':
-          commands.deleteRange(this.range)
-          this.editor.commands.setCodeBlock({ language: 'bash' })
-          break
-        case 'content':
-          commands.deleteRange(this.range)
-          this.editor.commands.insertContent(item.options.content)
-          break
-        case 'diagram':
-          commands.deleteRange(this.range)
-          this.editor.commands.insertContent(EmptyDiagram)
-          break
-        case 'emoji':
-          commands.deleteRange(this.range)
-          this.editor.commands.insertContent(':')
-          break
-        case 'inlineMath':
-          commands.deleteRange(this.range)
-          this.run(this.editor, 'inlineMath')
-          // this.onInlineMath()
-          break
-        case 'taskList':
-          commands.deleteRange(this.range)
-          this.editor.commands.toggleTaskList()
-          break
-        default:
-          this.onCommand(commands, focus, item.value, item.options)
-          break
+      const blocks = [
+        'blockMath',
+        'codeBlock',
+        'content',
+        'details',
+        'diagram',
+        'emoji',
+        'inlineMath',
+        'taskList',
+      ]
+      if (blocks.includes(item.value)) {
+        commands.deleteRange(this.range)
+        this.run(this.editor, item.value, item.options)
+      } else {
+        this.onCommand(commands, focus, item.value, item.options)
       }
     },
     onKeyDown({ event }) {

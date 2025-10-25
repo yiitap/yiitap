@@ -50,11 +50,7 @@ export default defineConfig({
             if (id.includes('@yiitap') || id.includes('@tiptap')) {
               return 'vendor-core' // Split tiptap
             }
-            if (
-              id.includes('lodash') ||
-              id.includes('moment') ||
-              id.includes('util')
-            ) {
+            if (id.includes('lodash') || id.includes('moment')) {
               return 'vendor-utils' // Split utils
             }
             if (id.includes('katex')) {

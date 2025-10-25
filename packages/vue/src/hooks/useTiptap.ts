@@ -28,7 +28,7 @@ export default function () {
     command: string,
     options: Indexable = {}
   ) {
-    console.log('command', command, options)
+    // console.log('command', command, options)
     switch (command) {
       case 'aiBlock':
         focus.toggleAiBlock().run()
@@ -100,6 +100,9 @@ export default function () {
         break
       case 'duplicateSelected':
         commands.duplicateSelected()
+        break
+      case 'emoji':
+        commands.insertContent(':')
         break
       case 'fontFamily':
         commands.setFontFamily(options.fontFamily)

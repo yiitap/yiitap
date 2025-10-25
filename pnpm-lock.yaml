@@ -103,6 +103,15 @@ importers:
 
   apps/vue:
     dependencies:
+      '@mermaid-js/layout-elk':
+        specifier: ^0.2.0
+        version: 0.2.0(mermaid@11.12.0)
+      '@tiptap/extension-emoji':
+        specifier: 3.7.2
+        version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2)(@tiptap/suggestion@3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2))(emojibase@16.0.0)
+      '@tiptap/extension-mathematics':
+        specifier: 3.7.2
+        version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2)(katex@0.16.25)
       '@yiitap/util-emoji':
         specifier: workspace:*
         version: link:../../packages/utils/emoji
@@ -115,6 +124,9 @@ importers:
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
+      mermaid:
+        specifier: ^11.12.0
+        version: 11.12.0
       naive-ui:
         specifier: ^2.35.0
         version: 2.41.0(vue@3.5.13(typescript@5.8.2))
@@ -449,7 +461,7 @@ importers:
         specifier: ^3.7.2
         version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))
       '@tiptap/extension-emoji':
-        specifier: ^3.7.2
+        specifier: 3.7.2
         version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2)(@tiptap/suggestion@3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2))(emojibase@16.0.0)
       '@tiptap/extension-font-family':
         specifier: ^3.7.2
