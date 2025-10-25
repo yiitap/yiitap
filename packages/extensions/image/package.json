@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/extension-image",
 	"description": "Image extension",
-	"version": "0.7.0",
+	"version": "0.8.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",

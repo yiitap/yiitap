@@ -1,5 +1,19 @@
 # app-vue
 
+## 0.8.0
+
+### Minor Changes
+
+- fca2275: support diagram
+- 255c3a1: support mathematics
+
+### Patch Changes
+
+- Updated dependencies [fca2275]
+- Updated dependencies [255c3a1]
+  - @yiitap/vue@0.8.0
+  - @yiitap/util-emoji@0.8.0
+
 ## 0.7.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 {
 	"name": "@yiitap/vue",
 	"description": "A WYSIWYG rich-text block-based editor built on top of tiptap.",
-	"version": "0.7.0",
+	"version": "0.8.0",
 	"private": false,
 	"author": {
 		"name": "Yiitap",
@@ -94,10 +94,10 @@
 		"uuid": "^10.0.0"
 	},
 	"peerDependencies": {
-    "@tiptap/extension-emoji": "3.7.2",
-    "@tiptap/extension-mathematics": "3.7.2",
+		"@tiptap/extension-emoji": "3.7.2",
+		"@tiptap/extension-mathematics": "3.7.2",
 		"@types/uuid": "^10.0.0",
-    "@mermaid-js/layout-elk": "^0.2.0",
+		"@mermaid-js/layout-elk": "^0.2.0",
 		"katex": "^0.16.25",
 		"markdown-it": "^14.1.0",
 		"mermaid": "^11.12.0",

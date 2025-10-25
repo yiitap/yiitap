@@ -1,5 +1,35 @@
 # @yiitap/vue
 
+## 0.8.0
+
+### Minor Changes
+
+- fca2275: support diagram
+- 255c3a1: support mathematics
+
+### Patch Changes
+
+- Updated dependencies [fca2275]
+- Updated dependencies [255c3a1]
+  - @yiitap/extension-inline-placeholder@0.8.0
+  - @yiitap/extension-placeholder@0.8.0
+  - @yiitap/extension-shortcut@0.8.0
+  - @yiitap/vue@0.8.0
+  - @yiitap/core@0.8.0
+  - @yiitap/extension-ai-block@0.8.0
+  - @yiitap/extension-callout@0.8.0
+  - @yiitap/extension-char-command@0.8.0
+  - @yiitap/extension-color-highlighter@0.8.0
+  - @yiitap/extension-focus@0.8.0
+  - @yiitap/extension-image@0.8.0
+  - @yiitap/extension-selection-decoration@0.8.0
+  - @yiitap/extension-table@0.8.0
+  - @yiitap/extension-table-wrapper@0.8.0
+  - @yiitap/extension-trailing-node@0.8.0
+  - @yiitap/extension-unique-id@0.8.0
+  - @yiitap/extension-video@0.8.0
+  - @yiitap/util-emoji@0.8.0
+
 ## 0.7.0
 
 ### Minor Changes
