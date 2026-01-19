@@ -129,6 +129,7 @@ provide('locale', locale)
 
 const editorOptions = computed(() => {
   return {
+    title: true,
     aiOption: aiOption.value,
     locale: locale.value,
     darkMode: darkMode.value,
@@ -197,6 +198,7 @@ const editorOptions = computed(() => {
       'OSlash',
       'OSlashZh',
       'OVideo',
+      'OTrailingNode',
     ],
   }
 })
