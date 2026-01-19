@@ -225,6 +225,13 @@ const props = defineProps({
     type: Object as PropType<AiOption>,
     default: () => {},
   },
+  /**
+   * Enable collaboration or not.
+   */
+  collaboration: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 // const emit = defineEmits(['transaction', 'update'])
@@ -354,6 +361,9 @@ function buildExtensions() {
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
       trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
+      undoRedo: props.collaboration
+        ? false
+        : { depth: 100, newGroupDelay: 500 }
     })
   )
 
