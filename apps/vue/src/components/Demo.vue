@@ -178,7 +178,7 @@ const editorOptions = computed(() => {
     ],
     extensions: [
       // 'BlockMath',
-      'Emoji',
+      // 'Emoji',
       'InlineMath',
       'Markdown',
       'OAiBlock',
@@ -186,7 +186,7 @@ const editorOptions = computed(() => {
       'OBlockquote',
       'OCallout',
       'OCodeBlock',
-      // 'OColon',
+      'OColon',
       'OColorHighlighter',
       'ODetails',
       'OHeading',
