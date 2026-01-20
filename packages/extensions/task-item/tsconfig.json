@@ -1,0 +1,20 @@
+{
+  "include": ["src"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "target": "es2019",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
+}

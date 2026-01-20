@@ -362,6 +362,15 @@ importers:
         specifier: ^3.7.2
         version: 3.7.2
 
+  packages/extensions/task-item:
+    dependencies:
+      '@tiptap/extension-task-item':
+        specifier: ^3.7.2
+        version: 3.15.3(@tiptap/extension-list@3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2))
+      '@tiptap/pm':
+        specifier: ^3.7.2
+        version: 3.7.2
+
   packages/extensions/trailing-node:
     dependencies:
       '@tiptap/core':
@@ -580,6 +589,9 @@ importers:
       '@yiitap/extension-table-wrapper':
         specifier: workspace:*
         version: link:../extensions/table-wrapper
+      '@yiitap/extension-task-item':
+        specifier: workspace:*
+        version: link:../extensions/task-item
       '@yiitap/extension-trailing-node':
         specifier: workspace:*
         version: link:../extensions/trailing-node
@@ -1511,6 +1523,11 @@ packages:
     peerDependencies:
       '@tiptap/core': ^3.7.2
       '@tiptap/pm': ^3.7.2
+
+  '@tiptap/extension-task-item@3.15.3':
+    resolution: {integrity: sha512-bkrmouc1rE5n9ONw2G7+zCGfBRoF2HJWq8REThPMzg/6+L5GJJ5YTN4UmncaP48U9jHX8xeihjgg9Ypenjl4lw==}
+    peerDependencies:
+      '@tiptap/extension-list': ^3.15.3
 
   '@tiptap/extension-text-align@3.7.2':
     resolution: {integrity: sha512-tUdoatcxM8u16tFVfEURFZwmxvZQR33f9VLtkyR+1aXgy0Pi87cNoFC60pTjH7gNtktEuagNfPE00tGMvqIehg==}
@@ -5438,6 +5455,10 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.7.2(@tiptap/pm@3.7.2)
       '@tiptap/pm': 3.7.2
+
+  '@tiptap/extension-task-item@3.15.3(@tiptap/extension-list@3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2))':
+    dependencies:
+      '@tiptap/extension-list': 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2)
 
   '@tiptap/extension-text-align@3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))':
     dependencies:

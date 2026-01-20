@@ -82,6 +82,7 @@
 		"@yiitap/extension-shortcut": "workspace:*",
 		"@yiitap/extension-table": "workspace:*",
 		"@yiitap/extension-table-wrapper": "workspace:*",
+		"@yiitap/extension-task-item": "workspace:*",
 		"@yiitap/extension-trailing-node": "workspace:*",
 		"@yiitap/extension-unique-id": "workspace:*",
 		"@yiitap/extension-video": "workspace:*",
