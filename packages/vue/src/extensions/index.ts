@@ -44,6 +44,7 @@ import OPlaceholder from '@yiitap/extension-placeholder'
 import OSelectionDecoration from '@yiitap/extension-selection-decoration'
 import OShortcut from '@yiitap/extension-shortcut'
 import OTable from '@yiitap/extension-table'
+import OTaskItem from '@yiitap/extension-task-item'
 import OTrailingNode from '@yiitap/extension-trailing-node'
 import OUniqueID from '@yiitap/extension-unique-id'
 
@@ -158,6 +159,7 @@ export const YiitapExtensionNames = [
   'OSlash',
   'OSlashZh',
   'OTableWrapper',
+  'OTaskItem',
   'OTrailingNode',
   'OUniqueID',
   'OVideo',
@@ -221,6 +223,7 @@ export {
   OTableCell,
   OTableHeader,
   OTableWrapper,
+  OTaskItem,
   OTrailingNode,
   OUniqueID,
   OVideo,

@@ -309,7 +309,7 @@
 				flex: 1 1 auto;
 			}
 
-			&[data-checked="true"] {
+			&[data-checked="true"] > div > div {
 				color: rgba(55, 53, 47, 0.5);
 				text-decoration: line-through rgba(55, 53, 47, 0.25);
 			}

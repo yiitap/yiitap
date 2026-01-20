@@ -57,6 +57,7 @@ import {
   OTableCell,
   OTableHeader,
   OTableWrapper,
+  OTaskItem,
   OTrailingNode,
   OUniqueID,
   OVideo,
@@ -104,9 +105,11 @@ const classes: Indexable = {
   Subscript,
   Superscript,
   // task
-  TaskItem: TaskItem.extend({
-    content: 'paragraph block* taskList?',
-  }),
+  // TaskItem: TaskItem.extend({
+  //   content: 'paragraph block* taskList?',
+  //   nested: true
+  // }),
+  TaskItem: OTaskItem,
   TaskList: TaskList.configure({
     itemTypeName: 'taskItem',
   }),
