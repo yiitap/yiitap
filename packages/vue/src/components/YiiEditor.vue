@@ -363,7 +363,7 @@ function buildExtensions() {
       trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
       undoRedo: props.collaboration
         ? false
-        : { depth: 100, newGroupDelay: 500 }
+        : { depth: 100, newGroupDelay: 500 },
     })
   )
 

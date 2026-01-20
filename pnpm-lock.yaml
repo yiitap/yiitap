@@ -328,6 +328,9 @@ importers:
       '@tiptap/core':
         specifier: ^3.7.2
         version: 3.7.2(@tiptap/pm@3.7.2)
+      '@tiptap/extension-document':
+        specifier: ^3.7.2
+        version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))
       '@tiptap/markdown':
         specifier: ^3.7.2
         version: 3.7.2(@tiptap/core@3.7.2(@tiptap/pm@3.7.2))(@tiptap/pm@3.7.2)

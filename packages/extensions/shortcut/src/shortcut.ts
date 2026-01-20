@@ -10,6 +10,7 @@ import {
 
 import {
   isMultiLine,
+  isCodeBlock,
   isMarkdown,
   jsonToMarkdown,
   jsonToHTML,
@@ -342,7 +343,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             const { $from } = selection
             const parentNodeType = $from.parent.type.name
             if (parentNodeType === 'codeBlock') {
-              // console.log('Inside codeBlock', text)
+              console.log('Inside codeBlock', text)
               const tr = state.tr.insertText(text, selection.from, selection.to)
               view.dispatch(tr.scrollIntoView())
               return true
@@ -352,6 +353,8 @@ export const Shortcut = Extension.create<ShortcutOptions>({
             if (html) {
               try {
                 let insertAfter = true
+
+                // include <html>
                 const isFullDocument = /<html[\s\S]*>/i.test(html)
                 let fragment
                 if (isFullDocument) {
@@ -364,13 +367,8 @@ export const Shortcut = Extension.create<ShortcutOptions>({
                   fragment = Fragment.fromJSON(view.state.schema, content)
                 } else {
                   if (isMultiLine(text)) {
-                    // multiple lines -> code
-                    const htmlText = recoverText(html)
-                    const node = view.state.schema.nodes.codeBlock.create(
-                      {},
-                      view.state.schema.text(htmlText)
-                    )
-                    fragment = Fragment.from(node)
+                    // default paste
+                    return false
                   } else {
                     const tr = state.tr.insertText(text, selection.to)
                     view.dispatch(tr.scrollIntoView())
@@ -401,7 +399,7 @@ export const Shortcut = Extension.create<ShortcutOptions>({
                 try {
                   const json = this.editor.markdown?.parse(text) || {}
                   const content = json?.content
-                  console.log('Pasted markdown: ', text, json, content)
+                  // console.log('Pasted markdown: ', text, json, content)
                   const fragment = Fragment.fromJSON(view.state.schema, content)
                   const slice = new Slice(fragment, 0, 0)
                   const tr = view.state.tr.replaceSelection(slice)
