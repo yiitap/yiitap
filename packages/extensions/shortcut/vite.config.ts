@@ -29,6 +29,7 @@ export default mergeConfig(
           '@tiptap/markdown',
           '@tiptap/pm/model',
           '@tiptap/pm/state',
+          '@tiptap/extension-document',
         ],
         output: {
           banner: `
@@ -43,6 +44,7 @@ export default mergeConfig(
             '@tiptap/markdown': 'TiptapMarkdown',
             '@tiptap/pm/model': 'TiptapPmModel',
             '@tiptap/pm/state': 'TiptapPmState',
+            '@tiptap/extension-document': 'TiptapExtensionDocument',
           },
         },
       },

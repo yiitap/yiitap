@@ -225,6 +225,13 @@ const props = defineProps({
     type: Object as PropType<AiOption>,
     default: () => {},
   },
+  /**
+   * Enable collaboration or not.
+   */
+  collaboration: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 // const emit = defineEmits(['transaction', 'update'])
@@ -246,6 +253,7 @@ const isEditable = ref(true)
 const localeAlt = ref('en')
 const sideNodeAlt = ref(false)
 const aiOptionAlt = ref<AiOption>()
+const ready = ref(false)
 provide('darkMode', darkModeAlt)
 provide('isEditable', isEditable)
 provide('locale', localeAlt)
@@ -261,9 +269,15 @@ const editor = useEditor({
   content: props.content,
   autofocus: props.autofocus,
   extensions: customExtensions.value,
+  onCreate: () => {
+    ready.value = true
+  },
   onUpdate: () => {
+    if (!ready.value) return
     const json = editor.value?.getJSON()
     const html = editor.value?.getHTML()
+
+    // Only emit update when editor is ready
     emit('update', { json, html })
   },
   onTransaction: ({ editor, transaction }) => {
@@ -347,6 +361,9 @@ function buildExtensions() {
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
       trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
+      undoRedo: props.collaboration
+        ? false
+        : { depth: 100, newGroupDelay: 500 },
     })
   )
 

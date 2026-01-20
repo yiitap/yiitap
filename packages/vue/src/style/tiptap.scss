@@ -289,11 +289,16 @@
 		padding: 0;
 		p {
 			margin: 0;
+      padding-top: 8px;
 			line-height: 0.9;
 		}
+
+    > li {
+      display: flex;
+      align-items: flex-start;
+    }
+
 		li {
-			display: flex;
-			align-items: center;
 			> label {
 				flex: 0 0 auto;
 				margin-top: 4px;
@@ -309,6 +314,7 @@
 				text-decoration: line-through rgba(55, 53, 47, 0.25);
 			}
 		}
+
 		input {
 			width: 16px;
 			height: 16px;
@@ -323,6 +329,10 @@
 			accent-color: #1976d2;
 			cursor: pointer;
 		}
+
+    ul[data-type="taskList"] {
+      margin-top: 4px;
+    }
 	}
 
 	//  table

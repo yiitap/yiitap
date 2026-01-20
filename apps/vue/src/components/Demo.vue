@@ -129,6 +129,7 @@ provide('locale', locale)
 
 const editorOptions = computed(() => {
   return {
+    title: true,
     aiOption: aiOption.value,
     locale: locale.value,
     darkMode: darkMode.value,
@@ -177,7 +178,7 @@ const editorOptions = computed(() => {
     ],
     extensions: [
       // 'BlockMath',
-      'Emoji',
+      // 'Emoji',
       'InlineMath',
       'Markdown',
       'OAiBlock',
@@ -185,7 +186,7 @@ const editorOptions = computed(() => {
       'OBlockquote',
       'OCallout',
       'OCodeBlock',
-      // 'OColon',
+      'OColon',
       'OColorHighlighter',
       'ODetails',
       'OHeading',
@@ -197,6 +198,7 @@ const editorOptions = computed(() => {
       'OSlash',
       'OSlashZh',
       'OVideo',
+      'OTrailingNode',
     ],
   }
 })

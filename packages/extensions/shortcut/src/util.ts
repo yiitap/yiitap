@@ -1,4 +1,5 @@
 import { Editor, generateHTML, generateJSON } from '@tiptap/core'
+import Document from '@tiptap/extension-document'
 
 const isMultiLine = (text: string) => {
   if (!text) return false
@@ -6,13 +7,24 @@ const isMultiLine = (text: string) => {
   return lines.length > 1
 }
 
+const isCodeBlock = (text: string) => {
+  return false
+}
+
 const isMarkdown = (text: string, threshold = 0.2): boolean => {
   if (!text || text.trim().length < 2) return false
 
+  // Split into lines and remove empty lines
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0)
   if (lines.length === 0) return false
 
-  // Common Markdown patterns (regex is more flexible)
+  // 1. Fast Track: If text contains wrapped code or math blocks, it's highly likely Markdown
+  if (/```[\s\S]*?```/.test(text) || /\$\$[\s\S]+?\$\$/.test(text)) {
+    console.log('Markdown: With code or math block')
+    return true
+  }
+
+  // 2. Common Markdown patterns (regex is more flexible)
   const patterns = [
     /^#{1,6}\s/, // Heading
     /^[-*+]\s+/, // Unordered list
@@ -24,31 +36,45 @@ const isMarkdown = (text: string, threshold = 0.2): boolean => {
     /_[^_]+_/, // Italic
     /\[([^\]]+)\]\([^)]+\)/, // Link
     /!\[([^\]]*)\]\([^)]+\)/, // Image
-    /<video\b[^>]*>/i, // Video (HTML <video> tag)
-    /<\/video>/i, // Video (HTML <video> tag)
-    /^(\|.+\|)$/, // Table row
     /^(\|?[\s-:|]+\|[\s-:|]+)$/, // Table separator row
     /\$\$[\s\S]+?\$\$/, // Block math: $$ ... $$
     /\$[^$]+\$/, // Inline math: $...$
     /\\\([^)]+\\\)/, // Inline math: \( ... \)
     /\\\[[\s\S]+?\\\]/, // Block math: \[ ... \]
+    /^\|.*?\|.*?\|/, // Table (flexible matching)
+    /^:::\s*\w+/, // Custom containers (e.g., ::: info)
+    /<[a-z][\s\S]*?>/i, // HTML tags (frequently used in MD)
+    /^[ \t]*[-*_]{3,}[ \t]*$/, // Horizontal rule
   ]
 
   // Score
   let score = 0
+  let inCodeBlock = false
+
   for (const line of lines) {
-    if (patterns.some((p) => p.test(line.trim()))) score++
+    const trimmed = line.trim()
+
+    // Handle multi-line code blocks (e.g., Mermaid, JS snippets)
+    // These lines should count as part of the Markdown score
+    if (trimmed.startsWith('```')) {
+      inCodeBlock = !inCodeBlock
+      score++
+      continue
+    }
+
+    if (inCodeBlock) {
+      score++
+      continue
+    }
+
+    // Check line against standard patterns
+    if (patterns.some((p) => p.test(trimmed))) {
+      score++
+    }
   }
 
-  // block math
-  if (/\$\$[\s\S]+?\$\$/g.test(text)) score += 3
-  let ratio = score / lines.length
-
-  // code block
-  if (/```([\s\S]*?)```/g.test(text)) {
-    console.log('has code block')
-    ratio = 1
-  }
+  // Ratio
+  const ratio = score / lines.length
 
   // Density
   const symbolCount = (text.match(/[*_`#>[\]]/g) || []).length
@@ -90,9 +116,13 @@ const jsonToHTML = (json: any, editor: Editor) => {
 
 const htmlToJSON = (html: string, editor: Editor) => {
   const extensions = editor.extensionManager.extensions
+
+  // Use default Document
+  const exExtensions = [...excludeExtensions, 'doc']
   const filteredExtensions = extensions.filter(
-    (e) => !excludeExtensions.includes(e.name)
+    (e) => !exExtensions.includes(e.name)
   )
+  filteredExtensions.push(Document)
 
   return generateJSON(html, filteredExtensions)
 }
@@ -151,6 +181,7 @@ const recoverText = (html: string) => {
 
 export {
   isMultiLine,
+  isCodeBlock,
   isMarkdown,
   jsonToMarkdown,
   jsonToHTML,

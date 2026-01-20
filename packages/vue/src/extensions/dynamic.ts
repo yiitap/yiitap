@@ -104,7 +104,9 @@ const classes: Indexable = {
   Subscript,
   Superscript,
   // task
-  TaskItem,
+  TaskItem: TaskItem.extend({
+    content: 'paragraph block* taskList?',
+  }),
   TaskList: TaskList.configure({
     itemTypeName: 'taskItem',
   }),
