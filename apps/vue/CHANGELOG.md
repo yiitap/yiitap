@@ -1,5 +1,19 @@
 # app-vue
 
+## 0.9.0
+
+### Minor Changes
+
+- 2540e5e: collaboration props
+- a965f38: task item
+
+### Patch Changes
+
+- Updated dependencies [2540e5e]
+- Updated dependencies [a965f38]
+  - @yiitap/vue@0.9.0
+  - @yiitap/util-emoji@0.9.0
+
 ## 0.8.0
 
 ### Minor Changes

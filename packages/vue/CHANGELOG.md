@@ -1,5 +1,36 @@
 # @yiitap/vue
 
+## 0.9.0
+
+### Minor Changes
+
+- 2540e5e: collaboration props
+- a965f38: task item
+
+### Patch Changes
+
+- Updated dependencies [2540e5e]
+- Updated dependencies [a965f38]
+  - @yiitap/extension-shortcut@0.9.0
+  - @yiitap/vue@0.9.0
+  - @yiitap/core@0.9.0
+  - @yiitap/extension-ai-block@0.9.0
+  - @yiitap/extension-callout@0.9.0
+  - @yiitap/extension-char-command@0.9.0
+  - @yiitap/extension-color-highlighter@0.9.0
+  - @yiitap/extension-focus@0.9.0
+  - @yiitap/extension-image@0.9.0
+  - @yiitap/extension-inline-placeholder@0.9.0
+  - @yiitap/extension-placeholder@0.9.0
+  - @yiitap/extension-selection-decoration@0.9.0
+  - @yiitap/extension-table@0.9.0
+  - @yiitap/extension-table-wrapper@0.9.0
+  - @yiitap/extension-task-item@0.9.0
+  - @yiitap/extension-trailing-node@0.9.0
+  - @yiitap/extension-unique-id@0.9.0
+  - @yiitap/extension-video@0.9.0
+  - @yiitap/util-emoji@0.9.0
+
 ## 0.8.0
 
 ### Minor Changes

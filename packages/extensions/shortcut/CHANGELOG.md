@@ -1,5 +1,11 @@
 # @yiitap/extension-shortcut
 
+## 0.9.0
+
+### Minor Changes
+
+- 2540e5e: collaboration props
+
 ## 0.8.0
 
 ### Minor Changes
