@@ -234,7 +234,6 @@ const props = defineProps({
   },
 })
 
-// const emit = defineEmits(['transaction', 'update'])
 const emit = defineEmits<{
   /**
    * Emit when content transaction
@@ -276,6 +275,8 @@ const editor = useEditor({
     if (!ready.value) return
     const json = editor.value?.getJSON()
     const html = editor.value?.getHTML()
+    // console.log('update', json)
+    // console.log('html', html)
 
     // Only emit update when editor is ready
     emit('update', { json, html })
@@ -341,7 +342,6 @@ function buildExtensions() {
       },
     })
   )
-  // extensions.push(TextStyle)
   extensions.push(
     StarterKit.configure({
       dropcursor: {
@@ -360,7 +360,10 @@ function buildExtensions() {
             levels: [1, 2, 3, 4, 5],
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
-      trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
+      trailingNode: {
+        node: 'paragraph',
+        notAfter: ['paragraph', 'heading']
+      },
       undoRedo: props.collaboration
         ? false
         : { depth: 100, newGroupDelay: 500 },

@@ -28,6 +28,7 @@ import {
   TextAlign,
   Typography,
   Underline,
+  UniqueID,
   TextStyle,
   Table,
   TableHeader,
@@ -58,8 +59,6 @@ import {
   OTableHeader,
   OTableWrapper,
   OTaskItem,
-  OTrailingNode,
-  OUniqueID,
   OVideo,
   BuiltinExtensionNames,
 } from './index'
@@ -150,11 +149,9 @@ const classes: Indexable = {
   OParagraph,
   OSelectionDecoration,
   // OShortcut,
-  OTrailingNode,
   // OColumnExtension: ColumnExtension,
-  OUniqueID: OUniqueID.configure({
-    attributeName: 'data-id',
-    enableRender: false,
+  UniqueID: UniqueID.configure({
+    attributeName: 'id',
     types: [
       'blockquote',
       'codeBlock',

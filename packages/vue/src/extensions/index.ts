@@ -32,6 +32,7 @@ import Superscript from '@tiptap/extension-superscript'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
+import UniqueID from '@tiptap/extension-unique-id'
 
 // ---------------------------------------------------------
 // YiiEditor extension imports
@@ -45,8 +46,6 @@ import OSelectionDecoration from '@yiitap/extension-selection-decoration'
 import OShortcut from '@yiitap/extension-shortcut'
 import OTable from '@yiitap/extension-table'
 import OTaskItem from '@yiitap/extension-task-item'
-import OTrailingNode from '@yiitap/extension-trailing-node'
-import OUniqueID from '@yiitap/extension-unique-id'
 
 import OCharCommand from '@yiitap/extension-char-command'
 import {
@@ -92,10 +91,10 @@ export const DefaultExtensionNames = [
   'TextAlign',
   'TextStyle',
   'Typography',
+  'UniqueID',
 
   'OHorizontalRule',
   'OSelectionDecoration',
-  'OUniqueID',
 ]
 
 // --------------------------------------------------------------------------------
@@ -132,6 +131,7 @@ export const TiptapExtensionNames = [
   'TextStyle',
   'Typography',
   'Underline',
+  'UniqueID',
 ]
 
 export const YiitapExtensionNames = [
@@ -160,8 +160,6 @@ export const YiitapExtensionNames = [
   'OSlashZh',
   'OTableWrapper',
   'OTaskItem',
-  'OTrailingNode',
-  'OUniqueID',
   'OVideo',
 ]
 
@@ -198,6 +196,7 @@ export {
   TextStyle,
   Typography,
   Underline,
+  UniqueID,
   OAiBlock,
   OBlockMath,
   OBlockquote,
@@ -224,7 +223,5 @@ export {
   OTableHeader,
   OTableWrapper,
   OTaskItem,
-  OTrailingNode,
-  OUniqueID,
   OVideo,
 }

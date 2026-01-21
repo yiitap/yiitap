@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hocuspocus/provider": "^3.4.3",
     "@mermaid-js/layout-elk": "^0.2.0",
-    "@tiptap/extension-emoji": "3.7.2",
-    "@tiptap/extension-mathematics": "3.7.2",
+    "@tiptap/extension-collaboration": "^3.16.0",
+    "@tiptap/extension-collaboration-caret": "^3.16.0",
+    "@tiptap/extension-emoji": "^3.16.0",
+    "@tiptap/extension-mathematics": "^3.16.0",
+    "@tiptap/y-tiptap": "^3.0.1",
     "@yiitap/util-emoji": "workspace:*",
     "@yiitap/vue": "workspace:*",
     "katex": "^0.16.25",
@@ -20,7 +24,9 @@
     "mermaid": "^11.12.0",
     "naive-ui": "^2.35.0",
     "openai": "^4.88.0",
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "y-protocols": "^1.0.7",
+    "yjs": "^13.6.29"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.3.8",

@@ -26,7 +26,9 @@ export default defineConfig({
           ? '@yiitap/vue'
           : '@yiitap/vue/src/index.ts',
     },
-    dedupe: ['vue'],
+    dedupe: [
+      'vue',
+    ],
   },
   css: {
     preprocessorOptions: {
@@ -64,6 +66,9 @@ export default defineConfig({
             }
             if (id.includes('elk')) {
               return 'vendor-elk' // Split utils
+            }
+            if (id.includes('prosemirror')) {
+              return 'vendor-prosemirror' // Split prosemirror
             }
             return 'vendor' // Others
           }

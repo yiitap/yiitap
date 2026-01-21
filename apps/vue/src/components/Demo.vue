@@ -31,7 +31,13 @@
       </div>
     </section>
     <section class="layout-content" @scroll="onScroll">
-      <YiiEditor ref="yiiEditor" v-bind="editorOptions" @update="onUpdate" />
+      <YiiEditor
+        ref="yiiEditor"
+        v-bind="editorOptions"
+        @update="onUpdate"
+        :key="editorKey"
+        v-if="!collaboration || collabReady"
+      />
     </section>
 
     <n-drawer
@@ -64,6 +70,12 @@
               <template #unchecked> Readonly </template>
             </n-switch>
           </n-form-item>
+          <n-form-item label="Collaboration">
+            <n-switch v-model:value="collaboration">
+              <template #checked> Enable </template>
+              <template #unchecked> Disable </template>
+            </n-switch>
+          </n-form-item>
 
           <h3>AI</h3>
           <n-divider />
@@ -79,6 +91,26 @@
           <n-form-item label="API Key">
             <n-input v-model:value="aiOption.apiKey" placeholder="apiKey" />
           </n-form-item>
+
+          <template v-if="collaboration">
+            <h3>Collaboration</h3>
+            <n-divider />
+            <n-form-item label="Document Name">
+              <n-input
+                v-model:value="documentName"
+                placeholder="Document Name"
+              />
+            </n-form-item>
+            <n-form-item label="Provider URL">
+              <n-input v-model:value="providerUrl" placeholder="Provider URL" />
+            </n-form-item>
+            <n-form-item label="Provider Token">
+              <n-input
+                v-model:value="providerToken"
+                placeholder="Provider Token"
+              />
+            </n-form-item>
+          </template>
         </n-form>
       </n-drawer-content>
     </n-drawer>
@@ -93,7 +125,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref, onMounted, watch } from 'vue'
+import { HocuspocusProvider } from '@hocuspocus/provider'
+import Collaboration from '@tiptap/extension-collaboration'
+import CollaborationCaret from '@tiptap/extension-collaboration-caret'
+import * as Y from 'yjs'
+
+import { computed, provide, ref, onMounted, watch, shallowRef } from 'vue'
 import {
   NButton,
   NDivider,
@@ -111,7 +148,6 @@ import {
 import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
 import 'katex/dist/katex.min.css'
-
 import VersionBadge from './VersionBadge.vue'
 
 const emit = defineEmits(['mode'])
@@ -127,14 +163,65 @@ const aiOption = ref<AiOption>({
 const showDrawer = ref(false)
 provide('locale', locale)
 
+const ydoc = shallowRef<Y.Doc | null>(null)
+const hpProvider = shallowRef<HocuspocusProvider | null>(null)
+
+const collaboration = ref(true)
+const documentName = ref('282bd672-a100-4d9b-bee1-c6c205187473')
+const providerUrl = ref('ws://localhost:9611')
+const providerToken = ref(
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwN2E0OWMxNC01MDg5LTQwMjEtODBjMy01NGY4ZmFmZmYwYTIiLCJleHAiOjE3NzE1NzY5MDV9.vHmnKoiunv_AfaARv3C1T4B0FGQtemZj8J5VFCm1Aw4'
+)
+const collabReady = ref(false)
+
 const editorOptions = computed(() => {
+  const extensions: any[] = [
+    // 'Emoji',
+    'InlineMath',
+    'Markdown',
+    'OAiBlock',
+    'OBlockMath',
+    'OBlockquote',
+    'OCallout',
+    'OCodeBlock',
+    'OColon',
+    'OColorHighlighter',
+    'ODetails',
+    'OHeading',
+    'OImage',
+    'OLink',
+    'OParagraph',
+    'OShortcut',
+    'OSlash',
+    'OSlashZh',
+    'OVideo',
+  ]
+  if (collaboration.value && collabReady.value) {
+    extensions.push(
+      Collaboration.configure({
+        document: ydoc.value,
+      })
+    )
+    extensions.push(
+      CollaborationCaret.configure({
+        provider: hpProvider.value,
+        user: {
+          name: 'Micle',
+          color: '#f783ac',
+        },
+      })
+    )
+  }
+  console.log('extensions', extensions, collaboration.value, collabReady.value)
+
   return {
     title: true,
+    collaboration: collaboration.value,
     aiOption: aiOption.value,
     locale: locale.value,
     darkMode: darkMode.value,
     editable: editable.value,
-    content: content.value,
+    content: collaboration.value ? null : content.value,
     showMainMenu: false,
     showBubbleMenu: true,
     showFloatingMenu: true,
@@ -176,31 +263,12 @@ const editorOptions = computed(() => {
       'blockMath',
       'diagram',
     ],
-    extensions: [
-      // 'BlockMath',
-      // 'Emoji',
-      'InlineMath',
-      'Markdown',
-      'OAiBlock',
-      'OBlockMath',
-      'OBlockquote',
-      'OCallout',
-      'OCodeBlock',
-      'OColon',
-      'OColorHighlighter',
-      'ODetails',
-      'OHeading',
-      'OImage',
-      // 'OInlinePlaceholder',
-      'OLink',
-      'OParagraph',
-      'OShortcut',
-      'OSlash',
-      'OSlashZh',
-      'OVideo',
-      'OTrailingNode',
-    ],
+    extensions: extensions,
   }
+})
+
+const editorKey = computed(() => {
+  return collaboration.value ? 'collaboration' : 'normal'
 })
 
 const content = computed(() => {
@@ -228,6 +296,10 @@ const aiProviders = computed(() => {
   ]
 })
 
+const editor = computed(() => {
+  return yiiEditor.value?.editor
+})
+
 function init() {
   try {
     locale.value = localStorage.getItem('yiitap.locale') || 'en'
@@ -238,6 +310,30 @@ function init() {
   } catch (e) {
     // ignore
   }
+}
+
+async function initCollab() {
+  if (hpProvider.value) {
+    hpProvider.value.destroy()
+    ydoc.value?.destroy()
+  }
+
+  hpProvider.value = null
+  ydoc.value = null
+
+  const doc = new Y.Doc()
+  const provider = new HocuspocusProvider({
+    url: providerUrl.value,
+    name: documentName.value,
+    document: doc, // 使用局部变量
+    token: providerToken.value,
+    onConnect() {
+      console.log('Hocuspocus connected')
+      collabReady.value = true
+    },
+  })
+  ydoc.value = doc
+  hpProvider.value = provider
 }
 
 function onToggleDrawer() {
@@ -286,16 +382,21 @@ watch(
   { deep: true }
 )
 
+watch(editor, (newValue) => {
+  // Access properties exposed by YiiEditor
+  console.debug('editor', yiiEditor.value?.editor)
+  console.debug(
+    'extensions',
+    yiiEditor.value?.editor.extensionManager.extensions
+  )
+  // console.debug('darkMode', yiiEditor.value?.darkMode)
+  // console.debug('local', yiiEditor.value?.local)
+})
+
 onMounted(() => {
   // initialization
   init()
-
-  // Access properties exposed by YiiEditor
-  // console.debug('editor', yiiEditor.value?.editor)
-  // console.debug('darkMode', yiiEditor.value?.darkMode)
-  // console.debug('local', yiiEditor.value?.local)
-
-  // console.log('extensions', yiiEditor.value?.editor.extensionManager.extensions)
+  initCollab()
 })
 </script>
 
@@ -388,6 +489,14 @@ onMounted(() => {
 .n-drawer {
   .action {
     margin-bottom: 14px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .n-divider {
+    margin: 1rem 0;
   }
 }
 
