@@ -29,6 +29,7 @@ export default defineConfig({
   build: {
     sourcemap: false,
     rollupOptions: {
+      external: ['yjs'],
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {

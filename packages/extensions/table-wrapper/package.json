@@ -34,9 +34,9 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"@tiptap/core": "^3.7.2",
-		"@tiptap/pm": "^3.7.2",
-		"@tiptap/extension-table": "^3.7.2"
+		"@tiptap/core": "^3.16.0",
+		"@tiptap/pm": "^3.16.0",
+		"@tiptap/extension-table": "^3.16.0"
 	},
 	"devDependencies": {}
 }

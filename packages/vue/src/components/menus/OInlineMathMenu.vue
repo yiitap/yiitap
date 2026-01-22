@@ -24,15 +24,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, onActivated } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { Editor } from '@tiptap/core'
 import {
   InlinePlaceholderKey,
   type InlinePlaceholderMeta,
 } from '@yiitap/extension-placeholder'
-import { useAi, useI18n, useTiptap } from '../../hooks'
+import { useTiptap } from '../../hooks'
 
-import { OIcon, OInput, OToast } from '../../components/index'
+import { OIcon, OInput } from '../../components/index'
 import { NodeSelection } from '@tiptap/pm/state'
 
 const props = defineProps({

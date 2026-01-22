@@ -33,10 +33,10 @@
 		"test-ci": "vitest --run"
 	},
 	"dependencies": {
-		"@tiptap/extension-task-item": "^3.7.2"
+		"@tiptap/extension-task-item": "^3.16.0"
 	},
 	"peerDependencies": {
-		"@tiptap/pm": "^3.7.2"
+		"@tiptap/pm": "^3.16.0"
 	},
 	"devDependencies": {}
 }

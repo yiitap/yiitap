@@ -4,9 +4,9 @@
  * @author YousefED@BlockNote
  * see https://github.com/TypeCellOS/BlockNote/blob/main/packages/core/src/extensions/SideMenu/SideMenuPlugin.ts
  */
-import { Editor } from '@tiptap/core'
-import { EditorView } from '@tiptap/pm/view'
-import { Node, NodeType } from '@tiptap/pm/model'
+import type { Editor } from '@tiptap/core'
+import type { EditorView } from '@tiptap/pm/view'
+import type { Node, NodeType } from '@tiptap/pm/model'
 import type { Selection } from '@tiptap/pm/state'
 
 export function getNodeElementFromCoords(

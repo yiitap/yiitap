@@ -57,6 +57,10 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
+import Collaboration from '@tiptap/extension-collaboration'
+import type { CollaborationOptions } from '@tiptap/extension-collaboration'
+import CollaborationCaret from '@tiptap/extension-collaboration-caret'
+import type { CollaborationCaretOptions } from '@tiptap/extension-collaboration-caret'
 
 import { OShortcut } from '../extensions'
 import OMainMenu from './menus/OMainMenu.vue'
@@ -77,9 +81,16 @@ import DynamicClass, {
 import { Editor } from '@tiptap/core'
 
 type SideMenuAddType = 'menu' | 'empty'
+
 interface SideMenuConfig {
   show: boolean
   add: SideMenuAddType
+}
+
+interface CollabConfig {
+  enabled: boolean
+  collaboration: CollaborationOptions
+  collaborationCaret: CollaborationCaretOptions
 }
 
 const props = defineProps({
@@ -225,16 +236,20 @@ const props = defineProps({
     type: Object as PropType<AiOption>,
     default: () => {},
   },
+
   /**
-   * Enable collaboration or not.
+   * Collab config.
    */
-  collaboration: {
-    type: Boolean,
-    default: false,
+  collab: {
+    type: Object as PropType<CollabConfig>,
+    default: (): CollabConfig => ({
+      enabled: false,
+      collaboration: null,
+      collaborationCaret: null,
+    }),
   },
 })
 
-// const emit = defineEmits(['transaction', 'update'])
 const emit = defineEmits<{
   /**
    * Emit when content transaction
@@ -276,6 +291,8 @@ const editor = useEditor({
     if (!ready.value) return
     const json = editor.value?.getJSON()
     const html = editor.value?.getHTML()
+    // console.log('update', json)
+    // console.log('html', html)
 
     // Only emit update when editor is ready
     emit('update', { json, html })
@@ -341,7 +358,6 @@ function buildExtensions() {
       },
     })
   )
-  // extensions.push(TextStyle)
   extensions.push(
     StarterKit.configure({
       dropcursor: {
@@ -360,8 +376,11 @@ function buildExtensions() {
             levels: [1, 2, 3, 4, 5],
           },
       paragraph: props.extensions.includes('OParagraph') ? false : {},
-      trailingNode: props.extensions.includes('OTrailingNode') ? false : {},
-      undoRedo: props.collaboration
+      trailingNode: {
+        node: 'paragraph',
+        notAfter: ['paragraph', 'heading'],
+      },
+      undoRedo: props.collab.enabled
         ? false
         : { depth: 100, newGroupDelay: 500 },
     })
@@ -398,6 +417,14 @@ function buildExtensions() {
       // user provide extension
       extensions.push(item)
     }
+  }
+
+  // collab
+  if (props.collab.enabled) {
+    extensions.push(
+      Collaboration.configure(props.collab.collaboration),
+      CollaborationCaret.configure(props.collab.collaborationCaret)
+    )
   }
 
   // shortcut

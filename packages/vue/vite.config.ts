@@ -51,19 +51,14 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
-        // TODO: Trying to make @tiptap/core external, but encounter:
-        //   RangeError: Adding different instances of a keyed plugin
-        // '@tiptap/core',
-        // '@tiptap/pm',
-        // '@tiptap/vue-3',
-        '@tiptap/extension-emoji',
-        '@tiptap/extension-mathematics',
-        '@yiitap/util-emoji',
+        /^@tiptap\/.*/,
+        /^@yiitap\/.*/,
         '@mermaid-js/layout-elk',
         'katex',
         'markdown-it',
         'mermaid',
         'openai',
+        'yjs',
       ],
       output: {
         banner: `
@@ -73,19 +68,27 @@ export default defineConfig({
 **/
 `,
         exports: 'named',
-        globals: {
-          vue: 'Vue',
-          // '@tiptap/core': 'TiptapCore',
-          // '@tiptap/pm': 'TiptapPm',
-          // '@tiptap/vue-3': 'TiptapVue3',
-          '@tiptap/extension-emoji': 'TiptapExtensionEmoji',
-          '@tiptap/extension-mathematics': 'TiptapExtensionMathematics',
-          '@yiitap/util-emoji': 'EmojiUtil',
-          '@mermaid-js/layout-elk': 'MermaidElk',
-          katex: 'Katex',
-          'markdown-it': 'MarkdownIt',
-          mermaid: 'Mermaid',
-          openai: 'OpenAi',
+        globals: (id) => {
+          // Manual
+          const map: Record<string, string> = {
+            vue: 'Vue',
+            yjs: 'Yjs',
+            mermaid: 'Mermaid',
+            katex: 'Katex',
+            'markdown-it': 'MarkdownIt',
+            openai: 'OpenAI',
+          }
+          if (map[id]) return map[id]
+
+          // Tiptap，camel naming
+          // example: @tiptap/extension-bold -> TiptapExtensionBold
+          return (
+            'Custom' +
+            id
+              .replace(/^@/, '')
+              .replace(/[-/](.)/g, (_, c) => c.toUpperCase()) // to camel
+              .replace(/[^a-zA-Z0-9]/g, '')
+          )
         },
       },
     },
