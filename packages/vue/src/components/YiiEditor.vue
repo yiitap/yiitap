@@ -57,6 +57,10 @@ import type { FocusPosition } from '@tiptap/core'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
+import Collaboration from '@tiptap/extension-collaboration'
+import type { CollaborationOptions } from '@tiptap/extension-collaboration'
+import CollaborationCaret from '@tiptap/extension-collaboration-caret'
+import type { CollaborationCaretOptions } from '@tiptap/extension-collaboration-caret'
 
 import { OShortcut } from '../extensions'
 import OMainMenu from './menus/OMainMenu.vue'
@@ -77,9 +81,16 @@ import DynamicClass, {
 import { Editor } from '@tiptap/core'
 
 type SideMenuAddType = 'menu' | 'empty'
+
 interface SideMenuConfig {
   show: boolean
   add: SideMenuAddType
+}
+
+interface CollabConfig {
+  enabled: boolean
+  collaboration: CollaborationOptions
+  collaborationCaret: CollaborationCaretOptions
 }
 
 const props = defineProps({
@@ -225,12 +236,17 @@ const props = defineProps({
     type: Object as PropType<AiOption>,
     default: () => {},
   },
+
   /**
-   * Enable collaboration or not.
+   * Collab config.
    */
-  collaboration: {
-    type: Boolean,
-    default: false,
+  collab: {
+    type: Object as PropType<CollabConfig>,
+    default: (): CollabConfig => ({
+      enabled: false,
+      collaboration: null,
+      collaborationCaret: null,
+    }),
   },
 })
 
@@ -362,9 +378,9 @@ function buildExtensions() {
       paragraph: props.extensions.includes('OParagraph') ? false : {},
       trailingNode: {
         node: 'paragraph',
-        notAfter: ['paragraph', 'heading']
+        notAfter: ['paragraph', 'heading'],
       },
-      undoRedo: props.collaboration
+      undoRedo: props.collab.enabled
         ? false
         : { depth: 100, newGroupDelay: 500 },
     })
@@ -403,6 +419,15 @@ function buildExtensions() {
     }
   }
 
+  // collab
+  console.log('collab', props.collab)
+  if (props.collab.enabled) {
+    extensions.push(
+      Collaboration.configure(props.collab.collaboration),
+      CollaborationCaret.configure(props.collab.collaborationCaret)
+    )
+  }
+
   // shortcut
   if (list.includes('OShortcut')) {
     if (list.includes('Markdown')) {
@@ -417,6 +442,8 @@ function buildExtensions() {
       extensions.push(OShortcut)
     }
   }
+
+  console.log('ee', extensions)
 
   return extensions
 }

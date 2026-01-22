@@ -12,8 +12,6 @@
   "dependencies": {
     "@hocuspocus/provider": "^3.4.3",
     "@mermaid-js/layout-elk": "^0.2.0",
-    "@tiptap/extension-collaboration": "^3.16.0",
-    "@tiptap/extension-collaboration-caret": "^3.16.0",
     "@tiptap/extension-emoji": "^3.16.0",
     "@tiptap/extension-mathematics": "^3.16.0",
     "@tiptap/y-tiptap": "^3.0.1",

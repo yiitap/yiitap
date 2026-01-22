@@ -64,6 +64,7 @@ export default defineConfig({
         'markdown-it',
         'mermaid',
         'openai',
+        'yjs',
       ],
       output: {
         banner: `
@@ -86,6 +87,7 @@ export default defineConfig({
           'markdown-it': 'MarkdownIt',
           mermaid: 'Mermaid',
           openai: 'OpenAi',
+          yjs: 'YJS',
         },
       },
     },

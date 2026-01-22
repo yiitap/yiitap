@@ -26,9 +26,7 @@ export default defineConfig({
           ? '@yiitap/vue'
           : '@yiitap/vue/src/index.ts',
     },
-    dedupe: [
-      'vue',
-    ],
+    dedupe: ['vue', 'yjs'],
   },
   css: {
     preprocessorOptions: {
@@ -48,6 +46,13 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('vue')) {
               return 'vendor-framework' // Split React/Vue
+            }
+            if (
+              /(naive-ui|vooks|vue-uc|@css-render|@juggle\/resize-observer)/i.test(
+                id
+              )
+            ) {
+              return 'vendor-ui'
             }
             if (id.includes('@yiitap') || id.includes('@tiptap')) {
               return 'vendor-core' // Split tiptap
@@ -69,6 +74,13 @@ export default defineConfig({
             }
             if (id.includes('prosemirror')) {
               return 'vendor-prosemirror' // Split prosemirror
+            }
+            if (
+              id.includes('collaboration') ||
+              id.includes('yjs') ||
+              id.includes('hocuspocus')
+            ) {
+              return 'vendor-collab' // Split prosemirror
             }
             return 'vendor' // Others
           }

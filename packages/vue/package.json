@@ -43,6 +43,8 @@
 		"@tiptap/extension-blockquote": "^3.16.0",
 		"@tiptap/extension-bubble-menu": "^3.16.0",
 		"@tiptap/extension-code-block-lowlight": "^3.16.0",
+    "@tiptap/extension-collaboration": "^3.16.0",
+    "@tiptap/extension-collaboration-caret": "^3.16.0",
 		"@tiptap/extension-details": "^3.16.0",
 		"@tiptap/extension-document": "^3.16.0",
 		"@tiptap/extension-font-family": "^3.16.0",

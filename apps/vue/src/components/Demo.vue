@@ -126,8 +126,6 @@
 
 <script setup lang="ts">
 import { HocuspocusProvider } from '@hocuspocus/provider'
-import Collaboration from '@tiptap/extension-collaboration'
-import CollaborationCaret from '@tiptap/extension-collaboration-caret'
 import * as Y from 'yjs'
 
 import { computed, provide, ref, onMounted, watch, shallowRef } from 'vue'
@@ -175,44 +173,31 @@ const providerToken = ref(
 const collabReady = ref(false)
 
 const editorOptions = computed(() => {
-  const extensions: any[] = [
-    // 'Emoji',
-    'InlineMath',
-    'Markdown',
-    'OAiBlock',
-    'OBlockMath',
-    'OBlockquote',
-    'OCallout',
-    'OCodeBlock',
-    'OColon',
-    'OColorHighlighter',
-    'ODetails',
-    'OHeading',
-    'OImage',
-    'OLink',
-    'OParagraph',
-    'OShortcut',
-    'OSlash',
-    'OSlashZh',
-    'OVideo',
-  ]
-  if (collaboration.value && collabReady.value) {
-    extensions.push(
-      Collaboration.configure({
-        document: ydoc.value,
-      })
-    )
-    extensions.push(
-      CollaborationCaret.configure({
-        provider: hpProvider.value,
-        user: {
-          name: 'Micle',
-          color: '#f783ac',
-        },
-      })
-    )
+  let extensions: any[] = []
+  if (collabReady.value) {
+    extensions = [
+      // 'Emoji',
+      'InlineMath',
+      'Markdown',
+      'OAiBlock',
+      'OBlockMath',
+      'OBlockquote',
+      'OCallout',
+      'OCodeBlock',
+      'OColon',
+      'OColorHighlighter',
+      'ODetails',
+      'OHeading',
+      'OImage',
+      'OLink',
+      'OParagraph',
+      'OShortcut',
+      'OSlash',
+      'OSlashZh',
+      'OVideo',
+    ]
   }
-  console.log('extensions', extensions, collaboration.value, collabReady.value)
+  console.log('extensions', extensions, collabReady.value)
 
   return {
     title: true,
@@ -263,6 +248,19 @@ const editorOptions = computed(() => {
       'blockMath',
       'diagram',
     ],
+    collab: {
+      enabled: collaboration.value,
+      collaboration: {
+        document: ydoc.value,
+      },
+      collaborationCaret: {
+        provider: hpProvider.value,
+        user: {
+          name: 'Micle',
+          color: '#f783ac',
+        },
+      },
+    },
     extensions: extensions,
   }
 })
