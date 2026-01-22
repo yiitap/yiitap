@@ -6,8 +6,9 @@
  */
 
 import type { Editor } from '@tiptap/core'
-import { EditorState, NodeSelection, Plugin, PluginKey } from '@tiptap/pm/state'
-import { EditorView } from '@tiptap/pm/view'
+import { NodeSelection, Plugin, PluginKey } from '@tiptap/pm/state'
+import type { EditorState } from '@tiptap/pm/state'
+import type { EditorView } from '@tiptap/pm/view'
 import tippy from 'tippy.js'
 import type { Instance, Props } from 'tippy.js'
 

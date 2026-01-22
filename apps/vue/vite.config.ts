@@ -55,42 +55,35 @@ export default defineConfig({
               return 'vendor-ui'
             }
             if (id.includes('@yiitap') || id.includes('@tiptap')) {
-              return 'vendor-core' // Split tiptap
+              return 'vendor-core'
             }
             if (id.includes('lodash') || id.includes('moment')) {
-              return 'vendor-utils' // Split utils
+              return 'vendor-utils'
             }
             if (id.includes('katex')) {
-              return 'vendor-katex' // Split utils
+              return 'vendor-katex'
             }
             if (id.includes('mermaid')) {
-              return 'vendor-mermaid' // Split utils
+              return 'vendor-mermaid'
             }
             if (id.includes('cytoscape')) {
-              return 'vendor-cytoscape' // Split utils
+              return 'vendor-cytoscape'
             }
             if (id.includes('elk')) {
-              return 'vendor-elk' // Split utils
+              return 'vendor-elk'
             }
             if (id.includes('prosemirror')) {
-              return 'vendor-prosemirror' // Split prosemirror
+              return 'vendor-prosemirror'
             }
             if (
               id.includes('collaboration') ||
               id.includes('yjs') ||
               id.includes('hocuspocus')
             ) {
-              return 'vendor-collab' // Split prosemirror
+              return 'vendor-collab'
             }
             return 'vendor' // Others
           }
-          // if (id.includes("node_modules")) {
-          //   return id
-          //     .toString()
-          //     .split("node_modules/")[1]
-          //     .split("/")[0]
-          //     .toString();
-          // }
         },
       },
     },

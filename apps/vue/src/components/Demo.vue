@@ -176,7 +176,7 @@ const editorOptions = computed(() => {
   let extensions: any[] = []
   if (collabReady.value) {
     extensions = [
-      // 'Emoji',
+      'Emoji',
       'InlineMath',
       'Markdown',
       'OAiBlock',
@@ -184,7 +184,7 @@ const editorOptions = computed(() => {
       'OBlockquote',
       'OCallout',
       'OCodeBlock',
-      'OColon',
+      // 'OColon',
       'OColorHighlighter',
       'ODetails',
       'OHeading',
