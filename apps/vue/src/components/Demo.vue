@@ -356,7 +356,7 @@ function onToggleDrawer() {
 }
 
 function onGithub() {
-  window.open('https://github.com/yiitap/yiitap', '_blank')
+  window.open('https://github.com/pileax-ai/yiitap', '_blank')
 }
 
 function onMode() {

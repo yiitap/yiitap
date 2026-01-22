@@ -178,7 +178,7 @@ const props = defineProps({
    * Configure the list of extensions you want to enable.
    *
    * By default, Yiitap enables
-   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/extensions/index.ts" target="_blank">BuiltinExtensions</a>.
+   * <a href="https://github.com/pileax-ai/yiitap/blob/main/packages/vue/src/extensions/index.ts" target="_blank">BuiltinExtensions</a>.
    */
   extensions: {
     type: Array as () => string[],
@@ -188,7 +188,7 @@ const props = defineProps({
    * Configure the list of menu items you want to enable in main menu.
    *
    * By default, Yiitap uses
-   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultMenu</a>.
+   * <a href="https://github.com/pileax-ai/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultMenu</a>.
    */
   mainMenu: {
     type: Array as () => string[],
@@ -198,7 +198,7 @@ const props = defineProps({
    * Configure the list of menu items you want to enable in table menu.
    *
    * By default, Yiitap uses
-   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">TableMenu</a>.
+   * <a href="https://github.com/pileax-ai/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">TableMenu</a>.
    */
   tableMenu: {
     type: Array as () => string[],
@@ -208,7 +208,7 @@ const props = defineProps({
    * Configure the list of menu items you want to enable in bubble menu.
    *
    * By default, Yiitap uses
-   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultBubble</a>.
+   * <a href="https://github.com/pileax-ai/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultBubble</a>.
    */
   bubbleMenu: {
     type: Array as () => string[],
@@ -218,7 +218,7 @@ const props = defineProps({
    * Configure the list of menu items you want to enable in floating menu.
    *
    * By default, Yiitap uses
-   * <a href="https://github.com/yiitap/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultFloating</a>.
+   * <a href="https://github.com/pileax-ai/yiitap/blob/main/packages/vue/src/constants/menu.ts" target="_blank">DefaultFloating</a>.
    */
   floatingMenu: {
     type: Array as () => string[],

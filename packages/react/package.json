@@ -41,10 +41,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yiitap/yiitap"
+    "url": "https://github.com/pileax-ai/yiitap"
   },
   "bugs": {
-    "url": "https://github.com/yiitap/yiitap/issues"
+    "url": "https://github.com/pileax-ai/yiitap/issues"
   },
   "keywords": [
     "editor",

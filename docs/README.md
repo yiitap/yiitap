@@ -3,4 +3,4 @@ For more detailed information, make sure to check out our [documentation](https:
 
 - [Guide to Yiitap](https://yiitap.pileax.ai/guide/getting-started)
 - [Live Demo](https://yiitap.pileax.ai/demo/vue)
-- Full Example: [Live](https://yiitap.github.io/yiitap/) | [Source](https://github.com/yiitap/yiitap/blob/main/apps/vue/src/components/Demo.vue)
+- Full Example: [Live](https://yiitap.github.io/yiitap/) | [Source](https://github.com/pileax-ai/yiitap/blob/main/apps/vue/src/components/Demo.vue)
