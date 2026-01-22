@@ -25,8 +25,7 @@
         </div>
       </template>
 
-      <div class="main-view o-scroll"
-           style="max-width: 480px;">
+      <div class="main-view o-scroll" style="max-width: 480px">
         <div class="toc__title">{{ tr('label.toc') }}</div>
         <ul class="toc__list">
           <li

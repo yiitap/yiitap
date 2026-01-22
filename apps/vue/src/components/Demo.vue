@@ -110,6 +110,8 @@
                 placeholder="Provider Token"
               />
             </n-form-item>
+
+            <n-button @click="onSnapshot">Snapshot</n-button>
           </template>
         </n-form>
       </n-drawer-content>
@@ -125,9 +127,6 @@
 </template>
 
 <script setup lang="ts">
-import { HocuspocusProvider } from '@hocuspocus/provider'
-import * as Y from 'yjs'
-
 import { computed, provide, ref, onMounted, watch, shallowRef } from 'vue'
 import {
   NButton,
@@ -144,9 +143,11 @@ import {
   NSwitch,
 } from 'naive-ui'
 import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
+import { HocuspocusProvider } from '@hocuspocus/provider'
+import * as Y from 'yjs'
 import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
-import 'katex/dist/katex.min.css'
 import VersionBadge from './VersionBadge.vue'
+import 'katex/dist/katex.min.css'
 
 const emit = defineEmits(['mode'])
 
@@ -157,19 +158,19 @@ const darkMode = ref(false)
 const editable = ref(true)
 const aiOption = ref<AiOption>({
   provider: 'deepseek',
+  apiKey: '',
 })
 const showDrawer = ref(false)
 provide('locale', locale)
 
+// Collaboration
 const ydoc = shallowRef<Y.Doc | null>(null)
 const hpProvider = shallowRef<HocuspocusProvider | null>(null)
 
 const collaboration = ref(true)
-const documentName = ref('282bd672-a100-4d9b-bee1-c6c205187473')
+const documentName = ref('282bd672-a100-4d9b-bee1-c6c205187474')
 const providerUrl = ref('ws://localhost:9611')
-const providerToken = ref(
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwN2E0OWMxNC01MDg5LTQwMjEtODBjMy01NGY4ZmFmZmYwYTIiLCJleHAiOjE3NzE1NzY5MDV9.vHmnKoiunv_AfaARv3C1T4B0FGQtemZj8J5VFCm1Aw4'
-)
+const providerToken = ref('')
 const collabReady = ref(false)
 
 const editorOptions = computed(() => {
@@ -197,7 +198,6 @@ const editorOptions = computed(() => {
       'OVideo',
     ]
   }
-  console.log('extensions', extensions, collabReady.value)
 
   return {
     title: true,
@@ -214,7 +214,6 @@ const editorOptions = computed(() => {
       show: true,
       add: 'menu',
     },
-    // showSideNode: true,
     pageView: 'page',
     mainMenu: [
       'bold',
@@ -256,7 +255,7 @@ const editorOptions = computed(() => {
       collaborationCaret: {
         provider: hpProvider.value,
         user: {
-          name: 'Micle',
+          name: 'User Name',
           color: '#f783ac',
         },
       },
@@ -301,23 +300,23 @@ const editor = computed(() => {
 function init() {
   try {
     locale.value = localStorage.getItem('yiitap.locale') || 'en'
+    providerToken.value = localStorage.getItem('yiitap.token') || ''
+    collaboration.value =
+      localStorage.getItem('yiitap.collaboration') === 'true'
     const aiOptionString = localStorage.getItem('yiitap.ai.option')
     if (aiOptionString) {
       aiOption.value = JSON.parse(aiOptionString)
     }
+
+    initCollab()
   } catch (e) {
     // ignore
   }
 }
 
 async function initCollab() {
-  if (hpProvider.value) {
-    hpProvider.value.destroy()
-    ydoc.value?.destroy()
-  }
-
-  hpProvider.value = null
-  ydoc.value = null
+  if (!collaboration.value) return
+  resetCollab()
 
   const doc = new Y.Doc()
   const provider = new HocuspocusProvider({
@@ -332,6 +331,24 @@ async function initCollab() {
   })
   ydoc.value = doc
   hpProvider.value = provider
+}
+
+function resetCollab() {
+  if (hpProvider.value) {
+    hpProvider.value.destroy()
+    ydoc.value?.destroy()
+  }
+
+  hpProvider.value = null
+  ydoc.value = null
+}
+
+function onSnapshot() {
+  if (ydoc.value) {
+    const snapshot = Y.snapshot(ydoc.value)
+    const snapshotData = Y.encodeSnapshot(snapshot)
+    console.log('snapshot', snapshotData)
+  }
 }
 
 function onToggleDrawer() {
@@ -352,7 +369,7 @@ function onUpdate({ json, html }: { json: any; html: string }) {
   // console.log(html)
 
   // markdown
-  const markdown = yiiEditor.value?.editor.markdown.serialize(json)
+  const markdown = yiiEditor.value?.editor.markdown?.serialize(json)
   // console.log(markdown)
 }
 
@@ -374,6 +391,19 @@ watch(locale, (newValue) => {
   localStorage.setItem('yiitap.locale', newValue)
 })
 
+watch(providerToken, (newValue) => {
+  localStorage.setItem('yiitap.token', newValue)
+})
+
+watch(collaboration, (newValue) => {
+  if (newValue) {
+    initCollab()
+  } else {
+    resetCollab()
+  }
+  localStorage.setItem('yiitap.collaboration', `${newValue}`)
+})
+
 watch(
   aiOption,
   (newValue) => {
@@ -384,11 +414,11 @@ watch(
 
 watch(editor, (newValue) => {
   // Access properties exposed by YiiEditor
-  console.debug('editor', yiiEditor.value?.editor)
-  console.debug(
-    'extensions',
-    yiiEditor.value?.editor.extensionManager.extensions
-  )
+  // console.debug('editor', yiiEditor.value?.editor)
+  // console.debug(
+  //   'extensions',
+  //   yiiEditor.value?.editor.extensionManager.extensions
+  // )
   // console.debug('darkMode', yiiEditor.value?.darkMode)
   // console.debug('local', yiiEditor.value?.local)
 })
@@ -396,7 +426,6 @@ watch(editor, (newValue) => {
 onMounted(() => {
   // initialization
   init()
-  initCollab()
 })
 </script>
 

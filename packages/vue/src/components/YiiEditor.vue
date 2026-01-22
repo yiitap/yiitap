@@ -420,7 +420,6 @@ function buildExtensions() {
   }
 
   // collab
-  console.log('collab', props.collab)
   if (props.collab.enabled) {
     extensions.push(
       Collaboration.configure(props.collab.collaboration),
