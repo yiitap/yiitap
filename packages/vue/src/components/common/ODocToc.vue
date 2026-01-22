@@ -25,7 +25,8 @@
         </div>
       </template>
 
-      <div class="main-view o-scroll">
+      <div class="main-view o-scroll"
+           style="max-width: 480px;">
         <div class="toc__title">{{ tr('label.toc') }}</div>
         <ul class="toc__list">
           <li
@@ -123,7 +124,7 @@ function onUpdate() {
   const list = []
   props.editor?.state.doc.descendants((node, pos) => {
     if (node.type.name === 'heading') {
-      const id = node.attrs['data-id']
+      const id = node.attrs['id']
       list.push({
         level: node.attrs.level,
         text: node.textContent,

@@ -443,8 +443,6 @@ function buildExtensions() {
     }
   }
 
-  console.log('ee', extensions)
-
   return extensions
 }
 

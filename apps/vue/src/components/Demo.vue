@@ -366,9 +366,11 @@ function onDocScroll(event: Event) {
 }
 
 watch(locale, (newValue) => {
-  yiiEditor.value?.editor.commands.setContent(content.value, {
-    emitUpdate: true,
-  })
+  if (!collaboration.value) {
+    yiiEditor.value?.editor.commands.setContent(content.value, {
+      emitUpdate: true,
+    })
+  }
   localStorage.setItem('yiitap.locale', newValue)
 })
 
