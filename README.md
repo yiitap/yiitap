@@ -30,7 +30,7 @@ Yiitap is an AI powered, Notion-style WYSIWYG rich-text block-based editor, buil
 
 - [Guide to Yiitap](https://yiitap.pileax.ai/guide/getting-started)
 - [Live Demo](https://yiitap.pileax.ai/demo/vue)
-- Full Example: [Live](https://yiitap.github.io/yiitap/) | [Source](https://github.com/pileax-ai/yiitap/blob/main/apps/vue/src/components/Demo.vue)
+- Full Example: [Live](https://pileax-ai.github.io/yiitap/) | [Source](https://github.com/pileax-ai/yiitap/blob/main/apps/vue/src/components/Demo.vue)
 
 For more detailed information, make sure to check out our [documentation](https://yiitap.pileax.ai/guide/getting-started). If you encounter any problems or have suggestions, please open an issue.
 
@@ -54,42 +54,7 @@ pnpm dev
 pnpm build
 ```
 
-## Others
-### project structure
-```shell
-tree -d -L 3 -I "node_modules|dist|src|public|types" yiitap
-```
-
-```shell
-yiitap
-├── apps
-│   ├── react           # react demo app
-│   └── vue             # vue demo app
-└── packages
-    ├── core            # core functions
-    ├── extensions      # extensions
-    │   ├── ai-block
-    │   ├── callout
-    │   ├── char-command
-    │   ├── code-block
-    │   ├── color-highlighter   
-    │   ├── focus
-    │   ├── image
-    │   ├── link
-    │   ├── placeholder
-    │   ├── table
-    │   ├── table-wrapper
-    │   ├── trailing-node
-    │   ├── unique-id
-    │   └── video
-    ├── icon            # editor icon set
-    ├── react           # react component
-    ├── utils           # utilities
-    │   └── emoji
-    └── vue             # vue component
-```
-
-## Thanks
+## Acknowledgements
 
 - [Tiptap](https://github.com/ueberdosis/tiptap) & [ProseMirror](https://github.com/ProseMirror/prosemirror): Yiitap is built on top of Tiptap and ProseMirror.
 - [BlockNote](https://github.com/TypeCellOS/BlockNote): A React Rich Text Editor that's block-based (Notion style) and extensible..
