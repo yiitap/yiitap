@@ -1,5 +1,32 @@
 # @yiitap/vue
 
+## 0.11.0
+
+### Minor Changes
+
+- 056cc9c: add create event
+
+### Patch Changes
+
+- Updated dependencies [056cc9c]
+  - @yiitap/vue@0.11.0
+  - @yiitap/core@0.11.0
+  - @yiitap/extension-ai-block@0.11.0
+  - @yiitap/extension-callout@0.11.0
+  - @yiitap/extension-char-command@0.11.0
+  - @yiitap/extension-color-highlighter@0.11.0
+  - @yiitap/extension-focus@0.11.0
+  - @yiitap/extension-image@0.11.0
+  - @yiitap/extension-inline-placeholder@0.11.0
+  - @yiitap/extension-placeholder@0.11.0
+  - @yiitap/extension-selection-decoration@0.11.0
+  - @yiitap/extension-shortcut@0.11.0
+  - @yiitap/extension-table@0.11.0
+  - @yiitap/extension-table-wrapper@0.11.0
+  - @yiitap/extension-task-item@0.11.0
+  - @yiitap/extension-video@0.11.0
+  - @yiitap/util-emoji@0.11.0
+
 ## 0.10.0
 
 ### Minor Changes
