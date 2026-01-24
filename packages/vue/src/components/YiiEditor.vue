@@ -252,12 +252,18 @@ const props = defineProps({
 
 const emit = defineEmits<{
   /**
-   * Emit when content transaction
+   * Emit when editor is fully initialized and ready.
+   * @see https://tiptap.dev/docs/editor/api/events#list-of-available-events
+   */
+  (e: 'create', editor: Editor): void
+
+  /**
+   * Emit when content transaction.
    */
   (e: 'transaction', payload: { editor: Editor; transaction: Object }): void
 
   /**
-   * Emit when content updates
+   * Emit when content updates.
    */
   (e: 'update', payload: { json: Object; html: string }): void
 }>()
@@ -286,6 +292,7 @@ const editor = useEditor({
   extensions: customExtensions.value,
   onCreate: () => {
     ready.value = true
+    emit('create', editor.value)
   },
   onUpdate: () => {
     if (!ready.value) return

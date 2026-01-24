@@ -167,38 +167,13 @@ provide('locale', locale)
 const ydoc = shallowRef<Y.Doc | null>(null)
 const hpProvider = shallowRef<HocuspocusProvider | null>(null)
 
-const collaboration = ref(true)
+const collaboration = ref(false)
 const documentName = ref('282bd672-a100-4d9b-bee1-c6c205187474')
 const providerUrl = ref('ws://localhost:9611')
 const providerToken = ref('')
 const collabReady = ref(false)
 
 const editorOptions = computed(() => {
-  let extensions: any[] = []
-  if (collabReady.value) {
-    extensions = [
-      'Emoji',
-      'InlineMath',
-      'Markdown',
-      'OAiBlock',
-      'OBlockMath',
-      'OBlockquote',
-      'OCallout',
-      'OCodeBlock',
-      // 'OColon',
-      'OColorHighlighter',
-      'ODetails',
-      'OHeading',
-      'OImage',
-      'OLink',
-      'OParagraph',
-      'OShortcut',
-      'OSlash',
-      'OSlashZh',
-      'OVideo',
-    ]
-  }
-
   return {
     title: true,
     collaboration: collaboration.value,
@@ -260,7 +235,27 @@ const editorOptions = computed(() => {
         },
       },
     },
-    extensions: extensions,
+    extensions: [
+      'Emoji',
+      'InlineMath',
+      'Markdown',
+      'OAiBlock',
+      'OBlockMath',
+      'OBlockquote',
+      'OCallout',
+      'OCodeBlock',
+      // 'OColon',
+      'OColorHighlighter',
+      'ODetails',
+      'OHeading',
+      'OImage',
+      'OLink',
+      'OParagraph',
+      'OShortcut',
+      'OSlash',
+      'OSlashZh',
+      'OVideo',
+    ],
   }
 })
 
