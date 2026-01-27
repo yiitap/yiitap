@@ -1,5 +1,29 @@
 # app-vue
 
+## 0.11.1
+
+### Patch Changes
+
+- 76de5f8: Fixed table row/column add.
+- Updated dependencies [76de5f8]
+  - @yiitap/vue@0.11.1
+  - @yiitap/core@0.11.1
+  - @yiitap/extension-ai-block@0.11.1
+  - @yiitap/extension-callout@0.11.1
+  - @yiitap/extension-char-command@0.11.1
+  - @yiitap/extension-color-highlighter@0.11.1
+  - @yiitap/extension-focus@0.11.1
+  - @yiitap/extension-image@0.11.1
+  - @yiitap/extension-inline-placeholder@0.11.1
+  - @yiitap/extension-placeholder@0.11.1
+  - @yiitap/extension-selection-decoration@0.11.1
+  - @yiitap/extension-shortcut@0.11.1
+  - @yiitap/extension-table@0.11.1
+  - @yiitap/extension-table-wrapper@0.11.1
+  - @yiitap/extension-task-item@0.11.1
+  - @yiitap/extension-video@0.11.1
+  - @yiitap/util-emoji@0.11.1
+
 ## 0.11.0
 
 ### Minor Changes

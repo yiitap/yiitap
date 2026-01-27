@@ -1,5 +1,7 @@
 # @yiitap/extension-unique-id
 
+## 0.11.1
+
 ## 0.11.0
 
 ## 0.10.0
