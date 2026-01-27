@@ -67,9 +67,9 @@ const props = defineProps({
 })
 const emit = defineEmits(['click'])
 
-function onClick() {
+function onClick(e: MouseEvent) {
   if (!props.loading) {
-    emit('click')
+    emit('click', e)
   }
 }
 </script>
