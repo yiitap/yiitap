@@ -14,6 +14,6 @@ const DEFAULT_CONTENT = {
 }
 
 export const getData = (name = 'all', locale: 'en' | 'zh' = 'en') => {
-  const source = CONTENT_MAP[name] || DEFAULT_CONTENT;
-  return source[locale] ?? DEFAULT_CONTENT[locale];
+  const source = CONTENT_MAP[name] || DEFAULT_CONTENT
+  return source[locale] ?? DEFAULT_CONTENT[locale]
 }

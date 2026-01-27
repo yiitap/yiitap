@@ -77,10 +77,7 @@
             </n-switch>
           </n-form-item>
           <n-form-item label="Source">
-            <n-select
-              v-model:value="source"
-              :options="sourceList"
-            />
+            <n-select v-model:value="source" :options="sourceList" />
           </n-form-item>
 
           <h3>AI</h3>
@@ -276,10 +273,10 @@ const content = computed(() => {
 
 const sourceList = computed(() => {
   return [
-    { label: 'Default',value: 'default' },
-    { label: 'Empty',value: 'empty' },
-    { label: 'Diagram',value: 'diagram' },
-    { label: 'Table',value: 'table' },
+    { label: 'Default', value: 'default' },
+    { label: 'Empty', value: 'empty' },
+    { label: 'Diagram', value: 'diagram' },
+    { label: 'Table', value: 'table' },
   ]
 })
 
@@ -377,7 +374,7 @@ function onMode() {
 function onUpdate({ json, html }: { json: any; html: string }) {
   // Get content of editor
   // console.log(json)
-  console.log(html)
+  // console.log(html)
 
   // markdown
   const markdown = yiiEditor.value?.editor.markdown?.serialize(json)
