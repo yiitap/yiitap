@@ -76,6 +76,9 @@
               <template #unchecked> Disable </template>
             </n-switch>
           </n-form-item>
+          <n-form-item label="Source">
+            <n-select v-model:value="source" :options="sourceList" />
+          </n-form-item>
 
           <h3>AI</h3>
           <n-divider />
@@ -145,7 +148,7 @@ import {
 import { YiiEditor, ODocToc, OIcon, OMainMenu } from '@yiitap/vue'
 import { HocuspocusProvider } from '@hocuspocus/provider'
 import * as Y from 'yjs'
-import { BasicFeaturesArticle, BasicFeaturesArticleZh } from '@/data/article'
+import { getData } from '@/data'
 import VersionBadge from './VersionBadge.vue'
 import 'katex/dist/katex.min.css'
 
@@ -156,6 +159,7 @@ const tocRef = ref<InstanceType<typeof ODocToc>>()
 const locale = ref('en')
 const darkMode = ref(false)
 const editable = ref(true)
+const source = ref('default')
 const aiOption = ref<AiOption>({
   provider: 'deepseek',
   apiKey: '',
@@ -264,8 +268,16 @@ const editorKey = computed(() => {
 })
 
 const content = computed(() => {
-  return locale.value === 'zh' ? BasicFeaturesArticleZh : BasicFeaturesArticle
-  // return ''
+  return getData(source.value, locale.value as 'en')
+})
+
+const sourceList = computed(() => {
+  return [
+    { label: 'Default', value: 'default' },
+    { label: 'Empty', value: 'empty' },
+    { label: 'Diagram', value: 'diagram' },
+    { label: 'Table', value: 'table' },
+  ]
 })
 
 const aiProviders = computed(() => {
@@ -295,6 +307,7 @@ const editor = computed(() => {
 function init() {
   try {
     locale.value = localStorage.getItem('yiitap.locale') || 'en'
+    source.value = localStorage.getItem('yiitap.source') || 'default'
     providerToken.value = localStorage.getItem('yiitap.token') || ''
     collaboration.value =
       localStorage.getItem('yiitap.collaboration') === 'true'
@@ -384,6 +397,13 @@ watch(locale, (newValue) => {
     })
   }
   localStorage.setItem('yiitap.locale', newValue)
+})
+
+watch(source, (newValue) => {
+  localStorage.setItem('yiitap.source', newValue)
+  yiiEditor.value?.editor.commands.setContent(content.value, {
+    emitUpdate: true,
+  })
 })
 
 watch(providerToken, (newValue) => {
